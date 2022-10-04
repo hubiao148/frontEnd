@@ -1,9 +1,13 @@
-/***
- *
- * Storage封装
- * @auth hcy
- *
+/*
+ * @Author: hcy
+ * @Date: 2022-10-04 17:08:52
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-10-04 17:38:11
+ * @FilePath: \src\src\utils\storage.ts
+ * @Description: Storage封装
+ * 
  */
+
 
 import configEnv from '@/utils/configEnv';
 

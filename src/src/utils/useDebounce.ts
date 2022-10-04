@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-10-04 15:06:24
  */
 
-import React, { useRef } from 'react';
+import  { useRef } from 'react';
 export interface ICurrent {
   fn: Function;
   timer: null | NodeJS.Timeout;

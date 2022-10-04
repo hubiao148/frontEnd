@@ -4,7 +4,7 @@
  * @Last Modified by: zyq
  * @Last Modified time: 2022-10-04 15:07:25
  */
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { ICurrent } from './useDebounce';
 export const useThrottle = (fn: Function, delay = 500) => {
   const { current } = useRef<ICurrent>({ fn, timer: null });

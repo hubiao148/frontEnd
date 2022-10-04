@@ -1,3 +1,13 @@
+/*
+ * @Author: hcy
+ * @Date: 2022-10-04 17:08:52
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-10-04 17:38:46
+ * @FilePath: \src\config\config.prod.ts
+ * @Description: product环境
+ * 
+ */
+
 import { defineConfig } from 'umi';
 import routes from './routes';
 import theme from './theme';

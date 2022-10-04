@@ -14,19 +14,11 @@ import {
   useRouteMatch,
 } from 'umi';
 import { Result, Button } from 'antd';
-import { useDebounce } from '@/utils/useDebounce';
-
 export default function NotFound() {
   const history = useHistory();
-  // const [value, setValue] = useState(1);
-  // const run = useDebounce(() => {
-  //   setValue(value + 1);
-  // }, 500);
-
   const goBack = () => {
     history.push('/');
   };
-
   return (
     <div>
       <Result
@@ -39,9 +31,6 @@ export default function NotFound() {
           </Button>
         }
       />
-      {/* <p>------------</p>
-      <p style={{ marginTop: 16 }}> Clicked count: {value} </p>
-      <Button onClick={run}>Click fast!</Button> */}
     </div>
   );
 }
