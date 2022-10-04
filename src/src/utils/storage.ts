@@ -1,41 +1,36 @@
 /***
- * 
+ *
  * Storage封装
- * @anth hcy
- * 
+ * @auth hcy
+ *
  */
 
-import configEnv from '@/utils/configEnv'
+import configEnv from '@/utils/configEnv';
 
 export default {
-    getItem(key:string) { 
-        return this.getStorage()[key];
-    },
-    setItem(key:string, val:any) {
-        
-        let storage = this.getStorage();
+  getItem(key: string) {
+    return this.getStorage()[key];
+  },
+  setItem(key: string, val: any) {
+    let storage = this.getStorage();
 
-        storage[key] = val;
-        
-        window.localStorage.setItem(configEnv.namespace, JSON.stringify(storage))
-     },
-    getStorage() {
-        return JSON.parse(window.localStorage.getItem(configEnv.namespace) || "{}");
-    },
-    clearItem(key:string) {
+    storage[key] = val;
 
-        let Storage = this.getStorage();
+    window.localStorage.setItem(configEnv.namespace, JSON.stringify(storage));
+  },
+  getStorage() {
+    return JSON.parse(window.localStorage.getItem(configEnv.namespace) || '{}');
+  },
+  clearItem(key: string) {
+    let Storage = this.getStorage();
 
-        delete Storage[key];
+    delete Storage[key];
 
-        // console.log(Storage);
+    // console.log(Storage);
 
-        window.localStorage.setItem(configEnv.namespace,JSON.stringify(Storage))
-
-    },
-    clearAll() {
-
-        window.localStorage.clear();
-
-     }
-}
+    window.localStorage.setItem(configEnv.namespace, JSON.stringify(Storage));
+  },
+  clearAll() {
+    window.localStorage.clear();
+  },
+};

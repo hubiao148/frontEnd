@@ -4,17 +4,10 @@
 
 Install dependencies,
 
-```bash
-$ yarn
-```
-
 Start the dev server,
 
-```bash
 $ yarn start
-```
-<<<<<<< HEAD
-=======
+
 
 - config // 全局配置文件
 
@@ -59,4 +52,4 @@ $ yarn start
 
     
 
->>>>>>> 8fefb8d141306e349e273ce11f46174e97a73e0d
+
