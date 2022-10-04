@@ -1,5 +1,12 @@
+/*
+ * @Author: zyq
+ * @Date: 2022-10-04 15:04:08
+ * @Last Modified by: zyq
+ * @Last Modified time: 2022-10-04 15:06:24
+ */
+
 import React, { useRef } from 'react';
-interface ICurrent {
+export interface ICurrent {
   fn: Function;
   timer: null | NodeJS.Timeout;
 }
