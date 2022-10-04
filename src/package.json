@@ -1,8 +1,14 @@
 {
   "private": true,
   "scripts": {
+<<<<<<< HEAD
     "start": "umi dev",
     "build": "umi build",
+=======
+    "dev": "umi dev",
+    "start": "cross-env UMI_ENV=prod umi dev",
+    "build": "cross-env UMI_ENV=prod umi build",
+>>>>>>> 8fefb8d141306e349e273ce11f46174e97a73e0d
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
@@ -21,7 +27,13 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^6.5.0",
+<<<<<<< HEAD
     "js-md5": "^0.7.3",
+=======
+    "axios": "^0.27.2",
+    "cross-env": "^7.0.3",
+    "crypto-js": "^4.1.1",
+>>>>>>> 8fefb8d141306e349e273ce11f46174e97a73e0d
     "react": "17.x",
     "react-dom": "17.x",
     "umi": "^3.5.34"
