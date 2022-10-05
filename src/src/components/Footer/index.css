@@ -1,0 +1,10 @@
+.focusWrapper {
+  width: 250px;
+  margin: 20px 0 20px 0px;
+  padding: 20px;
+  float: right;
+  background-color: #a0b1c8 e;
+}
+.focusWrapper .img {
+  width: 100%;
+}
