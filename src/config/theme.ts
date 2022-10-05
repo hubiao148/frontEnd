@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-05 14:03:47
+ * @LastEditTime: 2022-10-05 14:48:09
  * @FilePath: \src\config\theme.ts
  * @Description: 全局less变量
  * 

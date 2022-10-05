@@ -1,13 +1,3 @@
-/*
- * @Author: hcy
- * @Date: 2022-10-04 17:08:52
- * @LastEditors: hcy
- * @LastEditTime: 2022-10-04 17:39:46
- * @FilePath: \src\config\proxy.ts
- * @Description: 代理
- * 
- */
-
 /**
  * 在生产环境 代理是无法生效的，所以这里没有生产环境的配置
  * -------------------------------
