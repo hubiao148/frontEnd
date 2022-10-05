@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-05 14:02:36
+ * @LastEditTime: 2022-10-05 20:24:26
  * @FilePath: \src\src\utils\storage.ts
  * @Description: Storage封装
  * 

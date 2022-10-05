@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-05 14:44:45
+ * @LastEditTime: 2022-10-05 20:23:07
  * @FilePath: \src\src\utils\configEnv.ts
  * @Description: 配置环境变量
  * 
@@ -23,6 +23,6 @@ const EnvConfig = {
 export default {
     env,
     mock: false,
-    namespace: "font",
+    namespace: "easySE",
     ...EnvConfig[env]
 }

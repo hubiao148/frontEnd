@@ -1,7 +1,17 @@
+/*
+ * @Author: hcy
+ * @Date: 2022-10-05 14:25:37
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-10-05 20:48:56
+ * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
+ * @Description: 
+ * 
+ */
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { Link } from 'umi';
+import { Link,useHistory } from 'umi';
 import styles from './index.less';
+import storage from '@/utils/storage';
 
 const layout = {
   labelCol: { span: 8 },
@@ -12,6 +22,11 @@ const tailLayout = {
 };
 
 function Login() {
+  const history = useHistory();
+  function goHome() {
+    storage.setItem('token','sdsdsfsdf');
+    history.push('/home')
+  }
   return (
     <Form {...layout} name="basic" className={styles['login-form']}>
       <Form.Item
@@ -53,6 +68,7 @@ function Login() {
           type="primary"
           htmlType="submit"
           className={styles['login-button']}
+          onClick={goHome}
         >
           登录
         </Button>
