@@ -1,5 +1,5 @@
 import { Form, Input, Button, Checkbox } from 'antd';
-import { useEffect } from 'react';
+import { UserOutlined } from '@ant-design/icons';
 import { Link } from 'umi';
 import styles from './LoginForm.less';
 
@@ -18,7 +18,10 @@ function LoginForm() {
         name="account"
         rules={[{ required: true, message: 'Please input your account!' }]}
       >
-        <Input />
+        <Input
+          prefix={<UserOutlined />}
+          placeholder="请输入账号(邮箱/手机号)"
+        />
       </Form.Item>
 
       <Form.Item
@@ -26,7 +29,7 @@ function LoginForm() {
         style={{ marginBottom: '0px' }}
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
-        <Input.Password />
+        <Input.Password placeholder="请输入密码" />
       </Form.Item>
 
       <Form.Item

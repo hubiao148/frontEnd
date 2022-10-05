@@ -1,7 +1,7 @@
 import { UserLayout } from '@/layouts/userRegLayout';
 import RegForm from './components/RegForm';
 
-function Login() {
+function Register() {
   return (
     <UserLayout>
       <RegForm />
@@ -9,4 +9,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

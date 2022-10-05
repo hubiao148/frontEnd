@@ -1,14 +1,11 @@
+import formValidation from '@/utils/formValidation';
 import { Form, Input, Button, Checkbox } from 'antd';
-import { useEffect } from 'react';
 import { Link } from 'umi';
 import styles from './RegForm.less';
 
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
-};
-const tailLayout = {
-  wrapperCol: { offset: 0, span: 16 },
 };
 
 function RegForm() {
@@ -18,13 +15,17 @@ function RegForm() {
         name="username"
         rules={[{ required: true, message: 'Please input your username!' }]}
       >
-        <Input />
+        <Input placeholder="昵称" />
       </Form.Item>
+
       <Form.Item
         name="account"
-        rules={[{ required: true, message: 'Please input your account!' }]}
+        rules={[
+          { required: true, message: '' },
+          { validator: formValidation.email || formValidation.mobile },
+        ]}
       >
-        <Input />
+        <Input placeholder="xxxx@xx.com/手机号" />
       </Form.Item>
 
       <Form.Item
@@ -32,7 +33,7 @@ function RegForm() {
         style={{ marginBottom: '0px' }}
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
-        <Input.Password />
+        <Input.Password placeholder="设置密码" />
       </Form.Item>
 
       <Form.Item

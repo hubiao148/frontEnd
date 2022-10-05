@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './UserLayout.less';
 import logo from '../../assets/login-side-img.png';
 import { Link, NavLink } from 'umi';
+import { Divider } from 'antd';
 
 export const UserLayout: React.FC = (props) => {
   return (
@@ -19,6 +20,7 @@ export const UserLayout: React.FC = (props) => {
               </NavLink>
               <NavLink to={'/beforeLogin/register'}>注册</NavLink>
             </div>
+            <Divider style={{ margin: '0px' }}></Divider>
             <div className={styles['desc']}>请登录账号</div>
             <div>{props.children}</div>
           </div>
