@@ -1,9 +1,19 @@
+/*
+ * @Author: hcy
+ * @Date: 2022-10-05 14:25:37
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-10-05 21:20:41
+ * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
+ * @Description: 
+ * 
+ */
 import { Form, Input, Button, Checkbox, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import formValidation from '@/utils/formValidation';
 import { useDebounce } from '@/utils/useDebounce';
-import { Link } from 'umi';
+import { Link,useHistory } from 'umi';
 import styles from './index.less';
+import storage from '@/utils/storage';
 
 const layout = {
   labelCol: { span: 8 },
@@ -28,6 +38,11 @@ function Login() {
     console.log('Failed:', errorInfo);
   };
 
+  const history = useHistory();
+  function goHome() {
+    storage.setItem('token','sdsdsfsdf');
+    history.push('/home')
+  }
   return (
     <Form
       {...layout}
@@ -81,7 +96,7 @@ function Login() {
           type="primary"
           htmlType="submit"
           className={styles['login-button']}
-          onClick={login}
+          onClick={goHome}
         >
           登录
         </Button>
