@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-04 17:36:39
+ * @LastEditTime: 2022-10-05 14:44:45
  * @FilePath: \src\src\utils\configEnv.ts
  * @Description: 配置环境变量
  * 

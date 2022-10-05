@@ -6,12 +6,12 @@
   background-repeat: no-repeat;
   background-position: left bottom;
 }
-.user-layout-container .content-container {
+.content-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.user-layout-container .content-container .content {
+.content {
   width: 700px;
   height: 400px;
   background: #ffffff90;
@@ -23,25 +23,27 @@
   align-items: center;
   justify-content: space-around;
 }
-.user-layout-container .content-container .content .left {
+.content .left {
   margin-left: 50px;
 }
-.user-layout-container .content-container .content .right {
+.content .right {
   padding-left: 40px;
   box-sizing: border-box;
 }
-.user-layout-container .content-container .content .right .content-header {
+.content .right .content-header {
   height: 44px;
   line-height: 44px;
 }
-.user-layout-container .content-container .content .right .content-header .title {
+.content .right .content-header .title {
+  margin-left: 20px;
+}
+.isActive {
   color: #4b89da;
   font-weight: 600;
   font-size: 20px;
-  margin-left: 20px;
   font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
-.user-layout-container .content-container .content .right .desc {
+.content .right .desc {
   margin: 0px 16px 25px 0px;
   font-weight: 600;
   font-size: 20px;

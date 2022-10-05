@@ -2,9 +2,9 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-04 17:39:29
+ * @LastEditTime: 2022-10-05 14:50:49
  * @FilePath: \src\config\config.ts
- * @Description: 默认dev环境
+ * @Description: dev环境变量
  * 
  */
 

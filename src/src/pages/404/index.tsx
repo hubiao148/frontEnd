@@ -14,7 +14,7 @@ import {
   useRouteMatch,
 } from 'umi';
 import { Result, Button } from 'antd';
-export default function NotFound() {
+export default function NotFound() { //404页面
   const history = useHistory();
   const goBack = () => {
     history.push('/');

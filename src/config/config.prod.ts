@@ -2,9 +2,9 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-04 17:38:46
+ * @LastEditTime: 2022-10-05 14:51:04
  * @FilePath: \src\config\config.prod.ts
- * @Description: product环境
+ * @Description: prod环境变量
  * 
  */
 
