@@ -8,13 +8,14 @@
  * 
  */
 import formValidation from '@/utils/formValidation';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button, Checkbox, message } from 'antd';
+import { UserOutlined, LockOutlined, TeamOutlined } from '@ant-design/icons';
 import { Link } from 'umi';
 import styles from './index.less';
 
 const layout = {
   labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
+  wrapperCol: { span: 18 },
 };
 
 function RegForm() {
@@ -22,27 +23,45 @@ function RegForm() {
     <Form {...layout} name="basic" className={styles['register-form']}>
       <Form.Item
         name="username"
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        rules={[{ required: true, message: '请输入您的昵称' }]}
       >
-        <Input placeholder="昵称" />
+        <Input prefix={<UserOutlined />} placeholder="昵称" />
       </Form.Item>
 
       <Form.Item
         name="account"
         rules={[
           { required: true, message: '' },
-          { validator: formValidation.email || formValidation.mobile },
+          { validator: formValidation.validate },
         ]}
       >
-        <Input placeholder="xxxx@xx.com/手机号" />
+        <Input prefix={<TeamOutlined />} placeholder="xxxx@xx.com/手机号" />
       </Form.Item>
 
       <Form.Item
         name="password"
-        style={{ marginBottom: '0px' }}
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        rules={[{ required: true, message: '请设置密码' }]}
       >
-        <Input.Password placeholder="设置密码" />
+        <Input.Password prefix={<LockOutlined />} placeholder="设置密码" />
+      </Form.Item>
+
+      <Form.Item
+        name="confirm"
+        hasFeedback
+        style={{ marginBottom: '0px' }}
+        rules={[
+          { required: true, message: '请再次输入密码' },
+          ({ getFieldValue }) => ({
+            validator(rule, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject('密码确认不一致！');
+            },
+          }),
+        ]}
+      >
+        <Input.Password prefix={<LockOutlined />} placeholder="确认密码" />
       </Form.Item>
 
       <Form.Item
