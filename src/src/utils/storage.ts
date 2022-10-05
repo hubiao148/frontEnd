@@ -8,7 +8,7 @@
  * 
  */
 
-import configEnv from '@/utils/configEnv'
+import configEnv from '@/utils/configEnv';
 
 export default {
   getItem(key: string) { //通过索引取localStorage的东西
