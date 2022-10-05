@@ -4,15 +4,10 @@
 
 Install dependencies,
 
-```bash
-$ yarn
-```
-
 Start the dev server,
 
-```bash
 $ yarn start
-```
+
 
 - config // 全局配置文件
 
@@ -56,4 +51,5 @@ $ yarn start
  - 后端传过来的 Token 
 
     
+
 

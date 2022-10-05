@@ -15,16 +15,9 @@
       "@@/*": ["src/.umi/*"]
     },
     "allowSyntheticDefaultImports": true,
-    "suppressImplicitAnyIndexErrors":true,
-
+    "suppressImplicitAnyIndexErrors": true
   },
-  "include": [
-    "mock/**/*",
-    "src/**/*",
-    "config/**/*",
-    ".umirc.ts",
-    "typings.d.ts"
-  ],
+  "include": ["mock/**/*", "src/**/*", "config/**/*", "typings.d.ts"],
   "exclude": [
     "node_modules",
     "lib",
