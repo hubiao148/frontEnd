@@ -1,13 +1,3 @@
-/*
- * @Author: hcy
- * @Date: 2022-10-04 17:08:52
- * @LastEditors: hcy
- * @LastEditTime: 2022-10-04 18:24:20
- * @FilePath: \src\src\api\api.ts
- * @Description: axios封装
- * 
- */
-
 import axios from 'axios'
 
 import configEnv from '@/utils/configEnv';
