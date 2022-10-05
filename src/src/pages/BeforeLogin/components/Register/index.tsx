@@ -1,3 +1,12 @@
+/*
+ * @Author: hcy
+ * @Date: 2022-10-05 14:25:37
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-10-05 18:26:58
+ * @FilePath: \src\src\pages\BeforeLogin\components\Register\index.tsx
+ * @Description: 
+ * 
+ */
 import formValidation from '@/utils/formValidation';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { Link } from 'umi';
