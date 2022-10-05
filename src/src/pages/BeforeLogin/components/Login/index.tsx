@@ -1,15 +1,12 @@
-/*
- * @Author: hcy
- * @Date: 2022-10-04 18:27:00
- * @LastEditors: hcy
- * @LastEditTime: 2022-10-04 18:31:12
- * @FilePath: \src\src\pages\login\components\Login\index.tsx
- * @Description: 登录
- * 
- */
+import { UserLayout } from '@/layouts/userLogLayout';
+import LoginForm from './components/LoginForm';
 
-export default function Login() {
+function Login() {
   return (
-    <div>Login</div>
-  )
+    <UserLayout>
+      <LoginForm />
+    </UserLayout>
+  );
 }
+
+export default Login;

@@ -1,16 +1,12 @@
-/*
- * @Author: hcy
- * @Date: 2022-10-04 18:27:07
- * @LastEditors: hcy
- * @LastEditTime: 2022-10-04 18:31:38
- * @FilePath: \src\src\pages\login\components\Register\index.tsx
- * @Description: 注册
- * 
- */
-import React from 'react'
+import { UserLayout } from '@/layouts/userRegLayout';
+import RegForm from './components/RegForm';
 
-export default function Registe () {
+function Login() {
   return (
-    <div>Register</div>
-  )
+    <UserLayout>
+      <RegForm />
+    </UserLayout>
+  );
 }
+
+export default Login;
