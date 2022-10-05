@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-05 14:03:29
+ * @LastEditTime: 2022-10-05 15:30:05
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  * 
@@ -23,7 +23,12 @@ export default [
     component: '@/layouts',
     routes: [
       {path:'/',redirect:'/home'},
-      { path: '/home', component: '@/pages/Home' },
+      {
+        path: '/home', component: '@/pages/Home',
+        wrappers: [
+        '@/wrappers/noLogin',
+        ],
+      },
       { component: '@/pages/404' },
     ]
   
