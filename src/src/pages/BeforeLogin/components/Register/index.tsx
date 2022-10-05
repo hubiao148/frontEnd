@@ -1,14 +1,5 @@
-/*
- * @Author: zyq
- * @Date: 2022-10-05 12:20:04
- * @LastEditors: hcy
- * @LastEditTime: 2022-10-05 13:08:32
- * @FilePath: \src\src\pages\BeforeLogin\components\Register\index.tsx
- * @Description:
- *
- */
+import formValidation from '@/utils/formValidation';
 import { Form, Input, Button, Checkbox } from 'antd';
-import { useEffect } from 'react';
 import { Link } from 'umi';
 import styles from './index.less';
 
@@ -17,20 +8,24 @@ const layout = {
   wrapperCol: { span: 16 },
 };
 
-function Register() {
+function RegForm() {
   return (
     <Form {...layout} name="basic" className={styles['register-form']}>
       <Form.Item
         name="username"
         rules={[{ required: true, message: 'Please input your username!' }]}
       >
-        <Input />
+        <Input placeholder="昵称" />
       </Form.Item>
+
       <Form.Item
         name="account"
-        rules={[{ required: true, message: 'Please input your account!' }]}
+        rules={[
+          { required: true, message: '' },
+          { validator: formValidation.email || formValidation.mobile },
+        ]}
       >
-        <Input />
+        <Input placeholder="xxxx@xx.com/手机号" />
       </Form.Item>
 
       <Form.Item
@@ -38,7 +33,7 @@ function Register() {
         style={{ marginBottom: '0px' }}
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
-        <Input.Password />
+        <Input.Password placeholder="设置密码" />
       </Form.Item>
 
       <Form.Item
@@ -62,4 +57,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default RegForm;

@@ -34,11 +34,16 @@
   height: 44px;
   line-height: 44px;
 }
-.content .right .content-header .title {
-  margin-left: 20px;
-}
-.isActive {
+.logActive {
   color: #4b89da;
+  margin-right: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+.regActive {
+  color: #4b89da;
+  margin-left: 20px;
   font-weight: 600;
   font-size: 20px;
   font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;

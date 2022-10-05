@@ -1,15 +1,6 @@
-/*
- * @Author: hcy
- * @Date: 2022-10-05 12:20:04
- * @LastEditors: hcy
- * @LastEditTime: 2022-10-05 14:49:18
- * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
- * @Description: 
- * 
- */
 import { Form, Input, Button, Checkbox } from 'antd';
-import { useEffect } from 'react';
-import { Link ,useHistory  } from 'umi';
+import { UserOutlined } from '@ant-design/icons';
+import { Link } from 'umi';
 import styles from './index.less';
 
 const layout = {
@@ -21,17 +12,16 @@ const tailLayout = {
 };
 
 function Login() {
-  const history = useHistory();
-  function goHome() {
-    history.push('/home');
-  }
   return (
     <Form {...layout} name="basic" className={styles['login-form']}>
       <Form.Item
         name="account"
         rules={[{ required: true, message: 'Please input your account!' }]}
       >
-        <Input />
+        <Input
+          prefix={<UserOutlined />}
+          placeholder="请输入账号(邮箱/手机号)"
+        />
       </Form.Item>
 
       <Form.Item
@@ -39,7 +29,7 @@ function Login() {
         style={{ marginBottom: '0px' }}
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
-        <Input.Password />
+        <Input.Password placeholder="请输入密码" />
       </Form.Item>
 
       <Form.Item
@@ -63,7 +53,6 @@ function Login() {
           type="primary"
           htmlType="submit"
           className={styles['login-button']}
-          onClick = {goHome}
         >
           登录
         </Button>

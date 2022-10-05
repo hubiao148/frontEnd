@@ -41,7 +41,7 @@ export default function BeforeLogin(props: any) {
             <div className={styles['content-header']}>
               <a
                 className={`${styles['title']} ${
-                  title == '请先登录账号' ? styles['isActive'] : null
+                  title == '请先登录账号' ? styles['logActive'] : null
                 }`}
                 onClick={goLogin}
               >
@@ -49,7 +49,7 @@ export default function BeforeLogin(props: any) {
               </a>
               <a
                 className={`${styles['title']} ${
-                  title == '请先注册账号' ? styles['isActive'] : null
+                  title == '请先注册账号' ? styles['regActive'] : null
                 }`}
                 onClick={goRegister}
               >
