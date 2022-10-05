@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 11:52:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-05 21:13:11
+ * @LastEditTime: 2022-10-05 21:30:11
  * @FilePath: \src\src\components\Header\index.tsx
  * @Description: 头部
  * 
@@ -10,7 +10,7 @@
 import {useEffect,useState} from 'react'
 import { useHistory } from 'umi';
 import { BellOutlined ,UnorderedListOutlined} from '@ant-design/icons';
-import { Avatar, Image, Badge, Button} from 'antd';
+import { Avatar, Badge, Button} from 'antd';
 import { useAuth } from '@/utils/auth';
 import Menu from './components/Menu'
 import style from './index.less'
@@ -41,8 +41,7 @@ export default () => {
           <Avatar icon={<BellOutlined />} />
         </Badge>}
         {!isLogin && <Button onClick={goLogin}>登录/注册</Button>}
-        {isLogin && <Avatar alt='loading' src={<Image src="https://joeschmoe.io/api/v1/random" style={{ width: 32 }} />} />}
-        {isLogin && <Button onClick={goLogout}>退出</Button>}
+        {isLogin && <Avatar onClick={goLogout} src="https://joeschmoe.io/api/v1/random" style={{ width: 32 ,cursor: 'pointer'}}  />}
         <UnorderedListOutlined />
       </div>
     </div>
