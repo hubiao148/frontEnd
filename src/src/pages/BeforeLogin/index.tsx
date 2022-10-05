@@ -15,7 +15,7 @@ import { useHistory, history as his } from 'umi';
 
 export default function BeforeLogin(props: any) {
   const path = his.location.pathname;
-  const [title, setTitle] = useState('请先登录账号');
+  const [title, setTitle] = useState('请登录账号');
   const history = useHistory();
   useEffect(() => {
     history.push('/beforeLogin/login');
@@ -23,11 +23,11 @@ export default function BeforeLogin(props: any) {
   }, []);
   function goLogin() {
     history.push('/beforeLogin/login');
-    setTitle('请先登录账号');
+    setTitle('请登录账号');
   }
   function goRegister() {
     history.push('/beforeLogin/register');
-    setTitle('请先注册账号');
+    setTitle('注册账号');
   }
   return (
     <div className={styles['user-layout-container']}>
@@ -41,7 +41,7 @@ export default function BeforeLogin(props: any) {
             <div className={styles['content-header']}>
               <a
                 className={`${styles['title']} ${
-                  title == '请先登录账号' ? styles['logActive'] : null
+                  title == '请登录账号' ? styles['logActive'] : null
                 }`}
                 onClick={goLogin}
               >
@@ -49,7 +49,7 @@ export default function BeforeLogin(props: any) {
               </a>
               <a
                 className={`${styles['title']} ${
-                  title == '请先注册账号' ? styles['regActive'] : null
+                  title == '注册账号' ? styles['regActive'] : null
                 }`}
                 onClick={goRegister}
               >

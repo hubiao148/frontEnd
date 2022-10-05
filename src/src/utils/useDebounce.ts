@@ -2,15 +2,15 @@
  * @Author: zyq
  * @Date: 2022-10-04 15:04:08
  * @Last Modified by: zyq
- * @Last Modified time: 2022-10-04 15:06:24
+ * @Last Modified time: 2022-10-05 19:20:57
  */
 
-import  { useRef } from 'react';
+import { useRef } from 'react';
 export interface ICurrent {
   fn: Function;
   timer: null | NodeJS.Timeout;
 }
-export const useDebounce = (fn: Function, delay = 500, immediate?: boolean) => {
+export const useDebounce = (fn: Function, delay: any, immediate?: boolean) => {
   const { current } = useRef<ICurrent>({ fn, timer: null }); //使用useRef来保存变量
   return function (this: any, ...args: any[]) {
     const that = this;
