@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-05 14:50:49
+ * @LastEditTime: 2022-10-05 18:02:48
  * @FilePath: \src\config\config.ts
  * @Description: dev环境变量
  *
@@ -41,4 +41,11 @@ export default defineConfig({
   },
   mountElementId: 'app', // document问价id名
   theme,
+  chainWebpack(memo, { env, webpack, createCSSRule }) { //自动打开浏览器
+    env === 'development'
+      ? memo
+          .plugin('open-browser-webpack-plugin')
+          .use('open-browser-webpack-plugin', [{ url: 'http://localhost:8000' }])
+      : ''; // 此处url与项目启动的url保持一致
+  },
 });
