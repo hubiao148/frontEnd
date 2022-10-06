@@ -1,10 +1,18 @@
-.focusWrapper {
-  width: 250px;
+.footerWrapper {
+  background-color: #2a476d;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.footerWrapper .focusWrapper {
+  width: 240px;
+  color: #d1d1d1;
   margin: 20px 0 20px 0px;
   padding: 20px;
   float: right;
   background-color: #a0b1c8 e;
 }
-.focusWrapper .img {
+.footerWrapper .focusWrapper .img {
   width: 100%;
 }

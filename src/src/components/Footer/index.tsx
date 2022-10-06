@@ -10,40 +10,34 @@ import styled from './index.less';
 import image1 from '../../assets/backgr.png';
 import image2 from '../../assets//login-side-img.png';
 
-const companies = [
-  { src: image1, title: 'Microsoft' },
-  { src: image2, title: 'Youtube' },
+const qr = [
+  { src: image1, title: 'img1' },
+  { src: image2, title: 'img2' },
 ];
 
 const Footer: React.FC = () => {
   return (
-    <Layout.Footer
-      style={{
-        backgroundColor: 'rgb(42, 71, 109)',
-        color: 'rgb(232, 232, 232)',
-        height: '330px',
-      }}
-    >
-      <Typography.Title
-        level={4}
+    <div className={styled['footerWrapper']}>
+      <div
         style={{
-          textAlign: 'left',
-          color: 'rgb(232, 232, 232)',
-          paddingTop: '10PX',
+          color: 'rgb(209, 209, 209)',
+          top: '200px',
         }}
       >
         ©2021-2022 Sicnu Software easySE. All rights reserved.
-      </Typography.Title>
+      </div>
       <div className={styled['focusWrapper']}>
-        <div>
-          <span>关注</span>
-        </div>
+        <span>关注</span>
         <Divider
-          style={{ marginBottom: '10px', color: 'rgb(108, 108, 108)' }}
+          style={{
+            marginBottom: '10px',
+            marginTop: '5px',
+            backgroundColor: 'rgb(126, 126, 126)',
+          }}
         ></Divider>
         <Row>
-          {companies.map((c, index) => (
-            <Col span={7} key={'qr-' + index} style={{ marginRight: '10px' }}>
+          {qr.map((c, index) => (
+            <Col span={7} key={'qr-' + index} style={{ marginRight: '20px' }}>
               <img src={c.src} className={styled['img']} alt="focusQr" />
             </Col>
           ))}
@@ -51,15 +45,10 @@ const Footer: React.FC = () => {
       </div>
 
       <Divider
-        style={{ marginTop: '5px', color: 'rgb(108, 108, 108)' }}
+        style={{ marginTop: '5px', backgroundColor: 'rgb(126, 126, 126)' }}
       ></Divider>
-      <Typography.Title
-        level={5}
-        style={{ textAlign: 'right', color: 'rgb(232, 232, 232)' }}
-      >
-        BY easySE
-      </Typography.Title>
-    </Layout.Footer>
+      <span style={{ color: 'rgb(209, 209, 209)' }}>BY easySE</span>
+    </div>
   );
 };
 
