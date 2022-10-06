@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-05 20:35:18
+ * @LastEditTime: 2022-10-06 18:48:55
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  * 
@@ -26,6 +26,10 @@ export default [
       {
         path: '/home', component: '@/pages/Home'
       },
+      {path:'/myshare',component:'@/pages/myShare'},
+      {path:'/case',component:'@/pages/Case'},
+      {path:'/task',component:'@/pages/Task'},
+      {path:'/user',component:'@/pages/User'},
       { component: '@/pages/404' },
     ]
   
