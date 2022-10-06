@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 16:29:38
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-06 18:52:35
+ * @LastEditTime: 2022-10-06 19:27:23
  * @FilePath: \src\src\components\Header\components\Menu\index.tsx
  * @Description: 
  * 
@@ -27,10 +27,9 @@ export default function () {
         <div className={style.menu}>
             {listMenu.map((e,index) => {
                 return <div key={index} className={index == page ? style.isActive : null} onClick={() => {
-                    history.push(e.path)
                     setPage(index)
-                    
                     storage.setItem('currentPage',index)
+                    history.push(e.path)
                 }}>{e.title}</div>
             })}
         </div>
