@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 11:52:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-06 19:33:47
+ * @LastEditTime: 2022-10-07 20:17:55
  * @FilePath: \src\src\components\Header\index.tsx
  * @Description: 头部
  *
@@ -35,7 +35,7 @@ export default () => {
   }, [refresh]);
 
   const history = useHistory();
-  const { isLogin } = useAuth(); //判断受否登录
+  const { isLogin } = useAuth(); //判断是否登录
   function goLogin() {
     history.push('/beforeLogin');
   }
