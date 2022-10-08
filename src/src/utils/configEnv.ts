@@ -1,7 +1,13 @@
-/**
- * 配置环境变量
+/*
+ * @Author: hcy
+ * @Date: 2022-10-04 17:08:52
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-10-05 20:23:07
+ * @FilePath: \src\src\utils\configEnv.ts
+ * @Description: 配置环境变量
  * 
  */
+
 const env = process.env.UMI_ENV || "dev"; // 引入开发环境默认"dev"生产环境
 
 const EnvConfig = {
@@ -17,6 +23,6 @@ const EnvConfig = {
 export default {
     env,
     mock: false,
-    namespace: "font",
+    namespace: "easySE",
     ...EnvConfig[env]
 }

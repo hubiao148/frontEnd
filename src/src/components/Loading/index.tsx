@@ -1,5 +1,11 @@
-export default function index() {
+import React from 'react';
+
+function Loading() {
   return (
-    <div>loading......</div>
-  )
+    <div>
+      Loading
+    </div>
+  );
 }
+
+export default Loading;

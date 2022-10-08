@@ -1,3 +1,13 @@
+/*
+ * @Author: hcy
+ * @Date: 2022-10-04 17:08:52
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-10-05 14:44:31
+ * @FilePath: \src\src\utils\cryptoAES.ts
+ * @Description: 
+ * 
+ */
+
 const CryptoJS = require('crypto-js');  //引用AES源码js
     
 const key = CryptoJS.enc.Utf8.parse("1234123412ABCDEF");  //十六位十六进制数作为密钥

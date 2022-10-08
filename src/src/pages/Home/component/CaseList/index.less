@@ -1,0 +1,30 @@
+.list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    &>div{
+        position: relative;
+        width: 25.5%;
+        height: 250px;
+        margin-top: 20px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        -webkit-background-size: cover;
+        -o-background-size: cover;
+        background-position: center 0;
+        border: 1px solid #e0e2e3;
+        cursor: pointer;
+    }
+    &>div>div{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 30px;
+        width: auto;
+        background-color: #273C59;
+        color: aliceblue;
+        overflow: hidden;
+        line-height: 30px;
+        text-overflow:ellipsis
+    }
+}

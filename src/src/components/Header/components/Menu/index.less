@@ -1,0 +1,43 @@
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+    &>div{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        width: 15% ;
+        font-size: large;
+        font-weight:500;
+        text-align: center;
+        cursor: pointer;
+        line-height: 47px;
+    }
+    &>div:hover{
+        transition: 0.5s ease;
+        color: #4c81c9;
+    }
+    &>div:hover::after{
+        content: '';
+        width: 60px;
+        height: 3px;
+        background: #4c81c9;
+        text-align: center;
+        transition: all 0.5s ease-out;
+        -webkit-transition: all 0.5s ease-out;
+    }
+    
+}
+.isActive{
+    color: #4c81c9;
+}
+.isActive::after{
+    content: '';
+    width: 60px;
+    height: 3px;
+    background: #4c81c9;
+    text-align: center;
+}
+
+
