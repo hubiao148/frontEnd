@@ -12,15 +12,12 @@ import styles from './index.less';
 import logo from '@/assets/login-side-img.png';
 import { Divider } from 'antd';
 import { useHistory, history as his } from 'umi';
+import { atom, useAtom } from 'jotai';
+export const titleAtom = atom('请登录账号');
 
 export default function BeforeLogin(props: any) {
-  const path = his.location.pathname;
-  const [title, setTitle] = useState('请登录账号');
+  const [title, setTitle] = useAtom(titleAtom);
   const history = useHistory();
-  useEffect(() => {
-    history.push('/beforeLogin/login');
-    console.log('渲染了');
-  }, []);
   function goLogin() {
     history.push('/beforeLogin/login');
     setTitle('请登录账号');

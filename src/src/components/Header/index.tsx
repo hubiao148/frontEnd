@@ -37,7 +37,7 @@ export default () => {
   const history = useHistory();
   const { isLogin } = useAuth(); //判断是否登录
   function goLogin() {
-    history.push('/beforeLogin');
+    history.push('/beforeLogin/login');
   }
   function goLogout() {
     storage.clearItem('token');
@@ -71,7 +71,6 @@ export default () => {
         )}
         <UnorderedListOutlined />
       </div>
-      
     </div>
   );
 };
