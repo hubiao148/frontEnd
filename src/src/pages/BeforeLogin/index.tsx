@@ -2,29 +2,39 @@
  * @Author: zyq
  * @Date: 2022-10-05 12:20:04
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-05 14:43:51
+ * @LastEditTime: 2022-10-11 21:13:21
  * @FilePath: \src\src\pages\BeforeLogin\index.tsx
  * @Description:
  *
  */
-import { useEffect, useState } from 'react';
 import styles from './index.less';
 import logo from '@/assets/login-side-img.png';
 import { Divider } from 'antd';
+import storage from '@/utils/storage';
 import { useHistory, history as his } from 'umi';
 import { atom, useAtom } from 'jotai';
-export const titleAtom = atom('请登录账号');
+import { useEffect } from 'react';
+export const titleAtom = atom(storage.getItem('title') || '请登录账号');
 
 export default function BeforeLogin(props: any) {
   const [title, setTitle] = useAtom(titleAtom);
   const history = useHistory();
+  useEffect(() => {
+    if (title === '注册账号') {
+      history.push('/beforeLogin/register');
+    }
+  },[])
   function goLogin() {
-    history.push('/beforeLogin/login');
     setTitle('请登录账号');
+    console.log(title);
+    storage.setItem('title','请登录账号');
+    history.push('/beforeLogin/login');
   }
   function goRegister() {
-    history.push('/beforeLogin/register');
     setTitle('注册账号');
+    console.log(title);
+    storage.setItem('title','注册账号');
+    history.push('/beforeLogin/register');
   }
   return (
     <div className={styles['user-layout-container']}>
