@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:46:41
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-13 19:40:35
+ * @LastEditTime: 2022-10-13 22:22:59
  * @FilePath: \src\src\pages\User\index.tsx
  * @Description: 个人空间
  * 
@@ -26,7 +26,11 @@ export default function User(props:any) {
       <div className={style.nav}>
         <Menu id={'User'} listMenu={listMenu}></Menu>
       </div>
-      <div className={style.body}>{ props.children}</div>
+      <div className={style.body}>
+        <div className={style.container}>
+          { props.children}
+        </div>
+      </div>
     </div>
   )
 }

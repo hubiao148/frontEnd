@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 11:52:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-13 20:54:16
+ * @LastEditTime: 2022-10-13 23:13:26
  * @FilePath: \src\src\components\Header\index.tsx
  * @Description: 头部
  *
@@ -61,7 +61,10 @@ export default () => {
           <Badge count={1000} >
             {' '}
             {/**通过isLogin变量动态渲染按钮 */}
-            <Avatar icon={<BellOutlined />} className={style.Badge}/>
+            <Avatar icon={<BellOutlined />}
+              className={style.Badge}
+              size={{ xs: 24, sm: 32, md: 40, lg: 40, xl: 40, xxl: 40}}
+            />
           </Badge>
         )}
         {!isLogin && (
@@ -81,13 +84,15 @@ export default () => {
           >
             <Avatar
               src="https://joeschmoe.io/api/v1/random"
-              style={{ width: 32, cursor: 'pointer' }}
+              style={{ cursor: 'pointer' }}
+              size={{ xs: 24, sm: 32, md: 40, lg: 40, xl: 40, xxl: 40}}
             />
           </Dropdown>
         )}
         <UnorderedListOutlined
           onClick={() => history.push('/mask')}
           className={style.icon}
+          
         />
       </div>
     </div>
