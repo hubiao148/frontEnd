@@ -23,50 +23,48 @@ export default function BeforeLogin(props: any) {
     if (title === '注册账号') {
       history.push('/beforeLogin/register');
     }
-  },[])
+  }, []);
   function goLogin() {
     setTitle('请登录账号');
     console.log(title);
-    storage.setItem('title','请登录账号');
+    storage.setItem('title', '请登录账号');
     history.push('/beforeLogin/login');
   }
   function goRegister() {
     setTitle('注册账号');
     console.log(title);
-    storage.setItem('title','注册账号');
+    storage.setItem('title', '注册账号');
     history.push('/beforeLogin/register');
   }
   return (
     <div className={styles['user-layout-container']}>
       <div className={styles['header']}>LOGO</div>
-      <div className={styles['content-container']}>
-        <div className={styles['content']}>
-          <div className={styles['left']}>
-            <img alt="logo" className={styles['logo']} src={logo} />
+      <div className={styles['content']}>
+        <div className={styles['left']}>
+          <img alt="logo" className={styles['logo']} src={logo} />
+        </div>
+        <div className={styles['right']}>
+          <div className={styles['content-header']}>
+            <a
+              className={`${styles['title']} ${
+                title == '请登录账号' ? styles['logActive'] : null
+              }`}
+              onClick={goLogin}
+            >
+              登录
+            </a>
+            <a
+              className={`${styles['title']} ${
+                title == '注册账号' ? styles['regActive'] : null
+              }`}
+              onClick={goRegister}
+            >
+              注册
+            </a>
           </div>
-          <div className={styles['right']}>
-            <div className={styles['content-header']}>
-              <a
-                className={`${styles['title']} ${
-                  title == '请登录账号' ? styles['logActive'] : null
-                }`}
-                onClick={goLogin}
-              >
-                登录
-              </a>
-              <a
-                className={`${styles['title']} ${
-                  title == '注册账号' ? styles['regActive'] : null
-                }`}
-                onClick={goRegister}
-              >
-                注册
-              </a>
-            </div>
-            <Divider style={{ margin: '0px' }}></Divider>
-            <div className={styles['desc']}>{title}</div>
-            <div>{props.children}</div>
-          </div>
+          <Divider style={{ margin: '0px' }}></Divider>
+          <div className={styles['desc']}>{title}</div>
+          <div>{props.children}</div>
         </div>
       </div>
     </div>

@@ -1,56 +1,61 @@
 .user-layout-container {
   height: 100vh;
   background-color: rgb(255, 255, 255);
-  //opacity: 0.6;
-  //   background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg') !important;
   background-image: url(../../assets/backgr.png);
   background-size: 30% !important;
   background-repeat: no-repeat;
   background-position: left bottom;
-  .content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  .header {
+    flex: 0.3 0.5;
+    align-self: flex-start;
+  }
+  .content {
+    flex: 0.3 0.3 300px;
+    width: 650px;
+    background: #ffffff90;
+    margin-top: 4%;
+    border: 1px solid rgb(191, 212, 250);
+    filter: drop-shadow(rgba(60, 113, 221, 0.15) 10px 10px 8px);
+    border-radius: 55.5px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    .content {
-      width: 700px;
-      height: 400px;
-      background: #ffffff90;
-      margin-top: 7%;
-      border: 1px solid rgb(191, 212, 250);
-      filter: drop-shadow(rgba(60, 113, 221, 0.15) 10px 10px 8px);
-      border-radius: 55.5px;
+    justify-content: space-around;
+    box-sizing: border-box;
+    .left {
+      flex: 1;
+      margin-left: 3.5rem;
+    }
+    .right {
+      flex: 2;
       display: flex;
-      align-items: center;
-      justify-content: space-around;
-      .left {
-        margin-left: 50px;
-      }
-      .right {
-        padding-left: 40px;
-        box-sizing: border-box;
-        .content-header {
-          height: 44px;
-          line-height: 44px;
-          .logActive {
-            color: rgb(75, 137, 218);
-            margin-right: 20px;
-            font-weight: 600;
-            font-size: 20px;
-            font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-          }
-          .regActive {
-            color: rgb(75, 137, 218);
-            margin-left: 20px;
-            font-weight: 600;
-            font-size: 20px;
-            font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-          }
-        }
-        .desc {
-          margin: 0px 16px 25px 0px;
+      flex-direction: column;
+      padding-left: 1rem;
+      padding-right: 2rem;
+      box-sizing: border-box;
+      .content-header {
+        height: 44px;
+        line-height: 44px;
+        .logActive {
+          color: rgb(75, 137, 218);
+          margin-right: 1rem;
           font-weight: 600;
-          font-size: 20px;
+          font-size: 1.8rem;
         }
+        .regActive {
+          color: rgb(75, 137, 218);
+          margin-left: 20px;
+          font-weight: 600;
+          font-size: 1.8rem;
+        }
+      }
+      .desc {
+        margin: 0px 0px 25px 0px;
+        font-weight: 600;
+        font-size: 1.7rem;
       }
     }
   }
