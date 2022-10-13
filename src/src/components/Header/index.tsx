@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 11:52:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-13 16:14:45
+ * @LastEditTime: 2022-10-13 20:47:31
  * @FilePath: \src\src\components\Header\index.tsx
  * @Description: 头部
  *
@@ -17,6 +17,14 @@ import style from './index.less';
 import storage from '@/utils/storage';
 
 export default () => {
+  const listMenu = [
+    { path: '/home', title: '首页' },
+    { path: '/myshare', title: '技术问答' },
+    { path: '/case', title: '实践案例' },
+    { path: '/task', title: '实践任务' },
+    { path: '/user', title: '个人空间' }
+  ];
+  const id = 'Header';
   const menu = (
     <Menun
       items={[
@@ -47,21 +55,22 @@ export default () => {
   return (
     <div className={style.header}>
       <div className={style.logo}>logo</div>
-      <Menu></Menu>
+      <Menu id={id} listMenu={listMenu} ></Menu>
       <div className={style.headerAvatar}>
         {isLogin && (
-          <Badge count={1000}>
+          <Badge count={1000} >
             {' '}
             {/**通过isLogin变量动态渲染按钮 */}
-            <Avatar icon={<BellOutlined />} />
+            <Avatar icon={<BellOutlined />} className={style.Badge}/>
           </Badge>
         )}
-        {!isLogin && <Button size={ window.innerWidth>750?'large':'small'} onClick={goLogin}>登录/注册</Button>}
+        {!isLogin && <Button  onClick={goLogin}>登录/注册</Button>}
         {isLogin && (
           <Dropdown
             overlay={menu}
             placement="bottomRight"
             arrow={{ pointAtCenter: true }}
+            className={style.Dropdown}
           >
             <Avatar
               src="https://joeschmoe.io/api/v1/random"
