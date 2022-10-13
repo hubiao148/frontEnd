@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
           style={{
             marginBottom: '10px',
             marginTop: '5px',
-            backgroundColor: 'rgb(126, 126, 126)',
+            backgroundColor: 'rgb(77, 96, 126)',
           }}
         ></Divider>
         <Row>
@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
       </div>
 
       <Divider
-        style={{ marginTop: '5px', backgroundColor: 'rgb(126, 126, 126)' }}
+        style={{ marginTop: '5px', backgroundColor: 'rgb(77, 96, 126)' }}
       ></Divider>
       <span style={{ color: 'rgb(209, 209, 209)' }}>BY easySE</span>
     </div>

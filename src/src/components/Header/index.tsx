@@ -46,7 +46,7 @@ export default () => {
 
   return (
     <div className={style.header}>
-      <div className={style.menu}>logo</div>
+      <div className={style.logo}>logo</div>
       <Menu></Menu>
       <div className={style.headerAvatar}>
         {isLogin && (
