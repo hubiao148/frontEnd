@@ -96,7 +96,9 @@ function RegForm() {
           style={{ marginBottom: '3px' }}
           valuePropName="checked"
         >
-          <Checkbox>注册默认同意条款和隐私政策</Checkbox>
+          <Checkbox style={{ fontSize: '1rem' }}>
+            注册默认同意条款和隐私政策
+          </Checkbox>
         </Form.Item>
 
         <Form.Item>

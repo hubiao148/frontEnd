@@ -15,10 +15,10 @@
   align-self: flex-start;
 }
 .user-layout-container .content {
-  flex: 0.3 0.3 300px;
-  width: 650px;
+  min-width: 64rem;
   background: #ffffff90;
   margin-top: 4%;
+  padding: 2rem 1.5rem 2rem 0;
   border: 1px solid #bfd4fa;
   filter: drop-shadow(rgba(60, 113, 221, 0.15) 10px 10px 8px);
   border-radius: 55.5px;
@@ -31,11 +31,17 @@
   flex: 1;
   margin-left: 3.5rem;
 }
+.user-layout-container .content .left .logo {
+  width: 27rem;
+  min-width: 23rem;
+  min-height: 26rem;
+}
 .user-layout-container .content .right {
   flex: 2;
+  min-width: 32rem;
   display: flex;
   flex-direction: column;
-  padding-left: 1rem;
+  justify-content: center;
   padding-right: 2rem;
   box-sizing: border-box;
 }
