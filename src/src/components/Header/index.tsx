@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 11:52:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-07 20:17:55
+ * @LastEditTime: 2022-10-13 16:14:45
  * @FilePath: \src\src\components\Header\index.tsx
  * @Description: 头部
  *
@@ -56,7 +56,7 @@ export default () => {
             <Avatar icon={<BellOutlined />} />
           </Badge>
         )}
-        {!isLogin && <Button onClick={goLogin}>登录/注册</Button>}
+        {!isLogin && <Button size={ window.innerWidth>750?'large':'small'} onClick={goLogin}>登录/注册</Button>}
         {isLogin && (
           <Dropdown
             overlay={menu}
@@ -69,7 +69,7 @@ export default () => {
             />
           </Dropdown>
         )}
-        <UnorderedListOutlined />
+        <UnorderedListOutlined className={style.icon} />
       </div>
     </div>
   );
