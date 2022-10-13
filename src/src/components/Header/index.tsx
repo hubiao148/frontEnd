@@ -56,7 +56,14 @@ export default () => {
             <Avatar icon={<BellOutlined />} />
           </Badge>
         )}
-        {!isLogin && <Button size={ window.innerWidth>750?'large':'small'} onClick={goLogin}>登录/注册</Button>}
+        {!isLogin && (
+          <Button
+            size={window.innerWidth > 750 ? 'large' : 'small'}
+            onClick={goLogin}
+          >
+            登录/注册
+          </Button>
+        )}
         {isLogin && (
           <Dropdown
             overlay={menu}
@@ -69,7 +76,10 @@ export default () => {
             />
           </Dropdown>
         )}
-        <UnorderedListOutlined className={style.icon} />
+        <UnorderedListOutlined
+          onClick={() => history.push('/mask')}
+          className={style.icon}
+        />
       </div>
     </div>
   );
