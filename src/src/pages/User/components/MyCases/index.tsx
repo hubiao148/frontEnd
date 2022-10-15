@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-13 19:33:22
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-15 16:47:04
+ * @LastEditTime: 2022-10-15 19:02:33
  * @FilePath: \src\src\pages\User\components\MyCases\index.tsx
  * @Description: 
  * 
@@ -44,8 +44,8 @@ export default () => {
     <div className={style.container}>
       {
         listMenu.map((e,index) => {
-          return (<div className={style.ele}>
-            <div className={style.img} key={index} style={{ backgroundImage: `url(${e.imgUrl})` }}>   
+          return (<div className={style.ele}  key={index}>
+            <div className={style.img} style={{ backgroundImage: `url(${e.imgUrl})` }}>   
               <div className={style.mask}>
                 <div className={style.EyeOutlined }><EyeOutlined   /></div>
               </div>
