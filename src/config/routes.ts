@@ -25,10 +25,7 @@ export default [
       },
     ],
   },
-  {
-    path: '/mask',
-    component: '@/pages/maskLayer',
-  },
+
   {
     //主要页面
     path: '/',
@@ -41,16 +38,29 @@ export default [
       },
       { path: '/case', component: '@/pages/Case' },
       { path: '/task', component: '@/pages/Task' },
-      {path:'myshare',component:'@/pages/myShare'},
-      { 
-        path:  '/user',  component:  '@/pages/User' ,
+      { path: 'myshare', component: '@/pages/myShare' },
+      {
+        path: '/user',
+        component: '@/pages/User',
         routes: [
-          { path: '/user/usermsgs', component: '@/pages/User/components/UserMsgs' },
-          { path: '/user/mycases', component: '@/pages/User/components/MyCases' },
-          { path: '/user/myquestions', component: '@/pages/User/components/MyQuestions' },
+          {
+            path: '/user/usermsgs',
+            component: '@/pages/User/components/UserMsgs',
+          },
+          {
+            path: '/user/mycases',
+            component: '@/pages/User/components/MyCases',
+          },
+          {
+            path: '/user/myquestions',
+            component: '@/pages/User/components/MyQuestions',
+          },
           { path: '/user/myasks', component: '@/pages/User/components/MyAsks' },
-          { path: '/user/myshares', component: '@/pages/User/components/MyShares' },
-        ]
+          {
+            path: '/user/myshares',
+            component: '@/pages/User/components/MyShares',
+          },
+        ],
       },
       { component: '@/pages/404' },
     ],
