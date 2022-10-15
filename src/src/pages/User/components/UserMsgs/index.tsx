@@ -2,18 +2,21 @@
  * @Author: hcy
  * @Date: 2022-10-13 19:30:41
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-13 22:52:15
+ * @LastEditTime: 2022-10-14 21:13:05
  * @FilePath: \src\src\pages\User\components\UserMsgs\index.tsx
  * @Description: 
  * 
  */
 import React from 'react'
 import style from './index.less'
-import {Avatar} from 'antd'
+import {Avatar,Button} from 'antd'
 export default () => {
+  const listMenu = {
+    name: 'hcy',
+    email: '1458283943@qq.com',
+  }
   return (
     <div className={style.usermsgs}>
-      
       <div className={style.topcontainer}>
         <Avatar
         src="https://joeschmoe.io/api/v1/random"
@@ -21,9 +24,11 @@ export default () => {
       />
         <div className={style.mark}>{'学生'}</div>
       </div>
-      <div>姓名</div>
-      <div>邮箱</div>
-      <div>密码</div>
+      <div className={style.msg}>
+        <div>姓名:{ listMenu.name}<span className={style.btn}>修改</span></div>
+        <div>邮箱:{ listMenu.email}<span className={style.btn}>修改</span></div>
+        <div>密码: <span className={style.btn}>修改</span> </div>
+      </div>
     </div>
   )
 }
