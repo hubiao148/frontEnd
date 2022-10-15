@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-13 19:30:41
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-14 21:13:05
+ * @LastEditTime: 2022-10-15 17:34:49
  * @FilePath: \src\src\pages\User\components\UserMsgs\index.tsx
  * @Description: 
  * 
@@ -19,8 +19,8 @@ export default () => {
     <div className={style.usermsgs}>
       <div className={style.topcontainer}>
         <Avatar
-        src="https://joeschmoe.io/api/v1/random"
-        size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
+          src="https://joeschmoe.io/api/v1/random"
+          size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }} //响应式头
       />
         <div className={style.mark}>{'学生'}</div>
       </div>

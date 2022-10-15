@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 16:29:38
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-13 21:33:43
+ * @LastEditTime: 2022-10-15 17:18:25
  * @FilePath: \src\src\components\Header\components\Menu\index.tsx
  * @Description: 
  * 
@@ -20,7 +20,7 @@ export default function (props: { id: string, listMenu: { path: string, title: s
     const [page, setPage] = useAtom(props.id == 'Header' ? currentPageHeader : currentPageUser);
     useEffect(() => {
         history.push(listMenu[page].path);
-    },[])
+    },[])//重新加载页面
     return (
         <div className={style.menu}>
             {listMenu.map((e,index) => {

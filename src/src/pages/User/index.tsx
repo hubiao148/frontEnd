@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:46:41
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-13 22:22:59
+ * @LastEditTime: 2022-10-15 17:33:03
  * @FilePath: \src\src\pages\User\index.tsx
  * @Description: 个人空间
  * 
@@ -28,7 +28,7 @@ export default function User(props:any) {
       </div>
       <div className={style.body}>
         <div className={style.container}>
-          { props.children}
+           { props.children} {/*展示子路由 */}
         </div>
       </div>
     </div>

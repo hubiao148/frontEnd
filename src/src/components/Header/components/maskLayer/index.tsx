@@ -1,13 +1,25 @@
+/*
+ * @Author: zyq
+ * @Date: 2022-10-15 17:05:29
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-10-15 17:29:12
+ * @FilePath: \src\src\components\Header\components\maskLayer\index.tsx
+ * @Description: 遮罩
+ * 
+ */
 import React, { useState } from 'react';
 import { CloseOutlined } from '@ant-design/icons';
 import { useHistory } from 'umi';
 import styled from './index.less';
-
+import storage from '@/utils/storage';
+import { useAtom } from 'jotai';
+import { currentPageHeader} from '@/jotai';
 interface maskProps {
   isModalOpen: boolean;
   setIsModalOpen: (isModalOpen: maskProps['isModalOpen']) => void;
 }
 function MaskLayer({ isModalOpen, setIsModalOpen }: maskProps) {
+const [page, setPage] = useAtom(currentPageHeader); //状态管理导航栏页面
   const history = useHistory();
   return (
     <div className={styled['maskWrapper']}>
@@ -16,7 +28,10 @@ function MaskLayer({ isModalOpen, setIsModalOpen }: maskProps) {
         <div className={styled['cancel']}>
           <CloseOutlined
             onClick={() => {
+              setPage(0);
+              storage.setItem('currentPageHeader', 0); //导航栏动态刷新
               return history.push('/home'), setIsModalOpen(!isModalOpen);
+              
             }}
           />
         </div>
@@ -28,6 +43,8 @@ function MaskLayer({ isModalOpen, setIsModalOpen }: maskProps) {
               <span>CASE</span>
               <div
                 onClick={() => {
+                  setPage(2);
+                  storage.setItem('currentPageHeader', 2);
                   return history.push('/case'), setIsModalOpen(!isModalOpen);
                 }}
               >
@@ -38,6 +55,8 @@ function MaskLayer({ isModalOpen, setIsModalOpen }: maskProps) {
               <span>GRAPH</span>
               <div
                 onClick={() => {
+                  setPage(0);
+                  storage.setItem('currentPageHeader', 0);
                   return history.push('/home'), setIsModalOpen(!isModalOpen);
                 }}
               >
@@ -48,6 +67,8 @@ function MaskLayer({ isModalOpen, setIsModalOpen }: maskProps) {
               <span>TASKS</span>
               <div
                 onClick={() => {
+                  setPage(3);
+                  storage.setItem('currentPageHeader', 3);
                   return history.push('/task'), setIsModalOpen(!isModalOpen);
                 }}
               >
@@ -58,6 +79,8 @@ function MaskLayer({ isModalOpen, setIsModalOpen }: maskProps) {
               <span>ASK</span>
               <div
                 onClick={() => {
+                  setPage(1);
+                  storage.setItem('currentPageHeader', 1);
                   return history.push('/myshare'), setIsModalOpen(!isModalOpen);
                 }}
               >
