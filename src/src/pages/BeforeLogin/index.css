@@ -5,51 +5,64 @@
   background-size: 30% !important;
   background-repeat: no-repeat;
   background-position: left bottom;
-}
-.content-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
 }
-.content {
-  width: 700px;
-  height: 400px;
+.user-layout-container .header {
+  flex: 0.3 0.5;
+  align-self: flex-start;
+}
+.user-layout-container .content {
+  min-width: 64rem;
   background: #ffffff90;
-  margin-top: 7%;
+  margin-top: 4%;
+  padding: 2rem 1.5rem 2rem 0;
   border: 1px solid #bfd4fa;
   filter: drop-shadow(rgba(60, 113, 221, 0.15) 10px 10px 8px);
   border-radius: 55.5px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-}
-.content .left {
-  margin-left: 50px;
-}
-.content .right {
-  padding-left: 40px;
   box-sizing: border-box;
 }
-.content .right .content-header {
+.user-layout-container .content .left {
+  flex: 1;
+  margin-left: 3.5rem;
+}
+.user-layout-container .content .left .logo {
+  width: 27rem;
+  min-width: 23rem;
+  min-height: 26rem;
+}
+.user-layout-container .content .right {
+  flex: 2;
+  min-width: 32rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 2rem;
+  box-sizing: border-box;
+}
+.user-layout-container .content .right .content-header {
   height: 44px;
   line-height: 44px;
 }
-.logActive {
+.user-layout-container .content .right .content-header .logActive {
   color: #4b89da;
-  margin-right: 20px;
+  margin-right: 1rem;
   font-weight: 600;
-  font-size: 20px;
-  font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 1.8rem;
 }
-.regActive {
+.user-layout-container .content .right .content-header .regActive {
   color: #4b89da;
   margin-left: 20px;
   font-weight: 600;
-  font-size: 20px;
-  font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 1.8rem;
 }
-.content .right .desc {
-  margin: 0px 16px 25px 0px;
+.user-layout-container .content .right .desc {
+  margin: 0px 0px 25px 0px;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 1.7rem;
 }

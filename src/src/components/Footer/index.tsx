@@ -2,7 +2,7 @@
  * @Author: zyq
  * @Date: 2022-10-05 20:37:06
  * @Last Modified by: zyq
- * @Last Modified time: 2022-10-05 21:51:58
+ * @Last Modified time: 2022-10-13 19:09:00
  */
 import React from 'react';
 import { Layout, Typography, Divider, Row, Col } from 'antd';
@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
       <div
         style={{
           color: 'rgb(209, 209, 209)',
-          top: '200px',
+          top: '20rem',
         }}
       >
         ©2021-2022 Sicnu Software easySE. All rights reserved.
@@ -32,12 +32,12 @@ const Footer: React.FC = () => {
           style={{
             marginBottom: '10px',
             marginTop: '5px',
-            backgroundColor: 'rgb(126, 126, 126)',
+            backgroundColor: 'rgb(77, 96, 126)',
           }}
         ></Divider>
         <Row>
           {qr.map((c, index) => (
-            <Col span={7} key={'qr-' + index} style={{ marginRight: '20px' }}>
+            <Col span={7} key={'qr-' + index} style={{ marginRight: '2rem' }}>
               <img src={c.src} className={styled['img']} alt="focusQr" />
             </Col>
           ))}
@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
       </div>
 
       <Divider
-        style={{ marginTop: '5px', backgroundColor: 'rgb(126, 126, 126)' }}
+        style={{ marginTop: '5px', backgroundColor: 'rgb(77, 96, 126)' }}
       ></Divider>
       <span style={{ color: 'rgb(209, 209, 209)' }}>BY easySE</span>
     </div>
