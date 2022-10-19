@@ -2,22 +2,24 @@
  * @Author: hcy
  * @Date: 2022-10-15 16:59:45
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-15 20:15:01
+ * @LastEditTime: 2022-10-19 21:41:06
  * @FilePath: \src\src\pages\User\components\Common\index.tsx
  * @Description: 多个页面共用的组件
  * 
  */
-import React from 'react'
 import style from './index.less'
 import {Pagination,Avatar} from 'antd'
-interface listData{ //传值参数类型接口
+interface Data{
+  listData: { //传值参数类型接口
     anser: number,
     read: number,
     title: string,
     tag: string[],
     auth: string
+  }[],
+  num?:number //最大展示个数
 }
-export default (props: { listData: listData[] }) => {
+export default (props: Data) => {
     
   return (
     <div className={style.container}>
@@ -51,7 +53,7 @@ export default (props: { listData: listData[] }) => {
                   )
               })
           }    
-          <div><Pagination pageSize={4} total={40} responsive={true} /></div> 
+          <div><Pagination pageSize={props.num || 4} total={40} responsive={true} /></div> 
     </div>
   )
 }

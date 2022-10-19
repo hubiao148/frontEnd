@@ -2,15 +2,16 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:45:27
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-18 17:43:37
+ * @LastEditTime: 2022-10-19 21:54:40
  * @FilePath: \src\src\pages\myShare\index.tsx
  * @Description: 个人问答&&技术分享
  * 
  */
 import Menu from '@/components/Header/components/Menu';
-import React from 'react'
+import HotReply from './components/HotReply';
+import HotTag from './components/HotTag';
 import style from './index.less'
-export default function myShare(props) {
+export default function myShare(props:any) {
     const listMenu = [
         { path: '/myshare/latest', title: '最新' },
           { path: '/myshare/reply', title: '待回答' },
@@ -18,12 +19,13 @@ export default function myShare(props) {
           { path: '/myshare/week', title: '周榜' },
     ];
   return (
+    <div style={{backgroundColor:'#E9ECEF',width:'100%',height:'1080px'}}>
     <div className={style.container}>
       <div className={style.left}>
         <div>
           <div>技术问答</div>
           <div>
-            <Menu id={'MyShare'} listMenu={listMenu}></Menu>
+            <Menu id={'MyShare'} listMenu={listMenu} fontSize={'18px'}></Menu>
           </div>
           <div>提问题</div>
         </div>
@@ -33,9 +35,15 @@ export default function myShare(props) {
         <div>
           
         </div>
-        <div>
-          提问
+          <div>
+            <div className={style.tagContainer}>
+              <HotTag></HotTag>
+            </div>
+            <div className={style.replyContainer}>
+              <HotReply></HotReply>
+            </div>
         </div>
+      </div>
       </div>
     </div>
   )

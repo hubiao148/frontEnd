@@ -2,15 +2,68 @@
  * @Author: hcy
  * @Date: 2022-10-18 16:54:33
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-18 17:07:27
+ * @LastEditTime: 2022-10-19 21:33:47
  * @FilePath: \src\src\pages\myShare\components\Latest\index.tsx
  * @Description: 
  * 
  */
-import React from 'react'
+import Common from '@/pages/User/components/Common'
 
 export default () => {
+  const listData = [
+    {
+      anser: 60,
+      read: 15,
+      title: '{}内必须包含[]的js正则怎么写？',
+      tag: ['php', 'js', 'docker', '运维', '容器'],
+      auth: '汝河不上云霄'
+    },
+    {
+      anser: 60,
+      read: 15,
+      title: '{}内必须包含[]的js正则怎么写？',
+      tag: ['php', 'js', 'docker', '运维', '容器'],
+      auth: '汝河不上云霄'
+    },
+    {
+      anser: 60,
+      read: 15,
+      title: '{}内必须包含[]的js正则怎么写？',
+      tag: ['php', 'js', 'docker', '运维', '容器'],
+      auth: '汝河不上云霄'
+    },
+    {
+      anser: 60,
+      read: 15,
+      title: '{}内必须包含[]的js正则怎么写？',
+      tag: ['php', 'js', 'docker', '运维', '容器'],
+      auth: '汝河不上云霄'
+    },
+    {
+      anser: 60,
+      read: 15,
+      title: '{}内必须包含[]的js正则怎么写？',
+      tag: ['php', 'js', 'docker', '运维', '容器'],
+      auth: '汝河不上云霄'
+    },
+    {
+      anser: 60,
+      read: 15,
+      title: '{}内必须包含[]的js正则怎么写？',
+      tag: ['php', 'js', 'docker', '运维', '容器'],
+      auth: '汝河不上云霄'
+    },
+    {
+      anser: 60,
+      read: 15,
+      title: '{}内必须包含[]的js正则怎么写？',
+      tag: ['php', 'js', 'docker', '运维', '容器'],
+      auth: '汝河不上云霄'
+    }
+  ]
   return (
-    <div>Latest</div>
+    <>
+      <Common listData={listData} num={7}></Common>
+    </>
   )
 }
