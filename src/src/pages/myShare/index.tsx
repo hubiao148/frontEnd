@@ -2,22 +2,27 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:45:27
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-19 21:54:40
+ * @LastEditTime: 2022-10-21 10:01:22
  * @FilePath: \src\src\pages\myShare\index.tsx
  * @Description: 个人问答&&技术分享
  * 
  */
+import { useHistory } from 'umi';
 import Menu from '@/components/Header/components/Menu';
 import HotReply from './components/HotReply';
 import HotTag from './components/HotTag';
 import style from './index.less'
-export default function myShare(props:any) {
+export default function myShare(props: any) {
+  const history = useHistory();
     const listMenu = [
         { path: '/myshare/latest', title: '最新' },
           { path: '/myshare/reply', title: '待回答' },
           { path: '/myshare/mouth', title: '月榜' },
           { path: '/myshare/week', title: '周榜' },
-    ];
+  ];
+  function goAskQuestion() {
+    history.push('/askquestion');
+  }
   return (
     <div style={{backgroundColor:'#E9ECEF',width:'100%',height:'1080px'}}>
     <div className={style.container}>
@@ -27,7 +32,7 @@ export default function myShare(props:any) {
           <div>
             <Menu id={'MyShare'} listMenu={listMenu} fontSize={'18px'}></Menu>
           </div>
-          <div>提问题</div>
+          <div onClick={goAskQuestion}>提问题</div>
         </div>
         <div>{props.children }</div>
       </div>

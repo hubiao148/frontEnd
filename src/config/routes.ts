@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-18 17:41:12
+ * @LastEditTime: 2022-10-21 10:02:34
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -25,7 +25,9 @@ export default [
       },
     ],
   },
-
+  {
+        path:'/askquestion',component:'@/pages/AskQuestion'
+  },
   {
     //主要页面
     path: '/',
@@ -47,6 +49,7 @@ export default [
           { path:'/myshare/week',component:'@/pages/myShare/components/Week'},
         ]
       },
+      
       {
         path: '/user',
         component: '@/pages/User',
