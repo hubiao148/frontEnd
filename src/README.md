@@ -1,3 +1,12 @@
+<!--
+ * @Author: hcy
+ * @Date: 2022-10-08 19:38:37
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-10-21 16:57:37
+ * @FilePath: \src\README.md
+ * @Description:
+ * 
+-->
 # umi project
 
 ## Getting Started
@@ -13,6 +22,8 @@ Start the dev server,
 ```bash
 $ yarn start
 ```
+
+代码格式化：shift+alt+f
 
 - config // 全局配置文件
 
