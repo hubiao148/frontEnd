@@ -28,7 +28,7 @@ function RegForm() {
     try {
       //todo接口
       setTitle('请登录账号');
-      history.push('/beforeLogin/login');
+      history.replace('/beforeLogin/login');
       message.success({ content: '注册成功！', duration: 1 });
     } catch (error) {
       message.error({ content: '注册失败！', duration: 1 });

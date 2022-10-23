@@ -30,7 +30,7 @@ function Login() {
     //登录，todo接口
 
     storage.setItem('token', 'sdsdsfsdf');
-    history.push('/home');
+    history.replace('/home');
   }, 700);
 
   const onFinishFailed = (errorInfo: any) => {
