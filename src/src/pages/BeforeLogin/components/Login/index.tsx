@@ -2,12 +2,13 @@
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-05 21:20:41
+ * @LastEditTime: 2022-10-18 16:47:23
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
  */
 import { useEffect, useState } from 'react';
+import { Encrypt } from '@/utils/cryptoAES';
 import { Form, Input, Button, Checkbox, message, Divider } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import formValidation from '@/utils/formValidation';

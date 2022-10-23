@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 16:29:38
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-15 17:18:25
+ * @LastEditTime: 2022-10-19 21:09:03
  * @FilePath: \src\src\components\Header\components\Menu\index.tsx
  * @Description: 
  * 
@@ -11,13 +11,21 @@ import { useHistory } from 'umi';
 import { useAtom } from 'jotai';
 import storage from '@/utils/storage'
 import style from './index.less' 
-import { currentPageUser, currentPageHeader} from '@/jotai';
+import { currentPageUser, currentPageHeader,currentPageMyShare}from '@/jotai';
 import { useEffect } from 'react';
-export default function (props: { id: string, listMenu: { path: string, title: string }[] }) {
+interface Menu{
+    id: string,
+    listMenu: {
+        path: string,
+        title:string
+    }[],
+    fontSize?:string,
+}
+export default function (props: Menu) {
     const history = useHistory();
     const listMenu = props.listMenu;
     const id = props.id;//判断是哪里应用的组件
-    const [page, setPage] = useAtom(props.id == 'Header' ? currentPageHeader : currentPageUser);
+    const [page, setPage] = useAtom(id == 'Header' ? currentPageHeader : (id == 'User' ? currentPageUser : currentPageMyShare));
     useEffect(() => {
         history.push(listMenu[page].path);
     },[])//重新加载页面
@@ -28,7 +36,7 @@ export default function (props: { id: string, listMenu: { path: string, title: s
                     setPage(index)
                     storage.setItem('currentPage'+id,index)
                     history.push(e.path)
-                }}>{e.title}</div>
+                }} style={{fontSize:props.fontSize}}>{e.title}</div>
             })}
         </div>
     )

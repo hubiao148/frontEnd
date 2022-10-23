@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-13 21:30:37
+ * @LastEditTime: 2022-10-21 10:02:34
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -25,7 +25,9 @@ export default [
       },
     ],
   },
-
+  {
+        path:'/askquestion',component:'@/pages/AskQuestion'
+  },
   {
     //主要页面
     path: '/',
@@ -38,7 +40,16 @@ export default [
       },
       { path: '/case', component: '@/pages/Case' },
       { path: '/task', component: '@/pages/Task' },
-      { path: 'myshare', component: '@/pages/myShare' },
+      {
+        path: 'myshare', component: '@/pages/myShare',
+        routes: [
+          { path:'/myshare/latest',component:'@/pages/myShare/components/Latest'},
+          { path:'/myshare/reply',component:'@/pages/myShare/components/Reply'},
+          { path:'/myshare/mouth',component:'@/pages/myShare/components/Mouth'},
+          { path:'/myshare/week',component:'@/pages/myShare/components/Week'},
+        ]
+      },
+      
       {
         path: '/user',
         component: '@/pages/User',
