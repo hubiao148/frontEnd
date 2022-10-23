@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-21 09:57:38
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-21 17:17:15
+ * @LastEditTime: 2022-10-22 11:27:29
  * @FilePath: \src\src\pages\AskQuestion\index.tsx
  * @Description: 提问题
  * 
@@ -41,8 +41,8 @@ export default function index() {
         <div><span>发布问题</span></div>
       </div>
       <div>
-        <Breadcrumb separator=">">
-          <Breadcrumb.Item href="/myshare">技术问答</Breadcrumb.Item>
+        <Breadcrumb separator=">" style={{ cursor: 'pointer' }}>
+          <Breadcrumb.Item onClick={showModal}>技术问答</Breadcrumb.Item>
           <Breadcrumb.Item>提问</Breadcrumb.Item>
         </Breadcrumb>
       </div>
