@@ -7,7 +7,7 @@
  * @Description:
  *
  */
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import formValidation from '@/utils/formValidation';
 import { Form, Input, Button, Checkbox, message, Divider } from 'antd';
 import { UserOutlined, LockOutlined, TeamOutlined } from '@ant-design/icons';
@@ -16,6 +16,7 @@ import { useDebounce } from '@/utils/useDebounce';
 import styles from './index.less';
 import { useAtom } from 'jotai';
 import { titleAtom } from '../../index';
+import Captcha from 'react-captcha-code';
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 18 },
@@ -24,6 +25,12 @@ const layout = {
 function RegForm() {
   const [, setTitle] = useAtom(titleAtom);
   const history = useHistory();
+  //图形验证码
+  const [verification, setVerification] = useState(null);
+  const handleClick = useCallback((captcha) => {
+    setVerification(captcha);
+  }, []);
+
   const onFinish = useDebounce(async (values: any) => {
     try {
       //todo接口
@@ -75,7 +82,6 @@ function RegForm() {
         <Form.Item
           name="confirm"
           hasFeedback
-          style={{ marginBottom: '0px' }}
           rules={[
             { required: true, message: '请再次输入密码' },
             ({ getFieldValue }) => ({
@@ -89,6 +95,35 @@ function RegForm() {
           ]}
         >
           <Input.Password prefix={<LockOutlined />} placeholder="确认密码" />
+        </Form.Item>
+
+        <Form.Item
+          name="Verification"
+          style={{ marginBottom: '0px' }}
+          rules={[
+            { required: true, message: '请输入验证码' },
+            () => ({
+              validator(rule, value) {
+                if (!value || verification === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject('验证码错误');
+              },
+            }),
+          ]}
+        >
+          <Input
+            suffix={
+              <Captcha
+                charNum={4}
+                onChange={handleClick}
+                height={30}
+                width={70}
+                bgColor={'rgb(255, 255, 255)'}
+              />
+            }
+            placeholder="请输入验证码"
+          />
         </Form.Item>
 
         <Form.Item
