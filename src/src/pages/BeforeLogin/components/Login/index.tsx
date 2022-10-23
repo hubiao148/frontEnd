@@ -30,8 +30,8 @@ function Login() {
   const onFinish = useDebounce((values: any) => {
     //登录，todo接口
 
-    storage.setItem('token', Encrypt('sdsdsfsdf'));
-    history.push('/home');
+    storage.setItem('token', 'sdsdsfsdf');
+    history.replace('/home');
   }, 700);
 
   const onFinishFailed = (errorInfo: any) => {

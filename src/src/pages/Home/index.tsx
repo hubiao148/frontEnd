@@ -7,14 +7,15 @@
  * @Description: 主页
  *
  */
-import React from 'react';
-import { useHistory } from 'umi';
 import { Divider } from 'antd';
 import { FireOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import CaseList from './component/CaseList';
 import style from './index.less';
+
+import Graph from './component/graph';
 export default function BeforeLogin() {
-  const caseList = [ //页面数据
+  const caseList = [
+    //页面数据
     { title: '策略模式', imgSrc: require('@/assets/caseImg.png') },
     { title: '策略模式', imgSrc: require('@/assets/caseImg.png') },
     { title: '策略模式', imgSrc: require('@/assets/caseImg.png') },
@@ -22,9 +23,11 @@ export default function BeforeLogin() {
     { title: '策略模式', imgSrc: require('@/assets/caseImg1.png') },
     { title: '策略模式', imgSrc: require('@/assets/caseImg1.png') },
   ];
+
   return (
     <div className={style.homeWrapper}>
-      <div>知识图谱</div>
+      {/**知识图谱*/}
+      <Graph />
       <Divider orientation="left" plain>
         <FireOutlined style={{ color: 'red' }} /> 热点案例
       </Divider>
