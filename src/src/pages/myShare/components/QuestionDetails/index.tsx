@@ -2,19 +2,22 @@
  * @Author: hcy
  * @Date: 2022-10-21 17:23:47
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-23 13:06:26
+ * @LastEditTime: 2022-10-24 18:17:46
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\index.tsx
  * @Description: 
  * 
  */
-import React from 'react'
+import React, { useRef } from 'react';
 import { useHistory } from 'umi';
-import style from './index.less'
-import { Breadcrumb } from 'antd'
-import { LikeOutlined, DislikeOutlined, BranchesOutlined, BookOutlined } from '@ant-design/icons'
+import style from './index.less';
+import { Breadcrumb } from 'antd';
+import Comments from './components/Comments';
+import { LikeOutlined, DislikeOutlined, BranchesOutlined, BookOutlined } from '@ant-design/icons';
+import ReplyDetail from './components/ReplyDetail';
 export default function index() {
     const states = [
-        { id: 1, s: false },
+        { id: 0, s: false, disable: false },
+        { id: 1, s: false, disable: false },
         { id: 2, s: false },
         { id: 3, s: false },
     ]
@@ -22,13 +25,26 @@ export default function index() {
     function goBack() {
         history.push('/myshare');
     }
+    function changeDisabled(id: number) {
+        if (id == 0) {
+            states[1].disable = !states[1].disable;
+        } else if (id == 1) {
+            states[0].disable = !states[0].disable;
+        }
+    }
     function handleColorClick(id: number, e: any) {
         if (!states[id].s) {
+            if ((id == 0 || id == 1) && states[id].disable == true) {
+                return;
+            }
             e.currentTarget.style.color = '#1c63d6';
             states[id].s = !states[id].s;
+            changeDisabled(id);
+
         } else {
             e.currentTarget.style.color = '#000000';
             states[id].s = !states[id].s;
+            changeDisabled(id);
         }
 
     }
@@ -43,17 +59,31 @@ export default function index() {
                 <div>
                     <div>
                         <div>
-                            <div><LikeOutlined onClick={(e) => { handleColorClick(1, e) }} /></div>
-                            <div><DislikeOutlined onClick={(e) => { handleColorClick(1, e) }} /></div>
-                            <div><BookOutlined onClick={(e) => { handleColorClick(2, e) }} /></div>
-                            <div><BranchesOutlined onClick={(e) => { handleColorClick(3, e) }} /></div>
+                            <div
+                                onClick={(e) => { handleColorClick(0, e) }}
+                            ><LikeOutlined /></div>
+                            <div
+                                onClick={(e) => { handleColorClick(1, e) }}
+                            ><DislikeOutlined /></div>
+                            <div
+                                onClick={(e) => { handleColorClick(2, e) }}
+                            ><BookOutlined /></div>
+                            <div
+                                onClick={(e) => { handleColorClick(3, e) }}
+                            ><BranchesOutlined /></div>
                         </div>
                         <div>
-                            23
+                            <ReplyDetail></ReplyDetail>
                         </div>
                     </div>
-                    <div>2</div>
-                    <div>3</div>
+                    <div>
+                        <div>left</div>
+                        <div><Comments></Comments></div>
+                    </div>
+                    <div>
+                        <div>1</div>
+                        <div>2</div>
+                    </div>
                 </div>
                 <div>2</div>
             </div>
