@@ -5,24 +5,23 @@
  * @LastEditTime: 2022-10-05 20:23:07
  * @FilePath: \src\src\utils\configEnv.ts
  * @Description: 配置环境变量
- * 
+ *
  */
 
-const env = process.env.UMI_ENV || "dev"; // 引入开发环境默认"dev"生产环境
+const env = process.env.UMI_ENV || 'dev'; // 引入开发环境默认"dev"生产环境
 
 const EnvConfig = {
-    dev: {
-        baseApi: "/api",
-        mockApi: "/api",//mock地址
-    },
-    prod: {
-        baseApi: "/api",
-        mockApi: "/api",
-    }
-}
+  dev: {
+    baseApi: '/api',
+    mockApi: '/umi', //mock地址
+  },
+  prod: {
+    baseApi: '/api',
+  },
+};
 export default {
-    env,
-    mock: false,
-    namespace: "easySE",
-    ...EnvConfig[env]
-}
+  env,
+  mock: true,
+  namespace: 'easySE',
+  ...EnvConfig[env],
+};

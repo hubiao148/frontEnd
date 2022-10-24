@@ -1,0 +1,8 @@
+.openProjectWrapper {
+  margin-left: 10rem;
+}
+.openProjectWrapper .list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

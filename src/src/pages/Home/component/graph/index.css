@@ -1,5 +1,6 @@
 .graphWrapper {
   position: relative;
+  height: 500px;
 }
 .graphWrapper .search {
   position: absolute;

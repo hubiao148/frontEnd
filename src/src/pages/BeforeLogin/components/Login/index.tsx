@@ -39,6 +39,7 @@ function Login() {
 
     storage.setItem('token', 'sdsdsfsdf');
     history.replace('/home');
+    message.success({ content: '登录成功！', duration: 1 });
   }, 700);
 
   const onFinishFailed = (errorInfo: any) => {

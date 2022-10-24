@@ -53,7 +53,7 @@ const Chart: React.FC<MyChartProps | any> = ({ option }) => {
       ref={cRef}
       style={{
         width: '100vw',
-        height: '50rem',
+        height: '500px',
         backgroundColor: 'rgb(21, 15, 63)',
       }}
     />
