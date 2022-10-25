@@ -2,16 +2,28 @@
  * @Author: hcy
  * @Date: 2022-10-24 17:14:30
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-24 17:14:33
+ * @LastEditTime: 2022-10-25 15:14:41
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\components\Comments\index.tsx
  * @Description: 
  * 
  */
 import { DislikeFilled, DislikeOutlined, LikeFilled, LikeOutlined } from '@ant-design/icons';
-import { Avatar, Comment, Tooltip } from 'antd';
+import { Avatar, Comment, Tooltip, Divider } from 'antd';
 import React, { createElement, useState } from 'react';
+interface propsMsg {
+    msg: {
+        auth: string,
+        time: string,
+        all: number,
+        comment: string[],
+        replyNum: number
 
-const Comments: React.FC = () => {
+    },
+    id: number
+
+}
+export default function (props: propsMsg) {
+    const e = props.msg;
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
     const [action, setAction] = useState<string | null>(null);
@@ -41,28 +53,27 @@ const Comments: React.FC = () => {
                 <span className="comment-action">{dislikes}</span>
             </span>
         </Tooltip>,
-        <span key="comment-basic-reply-to">Reply to</span>,
+        <span key="comment-basic-reply-to">回复</span>,
     ];
 
     return (
-        <Comment
-            actions={actions}
-            author={<a>Han Solo</a>}
-            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
-            content={
-                <p>
-                    We supply a series of design principles, practical patterns and high quality design
-                    resources (Sketch and Axure), to help people create their product prototypes beautifully
-                    and efficiently.
-                </p>
-            }
-            datetime={
-                <Tooltip title="2016-11-22 11:22:33">
-                    <span>8 hours ago</span>
-                </Tooltip>
-            }
-        />
+        <>
+            <Divider style={{ margin: '0' }}></Divider>
+            <Comment
+                actions={actions}
+                author={<a>{e.auth}</a>}
+                avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
+                content={
+                    <p>
+                        {e.comment[props.id]}
+                    </p>
+                }
+                datetime={
+                    <Tooltip title="2016-11-22 11:22:33">
+                        <span> {e.time} </span>
+                    </ Tooltip>
+                }
+            />
+        </>
     );
 };
-
-export default Comments;

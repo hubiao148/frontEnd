@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-24 14:34:59
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-24 18:18:38
+ * @LastEditTime: 2022-10-25 15:10:08
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\components\ReplyDetail\index.tsx
  * @Description: 
  * 
@@ -13,7 +13,17 @@ import ReactMarkdown from "react-markdown"
 import style from './index.less'
 import 'github-markdown-css'
 import gfm from 'remark-gfm'
-export default function index() {
+interface propsMsg {
+    msg: {
+        auth: string,
+        time: string,
+        all: number,
+        comment: string[],
+        replyNum: number
+    }
+}
+export default function index(props: propsMsg) {
+    const e = props.msg;
     let markdown = '# 这是标题\n' +
         '[ **M** ] arkdown + E [ **ditor** ] = **Mditor**  \n' +
         '| Head | Head | Head |\n' +
@@ -28,11 +38,6 @@ export default function index() {
         '\`console.log(Hello World)\` \n\n' +
         '```const a=2; ```\n' +
         'herf=![www.baidu.com]'
-    const e = {
-        auth: 'hcy',
-        time: '2022-11-21',
-        all: 120
-    }
     return (
         <div className={style.container}>
             <div className={style.item1}>
