@@ -2,7 +2,7 @@
  * @Author: zyq
  * @Date: 2022-10-24 17:06:04
  * @Last Modified by: zyq
- * @Last Modified time: 2022-10-24 20:52:19
+ * @Last Modified time: 2022-10-24 21:18:06
  */
 
 import React, { useEffect, useState } from 'react';
@@ -11,6 +11,7 @@ import { Input, Card, Skeleton, Divider } from 'antd';
 import { useHistory } from 'umi';
 import styled from './index.less';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import BackToTop from '@/components/BackTop';
 const { Meta } = Card;
 const { Search } = Input;
 function techShare() {
@@ -22,7 +23,6 @@ function techShare() {
       .then((res) => res.json())
       .then((res) => {
         setModeList(res.data);
-        console.log(res.data[0]);
       });
   };
 
@@ -59,7 +59,12 @@ function techShare() {
                 key={item.id}
                 hoverable
                 className={styled.cardItem}
-                style={{ width: '22rem', height: '36rem' }}
+                style={{
+                  maxWidth: '22rem',
+                  minWidth: '20rem',
+                  minHeight: '36rem',
+                  fontSize: '0.8rem',
+                }}
                 cover={<img alt="example" src={item.src} />}
                 actions={[
                   <LikeOutlined key="like" />,
@@ -72,6 +77,7 @@ function techShare() {
           })}
         </InfiniteScroll>
       </div>
+      <BackToTop />
     </div>
   );
 }

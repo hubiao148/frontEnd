@@ -1,8 +1,8 @@
 import React from 'react';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import { Avatar, List, Space } from 'antd';
+import { Input, Avatar, List, Space } from 'antd';
 import styled from './index.less';
-
+const { Search } = Input;
 const data = Array.from({ length: 23 }).map((_, i) => ({
   href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
   title: `值得学习的开源项目 ${i}`,
@@ -21,8 +21,14 @@ const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
 );
 
 function OpenProject() {
+  const getData = async () => {};
   return (
     <div className={styled.openProjectWrapper}>
+      <Search
+        className={styled['search']}
+        placeholder="搜索开源项目"
+        onSearch={getData}
+      />
       <List
         className={styled.list}
         itemLayout="vertical"
