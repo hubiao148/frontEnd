@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-21 17:23:47
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-25 16:50:23
+ * @LastEditTime: 2022-10-25 17:47:01
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\index.tsx
  * @Description: 
  * 
@@ -124,10 +124,13 @@ export default function index() {
                             <Divider style={{ margin: '0' }}></Divider>
                             {storage.getItem('token') ?
                                 (
-                                    <div>
+                                    <div className={style.clickBtn}>
                                         <TextArea></TextArea>
-                                        <Button>重置</Button>
-                                        <Button style={{ marginLeft:'10px'}}>发布</Button>
+                                        <div style={{ marginTop: '10px' }}>
+                                            <Button style={{ marginRight: '10px' }}>重置</Button>
+                                            <Button >发布</Button>
+
+                                        </div>
                                     </div>
                                 ) : (<div>
                                     <span>你尚未登录，登录后可以<br /></span>
