@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-21 17:23:47
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-25 17:47:01
+ * @LastEditTime: 2022-10-27 16:54:36
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\index.tsx
  * @Description: 
  * 
@@ -26,6 +26,19 @@ export default function index() {
         comment: ['/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则', '/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则', '/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则'],
         replyNum: 10,
     }
+    const board = [
+        {
+            title: '带你从零到一全面掌握前端「新宠」', msg: "TypeScript从入门到实践「2020 版」"
+        }, {
+            title: '带你从零到一全面掌握前端「新宠」', msg: "TypeScript从入门到实践「2020 版」"
+        }, {
+            title: '带你从零到一全面掌握前端「新宠」', msg: "TypeScript从入门到实践「2020 版」"
+        }, {
+            title: '带你从零到一全面掌握前端「新宠」', msg: "TypeScript从入门到实践「2020 版」"
+        }, {
+            title: '带你从零到一全面掌握前端「新宠」', msg: "TypeScript从入门到实践「2020 版」"
+        },
+    ]
     const states = [
         { id: 0, s: false, disable: false },
         { id: 1, s: false, disable: false },
@@ -92,16 +105,7 @@ export default function index() {
                         </div>
                     </div>
                     <div>
-                        <div>
-                            <div
-                                onClick={(e) => { handleColorClick(0, e) }}
-                            ><LikeOutlined />
-                            </div>
-                            <div
-                                onClick={(e) => { handleColorClick(1, e) }}
-                            ><DislikeOutlined />
-                            </div>
-                        </div>
+                        <div></div>
                         <div>
                             <div>
                                 <div>{msg.replyNum}个回答</div>
@@ -127,7 +131,7 @@ export default function index() {
                                     <div className={style.clickBtn}>
                                         <TextArea></TextArea>
                                         <div style={{ marginTop: '10px' }}>
-                                            <Button style={{ marginRight: '10px' }}>重置</Button>
+                                            <Button style={{ marginRight: '10px' }}>重置</Button>&nbsp;&nbsp;&nbsp;
                                             <Button >发布</Button>
 
                                         </div>
@@ -144,7 +148,21 @@ export default function index() {
                         </div>
                     </div>
                 </div>
-                <div>2</div>
+                <div>
+                    <div> 宣传栏</div>
+
+                    {
+                        board.map((e, i) => {
+                            return (
+                                <>
+                                    <Divider style={{ margin: '0 0 8px 0' }}></Divider>
+                                    <div style={{ fontSize: '15px', color:'#1890ff'}}>{e.title}</div>
+                                    <div style={ {fontSize:'10px'}}>{e.msg}</div>
+                                </>
+                            )
+                        })
+                    }
+                </div>
             </div>
         </div >
     )

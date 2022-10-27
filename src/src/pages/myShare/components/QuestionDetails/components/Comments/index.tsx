@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-24 17:14:30
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-25 15:14:41
+ * @LastEditTime: 2022-10-27 16:47:06
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\components\Comments\index.tsx
  * @Description: 
  * 
@@ -69,7 +69,7 @@ export default function (props: propsMsg) {
                     </p>
                 }
                 datetime={
-                    <Tooltip title="2016-11-22 11:22:33">
+                    <Tooltip title={ e.time}>
                         <span> {e.time} </span>
                     </ Tooltip>
                 }
