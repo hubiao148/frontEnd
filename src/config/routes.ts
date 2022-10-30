@@ -40,27 +40,24 @@ export default [
         component: '@/pages/Home',
       },
       {
+        //实践案例
+        path: '/case',
+        component: '@/pages/Case', //设计模式
+      },
+      {
+        //设计模式详情
+        path: '/modeDetail/:id',
+        component: '@/pages/Case/components/modeDetail',
+      },
+      {
         //技术分享
         path: '/techShare',
         component: '@/pages/Case/components/techShare',
       },
       {
-        //实践案例
-        path: '/case',
-        component: '@/pages/Case', //设计模式
-        exact: true,
-        routes: [
-          {
-            //设计模式详情
-            path: '/case/modeDetail',
-            component: '@/pages/Case/components/modeDetail',
-          },
-          {
-            //技术分享详情
-            path: '/case/techShareDetail',
-            component: '@/pages/Case/components/techShareDetail',
-          },
-        ],
+        //技术分享详情
+        path: '/techShareDetail/:id',
+        component: '@/pages/Case/components/techShareDetail',
       },
       { path: '/task', component: '@/pages/Task' },
       {

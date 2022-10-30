@@ -1,4 +1,5 @@
 export default {
+  //设计模式列表
   'GET /umi/modeList': {
     status: 'success',
     data: [
@@ -10,67 +11,67 @@ export default {
       },
       {
         id: 2,
-        src: 'https://lupic.cdn.bcebos.com/20210629/3000008769_14.jpg',
+        src: 'https://lupic.cdn.bcebos.com/20220107/3085838872_14_561_400.jpg',
         title: '后台设计模式',
         description: '单例设计模式就是一种控制实例化对象个数的设计模式。。。',
       },
       {
         id: 3,
-        src: 'https://lupic.cdn.bcebos.com/20210629/3000008769_14.jpg',
+        src: 'https://lupic.cdn.bcebos.com/20220107/3085838872_14_561_400.jpg',
         title: '后台设计模式',
         description: '单例设计模式就是一种控制实例化对象个数的设计模式。。。',
       },
       {
         id: 4,
-        src: 'https://lupic.cdn.bcebos.com/20210629/3000008769_14.jpg',
+        src: 'https://lupic.cdn.bcebos.com/20220107/3085838872_14_561_400.jpg',
         title: '后台设计模式',
         description: '单例设计模式就是一种控制实例化对象个数的设计模式。。。',
       },
       {
         id: 5,
-        src: 'https://lupic.cdn.bcebos.com/20210629/3000008769_14.jpg',
+        src: 'https://lupic.cdn.bcebos.com/20220107/3085838872_14_561_400.jpg',
         title: '后台设计模式',
         description: '单例设计模式就是一种控制实例化对象个数的设计模式。。。',
       },
       {
         id: 6,
-        src: 'https://lupic.cdn.bcebos.com/20210629/3000008769_14.jpg',
+        src: 'https://lupic.cdn.bcebos.com/20220107/3085838872_14_561_400.jpg',
         title: '后台设计模式',
         description: '单例设计模式就是一种控制实例化对象个数的设计模式。。。',
       },
       {
         id: 7,
-        src: 'https://lupic.cdn.bcebos.com/20210629/3000008769_14.jpg',
+        src: 'https://lupic.cdn.bcebos.com/20220107/3085838872_14_561_400.jpg',
         title: '后台设计模式',
         description: '单例设计模式就是一种控制实例化对象个数的设计模式。。。',
       },
       {
         id: 8,
-        src: 'https://lupic.cdn.bcebos.com/20210629/3000008769_14.jpg',
+        src: 'https://lupic.cdn.bcebos.com/20220107/3085838872_14_561_400.jpg',
         title: '后台设计模式',
         description: '单例设计模式就是一种控制实例化对象个数的设计模式。。。',
       },
       {
         id: 9,
-        src: 'https://lupic.cdn.bcebos.com/20210629/3000008769_14.jpg',
+        src: 'https://lupic.cdn.bcebos.com/20220107/3085838872_14_561_400.jpg',
         title: '后台设计模式',
         description: '单例设计模式就是一种控制实例化对象个数的设计模式。。。',
       },
       {
         id: 10,
-        src: 'https://lupic.cdn.bcebos.com/20210629/3000008769_14.jpg',
+        src: 'https://lupic.cdn.bcebos.com/20220107/3085838872_14_561_400.jpg',
         title: '后台设计模式',
         description: '单例设计模式就是一种控制实例化对象个数的设计模式。。。',
       },
       {
         id: 11,
-        src: 'https://lupic.cdn.bcebos.com/20210629/3000008769_14.jpg',
+        src: 'https://lupic.cdn.bcebos.com/20220107/3085838872_14_561_400.jpg',
         title: '后台设计模式',
         description: '单例设计模式就是一种控制实例化对象个数的设计模式。。。',
       },
       {
         id: 12,
-        src: 'https://lupic.cdn.bcebos.com/20210629/3000008769_14.jpg',
+        src: 'https://lupic.cdn.bcebos.com/20220107/3085838872_14_561_400.jpg',
         title: '后台设计模式',
         description: '单例设计模式就是一种控制实例化对象个数的设计模式。。。',
       },
@@ -82,16 +83,41 @@ export default {
       },
       {
         id: 14,
-        src: 'https://lupic.cdn.bcebos.com/20210629/3000008769_14.jpg',
+        src: 'https://lupic.cdn.bcebos.com/20220107/3085838872_14_561_400.jpg',
         title: '后台设计模式',
         description: '单例设计模式就是一种控制实例化对象个数的设计模式。。。',
       },
       {
         id: 15,
-        src: 'https://lupic.cdn.bcebos.com/20210629/3000008769_14.jpg',
+        src: 'https://lupic.cdn.bcebos.com/20220107/3085838872_14_561_400.jpg',
         title: '后台设计模式',
         description: '单例设计模式就是一种控制实例化对象个数的设计模式。。。',
       },
     ],
+  },
+
+  //设计模式详情页面数据模拟
+  'GET /umi/modeDetail': {
+    status: 'success',
+    data: {
+      title: '设计模式篇',
+      content: `<img src='https://img0.hitv.com/cms/2022/07/22/Si0YS5pskGrm6HaAa3fas.jpeg'/><p><h3>设计模式</h3><br/>
+        <hr/>在学习源码的过程中不可避免的涉及到了很多设计模式，其实在我们自己开发中也会不自觉的使用设计模式。
+        设计模式其实是对开发设计的一种落地方法，它属于实现层面。设计模式将代码设计的一些范例进行了抽象和总结<br/><br/>
+        一个好的设计，便于理解和阅读的复杂框架代码一定都使用了良好的设计模式，因此在学习源码的时候也需要对常用的设计模式进行学习和了解<br/><br/>
+        前人帮我们总结了23种设计模式，本文并不是对于设计模式的简单罗列和介绍（这样的文章在网上很多），而是对于我在看源码的过程中学习到的设计模式的理解<br/><br/>
+        学习和背的所有的设计模式并不是本事，在开发中能够不自觉的熟练运用设计模式才是正道。也许有一天当你已经忘记了所有的设计模式，而开发中随心所欲的运用各种设计模式，就像张三丰让张无忌忘记所学的武功招式那样，可能你才真正的掌握了他们
+        </p>`,
+    },
+  },
+
+  //技术分享详情页面数据模拟
+  'GET /umi/techShareDetail': {
+    status: 'success',
+    data: {
+      title: 'Jenkins 如何获取vue build构建结果；并且发送飞书消息？',
+      content:
+        "<img src='https://img0.hitv.com/cms/2022/07/22/Si0YS5pskGrm6HaAa3fas.jpeg'/><p><b>目的：实现jenkins部署后发送「飞书机器人」推送消息</b><br/>问题：在自己的jenkins项目 - 可用环境变量中找不到 $BUILD_STATUS 可用变量；<br/>请教：想问问大家怎么在自己的jenkins部署后按照部署结果发生 成功 or 失败 的消息判断的？</p>",
+    },
   },
 };

@@ -2,20 +2,19 @@
  * @Author: zyq
  * @Date: 2022-10-24 09:50:36
  * @Last Modified by: zyq
- * @Last Modified time: 2022-10-24 21:52:44
+ * @Last Modified time: 2022-10-30 20:24:12
  */
 
 import React, { useEffect, useState } from 'react';
 import {
   AppstoreOutlined,
-  ArrowUpOutlined,
   LikeOutlined,
   PieChartOutlined,
   StarOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Input, Menu, Card, Skeleton, Divider, Modal, BackTop } from 'antd';
-import { useHistory } from 'umi';
+import { Input, Menu, Card, Skeleton, Divider, Modal } from 'antd';
+import { Link, useHistory } from 'umi';
 import styled from './index.less';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MaskForm from './MaskForm';
@@ -62,9 +61,9 @@ function ClassicCase() {
 
   const onClick: MenuProps['onClick'] = (e) => {
     e.keyPath[0] === ' ' ? setIsModalOpen(true) : history.push(e.keyPath[0]);
-    // console.log('click', typeof e.keyPath[0]);
   };
 
+  //获取设计模式的列表
   const appendData = () => {
     fetch('/umi/modeList')
       .then((res) => res.json())
@@ -76,15 +75,16 @@ function ClassicCase() {
     appendData();
   }, []);
 
+  const Like = () => {
+    console.log('点赞成功');
+  };
+  //搜索设计模式
   const getData = async () => {};
   //关闭模态框
   const handleCancel = () => {
-    console.log('Clicked cancel button');
     setIsModalOpen(false);
   };
 
-  //跳转至详情页面
-  const toModeDetail = () => {};
   return (
     <div className={styled['caseWrapper']}>
       <div>
@@ -131,9 +131,8 @@ function ClassicCase() {
             {modeList.map((item: any, index: any) => {
               return (
                 <Card
-                  key={item.id}
+                  key={index}
                   hoverable
-                  onClick={toModeDetail}
                   className={styled.cardItem}
                   style={{
                     maxWidth: '22rem',
@@ -143,11 +142,13 @@ function ClassicCase() {
                   }}
                   cover={<img alt="example" src={item.src} />}
                   actions={[
-                    <LikeOutlined key="like" />,
+                    <LikeOutlined onClick={Like} key="like" />,
                     <StarOutlined key="star" />,
                   ]}
                 >
-                  <Meta title={item.title} description={item.description} />
+                  <Link to={`/modeDetail/${item.id}`}>
+                    <Meta title={item.title} description={item.description} />
+                  </Link>
                 </Card>
               );
             })}

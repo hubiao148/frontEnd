@@ -70,6 +70,9 @@ function Login() {
       <Form.Item
         name="password"
         rules={[{ required: true, message: '请输入密码' }]}
+        getValueFromEvent={(event) => {
+          return event.target.value.trim();
+        }}
       >
         <Input.Password
           prefix={<LockOutlined className="site-form-item-icon" />}
