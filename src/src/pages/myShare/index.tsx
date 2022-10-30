@@ -29,7 +29,7 @@ export default function myShare(props: any) {
       <div className={style.left}>
         <div>
           <div>技术问答</div>
-          <div>
+          <div className={style.menuContainer}>
             <Menu id={'MyShare'} listMenu={listMenu} fontSize={'18px'}></Menu>
           </div>
           <div onClick={goAskQuestion}>提问题</div>
