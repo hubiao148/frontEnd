@@ -2,7 +2,7 @@
  * @Author: zyq
  * @Date: 2022-10-24 09:50:36
  * @Last Modified by: zyq
- * @Last Modified time: 2022-10-30 20:24:12
+ * @Last Modified time: 2022-10-30 21:20:46
  */
 
 import React, { useEffect, useState } from 'react';
@@ -13,7 +13,7 @@ import {
   StarOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Input, Menu, Card, Skeleton, Divider, Modal } from 'antd';
+import { Input, Menu, Card, Skeleton, Divider, Modal, Tooltip } from 'antd';
 import { Link, useHistory } from 'umi';
 import styled from './index.less';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -95,16 +95,15 @@ function ClassicCase() {
           items={items}
         />
       </div>
-
+      {/* 遮罩层实现技术分享的上传 */}
       <Modal
         footer={null}
-        width="80vw"
+        width="70vw"
         style={{
           maxWidth: '100vw',
-          top: 0,
+          top: 30,
           paddingBottom: 0,
         }}
-        bodyStyle={{ height: '100vh' }}
         maskClosable={false}
         open={isModalOpen}
         onCancel={handleCancel}
@@ -142,8 +141,12 @@ function ClassicCase() {
                   }}
                   cover={<img alt="example" src={item.src} />}
                   actions={[
-                    <LikeOutlined onClick={Like} key="like" />,
-                    <StarOutlined key="star" />,
+                    <Tooltip title="点赞" color={'#7cb9f5'}>
+                      <LikeOutlined onClick={Like} key="like" />
+                    </Tooltip>,
+                    <Tooltip title="收藏" color={'#7cb9f5'}>
+                      <StarOutlined key="star" />
+                    </Tooltip>,
                   ]}
                 >
                   <Link to={`/modeDetail/${item.id}`}>

@@ -26,6 +26,11 @@ export default [
     ],
   },
   {
+    //忘记密码
+    path: '/forgetPassword',
+    component: '@/pages/forgetPassword',
+  },
+  {
     path: '/askquestion',
     component: '@/pages/AskQuestion',
   },
