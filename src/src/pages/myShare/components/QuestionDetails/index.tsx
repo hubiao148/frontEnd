@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-21 17:23:47
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-27 16:54:36
+ * @LastEditTime: 2022-10-31 08:55:10
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\index.tsx
  * @Description: 
  * 
@@ -148,17 +148,17 @@ export default function index() {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div >
                     <div> 宣传栏</div>
 
                     {
                         board.map((e, i) => {
                             return (
-                                <>
+                                <span key={i} onClick={() => { console.log(i) }}>
                                     <Divider style={{ margin: '0 0 8px 0' }}></Divider>
-                                    <div style={{ fontSize: '15px', color:'#1890ff'}}>{e.title}</div>
-                                    <div style={ {fontSize:'10px'}}>{e.msg}</div>
-                                </>
+                                    <div style={{ fontSize: '15px', color: '#1890ff' }}>{e.title}</div>
+                                    <div style={{ fontSize: '10px' }}>{e.msg}</div>
+                                </span>
                             )
                         })
                     }
