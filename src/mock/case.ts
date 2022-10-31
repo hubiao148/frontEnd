@@ -116,8 +116,16 @@ export default {
     status: 'success',
     data: {
       title: 'Jenkins 如何获取vue build构建结果；并且发送飞书消息？',
-      content:
-        "<img src='https://img0.hitv.com/cms/2022/07/22/Si0YS5pskGrm6HaAa3fas.jpeg'/><p><b>目的：实现jenkins部署后发送「飞书机器人」推送消息</b><br/>问题：在自己的jenkins项目 - 可用环境变量中找不到 $BUILD_STATUS 可用变量；<br/>请教：想问问大家怎么在自己的jenkins部署后按照部署结果发生 成功 or 失败 的消息判断的？</p>",
+      content: `<img src='https://img0.hitv.com/cms/2022/07/22/Si0YS5pskGrm6HaAa3fas.jpeg'/><p><b>
+        目的：实现jenkins部署后发送「飞书机器人」推送消息</b><br/>
+        问题：在自己的jenkins项目 - 可用环境变量中找不到 $BUILD_STATUS 可用变量；<br/>
+        请教：想问问大家怎么在自己的jenkins部署后按照部署结果发生 成功 or 失败 的消息判断的？<br/><br/>
+        如果你的方向是前端， 那前端目前就分pc， 移动。 如果是pc， 要考虑游览器兼容问题。 移动的话要考虑分辨率， 流量问题。 两者都要考虑性能问题。 
+        目前前端三大神器：vue， react， angular2.0。angular2.0和vue差不多，性能差点，难上手， 适合angular1.x的老用户用。 vue和react两者必会其一。 
+        如果楼主关心其他编程范式的话， 可以考虑rxjs响应式库， rambda函数式库。<br/><br/>
+        当然， 前端工程化也是必须的。 这些东西你要会babel来将es6，es7的代码转为es5使用。 包括webpack fs3这些构建工具来帮助你构建工程。<br/><br/>
+        写完了前端。 假设后端你已经写好了(node用来写业务逻辑， redis保存缓存数据， mongodb保存长期数据)。 然后利用docker来发布你的产品。
+        </p>`,
     },
   },
 };

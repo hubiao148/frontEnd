@@ -125,7 +125,7 @@ function Login() {
         style={{ marginBottom: '0px' }}
         name="forgetPassword"
       >
-        <Link to={''}>忘记了密码？</Link>
+        <Link to={'/forgetPassword'}>忘记了密码？</Link>
       </Form.Item>
 
       <Form.Item
