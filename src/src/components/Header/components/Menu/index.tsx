@@ -2,17 +2,17 @@
  * @Author: hcy
  * @Date: 2022-10-05 16:29:38
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-25 16:16:26
+ * @LastEditTime: 2022-10-27 18:12:17
  * @FilePath: \src\src\components\Header\components\Menu\index.tsx
  * @Description: 
  * 
  */
-import { useHistory } from 'umi';
+import { useHistory, useLocation } from 'umi';
 import { useAtom } from 'jotai';
 import storage from '@/utils/storage'
 import style from './index.less'
 import { currentPageUser, currentPageHeader, currentPageMyShare } from '@/jotai';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 interface Menu {
     id: string,
     listMenu: {
@@ -22,6 +22,7 @@ interface Menu {
     fontSize?: string,
 }
 export default function (props: Menu) {
+    const location = useLocation();
     const history = useHistory();
     const listMenu = props.listMenu;
     const id = props.id;//判断是哪里应用的组件
