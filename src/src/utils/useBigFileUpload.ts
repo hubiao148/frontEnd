@@ -2,23 +2,31 @@
  * @Author: hcy
  * @Date: 2022-10-30 20:34:49
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 00:35:44
+ * @LastEditTime: 2022-10-31 09:28:47
  * @FilePath: \src\src\utils\useBigFileUpload.ts
  * @Description: 大文件上传
  *
  */
 import SparkMD5 from 'spark-md5';
 import request from '@/api/api';
-
+import { message } from 'antd';
+import { AxiosResponse } from 'axios';
 export async function useBigFileUpload(
   bigFile: File,
   size: number,
   url: string,
-) {
+): Promise<any> {
   // 生成切片
   const fileList = handleFileChunk(bigFile, size);
   // 获取文件hash值
   const containerHash = await getFileHash(fileList);
+  // 读取失败提示并返回
+  if (containerHash == undefined) {
+    (() => {
+      message.error('获取文件失败请重试！');
+    })();
+    return false;
+  }
   // 遍历配置对象 用（）返回对象数组
   const fileMsg = fileList.map(({ file }, index) => ({
     // 整个文件hash
@@ -36,7 +44,7 @@ export async function useBigFileUpload(
     // 单个文件大小
     size: size,
   }));
-  Upload(fileMsg, url);
+  return Upload(fileMsg, url);
 }
 
 /**
@@ -69,12 +77,14 @@ async function getFileHash(fileList: { file: Blob }[]) {
  *
  * @returns Blob的二进制流
  */
-async function getContent(fileList: Blob) {
+async function getContent(fileList: Blob): Promise<ArrayBuffer> {
   return new Promise((resolve, reject) => {
+    // 创造读文件器
     let fileReader = new FileReader();
     fileReader.readAsArrayBuffer(fileList);
     fileReader.onload = (e) => {
-      if (e.target == null) {
+      // 返回必须为ArrayBuffer
+      if (e.target?.result == null || typeof e.target?.result == 'string') {
         reject(fileReader.error);
         fileReader.abort();
       } else {
@@ -126,7 +136,10 @@ interface fileListItem {
   size: number;
 }
 
-async function Upload(fileList: fileListItem[], url: string) {
+async function Upload(
+  fileList: fileListItem[],
+  url: string,
+): Promise<AxiosResponse<any, any>[]> {
   const req = fileList
     .map(({ fileHash, hash, index, fileCount, chunk, totalSize, size }, i) => {
       const formData = new FormData();
@@ -151,5 +164,6 @@ async function Upload(fileList: fileListItem[], url: string) {
         },
       });
     });
-  await Promise.all(req);
+  const res = await Promise.all(req);
+  return res;
 }
