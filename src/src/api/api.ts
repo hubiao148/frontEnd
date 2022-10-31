@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-25 17:18:44
+ * @LastEditTime: 2022-10-31 17:00:08
  * @FilePath: \src\src\api\api.ts
  * @Description: axios封装
  *
@@ -13,7 +13,7 @@ import mock from '@/utils/configEnv';
 import storage from '@/utils/storage';
 import { message } from 'antd';
 import { useHistory } from 'umi';
-const history = useHistory();
+// const history = useHistory();
 const TOKEN_Lose_Efficacy = '你的Token已经失效了，请重新登录！';
 const NETWORK_ERROR = '网络连接失败，请稍后重试';
 /* axios配置 */
@@ -62,7 +62,7 @@ service.interceptors.response.use((res: any) => {
     message.error(TOKEN_Lose_Efficacy);
     setTimeout(() => {
       storage.clearItem('userInfo');
-      history.push('/login');
+      // history.push('/login');
     }, 6000);
 
     return Promise.reject(TOKEN_Lose_Efficacy);

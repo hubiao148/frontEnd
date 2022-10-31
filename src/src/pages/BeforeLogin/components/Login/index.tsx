@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-18 16:47:23
+ * @LastEditTime: 2022-10-31 21:33:43
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -17,7 +17,8 @@ import { Link, useHistory } from 'umi';
 import styles from './index.less';
 import storage from '@/utils/storage';
 import Captcha from 'react-captcha-code';
-
+import { BeforeLoginRequest } from '@/api/login/BeforeLogin'
+import request from '@/api/api';
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 18 },
@@ -36,10 +37,19 @@ function Login() {
 
   const onFinish = useDebounce((values: any) => {
     //登录，todo接口
+    // BeforeLoginRequest({ phonenumber: "19634309086", password: "lpc123" }).then((res) => {
+    //   console.log(res)
+    //   storage.setItem('token', res.data.token);
+    //   history.replace('/home');
+    //   message.success({ content: '登录成功！', duration: 1 });
+    // })
+    request({ url: '/umi/login', method: 'get' }).then((res) => {
+      console.log(res)
+      storage.setItem('token', res.data.token);
+      history.replace('/home');
+      message.success({ content: '登录成功！', duration: 1 });
+    })
 
-    storage.setItem('token', 'sdsdsfsdf');
-    history.replace('/home');
-    message.success({ content: '登录成功！', duration: 1 });
   }, 700);
 
   const onFinishFailed = (errorInfo: any) => {
