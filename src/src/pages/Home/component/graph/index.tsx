@@ -22,7 +22,7 @@ export default function Graph() {
     fetch('/umi/chart')
       .then((res) => res.json())
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setGraph(res.data);
       });
   }, []);
