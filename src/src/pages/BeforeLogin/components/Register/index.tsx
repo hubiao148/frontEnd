@@ -75,13 +75,22 @@ function RegForm() {
         <Form.Item
           name="password"
           rules={[{ required: true, message: '请设置密码' }]}
+          getValueFromEvent={(event) => {
+            return event.target.value.trim();
+          }}
         >
-          <Input.Password prefix={<LockOutlined />} placeholder="设置密码" />
+          <Input.Password
+            prefix={<LockOutlined />}
+            placeholder="设置密码(1-20)"
+          />
         </Form.Item>
 
         <Form.Item
           name="confirm"
           hasFeedback
+          getValueFromEvent={(event) => {
+            return event.target.value.trim();
+          }}
           rules={[
             { required: true, message: '请再次输入密码' },
             ({ getFieldValue }) => ({

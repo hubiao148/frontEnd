@@ -23,6 +23,7 @@ export default function BeforeLogin() {
     { title: '策略模式', imgSrc: require('@/assets/caseImg1.png') },
     { title: '策略模式', imgSrc: require('@/assets/caseImg1.png') },
   ];
+  console.log(process.env.UMI_ENV);
 
   return (
     <div className={style.homeWrapper}>

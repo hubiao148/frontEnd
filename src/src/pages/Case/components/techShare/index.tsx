@@ -2,13 +2,13 @@
  * @Author: zyq
  * @Date: 2022-10-24 17:06:04
  * @Last Modified by: zyq
- * @Last Modified time: 2022-10-24 21:18:06
+ * @Last Modified time: 2022-10-30 20:50:51
  */
 
 import React, { useEffect, useState } from 'react';
 import { LikeOutlined, StarOutlined } from '@ant-design/icons';
-import { Input, Card, Skeleton, Divider } from 'antd';
-import { useHistory } from 'umi';
+import { Input, Card, Skeleton, Divider, Breadcrumb } from 'antd';
+import { Link, useHistory } from 'umi';
 import styled from './index.less';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import BackToTop from '@/components/BackTop';
@@ -33,6 +33,14 @@ function techShare() {
   const getData = async () => {};
   return (
     <div className={styled['shareWrapper']}>
+      <div className={styled['menu']}>
+        <Breadcrumb separator=">">
+          <Breadcrumb.Item>
+            <Link to="/case">实践案例</Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>技术分享</Breadcrumb.Item>
+        </Breadcrumb>
+      </div>
       {/* 设计模式的卡片 */}
       <Search
         className={styled['search']}
@@ -71,7 +79,9 @@ function techShare() {
                   <StarOutlined key="star" />,
                 ]}
               >
-                <Meta title={item.title} description={item.description} />
+                <Link to={`/techShareDetail/${item.id}`}>
+                  <Meta title={item.title} description={item.description} />
+                </Link>
               </Card>
             );
           })}

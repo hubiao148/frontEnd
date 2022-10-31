@@ -42,7 +42,7 @@ service.interceptors.request.use((req: any) => {
   console.log(req);
   const headers = req.headers;
   if (!headers.Authorization) headers.Authorization = 'hcy';
-  
+
   if (storage.getItem('token') != undefined) {
     headers.Authorization = storage.getItem('token');
   }
@@ -89,7 +89,7 @@ function request(options: any) {
     options.params = options.data;
   }
 
-  if (configEnv.env === 'product') {
+  if (configEnv.env === 'prod') {
     service.defaults.baseURL = configEnv.baseApi;
   } else {
     service.defaults.baseURL = configEnv.mock
