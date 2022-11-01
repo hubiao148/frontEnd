@@ -41,11 +41,14 @@ export default defineConfig({
   },
   mountElementId: 'app', // document问价id名
   theme,
-  chainWebpack(memo, { env, webpack, createCSSRule }) { //自动打开浏览器
+  chainWebpack(memo, { env, webpack, createCSSRule }) {
+    //自动打开浏览器
     env === 'development'
       ? memo
           .plugin('open-browser-webpack-plugin')
-          .use('open-browser-webpack-plugin', [{ url: 'http://localhost:8000' }])
+          .use('open-browser-webpack-plugin', [
+            { url: 'http://localhost:8000' },
+          ])
       : ''; // 此处url与项目启动的url保持一致
   },
 });

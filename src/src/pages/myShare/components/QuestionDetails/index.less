@@ -1,0 +1,126 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #E9ECEF;
+    .top{
+        width: 60%;
+        height: 30px;
+    }
+    .body{
+        width: 70%;
+        height: calc(100% - 30px);
+        display: flex;
+        flex-direction: row;
+        //第一个盒子
+        &>div:first-child{
+            width: 77%;
+            height: 100%;
+            &>div:first-child{
+                display: flex;
+                flex-direction: row;
+                &>div:first-child{
+                    width: 10%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    &>div{
+                        margin-top: 20px;
+                        padding: 5px 10px;
+                        border-radius: 20px;
+                        background-color: white;
+                        cursor: pointer;
+                    }
+                }
+                &>div:last-child{
+                    width: 90%;
+                    min-height: 400px;
+                    background-color: white;
+                }
+            }
+        //第二个盒子
+            &>div:nth-child(2){
+                display: flex;
+                flex-direction: row;
+                margin-top: 40px;
+                &>div:first-child{
+                    width: 10%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    &>div{
+                        margin-top: 20px;
+                        padding: 5px 10px;
+                        border-radius: 20px;
+                        background-color: white;
+                        cursor: pointer;
+                    }
+                }
+                &>div:last-child{
+                    width: 90%;
+                    background-color: white;
+                    &>div:first-child{
+                        height: 50px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        &>div:first-child{
+                            margin-left: 10px;
+                        }
+                        &>div:last-child{
+                            margin-right: 40px;
+                        }
+                    }
+                }
+            }
+            //第三个盒子
+            &>div:last-child{
+                display: flex;
+                flex-direction: row;
+                margin-top: 40px;
+                &>div:first-child{
+                    width: 10%;
+                }
+                &>div:last-child{
+                    width: 90%;
+                    background-color: white;
+                     margin-bottom: 40px;
+                    &>div:first-child{
+                        height: 50px;
+                        line-height: 50px;
+                        margin-left: 10px;
+                    }
+                    &>div:last-child{
+                        margin-top: 10px;
+                        margin-bottom: 20px;
+                        &>span{
+                            padding-left:20px ;
+                        }
+                    }
+                    .clickBtn{
+                       
+                        &>div{
+                            display: flex;
+                            flex-direction: row-reverse;
+                        }
+                    }
+                }
+            }
+        }
+        &>div:last-child{
+            width: 20%;
+            height: 100%;
+            margin-left: 3%;
+            background-color: white;
+            &>div{
+                margin-left: 10px;
+            }
+            &>span>div{
+                cursor:pointer;
+                margin-left: 10px;
+            }
+        }
+    }
+}
