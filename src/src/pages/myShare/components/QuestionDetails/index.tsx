@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-21 17:23:47
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 08:55:10
+ * @LastEditTime: 2022-11-01 10:15:23
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\index.tsx
  * @Description: 
  * 
@@ -24,7 +24,7 @@ export default function index() {
         time: '2022-11-21',
         all: 120,
         comment: ['/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则', '/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则', '/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则'],
-        replyNum: 10,
+        replyNum: 3,
     }
     const board = [
         {

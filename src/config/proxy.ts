@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-08 19:38:37
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 21:19:16
+ * @LastEditTime: 2022-11-01 12:31:24
  * @FilePath: \src\config\proxy.ts
  * @Description:
  *
@@ -18,7 +18,7 @@
 export default {
   dev: {
     '/api': {
-      target: 'http://127.0.0.1:8000',
+      target: 'http://192.168.137.148:8080',
       // 配置了这个可以从 http 代理到 https
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,
