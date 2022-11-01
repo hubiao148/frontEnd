@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 21:33:43
+ * @LastEditTime: 2022-10-31 22:52:05
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -43,7 +43,11 @@ function Login() {
     //   history.replace('/home');
     //   message.success({ content: '登录成功！', duration: 1 });
     // })
-    request({ url: '/umi/login', method: 'get' }).then((res) => {
+    request({
+      url: '/umi/login', method: 'get', headers: {
+        'Content-Type':
+          'multipart/form-data;boundary = ' + new Date().getTime(),
+      }, }).then((res) => {
       console.log(res)
       storage.setItem('token', res.data.token);
       history.replace('/home');

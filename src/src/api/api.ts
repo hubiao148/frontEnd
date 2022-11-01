@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 17:00:08
+ * @LastEditTime: 2022-10-31 22:54:46
  * @FilePath: \src\src\api\api.ts
  * @Description: axios封装
  *
@@ -30,6 +30,7 @@ export const service = axios.create({
   // }
   headers: {
     'Access-Control-Allow-Origin': '*',
+    'content-type': 'application/json',
   },
 });
 /***

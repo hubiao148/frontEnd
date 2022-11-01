@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-30 20:34:49
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 09:28:47
+ * @LastEditTime: 2022-10-31 23:11:08
  * @FilePath: \src\src\utils\useBigFileUpload.ts
  * @Description: 大文件上传
  *
@@ -77,7 +77,7 @@ async function getFileHash(fileList: { file: Blob }[]) {
  *
  * @returns Blob的二进制流
  */
-async function getContent(fileList: Blob): Promise<ArrayBuffer> {
+export async function getContent(fileList: Blob): Promise<ArrayBuffer> {
   return new Promise((resolve, reject) => {
     // 创造读文件器
     let fileReader = new FileReader();
@@ -155,15 +155,16 @@ async function Upload(
     })
     .map(async ({ formData, i }) => {
       return request({
-        url: '/user',
+        url,
         method: 'post',
         data: formData,
-        Headers: {
+        headers: {
           'Content-Type':
             'multipart/form-data;boundary = ' + new Date().getTime(),
         },
       });
     });
   const res = await Promise.all(req);
+  console.log(res);
   return res;
 }
