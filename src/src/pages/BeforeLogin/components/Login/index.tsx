@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-01 12:37:46
+ * @LastEditTime: 2022-11-01 13:58:40
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -37,25 +37,25 @@ function Login() {
 
   const onFinish = useDebounce((values: any) => {
     //登录，todo接口
-    BeforeLoginRequest({ phonenumber: "19634309086", password: "lpc123" }).then((res) => {
-      console.log(res)
-      storage.setItem('userMsg', res.data.userInfo);
-      storage.setItem('token', res.data.token);
-      history.replace('/home');
-      message.success({ content: '登录成功！', duration: 1 });
-    })
-    // request({
-    //   url: '/umi/login', method: 'get', headers: {
-    //     'Content-Type':
-    //       'multipart/form-data;boundary = ' + new Date().getTime(),
-    //   },
-    // }).then((res) => {
+    // BeforeLoginRequest({ phonenumber: "19634309086", password: "lpc123" }).then((res) => {
     //   console.log(res)
-    //   storage.setItem('userMsg', res.data.userMsg);
+    //   storage.setItem('userMsg', res.data.userInfo);
     //   storage.setItem('token', res.data.token);
     //   history.replace('/home');
     //   message.success({ content: '登录成功！', duration: 1 });
     // })
+    request({
+      url: '/umi/login', method: 'get', headers: {
+        'Content-Type':
+          'multipart/form-data;boundary = ' + new Date().getTime(),
+      },
+    }).then((res) => {
+      console.log(res)
+      storage.setItem('userMsg', res.data.userMsg);
+      storage.setItem('token', res.data.token);
+      history.replace('/home');
+      message.success({ content: '登录成功！', duration: 1 });
+    })
 
   }, 700);
 
