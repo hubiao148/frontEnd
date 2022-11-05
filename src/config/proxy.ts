@@ -18,7 +18,7 @@
 export default {
   dev: {
     '/api': {
-      target: 'http://192.168.137.148:8080',
+      target: 'http://127.0.0.1:8000',
       // 配置了这个可以从 http 代理到 https
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,

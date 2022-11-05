@@ -1,9 +1,10 @@
-import { Button, message, Steps } from 'antd';
-import React, { useState } from 'react';
+import { Steps, Breadcrumb } from 'antd';
+import { useState } from 'react';
 import SetPassword from './setPassword';
 import Success from './success';
 import VerifyPassword from './verifyPassword';
 import styled from './index.less';
+import { Link } from 'umi';
 const { Step } = Steps;
 
 function ForgetPassword() {
@@ -36,12 +37,20 @@ function ForgetPassword() {
     },
   ];
   const onChange = (value: number) => {
-    console.log('onChange:', value);
+    // console.log('onChange:', value);
     setCurrent(value);
   };
 
   return (
     <div className={styled['forgetWrapper']}>
+      <div className={styled['menu']}>
+        <Breadcrumb separator=">">
+          <Breadcrumb.Item>
+            <Link to="/beforeLogin/login">登录</Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Item>忘记密码</Breadcrumb.Item>
+        </Breadcrumb>
+      </div>
       <div className={styled['forgetContent']}>
         <Steps current={current} onChange={onChange}>
           <Step title="确认账号" />

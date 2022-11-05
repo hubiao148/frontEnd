@@ -17,7 +17,7 @@ import { Link, useHistory } from 'umi';
 import styles from './index.less';
 import storage from '@/utils/storage';
 import Captcha from 'react-captcha-code';
-import { BeforeLoginRequest } from '@/api/login/BeforeLogin'
+import { BeforeLoginRequest } from '@/api/login/BeforeLogin';
 import request from '@/api/api';
 const layout = {
   labelCol: { span: 8 },
@@ -37,26 +37,29 @@ function Login() {
 
   const onFinish = useDebounce((values: any) => {
     //登录，todo接口
-    BeforeLoginRequest({ phonenumber: "19634309086", password: "lpc123" }).then((res) => {
-      console.log(res)
-      storage.setItem('userMsg', res.data.userInfo);
+    // BeforeLoginRequest({ phonenumber: '19634309086', password: 'lpc123' }).then(
+    //   (res) => {
+    //     console.log(res);
+    //     storage.setItem('userMsg', res.data.userInfo);
+    //     storage.setItem('token', res.data.token);
+    //     history.replace('/home');
+    //     message.success({ content: '登录成功！', duration: 1 });
+    //   },
+    // );
+    request({
+      url: '/umi/login',
+      method: 'get',
+      headers: {
+        'Content-Type':
+          'multipart/form-data;boundary = ' + new Date().getTime(),
+      },
+    }).then((res) => {
+      console.log(res);
+      storage.setItem('userMsg', res.data.userMsg);
       storage.setItem('token', res.data.token);
       history.replace('/home');
       message.success({ content: '登录成功！', duration: 1 });
-    })
-    // request({
-    //   url: '/umi/login', method: 'get', headers: {
-    //     'Content-Type':
-    //       'multipart/form-data;boundary = ' + new Date().getTime(),
-    //   },
-    // }).then((res) => {
-    //   console.log(res)
-    //   storage.setItem('userMsg', res.data.userMsg);
-    //   storage.setItem('token', res.data.token);
-    //   history.replace('/home');
-    //   message.success({ content: '登录成功！', duration: 1 });
-    // })
-
+    });
   }, 700);
 
   const onFinishFailed = (errorInfo: any) => {

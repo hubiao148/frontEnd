@@ -12,12 +12,16 @@
   background-size: 30% 50%;
   background-image: url('../../assets/forget-bg2.svg'), url('../../assets/forget-bg1.svg');
 }
+.forgetWrapper .menu {
+  align-self: flex-start;
+  margin-top: 7%;
+  margin-left: 10%;
+}
 .forgetWrapper .forgetContent {
   width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 8%;
   padding: 2rem 2rem 2rem 2rem;
   border-radius: 25px;
   background-color: #f6faff;
@@ -25,10 +29,6 @@
 }
 .forgetWrapper .forgetContent .steps-content {
   margin-top: 8%;
-}
-.forgetWrapper .forgetContent .steps-content .set-form {
-  display: flex;
-  flex-direction: column;
 }
 .forgetWrapper .forgetContent .steps-content .set-form .submit-button {
   width: 90%;
