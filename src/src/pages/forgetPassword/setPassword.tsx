@@ -1,9 +1,6 @@
-import React, { useCallback, useState } from 'react';
-import { Form, Input, Button, Checkbox, message, Divider } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import formValidation from '@/utils/formValidation';
+import { useCallback, useState } from 'react';
+import { Form, Input, Button, message } from 'antd';
 import { useDebounce } from '@/utils/useDebounce';
-import { Link, useHistory } from 'umi';
 import Captcha from 'react-captcha-code';
 import styled from './index.less';
 const layout = {
@@ -27,7 +24,6 @@ function SetPassword({ account, setAccount, setCurrent }: Props) {
   const onFinish = useDebounce((values: any) => {
     //确认修改，todo接口
     setCurrent(2);
-    message.success({ content: '登录成功！', duration: 1 });
   }, 700);
 
   const onFinishFailed = (errorInfo: any) => {

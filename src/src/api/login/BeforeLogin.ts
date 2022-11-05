@@ -8,10 +8,21 @@
  *
  */
 import request from '../api';
-export function BeforeLoginRequest(data: { phonenumber: string; password: string }) {
+export function BeforeLoginRequest(data: {
+  phonenumber: string;
+  password: string;
+}) {
   return request({
     url: '/user/login',
     data,
     method: 'post',
+  });
+}
+
+export function getVerifyCode(account: string) {
+  return request({
+    url: '/verify',
+    method: 'get',
+    account,
   });
 }

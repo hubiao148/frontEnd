@@ -20,4 +20,10 @@ export default {
       },
     },
   },
+
+  'GET /umi/verify': {
+    status: 'success',
+    code: 500,
+    message: '用户不存在！',
+  },
 };
