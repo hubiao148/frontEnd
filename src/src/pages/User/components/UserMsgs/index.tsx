@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-13 19:30:41
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-01 12:42:13
+ * @LastEditTime: 2022-11-01 14:30:17
  * @FilePath: \src\src\pages\User\components\UserMsgs\index.tsx
  * @Description: 
  * 
@@ -25,10 +25,10 @@ export default () => {
           src="https://joeschmoe.io/api/v1/random"
           size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }} //响应式头
         />
-        <div className={style.mark}>{litsType[listMenu.classId-1]}</div>
+        <div className={style.mark}>{listMenu.userType}</div>
       </div>
       <div className={style.msg}>
-        <div>姓名:{listMenu.username}<span className={style.btn}>修改</span></div>
+        <div>姓名:{listMenu.name}<span className={style.btn}>修改</span></div>
         <div>邮箱:{listMenu.email}<span className={style.btn}>修改</span></div>
         <div>密码: <span className={style.btn}>修改</span> </div>
       </div>

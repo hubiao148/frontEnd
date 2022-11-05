@@ -9,6 +9,7 @@ import {
   Row,
   Select,
   Upload,
+  message
 } from 'antd';
 import styled from './index.less';
 import {
@@ -17,6 +18,8 @@ import {
   PlusOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
+import { useUsualFileUpload } from '@/utils/useUsualFileUpload';
+import { useBigFileUpload } from '@/utils/useBigFileUpload';
 interface maskProps {
   isModalOpen: boolean;
   setIsModalOpen: (isModalOpen: maskProps['isModalOpen']) => void;
@@ -28,6 +31,25 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
   const onReset = () => {
     form.resetFields();
   };
+  // 文件上传函数
+  /**
+   * 
+   * @param e File类型的数据
+   * @returns Promise<any> 
+   */
+  async function fileUpload(e: File): Promise<any>  {
+    
+    let res = await useUsualFileUpload(e,  '/umi/fileUpload');
+    console.log(res)
+    if (res.status == 200) {
+      message.success(`${e.name}上传成功！`);
+      return true;
+    } else {
+      message.error(`${e.name}上传失败！`);
+      return Upload.LIST_IGNORE;
+    }
+    
+  }
   return (
     <div>
       <Form layout="vertical" form={form}>
@@ -87,7 +109,7 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
         <Row gutter={16} justify="center">
           <Col span={8}>
             <Form.Item label="文件上传" valuePropName="fileList">
-              <Upload.Dragger name="files" action="/upload.do">
+              <Upload.Dragger name="files" beforeUpload={(e)=>fileUpload(e)}>
                 <p className="ant-upload-drag-icon">
                   <FilePptOutlined />
                 </p>
