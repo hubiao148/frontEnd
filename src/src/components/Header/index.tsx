@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 11:52:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 22:26:48
+ * @LastEditTime: 2022-11-05 15:54:34
  * @FilePath: \src\src\components\Header\index.tsx
  * @Description: 头部
  *
@@ -16,14 +16,17 @@ import Menu from './components/Menu';
 import style from './index.less';
 import storage from '@/utils/storage';
 import MaskLayer from './components/maskLayer';
+import { currentPageHeader } from '@/jotai';
+import { useAtom } from 'jotai';
 export default () => {
+  const [page, setPage] = useAtom(currentPageHeader);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
   };
 
-  const listMenu =storage.getItem('token')? [
+  const listMenu = storage.getItem('token') ? [
     { path: '/home', title: '首页' },
     { path: '/myshare', title: '技术问答' },
     { path: '/case', title: '实践案例' },
@@ -60,6 +63,8 @@ export default () => {
   }
   function goLogout() {
     storage.clearItem('token');
+    history.replace('/home');
+    setPage(0);
     setRefresh(!refresh);
   }
 

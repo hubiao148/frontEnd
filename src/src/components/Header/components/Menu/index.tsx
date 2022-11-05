@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 16:29:38
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 16:31:13
+ * @LastEditTime: 2022-11-05 16:00:36
  * @FilePath: \src\src\components\Header\components\Menu\index.tsx
  * @Description: 
  * 
@@ -28,17 +28,7 @@ export default function (props: Menu) {
     const id = props.id;//判断是哪里应用的组件
     const [page, setPage] = useAtom(id == 'Header' ? currentPageHeader : (id == 'User' ? currentPageUser : currentPageMyShare));
     useEffect(() => {
-        // history.listen((event) => {
-        //     //pathname为地址名
-        //     let test = event.pathname
-        //     let i = listMenu.map((e, i) => {
-        //         if (e.path == test) return i;
-        //     })
-        //     setPage(i)
-        //     storage.setItem('currentPage' + id, i)
-        // })
-
-        history.push(listMenu[page].path);
+        history.push(listMenu[page].path || listMenu[0].path);
     }, [])//重新加载页面
     return (
         <div className={style.menu}>
