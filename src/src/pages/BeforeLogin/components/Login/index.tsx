@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-01 13:58:40
+ * @LastEditTime: 2022-11-05 15:46:47
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -48,20 +48,8 @@ function Login() {
     //   },
     // );
     request({
-      url: '/umi/login',
-      method: 'get',
-      headers: {
-        // BeforeLoginRequest({ phonenumber: "19634309086", password: "lpc123" }).then((res) => {
-        //   console.log(res)
-        //   storage.setItem('userMsg', res.data.userInfo);
-        //   storage.setItem('token', res.data.token);
-        //   history.replace('/home');
-        //   message.success({ content: '登录成功！', duration: 1 });
-        // })
-
-        'Content-Type':
-          'multipart/form-data;boundary = ' + new Date().getTime(),
-      },
+      url: '/login',
+      method: 'get'
     }).then((res) => {
       console.log(res);
 
