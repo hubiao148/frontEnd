@@ -1,6 +1,8 @@
 .shareWrapper {
   position: relative;
   display: flex;
+  width: 100%;
+  background-color: #e9ecef;
   flex-direction: column;
   align-items: center;
 }
@@ -13,7 +15,7 @@
   position: absolute;
   width: 30rem;
   left: 50%;
-  margin-top: 3rem;
+  top: 60px;
   transform: translateX(-50%);
   box-sizing: border-box;
   border: none;
@@ -23,12 +25,15 @@
   color: #777;
 }
 .shareWrapper .card {
+  width: 85%;
   display: flex;
-  flex-wrap: wrap;
-  margin-top: 3rem;
+  background: white;
+  padding-bottom: 20px;
 }
-.shareWrapper .card .cardItem {
-  position: relative;
-  margin: 0 1rem 3rem 3rem;
-  border: rgba(85, 103, 156, 0.6) 1.2px solid;
+.shareWrapper .list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 10rem;
+  padding-top: 5rem;
 }

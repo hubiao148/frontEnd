@@ -74,7 +74,7 @@ function SetPassword({ account, setAccount, setCurrent }: Props) {
       <Form.Item label="账号">
         {account}
         <span
-          style={{ margin: '0 40px', color: '#5889de', cursor: 'pointer' }}
+          style={{ margin: '0 30px', color: '#5889de', cursor: 'pointer' }}
           onClick={() => {
             setCurrent(0);
           }}
