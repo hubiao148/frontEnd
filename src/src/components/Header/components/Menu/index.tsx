@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 16:29:38
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-05 16:00:36
+ * @LastEditTime: 2022-11-06 17:14:03
  * @FilePath: \src\src\components\Header\components\Menu\index.tsx
  * @Description: 
  * 
@@ -28,7 +28,7 @@ export default function (props: Menu) {
     const id = props.id;//判断是哪里应用的组件
     const [page, setPage] = useAtom(id == 'Header' ? currentPageHeader : (id == 'User' ? currentPageUser : currentPageMyShare));
     useEffect(() => {
-        history.push(listMenu[page].path || listMenu[0].path);
+        history.push(listMenu[page].path || "/home");
     }, [])//重新加载页面
     return (
         <div className={style.menu}>
