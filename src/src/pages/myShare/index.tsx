@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:45:27
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-05 15:29:01
+ * @LastEditTime: 2022-11-07 20:10:48
  * @FilePath: \src\src\pages\myShare\index.tsx
  * @Description: 个人问答&&技术分享
  * 
@@ -11,6 +11,7 @@ import { useHistory } from 'umi';
 import Menu from '@/components/Header/components/Menu';
 import HotReply from './components/HotReply';
 import HotTag from './components/HotTag';
+import Latest from './components/Latest'
 import style from './index.less'
 export default function myShare(props: any) {
   const history = useHistory();
@@ -34,7 +35,7 @@ export default function myShare(props: any) {
             </div>
             <div onClick={goAskQuestion}>提问题</div>
           </div>
-          <div>{props.children}</div>
+          <div>{props.children }</div>
         </div>
         <div className={style.right}>
           <div>
@@ -50,7 +51,7 @@ export default function myShare(props: any) {
           </div>
         </div>
       </div>
-      <div style={{height:'80px'}}></div>
+      <div style={{ height: '80px' }}></div>
     </div>
   )
 }

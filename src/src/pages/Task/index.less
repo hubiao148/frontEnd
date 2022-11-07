@@ -1,3 +1,39 @@
 .container {
-    min-height: 400px;
+  min-height: 400px;
+  .sider {
+    background-color: white;
+    min-height: 500px;
+    margin: 50px 10px 50px 60px;
+    border-radius: 20px;
+    .sider_top {
+      min-height: 150px;
+      background-color: #2992DC;
+      border-radius: 20px;
+      padding: 10px;
+      color: white;
+      .siderTopMenu{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        &>div{
+            width: 45%;
+            height: 20px;
+            font-size: xx-small;
+            background-color: black;
+            text-align: center;
+            line-height: 20px;
+            border-radius: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+      }
+    }
+  }
+  .content {
+    // background-color: black;
+    min-height: 500px;
+    margin: 0px 40px 40px 40px;
+  }
 }

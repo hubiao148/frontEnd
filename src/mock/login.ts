@@ -2,14 +2,14 @@
  * @Author: hcy
  * @Date: 2022-10-31 18:23:50
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-05 15:46:20
+ * @LastEditTime: 2022-11-07 19:42:44
  * @FilePath: \src\mock\login.ts
  * @Description:
  *
  */
 export default {
   //登录数据返回
-  'POST /umi/login': {
+  'GET /umi/login': {
     status: 'success',
     code:200,
     data: {

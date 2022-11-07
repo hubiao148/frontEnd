@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 16:29:38
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-06 17:14:03
+ * @LastEditTime: 2022-11-07 20:25:23
  * @FilePath: \src\src\components\Header\components\Menu\index.tsx
  * @Description: 
  * 
@@ -28,7 +28,7 @@ export default function (props: Menu) {
     const id = props.id;//判断是哪里应用的组件
     const [page, setPage] = useAtom(id == 'Header' ? currentPageHeader : (id == 'User' ? currentPageUser : currentPageMyShare));
     useEffect(() => {
-        history.push(listMenu[page].path || "/home");
+        history.replace(listMenu[page].path || "/home");
     }, [])//重新加载页面
     return (
         <div className={style.menu}>
@@ -36,7 +36,7 @@ export default function (props: Menu) {
                 return <div key={index} className={index == page ? style.isActive : null} onClick={() => {
                     setPage(index)
                     storage.setItem('currentPage' + id, index)
-                    history.push(e.path)
+                    history.replace(e.path)
                 }} style={{ fontSize: props.fontSize }}>{e.title}</div>
             })}
         </div>

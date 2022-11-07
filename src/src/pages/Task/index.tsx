@@ -2,29 +2,88 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:46:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-01 16:00:42
+ * @LastEditTime: 2022-11-07 21:24:31
  * @FilePath: \src\src\pages\Task\index.tsx
  * @Description: 实践任务
  *
  */
-import { useBigFileUpload } from '@/utils/useBigFileUpload';
-import { useUsualFileUpload } from '@/utils/useUsualFileUpload';
+import storage from '@/utils/storage';
+import { DesktopOutlined, TeamOutlined } from '@ant-design/icons';
+import { Layout, Button, Menu } from 'antd'
+import { useState } from 'react';
+import { useHistory } from 'umi';
+const { Content, Sider } = Layout;
 import style from './index.less';
-export default function Task() {
-  async function inputFileChange(e: any) {
-    //console.log(e.target.files[0])
-    console.log(await useUsualFileUpload(e.target.files[0], '/umi/fileUpload'));
+export default function Task(props: any) {
+  const history = useHistory();
+  const siderTopMenu = [{
+    toptitle: '您的学生',
+    title: '创建项目',
+    path: '/task/staging',
+  },
+  {
+    toptitle: '您的学生',
+    title: '创建项目',
+    path: '/task/staging',
+  },
+  {
+    toptitle: '您的学生',
+    title: '创建项目',
+    path: '/task/staging',
+  }
+  ]
+  const items = [{
+    key: '/task/staging',
+    label: '工作台',
+    icon: <DesktopOutlined />,
+  },
+  {
+    key: '/task/manage',
+    label: '工作台',
+    icon: <DesktopOutlined />,
+  },
+  ]
+  function gotoItem(e: any) {
+    history.push(e.key)
   }
   return (
     <div className={style.container}>
-      <input
-        onChange={(e) => {
-          inputFileChange(e);
-        }}
-        type="file"
-        accept=".png,.ppt,.jpg,.jpeg,.zip,.video/*"
-        multiple
-      />
-    </div>
+      {
+        storage.getItem("token") ? (
+          <Layout>
+            <Sider className={style.sider}>
+              <div className={style.sider_top}>
+                <div style={{ textAlign: 'center' }}>管理{siderTopMenu[0].toptitle}</div>
+                <div >
+                  <div className={style.siderTopMenu}>
+                    {
+                      siderTopMenu.map((i, j) => {
+                        return (<div key={j} onClick={() => {
+                          history.push(i.path || '/home');
+                        }}>
+                          {i.title}
+                        </div>)
+                      })
+                    }
+                  </div>
+                </div>
+              </div>
+              <div><Menu
+                defaultSelectedKeys={['1']}
+                items={items}
+                onClick={gotoItem}
+              /></div>
+            </Sider>
+
+            <Content className={style.content}>
+              {props.children}
+            </Content>
+          </Layout>
+        ) : (
+          <Button>登录</Button>
+        )
+      }
+
+    </div >
   );
 }
