@@ -6,21 +6,16 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import {
-  AppstoreOutlined,
-  LikeOutlined,
-  PieChartOutlined,
-  StarOutlined,
-} from '@ant-design/icons';
+import { PieChartOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Input, Menu, Card, Skeleton, Divider, Modal, Tooltip } from 'antd';
-import { Link, useHistory } from 'umi';
+import { Input, Menu, Skeleton, Divider, Modal, Tooltip } from 'antd';
+import { Link, NavLink, useHistory } from 'umi';
 import styled from './index.less';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MaskForm from './MaskForm';
 import BackToTop from '@/components/BackTop';
+
 type MenuItem = Required<MenuProps>['items'][number];
-const { Meta } = Card;
 const { Search } = Input;
 function getItem(
   label: React.ReactNode,
@@ -40,7 +35,7 @@ function getItem(
 
 //左侧菜单
 const items: MenuItem[] = [
-  getItem('技术分享', null, <PieChartOutlined />, [
+  getItem('技术分享', 'tech', <PieChartOutlined />, [
     getItem(
       '上传',
       null,
@@ -49,8 +44,6 @@ const items: MenuItem[] = [
       'group',
     ),
   ]),
-
-  getItem('设计模式', '/case', <AppstoreOutlined />),
 ];
 
 function ClassicCase() {
@@ -91,8 +84,9 @@ function ClassicCase() {
         <Menu
           onClick={onClick}
           style={{ width: 200 }}
-          mode="vertical"
+          mode="inline"
           items={items}
+          defaultOpenKeys={['tech']}
         />
       </div>
       {/* 遮罩层实现技术分享的上传 */}
@@ -120,7 +114,7 @@ function ClassicCase() {
         />
         <div className={styled['card']}>
           <InfiniteScroll
-            style={{ display: 'flex', flexWrap: 'wrap' }}
+            style={{ display: 'flex', flexWrap: 'wrap', paddingTop: '2rem' }}
             dataLength={modeList.length}
             next={appendData}
             hasMore={modeList.length < 30}
@@ -129,30 +123,17 @@ function ClassicCase() {
           >
             {modeList.map((item: any, index: any) => {
               return (
-                <Card
-                  key={index}
-                  hoverable
-                  className={styled.cardItem}
-                  style={{
-                    maxWidth: '22rem',
-                    minWidth: '20rem',
-                    minHeight: '36rem',
-                    fontSize: '0.8rem',
-                  }}
-                  cover={<img alt="example" src={item.src} />}
-                  actions={[
-                    <Tooltip title="点赞" color={'#7cb9f5'}>
-                      <LikeOutlined onClick={Like} key="like" />
-                    </Tooltip>,
-                    <Tooltip title="收藏" color={'#7cb9f5'}>
-                      <StarOutlined key="star" />
-                    </Tooltip>,
-                  ]}
-                >
-                  <Link to={`/modeDetail/${item.id}`}>
-                    <Meta title={item.title} description={item.description} />
-                  </Link>
-                </Card>
+                <div key={index} className={styled['cardItem']}>
+                  <NavLink to={`/modeDetail/${item.id}`}>
+                    <div className={styled['image']}>
+                      <img src={item.src} alt="" />
+                    </div>
+                  </NavLink>
+                  <div className={styled['content']}>
+                    <div className={styled['title']}>{item.title}</div>
+                    <div className={styled['bottom']}>{item.description}</div>
+                  </div>
+                </div>
               );
             })}
           </InfiniteScroll>

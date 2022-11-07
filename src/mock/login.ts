@@ -9,7 +9,7 @@
  */
 export default {
   //登录数据返回
-  'GET /umi/login': {
+  'POST /umi/login': {
     status: 'success',
     code:200,
     data: {

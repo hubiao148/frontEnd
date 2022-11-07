@@ -1,6 +1,7 @@
 .caseWrapper {
   position: relative;
   display: flex;
+
   .search {
     position: absolute;
     width: 30rem;
@@ -16,10 +17,63 @@
   .card {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 5rem;
+    padding-top: 6rem;
+
     .cardItem {
-      margin: 0 1rem 3rem 3rem;
-      border: rgba(85, 103, 156, 0.6) 1.2px solid;
+      position: relative;
+      height: 300px;
+      width: 210px;
+      bottom: 20px;
+      left: 20px;
+      margin: 0 0.5rem 3rem 3rem;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+      transition: 0.4s linear;
+      .image {
+        border-radius: 10px;
+        height: 300px;
+        overflow: hidden;
+        img {
+          cursor: pointer;
+          height: 100%;
+          width: 100%;
+          transition: 0.3s;
+        }
+      }
+      .content {
+        border-radius: 5px 5px 10px 10px;
+        border: 1px solid rgb(191, 212, 250);
+        position: absolute;
+        bottom: 0px;
+        background: white;
+        width: 100%;
+        text-align: center;
+        padding: 15px 20px;
+        .title {
+          font-size: 17px;
+          font-weight: 600;
+          color: #333333;
+        }
+        .bottom {
+          display: none;
+          transition: 5s ease;
+          font-size: 16px;
+          text-align: justify;
+          line-height: 1.8em;
+        }
+      }
+    }
+
+    .cardItem:hover {
+      box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+      .image img {
+        opacity: 0.8;
+        transform: scale(1.1);
+      }
+      .bottom {
+        display: block;
+      }
     }
   }
 }

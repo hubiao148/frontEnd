@@ -36,8 +36,12 @@ export default function Case() {
   return (
     <div className={styled.caseWrapper}>
       <Card
-        style={{ width: '100%' }}
-        bodyStyle={{ width: '90%', paddingLeft: '10%' }}
+        style={{ width: '100%', backgroundColor: '#e9ecef' }}
+        bodyStyle={{
+          width: '83%',
+          marginLeft: '10%',
+          backgroundColor: '#ffffff',
+        }}
         headStyle={{ paddingLeft: '11%' }}
         bordered={false}
         tabList={tabListNoTitle}

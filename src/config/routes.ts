@@ -57,13 +57,31 @@ export default [
       {
         //技术分享
         path: '/techShare',
-        component: '@/pages/Case/components/techShare',
+        component: '@/pages/techShare',
+        routes: [
+          {
+            path: '/techShare',
+            redirect: '/techShare/techFront',
+          },
+          {
+            path: '/techShare/techFront',
+            component: '@/pages/techShare/components/techFront',
+          },
+          {
+            path: '/techShare/techEnd',
+            component: '@/pages/techShare/components/techEnd',
+          },
+          {
+            path: '/techShare/techGame',
+            component: '@/pages/techShare/components/techGame',
+          },
+          {
+            path: '/techShare/techOther',
+            component: '@/pages/techShare/components/techOther',
+          },
+        ],
       },
-      {
-        //技术分享详情
-        path: '/techShareDetail/:id',
-        component: '@/pages/Case/components/techShareDetail',
-      },
+
       { path: '/task', component: '@/pages/Task' },
       {
         //我的分享问答界面
