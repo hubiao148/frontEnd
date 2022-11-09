@@ -2,13 +2,14 @@
  * @Author: hcy
  * @Date: 2022-11-07 19:53:51
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-07 21:27:57
+ * @LastEditTime: 2022-11-09 16:28:34
  * @FilePath: \src\src\pages\Task\components\Staging\index.tsx
  * @Description: 工作台
  * 
  */
 import React from 'react'
 import { Breadcrumb } from 'antd'
+import StagingStudent from './components/StagingStudent'
 import style from './index.less'
 import { useHistory } from 'umi';
 export default function index() {
@@ -24,7 +25,10 @@ export default function index() {
                     <Breadcrumb.Item>提问</Breadcrumb.Item>
                 </Breadcrumb>
             </div>
-            <div>body</div>
+            <div>
+                工作台
+                <StagingStudent/>
+            </div>
         </div>
     )
 }

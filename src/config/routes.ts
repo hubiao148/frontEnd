@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-07 21:23:51
+ * @LastEditTime: 2022-11-09 17:36:55
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -93,6 +93,34 @@ export default [
           {
             path: '/task/manage',
             component: '@/pages/Task/components/Manage',
+          },
+          {
+            path: '/task/taskmanage',
+            component: '@/pages/Task/components/TaskManage',
+          },
+          {
+            path: '/task/jointeam',
+            component: '@/pages/Task/components/JoinTeam',
+          },
+          {
+            path: '/task/invitemember',
+            component: '@/pages/Task/components/InviteMember',
+          },
+          {
+            path: '/task/createteam',
+            component: '@/pages/Task/components/CreateTeam',
+          },
+          {
+            path: '/task/createtask',
+            component: '@/pages/Task/components/CreateTask',
+          },
+          {
+            path: '/task/createproject',
+            component: '@/pages/Task/components/CreateProject',
+          },
+          {
+            path: '/task/createclass',
+            component: '@/pages/Task/components/CreateClass',
           },
         ],
       },
