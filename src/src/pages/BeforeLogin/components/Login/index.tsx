@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
- * @LastEditors: hcy
- * @LastEditTime: 2022-11-07 19:41:57
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-11-13 22:29:04
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -49,7 +49,7 @@ function Login() {
     // );
     request({
       url: '/login',
-      method: 'get'
+      method: 'get',
     }).then((res) => {
       console.log(res);
 

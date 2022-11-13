@@ -6,13 +6,14 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Breadcrumb, Menu } from 'antd';
+import { PieChartOutlined } from '@ant-design/icons';
+import { Input, Avatar, List, Menu, Breadcrumb } from 'antd';
 import type { MenuProps } from 'antd';
-import { Link, useHistory } from 'umi';
+import { Link } from 'umi';
 import styled from './index.less';
 import BackToTop from '@/components/BackTop';
-import { PieChartOutlined } from '@ant-design/icons';
-
+import { getShareList, getShareNavigation } from '@/api/case';
+const { Search } = Input;
 type MenuItem = Required<MenuProps>['items'][number];
 function getItem(
   label: React.ReactNode,
@@ -30,43 +31,59 @@ function getItem(
   } as MenuItem;
 }
 
-//左侧菜单
-const items: MenuItem[] = [
-  getItem('技术方向', 'tech', <PieChartOutlined />, [
-    getItem(
-      '类别',
-      null,
-      null,
-      [
-        getItem('前端', '/techShare/techFront'),
-        getItem('后端', '/techShare/techEnd'),
-        getItem('游戏开发', '/techShare/techGame'),
-        getItem('其它', '/techShare/techOther'),
-      ],
-      'group',
-    ),
-  ]),
-];
+interface ListProps {
+  href: string;
+  title: string;
+  avatar: string;
+  description: string;
+  content: string;
+}
 
 function techShare(props: any) {
-  const history = useHistory();
-  const [modeList, setModeList] = useState([]);
+  // 左侧导航栏
+  const [item, setItem] = useState<MenuItem[]>([]);
+  const [shareList, setShareList] = useState<ListProps[] | undefined>();
+
+  // 搜索框搜索
+  const getData = async () => {};
   //左侧导航栏 前端 后端 游戏开发 其它
   const onClick: MenuProps['onClick'] = (e) => {
-    history.push(e.keyPath[0]);
+    getShareList(e.key).then((res) => {
+      console.log('分享', res.data);
+      setShareList(res.data);
+    });
   };
   //加载技术分享的文件
-  const appendData = () => {
-    fetch('/umi/modeList')
-      .then((res) => res.json())
-      .then((res) => {
-        setModeList(res.data);
-      });
-  };
-
   useEffect(() => {
-    appendData();
+    // 获取左侧导航栏 开源项目分类
+    getShareNavigation().then((res) => {
+      setItem(res.data);
+    });
+    getShareList('Front').then((res) => {
+      setShareList(res.data);
+    });
   }, []);
+
+  //左侧菜单
+  const items: MenuItem[] = [
+    getItem('技术方向', 'tech', <PieChartOutlined />, [
+      getItem(
+        '类别',
+        null,
+        null,
+        item.map((i: any, index) => {
+          return getItem(i?.label, i?.key);
+        }),
+        // [
+        //   getItem('前端', '/techShare/techFront'),
+        //   getItem('后端', '/techShare/techEnd'),
+        //   getItem('游戏开发', '/techShare/techGame'),
+        //   getItem('其它', '/techShare/techOther'),
+        // ],
+        'group',
+      ),
+    ]),
+  ];
 
   return (
     <div className={styled['shareWrapper']}>
@@ -87,12 +104,38 @@ function techShare(props: any) {
             style={{ width: 200 }}
             mode="inline"
             items={items}
-            defaultSelectedKeys={['/techShare/techFront']}
+            defaultSelectedKeys={['Front']}
             defaultOpenKeys={['tech']}
           />
         </div>
-        {/* {子路由：展示各个技术方向的技术分享资料} */}
-        <div>{props.children}</div>
+        {/* {展示各个技术方向的技术分享资料} */}
+        <Search
+          className={styled['search']}
+          placeholder="搜索开源项目"
+          onSearch={getData}
+        />
+        <List
+          className={styled.list}
+          itemLayout="vertical"
+          size="large"
+          pagination={{
+            onChange: (page) => {
+              console.log(page);
+            },
+            pageSize: 5,
+          }}
+          dataSource={shareList}
+          renderItem={(item: ListProps) => (
+            <List.Item key={item.title}>
+              <List.Item.Meta
+                avatar={<Avatar src={item.avatar} />}
+                title={<a href={item.href}>{item.title}</a>}
+                description={item.description}
+              />
+              {item.content}
+            </List.Item>
+          )}
+        />
       </div>
       <BackToTop />
     </div>

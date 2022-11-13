@@ -111,21 +111,136 @@ export default {
     },
   },
 
-  //技术分享详情页面数据模拟
-  'GET /umi/techShareDetail': {
+  //开源项目左侧导航栏信息
+  'GET /umi/openProject/navigation': {
     status: 'success',
-    data: {
-      title: 'Jenkins 如何获取vue build构建结果；并且发送飞书消息？',
-      content: `<img src='https://img0.hitv.com/cms/2022/07/22/Si0YS5pskGrm6HaAa3fas.jpeg'/><p><b>
-        目的：实现jenkins部署后发送「飞书机器人」推送消息</b><br/>
-        问题：在自己的jenkins项目 - 可用环境变量中找不到 $BUILD_STATUS 可用变量；<br/>
-        请教：想问问大家怎么在自己的jenkins部署后按照部署结果发生 成功 or 失败 的消息判断的？<br/><br/>
-        如果你的方向是前端， 那前端目前就分pc， 移动。 如果是pc， 要考虑游览器兼容问题。 移动的话要考虑分辨率， 流量问题。 两者都要考虑性能问题。 
-        目前前端三大神器：vue， react， angular2.0。angular2.0和vue差不多，性能差点，难上手， 适合angular1.x的老用户用。 vue和react两者必会其一。 
-        如果楼主关心其他编程范式的话， 可以考虑rxjs响应式库， rambda函数式库。<br/><br/>
-        当然， 前端工程化也是必须的。 这些东西你要会babel来将es6，es7的代码转为es5使用。 包括webpack fs3这些构建工具来帮助你构建工程。<br/><br/>
-        写完了前端。 假设后端你已经写好了(node用来写业务逻辑， redis保存缓存数据， mongodb保存长期数据)。 然后利用docker来发布你的产品。
-        </p>`,
-    },
+    data: [
+      { label: '项目类别1', key: `sort1` },
+      { label: '项目类别2', key: `sort2` },
+      { label: '项目类别3', key: `sort3` },
+    ],
+  },
+
+  //开源项目项目信息列表
+  'GET /umi/openProject/projectList': {
+    status: 'success',
+    data: Array.from({ length: 23 }).map((_, i) => ({
+      href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
+      title: `值得学习的开源项目 ${i}`,
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      description:
+        'Gitee, a design language for background applications, is refined by Ant UED Team.',
+      content:
+        '这是一个基于React17+Redux+Typescript4+umi3+jotai+ant的企业级React项目',
+    })),
+  },
+
+  //开源项目项目信息列表
+  'GET /umi/openProject/projectListsort1': {
+    status: 'success',
+    data: Array.from({ length: 23 }).map((_, i) => ({
+      href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
+      title: `开源项目类别一 ${i}`,
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      description:
+        'Gitee, a design language for background applications, is refined by Ant UED Team.',
+      content:
+        '这是一个基于React17+Redux+Typescript4+umi3+jotai+ant的企业级React项目',
+    })),
+  },
+
+  //开源项目项目信息列表
+  'GET /umi/openProject/projectListsort2': {
+    status: 'success',
+    data: Array.from({ length: 23 }).map((_, i) => ({
+      href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
+      title: `开源项目类别二 ${i}`,
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      description:
+        'Gitee, a design language for background applications, is refined by Ant UED Team.',
+      content:
+        '这是一个基于React17+Redux+Typescript4+umi3+jotai+ant的企业级React项目',
+    })),
+  },
+
+  //开源项目项目信息列表
+  'GET /umi/openProject/projectListsort3': {
+    status: 'success',
+    data: Array.from({ length: 23 }).map((_, i) => ({
+      href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
+      title: `开源项目类别三 ${i}`,
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      description:
+        'Gitee, a design language for background applications, is refined by Ant UED Team.',
+      content:
+        '这是一个基于React17+Redux+Typescript4+umi3+jotai+ant的企业级React项目',
+    })),
+  },
+
+  //技术分享左侧导航栏信息
+  'GET /umi/techShare/navigation': {
+    status: 'success',
+    data: [
+      { label: '前端', key: `Front` },
+      { label: '后端', key: `End` },
+      { label: '游戏开发', key: `Game` },
+      { label: '其它', key: `Other` },
+    ],
+  },
+
+  //技术分享信息列表
+  'GET /umi/techShare/shareListFront': {
+    status: 'success',
+    data: Array.from({ length: 23 }).map((_, i) => ({
+      href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
+      title: `前端资料 ${i}`,
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      description:
+        'Gitee, a design language for background applications, is refined by Ant UED Team.',
+      content:
+        '这是一个基于React17+Redux+Typescript4+umi3+jotai+ant的企业级React项目',
+    })),
+  },
+
+  //技术分享信息列表
+  'GET /umi/techShare/shareListEnd': {
+    status: 'success',
+    data: Array.from({ length: 23 }).map((_, i) => ({
+      href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
+      title: `后端资料 ${i}`,
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      description:
+        'Gitee, a design language for background applications, is refined by Ant UED Team.',
+      content:
+        '这是一个基于React17+Redux+Typescript4+umi3+jotai+ant的企业级React项目',
+    })),
+  },
+
+  //技术分享信息列表
+  'GET /umi/techShare/shareListGame': {
+    status: 'success',
+    data: Array.from({ length: 23 }).map((_, i) => ({
+      href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
+      title: `游戏开发资料 ${i}`,
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      description:
+        'Gitee, a design language for background applications, is refined by Ant UED Team.',
+      content:
+        '这是一个基于React17+Redux+Typescript4+umi3+jotai+ant的企业级React项目',
+    })),
+  },
+
+  //技术分享信息列表
+  'GET /umi/techShare/shareListOther': {
+    status: 'success',
+    data: Array.from({ length: 23 }).map((_, i) => ({
+      href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
+      title: `其它资料 ${i}`,
+      avatar: 'https://joeschmoe.io/api/v1/random',
+      description:
+        'Gitee, a design language for background applications, is refined by Ant UED Team.',
+      content:
+        '这是一个基于React17+Redux+Typescript4+umi3+jotai+ant的企业级React项目',
+    })),
   },
 };

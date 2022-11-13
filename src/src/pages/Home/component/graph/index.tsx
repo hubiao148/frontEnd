@@ -27,17 +27,34 @@ export default function Graph() {
       });
   }, []);
 
+  //将大小比较大的名字显示出来
+  graph.nodes.forEach(function (node: any) {
+    node.label = {
+      show: node.symbolSize > 30,
+    };
+  });
+
   const option = {
     title: {
       text: '热点技术图谱',
       // subtext: 'Default layout',
       top: 'bottom',
       left: 'left',
+      textStyle: {
+        color: '#cacaca',
+      },
     },
     tooltip: {},
     legend: [
       {
-        selectedMode: 'single',
+        //selectedMode: 'single',单个单个显示
+        orient: 'vertical',
+        x: 'left', //可设定图例在左、右、居中
+        y: 'center', //可设定图例在上、下、居中
+        padding: [0, 0, 0, 50], //可设定图例[距上方距离，距右方距离，距下方距离，距左方距离]
+        textStyle: {
+          color: '#cacaca',
+        },
         data: graph.categories.map(function (a: any) {
           return a.name;
         }),

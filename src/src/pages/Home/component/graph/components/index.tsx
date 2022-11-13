@@ -1,3 +1,13 @@
+/*
+ * @Author: zyqqun
+ * @Date: 2022-10-22 21:16:40
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-11-13 21:17:38
+ * @FilePath: \src\src\pages\Home\component\graph\components\index.tsx
+ * @Description:
+ *
+ * Copyright (c) 2022 by zyqqun 2450100414@qq.com, All Rights Reserved.
+ */
 import { useEffect, useRef } from 'react';
 import * as echarts from 'echarts/core';
 import {
@@ -10,11 +20,12 @@ import {
   TooltipComponentOption,
   TitleComponent,
   TooltipComponent,
+  LegendComponent,
 } from 'echarts/components';
 import { GraphChart } from 'echarts/charts';
 import { CanvasRenderer } from 'echarts/renderers';
 echarts.use(CanvasRenderer);
-echarts.use([GraphChart, TitleComponent, TooltipComponent]);
+echarts.use([GraphChart, TitleComponent, TooltipComponent, LegendComponent]);
 export type MyChartOption = echarts.ComposeOption<
   | DatasetComponentOption
   | DataZoomComponentOption

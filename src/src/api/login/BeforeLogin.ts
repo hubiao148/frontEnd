@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-31 16:34:32
- * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 17:22:56
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-11-13 19:25:42
  * @FilePath: \src\src\api\login\BeforeLogin.ts
  * @Description:
  *
@@ -18,11 +18,11 @@ export function BeforeLoginRequest(data: {
     method: 'post',
   });
 }
-
-export function getVerifyCode(account: string) {
+//忘记密码 获取手机验证码验证身份
+export function getVerifyCode(params: string) {
   return request({
     url: '/verify',
     method: 'get',
-    account,
+    params,
   });
 }
