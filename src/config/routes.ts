@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-15 13:52:22
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-11-15 15:32:37
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -130,6 +130,10 @@ export default [
         component: '@/pages/myShare',
         routes: [
           {
+            path: '/myshare',
+            redirect: '/myshare/latest',
+          },
+          {
             path: '/myshare/latest',
             component: '@/pages/myShare/components/Latest',
           },
@@ -157,6 +161,11 @@ export default [
         path: '/user',
         component: '@/pages/User',
         routes: [
+          {
+            path: '/user',
+            redirect:'/user/usermsgs'
+          }
+          ,
           {
             path: '/user/usermsgs',
             component: '@/pages/User/components/UserMsgs',

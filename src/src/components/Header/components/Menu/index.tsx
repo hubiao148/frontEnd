@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 16:29:38
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-15 14:47:41
+ * @LastEditTime: 2022-11-15 15:36:15
  * @FilePath: \src\src\components\Header\components\Menu\index.tsx
  * @Description: 
  * 
@@ -25,13 +25,18 @@ export default function (props: Menu) {
     const history = useHistory();
     const listMenu = props.listMenu;
     const id = props.id;//判断是哪里应用的组件
-    history.listen(route => { // 监听
-        console.log(route.pathname);
-        
+    history.listen(route => { // 监听 导航栏和路由相匹配
+        listMenu.map((e, i) => {
+            if (route.pathname.match(e.path)) {
+                setPage(i)
+                storage.setItem('currentPage' + id, i)
+            }
+        })
+
     });
     const [page, setPage] = useAtom(id == 'Header' ? currentPageHeader : (id == 'User' ? currentPageUser : currentPageMyShare));
     useEffect(() => {
-        history.replace(listMenu[page].path || "/home");
+        // history.push(listMenu[page].path);
     }, [])//重新加载页面
     return (
         <div className={style.menu}>
@@ -39,7 +44,7 @@ export default function (props: Menu) {
                 return <div key={index} className={index == page ? style.isActive : null} onClick={() => {
                     setPage(index)
                     storage.setItem('currentPage' + id, index)
-                    history.replace(e.path)
+                    history.push(e.path)
                 }} style={{ fontSize: props.fontSize }}>{e.title}</div>
             })}
         </div>

@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 12:01:18
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 08:44:25
+ * @LastEditTime: 2022-11-15 15:26:19
  * @FilePath: \src\src\pages\Home\index.tsx
  * @Description: 主页
  *
@@ -28,7 +28,7 @@ export default function Home() {
     { title: '策略模式', imgSrc: require('@/assets/caseImg1.png') },
     { title: '策略模式', imgSrc: require('@/assets/caseImg1.png') },
   ];
-  console.log(process.env.UMI_ENV);
+  // console.log(process.env.UMI_ENV);
 
   return (
     <div className={style.homeWrapper}>
