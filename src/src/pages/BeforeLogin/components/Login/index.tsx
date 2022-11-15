@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-13 22:29:04
+ * @LastEditTime: 2022-11-14 21:14:36
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -74,6 +74,7 @@ function Login() {
     >
       <Form.Item
         name="account"
+        validateTrigger="onBlur"
         rules={[
           { required: true, message: '' },
           { validator: formValidation.validate },
@@ -101,6 +102,7 @@ function Login() {
       <Form.Item
         name="Verification"
         {...tailLayout}
+        validateTrigger="onBlur"
         style={{ marginBottom: '0px' }}
         rules={[
           { required: true, message: '请输入验证码' },

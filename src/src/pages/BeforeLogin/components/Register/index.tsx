@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
- * @LastEditors: hcy
- * @LastEditTime: 2022-10-05 18:26:58
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-11-15 13:41:16
  * @FilePath: \src\src\pages\BeforeLogin\components\Register\index.tsx
  * @Description:
  *
@@ -64,6 +64,7 @@ function RegForm() {
 
         <Form.Item
           name="account"
+          validateTrigger="onBlur"
           rules={[
             { required: true, message: '' },
             { validator: formValidation.validate },
@@ -81,13 +82,14 @@ function RegForm() {
         >
           <Input.Password
             prefix={<LockOutlined />}
-            placeholder="设置密码(1-20)"
+            placeholder="设置密码(6-16)"
           />
         </Form.Item>
 
         <Form.Item
           name="confirm"
           hasFeedback
+          validateTrigger="onBlur"
           getValueFromEvent={(event) => {
             return event.target.value.trim();
           }}
@@ -108,6 +110,7 @@ function RegForm() {
 
         <Form.Item
           name="Verification"
+          validateTrigger="onBlur"
           style={{ marginBottom: '0px' }}
           rules={[
             { required: true, message: '请输入验证码' },

@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
- * @LastEditors: hcy
- * @LastEditTime: 2022-11-09 17:36:55
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-11-15 13:52:22
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -58,28 +58,28 @@ export default [
         //技术分享
         path: '/techShare',
         component: '@/pages/techShare',
-        routes: [
-          {
-            path: '/techShare',
-            redirect: '/techShare/techFront',
-          },
-          {
-            path: '/techShare/techFront',
-            component: '@/pages/techShare/components/techFront',
-          },
-          {
-            path: '/techShare/techEnd',
-            component: '@/pages/techShare/components/techEnd',
-          },
-          {
-            path: '/techShare/techGame',
-            component: '@/pages/techShare/components/techGame',
-          },
-          {
-            path: '/techShare/techOther',
-            component: '@/pages/techShare/components/techOther',
-          },
-        ],
+        // routes: [
+        //   {
+        //     path: '/techShare',
+        //     redirect: '/techShare/techFront',
+        //   },
+        //   {
+        //     path: '/techShare/techFront',
+        //     component: '@/pages/techShare/components/techFront',
+        //   },
+        //   {
+        //     path: '/techShare/techEnd',
+        //     component: '@/pages/techShare/components/techEnd',
+        //   },
+        //   {
+        //     path: '/techShare/techGame',
+        //     component: '@/pages/techShare/components/techGame',
+        //   },
+        //   {
+        //     path: '/techShare/techOther',
+        //     component: '@/pages/techShare/components/techOther',
+        //   },
+        // ],
       },
 
       {
