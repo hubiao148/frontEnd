@@ -2,19 +2,20 @@
  * @Author: hcy
  * @Date: 2022-10-21 09:57:38
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-22 11:27:29
+ * @LastEditTime: 2022-11-15 17:41:52
  * @FilePath: \src\src\pages\AskQuestion\index.tsx
  * @Description: 提问题
  * 
  */
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useHistory } from 'umi'
 import { Breadcrumb, Input, Modal } from 'antd'
 import Editor from './components/Eidtor'
 import style from './index.less'
 import TagAdd from './components/TagAdd'
 export default function index() {
+
   const history = useHistory();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
