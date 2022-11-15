@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-31 18:23:50
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-07 19:42:44
+ * @LastEditTime: 2022-11-14 22:13:52
  * @FilePath: \src\mock\login.ts
  * @Description:
  *
@@ -11,11 +11,11 @@ export default {
   //登录数据返回
   'GET /umi/login': {
     status: 'success',
-    code:200,
+    code: 200,
     data: {
       token: 'sdsdsds',
       userMsg: {
-        userType: '学生',
+        userType: '老师',
         name: 'hcy',
         email: '1458283943@qq.com',
       },

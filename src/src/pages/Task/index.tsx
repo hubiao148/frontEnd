@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:46:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-09 16:38:22
+ * @LastEditTime: 2022-11-14 22:42:37
  * @FilePath: \src\src\pages\Task\index.tsx
  * @Description: 实践任务
  *
@@ -76,7 +76,7 @@ export default function Task(props: any) {
             </Sider>
 
             <Content className={style.content}>
-              {props.children}
+              {props.children ? props.children : 'hello'}
             </Content>
           </Layout>
         ) : (

@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 16:29:38
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-07 20:25:23
+ * @LastEditTime: 2022-11-15 14:47:41
  * @FilePath: \src\src\components\Header\components\Menu\index.tsx
  * @Description: 
  * 
@@ -22,10 +22,13 @@ interface Menu {
     fontSize?: string,
 }
 export default function (props: Menu) {
-    const location = useLocation();
     const history = useHistory();
     const listMenu = props.listMenu;
     const id = props.id;//判断是哪里应用的组件
+    history.listen(route => { // 监听
+        console.log(route.pathname);
+        
+    });
     const [page, setPage] = useAtom(id == 'Header' ? currentPageHeader : (id == 'User' ? currentPageUser : currentPageMyShare));
     useEffect(() => {
         history.replace(listMenu[page].path || "/home");
