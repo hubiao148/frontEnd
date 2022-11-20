@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-20 16:23:38
+ * @LastEditTime: 2022-11-20 22:05:26
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -132,6 +132,14 @@ export default [
             //创建班级
             path: '/task/createClass',
             component: '@/pages/Task/components/CreateClass',
+          },
+          {
+            path: '/task/lookTask',
+            component: '@/pages/Task/components/LookTask',
+          },
+          {
+            path: '/task/loadTask',
+            component: '@/pages/Task/components/LoadTask',
           },
         ],
       },

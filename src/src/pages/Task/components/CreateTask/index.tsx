@@ -1,12 +1,13 @@
 /*
  * @Author: hcy
  * @Date: 2022-11-09 16:29:55
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-16 19:12:22
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-11-20 20:37:58
  * @FilePath: \src\src\pages\Task\components\CreateTask\index.tsx
  * @Description: 创建任务
  *
  */
+import storage from '@/utils/storage';
 import {
   Button,
   Form,
@@ -15,17 +16,24 @@ import {
   DatePicker as TDatePicker,
   Col,
   Row,
+  Select
 } from 'antd';
+import { useEffect, useState } from 'react';
 import { Link } from 'umi';
 import styled from './index.less';
 
 let DatePicker: any = TDatePicker;
 export default function index() {
+  const [userState, setUserState] = useState('学生');
+  useEffect(() => {
+    setUserState(storage.getItem('userMsg').userType);
+  }, []);
   const [form] = Form.useForm();
   //清空表单
   const onReset = () => {
     form.resetFields();
   };
+  const [defaultYear] = useState((new Date()).getFullYear() - 2)
   return (
     <div className={styled.createTaskWrapper}>
       <div className={styled['menu']}>
@@ -77,6 +85,102 @@ export default function index() {
               </Form.Item>
             </Col>
           </Row>
+          {userState == '老师' ? (
+            <Row gutter={24}>
+              <Col span={8}>
+                <Form.Item name="assignGrade" label="指派年级">
+                  <Select
+                    defaultValue={defaultYear + '级'}
+                    showSearch
+                    style={{ width: 200 }}
+                    placeholder="选择年级"
+                    optionFilterProp="children"
+                    filterOption={(input, option) => (option?.label ?? '').includes(input)}
+                    filterSort={(optionA, optionB) =>
+                      (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                    }
+                    options={[
+                      {
+                        value: '2018',
+                        label: '2018级',
+                      },
+                      {
+                        value: '2019',
+                        label: '2019级',
+                      },
+                      {
+                        value: '2020',
+                        label: '2020级',
+                      },
+                      {
+                        value: '2021',
+                        label: '2021级',
+                      },
+                      {
+                        value: '2022',
+                        label: '2022级',
+                      },
+                      {
+                        value: '2023',
+                        label: '2023级',
+                      },
+                    ]}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={8}>
+                <Form.Item name="assignClass" label="指派班级">
+                  <Select
+                    showSearch
+                    style={{ width: 200 }}
+                    placeholder="选择班级"
+                    optionFilterProp="children"
+                    filterOption={(input, option) => (option?.label ?? '').includes(input)}
+                    filterSort={(optionA, optionB) =>
+                      (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                    }
+                    options={[
+                      {
+                        value: '1',
+                        label: '1班',
+                      },
+                      {
+                        value: '2',
+                        label: '2班',
+                      },
+                    ]}
+                  />
+                </Form.Item>
+              </Col >
+              <Col span={8}>
+                <Form.Item name="assignGroup" label="指派小组">
+                  <Select
+                    showSearch
+                    style={{ width: 200 }}
+                    placeholder="选择小组"
+                    optionFilterProp="children"
+                    filterOption={(input, option) => (option?.label ?? '').includes(input)}
+                    filterSort={(optionA, optionB) =>
+                      (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                    }
+                    options={[
+                      {
+                        value: '1',
+                        label: '1组',
+                      },
+                      {
+                        value: '2',
+                        label: '2组',
+                      },
+                    ]}
+                  />
+                </Form.Item>
+              </Col>
+              <div style={{ margin: '20px' }}></div>
+            </Row >
+
+          ) : null
+          }
           <Row gutter={24} justify="center">
             <Col span={3}>
               <Form.Item>
@@ -89,7 +193,7 @@ export default function index() {
                 </Button>
               </Form.Item>
             </Col>
-            <Col span={9}>
+            <Col span={3}>
               <Form.Item>
                 <Button
                   onClick={onReset}
@@ -101,8 +205,8 @@ export default function index() {
               </Form.Item>
             </Col>
           </Row>
-        </Form>
-      </div>
-    </div>
+        </Form >
+      </div >
+    </div >
   );
 }
