@@ -2,13 +2,13 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:46:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-20 15:56:59
+ * @LastEditTime: 2022-11-20 16:04:32
  * @FilePath: \src\src\pages\Task\index.tsx
  * @Description: 实践任务
  *
  */
 import storage from '@/utils/storage';
-import { DesktopOutlined, TeamOutlined } from '@ant-design/icons';
+import { DesktopOutlined, TeamOutlined ,PlusOutlined } from '@ant-design/icons';
 import { Layout, Button, Menu } from 'antd';
 import { useState } from 'react';
 import { useHistory } from 'umi';
@@ -50,7 +50,7 @@ export default function Task(props: any) {
   {
     key: '/task/createtask',
     label: '创建任务',
-    icon: <DesktopOutlined />,
+    icon: <PlusOutlined />,
   }
   ]
   function gotoItem(e: any) {

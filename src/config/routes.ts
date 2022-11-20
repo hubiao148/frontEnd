@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-16 16:36:41
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-11-20 21:38:00
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -131,6 +131,14 @@ export default [
           {
             path: '/task/createClass',
             component: '@/pages/Task/components/CreateClass',
+          },
+          {
+            path: '/task/lookTask',
+            component: '@/pages/Task/components/LookTask',
+          },
+          {
+            path: '/task/loadTask',
+            component: '@/pages/Task/components/LoadTask',
           },
         ],
       },
