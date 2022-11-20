@@ -1,0 +1,38 @@
+.container {
+  min-height: 400px;
+}
+.container .sider {
+  background-color: white;
+  min-height: 500px;
+  margin: 50px 10px 50px 100px;
+  border-radius: 20px;
+}
+.container .sider .sider_top {
+  min-height: 150px;
+  background-color: #2992dc;
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
+}
+.container .sider .sider_top .siderTopMenu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+}
+.container .sider .sider_top .siderTopMenu > div {
+  width: 45%;
+  height: 25px;
+  font-size: xx-small;
+  background-color: rgba(51, 51, 51, 0.7);
+  text-align: center;
+  line-height: 25px;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.container .content {
+  min-height: 500px;
+  margin: 10px 80px 40px 40px;
+}
