@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-30 20:34:49
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 23:11:08
+ * @LastEditTime: 2022-11-19 22:50:40
  * @FilePath: \src\src\utils\useBigFileUpload.ts
  * @Description: 大文件上传
  *
@@ -27,12 +27,21 @@ export async function useBigFileUpload(
     })();
     return false;
   }
+  // 单个hash
+  const containerOneHash = await getOneFileHash(fileList);
+  // 读取失败提示并返回
+  if (containerOneHash == undefined) {
+    (() => {
+      message.error('获取文件失败请重试！');
+    })();
+    return false;
+  }
   // 遍历配置对象 用（）返回对象数组
   const fileMsg = fileList.map(({ file }, index) => ({
     // 整个文件hash
     fileHash: containerHash,
     // 当前切片的hash
-    hash: containerHash[index] + '-' + index,
+    hash: containerOneHash[index] + '-' + index,
     // 当前是第几个切片
     index,
     // 文件个数
@@ -43,6 +52,8 @@ export async function useBigFileUpload(
     totalSize: bigFile.size,
     // 单个文件大小
     size: size,
+    // 文件名
+    fileName: bigFile.name,
   }));
   return Upload(fileMsg, url);
 }
@@ -59,11 +70,38 @@ async function getFileHash(fileList: { file: Blob }[]) {
   });
   try {
     const contentList = await Promise.all(result);
+
     for (let i = 0; i < contentList.length; i++) {
       spark.append(contentList[i]);
     }
     // 生成指纹
     const res = spark.end();
+    return res;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+/**
+ * 分片hash
+ * @param fileList
+ * @returns
+ */
+async function getOneFileHash(fileList: { file: Blob }[]) {
+  // 获取全部内容
+  const result = fileList.map((item) => {
+    return getContent(item.file);
+  });
+  try {
+    let res = [];
+    const contentList = await Promise.all(result);
+    for (let i = 0; i < contentList.length; i++) {
+      const spark = new SparkMD5.ArrayBuffer();
+      spark.append(contentList[i]);
+      res[i] = spark.end();
+    }
+    // 生成指纹
+
     return res;
   } catch (e) {
     console.log(e);
@@ -134,6 +172,7 @@ interface fileListItem {
   chunk: Blob;
   totalSize: number;
   size: number;
+  fileName: string;
 }
 
 async function Upload(
@@ -141,18 +180,25 @@ async function Upload(
   url: string,
 ): Promise<AxiosResponse<any, any>[]> {
   const req = fileList
-    .map(({ fileHash, hash, index, fileCount, chunk, totalSize, size }, i) => {
-      const formData = new FormData();
-      formData.append('fileHash', fileHash);
-      formData.append('hash', hash);
-      formData.append('index', index.toString());
-      formData.append('fileCount', fileCount.toString());
-      formData.append('chunk', chunk);
-      formData.append('totalSize', totalSize.toString());
-      formData.append('size', size.toString());
+    .map(
+      (
+        { fileHash, hash, index, fileCount, chunk, totalSize, size, fileName },
+        i,
+      ) => {
+        console.log(hash);
+        const formData = new FormData();
+        formData.append('fileHash', fileHash);
+        formData.append('hash', hash);
+        formData.append('index', index.toString());
+        formData.append('fileCount', fileCount.toString());
+        formData.append('chunk', chunk);
+        formData.append('totalSize', totalSize.toString());
+        formData.append('size', size.toString());
+        formData.append('fileName', fileName);
 
-      return { formData, i };
-    })
+        return { formData, i };
+      },
+    )
     .map(async ({ formData, i }) => {
       return request({
         url,
