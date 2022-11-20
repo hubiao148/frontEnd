@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:46:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-20 15:53:15
+ * @LastEditTime: 2022-11-20 15:56:59
  * @FilePath: \src\src\pages\Task\index.tsx
  * @Description: 实践任务
  *
@@ -19,17 +19,17 @@ export default function Task(props: any) {
   const siderTopMenu = [{
     toptitle: '您的学生',
     title: '加入团队',
-    path: '/task/staging',
+    path: '/task/jointeam',
   },
   {
     toptitle: '您的学生',
     title: '创建项目',
-    path: '/task/staging',
+    path: '/task/createproject',
   },
   {
     toptitle: '您的学生',
     title: '邀请团队成员',
-    path: '/task/staging',
+    path: '/task/invitemember',
   },
   {
     toptitle: '您的学生',
@@ -46,12 +46,12 @@ export default function Task(props: any) {
     key: '/task/manage',
     label: '项目管理',
     icon: <DesktopOutlined />,
-    },
-    {
-      key: '/task/createtask',
-      label: '创建任务',
-      icon: <DesktopOutlined />,
-    }
+  },
+  {
+    key: '/task/createtask',
+    label: '创建任务',
+    icon: <DesktopOutlined />,
+  }
   ]
   function gotoItem(e: any) {
     history.push(e.key);
