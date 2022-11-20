@@ -21,7 +21,6 @@ const Footer: React.FC = () => {
       <div
         style={{
           color: 'rgb(209, 209, 209)',
-          top: '20rem',
         }}
       >
         ©2021-2022 Sicnu Software easySE. All rights reserved.
@@ -44,10 +43,10 @@ const Footer: React.FC = () => {
         </Row>
       </div>
 
-      <Divider
+      {/* <Divider
         style={{ marginTop: '5px', backgroundColor: 'rgb(77, 96, 126)' }}
-      ></Divider>
-      <span style={{ color: 'rgb(209, 209, 209)' }}>BY easySE</span>
+      ></Divider> */}
+      {/* <span style={{ color: 'rgb(209, 209, 209)' }}>BY easySE</span> */}
     </div>
   );
 };

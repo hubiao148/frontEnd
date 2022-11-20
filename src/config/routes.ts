@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
- * @LastEditors: hcy
- * @LastEditTime: 2022-11-15 15:32:37
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-11-16 16:36:41
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -87,6 +87,10 @@ export default [
         component: '@/pages/Task',
         routes: [
           {
+            path: '/task/',
+            redirect: '/task/staging',
+          },
+          {
             path: '/task/staging',
             component: '@/pages/Task/components/Staging',
           },
@@ -95,31 +99,37 @@ export default [
             component: '@/pages/Task/components/Manage',
           },
           {
-            path: '/task/taskmanage',
+            //任务管理
+            path: '/task/taskManage',
             component: '@/pages/Task/components/TaskManage',
           },
           {
-            path: '/task/jointeam',
+            //加入团队
+            path: '/task/joinTeam',
             component: '@/pages/Task/components/JoinTeam',
           },
           {
-            path: '/task/invitemember',
+            // 邀请团队成员
+            path: '/task/inviteMember',
             component: '@/pages/Task/components/InviteMember',
           },
           {
-            path: '/task/createteam',
+            //创建团队
+            path: '/task/createTeam',
             component: '@/pages/Task/components/CreateTeam',
           },
           {
-            path: '/task/createtask',
+            //创建任务
+            path: '/task/createTask',
             component: '@/pages/Task/components/CreateTask',
           },
           {
-            path: '/task/createproject',
+            //创建项目
+            path: '/task/createProject',
             component: '@/pages/Task/components/CreateProject',
           },
           {
-            path: '/task/createclass',
+            path: '/task/createClass',
             component: '@/pages/Task/components/CreateClass',
           },
         ],
@@ -163,9 +173,8 @@ export default [
         routes: [
           {
             path: '/user',
-            redirect:'/user/usermsgs'
-          }
-          ,
+            redirect: '/user/usermsgs',
+          },
           {
             path: '/user/usermsgs',
             component: '@/pages/User/components/UserMsgs',
