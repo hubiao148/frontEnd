@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-14 21:14:36
+ * @LastEditTime: 2022-11-20 16:26:29
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -48,7 +48,7 @@ function Login() {
     //   },
     // );
     request({
-      url: '/login',
+      url: '/umi/login',
       method: 'get',
     }).then((res) => {
       console.log(res);

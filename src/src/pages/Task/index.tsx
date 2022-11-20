@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-06 18:46:12
- * @LastEditors: hcy
- * @LastEditTime: 2022-11-20 15:56:59
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-11-20 16:23:41
  * @FilePath: \src\src\pages\Task\index.tsx
  * @Description: 实践任务
  *
@@ -16,43 +16,56 @@ const { Content, Sider } = Layout;
 import style from './index.less';
 export default function Task(props: any) {
   const history = useHistory();
-  const siderTopMenu = [{
-    toptitle: '您的学生',
-    title: '加入团队',
-    path: '/task/jointeam',
-  },
-  {
-    toptitle: '您的学生',
-    title: '创建项目',
-    path: '/task/createproject',
-  },
-  {
-    toptitle: '您的学生',
-    title: '邀请团队成员',
-    path: '/task/invitemember',
-  },
-  {
-    toptitle: '您的学生',
-    title: '创建班级',
-    path: '/task/createclass',
-  }
-  ]
-  const items = [{
-    key: '/task/staging',
-    label: '工作台',
-    icon: <DesktopOutlined />,
-  },
-  {
-    key: '/task/manage',
-    label: '项目管理',
-    icon: <DesktopOutlined />,
-  },
-  {
-    key: '/task/createtask',
-    label: '创建任务',
-    icon: <DesktopOutlined />,
-  }
-  ]
+  const siderTopMenu = [
+    {
+      toptitle: '您的学生',
+      title: '创建项目',
+      path: '/task/createProject',
+    },
+    {
+      toptitle: '您的学生',
+      title: '创建团队',
+      path: '/task/createTeam',
+    },
+    {
+      toptitle: '您的学生',
+      title: '邀请团队成员',
+      path: '/task/inviteMember',
+    },
+    {
+      toptitle: '您的学生',
+      title: '加入团队',
+      path: '/task/joinTeam',
+    },
+    {
+      toptitle: '您的学生',
+      title: '创建班级',
+      path: '/task/createClass',
+    },
+  ];
+  const items = [
+    {
+      key: '/task/staging',
+      label: '工作台',
+      icon: <DesktopOutlined />,
+    },
+    {
+      key: '/task/manage',
+      label: '项目管理',
+      icon: <DesktopOutlined />,
+    },
+    {
+      key: '/task/taskManage',
+      label: '任务管理',
+      icon: <DesktopOutlined />,
+    },
+    {
+      key: '/task/createTask',
+      label: '创建任务',
+      icon: <DesktopOutlined />,
+    },
+  ];
+
   function gotoItem(e: any) {
     history.push(e.key);
   }
