@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-11-07 19:53:51
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-15 17:23:11
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-11-21 13:52:43
  * @FilePath: \src\src\pages\Task\components\Staging\index.tsx
  * @Description: 工作台
  *
@@ -27,8 +27,8 @@ export default function index() {
     <div className={style.container}>
       <div className={style.top}>
         <Breadcrumb separator=">" style={{ cursor: 'pointer' }}>
-          <Breadcrumb.Item onClick={goBack}>技术问答</Breadcrumb.Item>
-          <Breadcrumb.Item>提问</Breadcrumb.Item>
+          <Breadcrumb.Item onClick={goBack}>实践任务</Breadcrumb.Item>
+          <Breadcrumb.Item>工作台</Breadcrumb.Item>
         </Breadcrumb>
       </div>
       <div className={style.body}>

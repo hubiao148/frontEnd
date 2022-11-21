@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-20 16:26:29
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-11-20 22:30:19
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -48,11 +48,10 @@ function Login() {
     //   },
     // );
     request({
-      url: '/umi/login',
+      url: '/login',
       method: 'get',
     }).then((res) => {
       console.log(res);
-
       storage.setItem('userMsg', res.data.userMsg);
       storage.setItem('token', res.data.token);
       history.replace('/home');

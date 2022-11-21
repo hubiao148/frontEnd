@@ -68,9 +68,7 @@ export default function index() {
   ];
   const [list, setList] = useState(list1);
   function deleteTask(i: any) {
-    console.log(i);
     list1 = list1.filter((e, it) => it != i);
-    console.log(list1);
     setList(list1);
   }
   return (
@@ -101,7 +99,6 @@ export default function index() {
           footer={
             list.length > count ? (
               <div className={style.footer}>
-                {' '}
                 <Pagination pageSize={count} total={30} responsive={true} />
               </div>
             ) : null
