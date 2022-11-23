@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-11-07 19:53:51
- * @LastEditors: hcy
- * @LastEditTime: 2022-11-21 13:52:43
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-11-21 18:39:54
  * @FilePath: \src\src\pages\Task\components\Staging\index.tsx
  * @Description: 工作台
  *
@@ -23,6 +23,23 @@ export default function index() {
   function goBack() {
     history.go(-1);
   }
+
+  const [countResult, setCountResult] = useState<Record<string, number>>({
+    doing: 20,
+    done: 10,
+  });
+
+  useEffect(() => {
+    getCount();
+  }, []);
+
+  const getCount = () => {
+    //接口获取任务情况数据
+    setCountResult({
+      doing: 30,
+      done: 20,
+    });
+  };
   return (
     <div className={style.container}>
       <div className={style.top}>
@@ -32,7 +49,11 @@ export default function index() {
         </Breadcrumb>
       </div>
       <div className={style.body}>
-        {userState == '学生' ? <StagingStudent /> : <StagingTeacher />}
+        {userState == '学生' ? (
+          <StagingStudent countResult={countResult} />
+        ) : (
+          <StagingTeacher />
+        )}
       </div>
     </div>
   );

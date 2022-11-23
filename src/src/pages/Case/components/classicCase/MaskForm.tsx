@@ -1,15 +1,13 @@
-import React from 'react';
 import {
   Button,
   Col,
   DatePicker as TDatePicker,
   Form,
   Input,
-  InputNumber,
   Row,
   Select,
   Upload,
-  message
+  message,
 } from 'antd';
 import styled from './index.less';
 import {
@@ -33,14 +31,13 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
   };
   // 文件上传函数
   /**
-   * 
+   *
    * @param e File类型的数据
-   * @returns Promise<any> 
+   * @returns Promise<any>
    */
-  async function fileUpload(e: File): Promise<any>  {
-    
-    let res = await useUsualFileUpload(e,  '/umi/fileUpload');
-    console.log(res)
+  async function fileUpload(e: File): Promise<any> {
+    let res = await useUsualFileUpload(e, '/umi/fileUpload');
+    console.log(res);
     if (res.status == 200) {
       message.success(`${e.name}上传成功！`);
       return true;
@@ -48,7 +45,6 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
       message.error(`${e.name}上传失败！`);
       return Upload.LIST_IGNORE;
     }
-    
   }
   return (
     <div>
@@ -109,7 +105,7 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
         <Row gutter={16} justify="center">
           <Col span={8}>
             <Form.Item label="文件上传" valuePropName="fileList">
-              <Upload.Dragger name="files" beforeUpload={(e)=>fileUpload(e)}>
+              <Upload.Dragger name="files" beforeUpload={(e) => fileUpload(e)}>
                 <p className="ant-upload-drag-icon">
                   <FilePptOutlined />
                 </p>

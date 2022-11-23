@@ -76,7 +76,7 @@ function OpenProject() {
         '类别',
         null,
         null,
-        item.map((i: any, index) => {
+        item?.map((i: any, index) => {
           return getItem(i?.label, i?.key);
         }),
         // getItem('项目类别1', '/techShare/techFront'),

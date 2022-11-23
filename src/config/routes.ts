@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-20 22:05:26
+ * @LastEditTime: 2022-11-23 18:40:54
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -43,6 +43,10 @@ export default [
       {
         path: '/home',
         component: '@/pages/Home',
+      },
+      {
+        path: '/message',
+        component: '@/pages/Message',
       },
       {
         //实践案例
@@ -102,6 +106,11 @@ export default [
             //任务管理
             path: '/task/taskManage',
             component: '@/pages/Task/components/TaskManage',
+          },
+          {
+            //任务管理学生
+            path: '/task/taskList',
+            component: '@/pages/Task/components/TaskList',
           },
           {
             //加入团队

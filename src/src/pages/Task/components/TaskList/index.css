@@ -1,0 +1,70 @@
+.task-list {
+  flex: 1;
+  margin: 0 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #ffffff;
+}
+.task-list .task-list-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.task-list .task-list-top .left {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 2rem;
+}
+.task-list .task-list-top .left .search {
+  margin-right: 1rem;
+}
+.task-list .add-task-container {
+  padding: 1rem 1rem;
+  margin: 0 10px;
+  box-shadow: 0 0 1px 1px #dddadaad;
+  cursor: pointer;
+  transition: all 0.4s;
+  border-radius: 2px;
+  min-height: 6rem;
+  position: relative;
+}
+.task-list .add-task-container:hover {
+  box-shadow: 0 0 2px 2px #bababaad;
+}
+.task-list .add-task-container--active {
+  height: 9rem;
+}
+.task-list .add-task-container .create-input {
+  position: absolute;
+  top: 1rem;
+  width: 97%;
+}
+.task-list .add-task-container .time-tags {
+  position: absolute;
+  bottom: 1rem;
+  width: 95%;
+  display: flex;
+}
+.task-list .add-task-container .time-tags .operation-btn {
+  position: absolute;
+  right: 0;
+}
+.task-list .add-task-container .time-tags .ant-tag {
+  cursor: pointer;
+  height: 2.4rem;
+  line-height: 2.4rem;
+}
+.task-list .add-task-container .standard-container {
+  display: flex;
+  align-items: center;
+}
+.task-list .task-item {
+  height: auto;
+  margin-bottom: 1rem;
+}
+.task-list .task-item__container {
+  height: 50rem;
+  padding: 1rem 1rem;
+  overflow: auto;
+}

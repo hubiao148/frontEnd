@@ -1,14 +1,14 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-05 11:52:12
- * @LastEditors: hcy
- * @LastEditTime: 2022-11-05 15:54:34
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-11-23 18:39:12
  * @FilePath: \src\src\components\Header\index.tsx
  * @Description: 头部
  *
  */
 import { useEffect, useState } from 'react';
-import { useHistory } from 'umi';
+import { Link, useHistory } from 'umi';
 import { BellOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import { Avatar, Badge, Button, Dropdown, Menu as Menun, Modal } from 'antd';
 import { useAuth } from '@/utils/auth';
@@ -26,18 +26,20 @@ export default () => {
     setIsModalOpen(true);
   };
 
-  const listMenu = storage.getItem('token') ? [
-    { path: '/home', title: '首页' },
-    { path: '/myshare', title: '技术问答' },
-    { path: '/case', title: '实践案例' },
-    { path: '/task', title: '实践任务' },
-    { path: '/user', title: '个人空间' },
-  ] : [
-    { path: '/home', title: '首页' },
-    { path: '/myshare', title: '技术问答' },
-    { path: '/case', title: '实践案例' },
-    { path: '/task', title: '实践任务' },
-  ];
+  const listMenu = storage.getItem('token')
+    ? [
+        { path: '/home', title: '首页' },
+        { path: '/myshare', title: '技术问答' },
+        { path: '/case', title: '实践案例' },
+        { path: '/task', title: '实践任务' },
+        { path: '/user', title: '个人空间' },
+      ]
+    : [
+        { path: '/home', title: '首页' },
+        { path: '/myshare', title: '技术问答' },
+        { path: '/case', title: '实践案例' },
+        { path: '/task', title: '实践任务' },
+      ];
 
   const id = 'Header';
   const menu = (
@@ -46,6 +48,24 @@ export default () => {
         {
           key: '1',
           label: <span onClick={goLogout}>登出</span>,
+        },
+      ]}
+    />
+  );
+  const menu2 = (
+    <Menun
+      items={[
+        {
+          key: '1',
+          label: <Link to="/message">评论</Link>,
+        },
+        {
+          key: '2',
+          label: <Link to="/message">老师回复</Link>,
+        },
+        {
+          key: '3',
+          label: <Link to="/message">系统消息</Link>,
         },
       ]}
     />
@@ -75,13 +95,19 @@ export default () => {
       <div className={style.headerAvatar}>
         {isLogin && (
           <Badge count={1000}>
-            {' '}
             {/**通过isLogin变量动态渲染按钮 */}
-            <Avatar
-              icon={<BellOutlined />}
+            <Dropdown
+              overlay={menu2}
+              placement="bottomRight"
+              arrow={{ pointAtCenter: true }}
+            >
+              <BellOutlined className={style.message} />
+            </Dropdown>
+            {/* <Avatar
+              // icon={<BellOutlined />}
               className={style.Badge}
               size={{ xs: 24, sm: 32, md: 40, lg: 40, xl: 40, xxl: 40 }}
-            />
+            /> */}
           </Badge>
         )}
         {!isLogin && (

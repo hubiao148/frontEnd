@@ -1,0 +1,14 @@
+.container {
+  width: 100%;
+  height: 100%;
+}
+.container .top {
+  width: 60%;
+  height: 40px;
+  margin-top: 10px;
+}
+.container .body {
+  width: 100%;
+  height: 95%;
+  background-color: white;
+}
