@@ -71,7 +71,7 @@ function techShare(props: any) {
         '类别',
         null,
         null,
-        item.map((i: any, index) => {
+        item?.map((i: any, index) => {
           return getItem(i?.label, i?.key);
         }),
         // [
@@ -129,7 +129,7 @@ function techShare(props: any) {
             <List.Item key={item.title}>
               <List.Item.Meta
                 avatar={<Avatar src={item.avatar} />}
-                title={<a href={item.href}>{item.title}</a>}
+                title={item.title}
                 description={item.description}
               />
               {item.content}

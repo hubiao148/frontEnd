@@ -3,8 +3,9 @@
 }
 .container .sider {
   background-color: white;
-  min-height: 500px;
-  margin: 50px 10px 50px 100px;
+  min-height: 300px;
+  max-height: 600px;
+  margin: 50px 10px 50px 60px;
   border-radius: 20px;
 }
 .container .sider .sider_top {
@@ -34,5 +35,5 @@
 }
 .container .content {
   min-height: 500px;
-  margin: 10px 80px 40px 40px;
+  margin: 10px 60px 40px 40px;
 }

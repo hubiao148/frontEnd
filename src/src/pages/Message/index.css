@@ -1,0 +1,36 @@
+.MessageWra {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e9ecef;
+  padding: 20px;
+}
+.MessageWra .list {
+  width: 80%;
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  margin-left: 10rem;
+  padding: 2rem;
+}
+.MessageWra .content {
+  width: 80%;
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+}
+.MessageWra .content .img {
+  width: 100%;
+  height: 300px;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 30% 70%;
+  background-image: url('../../assets/noMessage.png');
+}
