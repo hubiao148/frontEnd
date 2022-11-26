@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-31 18:23:50
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-21 18:33:47
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-11-26 14:43:20
  * @FilePath: \src\mock\login.ts
  * @Description:
  *
@@ -15,7 +15,7 @@ export default {
     data: {
       token: 'sdsdsds',
       userMsg: {
-        userType: '学生',
+        userType: '老师',
         name: 'hcy',
         email: '1458283943@qq.com',
       },

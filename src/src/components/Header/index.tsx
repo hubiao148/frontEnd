@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-05 11:52:12
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-23 18:39:12
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-11-26 14:45:45
  * @FilePath: \src\src\components\Header\index.tsx
  * @Description: 头部
  *
@@ -28,18 +28,18 @@ export default () => {
 
   const listMenu = storage.getItem('token')
     ? [
-        { path: '/home', title: '首页' },
-        { path: '/myshare', title: '技术问答' },
-        { path: '/case', title: '实践案例' },
-        { path: '/task', title: '实践任务' },
-        { path: '/user', title: '个人空间' },
-      ]
+      { path: '/home', title: '首页' },
+      { path: '/myshare', title: '技术问答' },
+      { path: '/case', title: '实践案例' },
+      { path: '/task', title: '实践任务' },
+      { path: '/user', title: '个人空间' },
+    ]
     : [
-        { path: '/home', title: '首页' },
-        { path: '/myshare', title: '技术问答' },
-        { path: '/case', title: '实践案例' },
-        { path: '/task', title: '实践任务' },
-      ];
+      { path: '/home', title: '首页' },
+      { path: '/myshare', title: '技术问答' },
+      { path: '/case', title: '实践案例' },
+      { path: '/task', title: '实践任务' },
+    ];
 
   const id = 'Header';
   const menu = (

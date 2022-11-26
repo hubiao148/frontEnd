@@ -2,11 +2,12 @@
  * @Author: hcy
  * @Date: 2022-11-09 17:24:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-20 20:25:16
+ * @LastEditTime: 2022-11-26 15:19:05
  * @FilePath: \src\src\pages\Task\components\CreateClass\index.tsx
  * @Description: 创建项目
  *
  */
+import { FilePptOutlined } from '@ant-design/icons';
 import {
   Button,
   Form,
@@ -16,14 +17,19 @@ import {
   Col,
   Row,
   Select,
-  Card
+  Card,
+  Upload
 } from 'antd';
+import { RcFile } from 'antd/lib/upload';
 import { useState } from 'react';
 import { Link } from 'umi';
 import styled from './index.less';
 
 let DatePicker: any = TDatePicker;
 export default function index() {
+  function fileUpload(e: RcFile): (string | boolean | void | File | Blob) | Promise<string | boolean | void | File | Blob> {
+    throw new Error('Function not implemented.');
+  }
   const [form] = Form.useForm();
   //清空表单
   const onReset = () => {
@@ -117,30 +123,13 @@ export default function index() {
             </Row>
             <Row gutter={24} justify='center'>
               <Col span={8}>
-                <Form.Item label="选择班级" name="group">
-                  <Select
-                    defaultValue={'3' + '班'}
-                    showSearch
-                    placeholder="选择年级"
-                    optionFilterProp="children"
-                    filterOption={(input, option) =>
-                      (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
-                    }
-                    options={[
-                      {
-                        value: '1',
-                        label: '1班',
-                      },
-                      {
-                        value: '2',
-                        label: '2班',
-                      },
-                      {
-                        value: '3',
-                        label: '3班',
-                      },
-                    ]}
-                  />
+                <Form.Item label="以上传文件的方式添加" valuePropName="fileList">
+                  <Upload.Dragger name="files" beforeUpload={(e) => fileUpload(e)}>
+                    <p className="ant-upload-drag-icon">
+                      <FilePptOutlined />
+                    </p>
+                    <p className="ant-upload-text">点击/拖拽/文档文件到此处上传</p>
+                  </Upload.Dragger>
                 </Form.Item>
               </Col>
               <Col span={8}></Col>
@@ -180,6 +169,8 @@ export default function index() {
           </Form>
         </Card>
       </div>
-    </div>
+    </div >
   );
 }
+
+

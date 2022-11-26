@@ -22,48 +22,56 @@ export default function index() {
       dec: '权限控制，动态路由，上分',
       deadLine: '2022-11-21',
       sUp: true,
+      mainAuth:'hcy'
     },
     {
       taskName: '2给我把项目做完',
       dec: '权限控制，动态路由，上分',
       deadLine: '2022-11-21',
       sUp: true,
+      mainAuth: 'hcy'
     },
     {
       taskName: '3给我把项目做完',
       dec: '权限控制，动态路由，上分',
       deadLine: '2022-11-21',
       sUp: true,
+      mainAuth: 'hcy'
     },
     {
       taskName: '4给我把项目做完',
       dec: '权限控制，动态路由，上分',
       deadLine: '2022-11-21',
       sUp: true,
+      mainAuth: 'hcy'
     },
     {
       taskName: '5给我把项目做完',
       dec: '权限控制，动态路由，上分',
       deadLine: '2022-11-21',
       sUp: true,
+      mainAuth: 'hcy'
     },
     {
       taskName: '6给我把项目做完',
       dec: '权限控制，动态路由，上分',
       deadLine: '2022-11-21',
       sUp: true,
+      mainAuth: 'hcy'
     },
     {
       taskName: '7给我把项目做完',
       dec: '权限控制，动态路由，上分',
       deadLine: '2022-11-21',
       sUp: true,
+      mainAuth: 'hcy'
     },
     {
       taskName: '8给我把项目做完',
       dec: '权限控制，动态路由，上分',
       deadLine: '2022-11-21',
       sUp: true,
+      mainAuth: 'hcy'
     },
   ];
   const [list, setList] = useState(list1);
@@ -94,6 +102,7 @@ export default function index() {
               <div>任务描述</div>
               <div>截止日期</div>
               <div>上传状态</div>
+              <div>主要负责人</div>
             </div>
           }
           footer={
@@ -131,6 +140,7 @@ export default function index() {
                   <div>{item.dec}</div>
                   <div>{item.deadLine}</div>
                   <div>{item.sUp ? '是' : '否'}</div>
+                  <div>{item.mainAuth }</div>
                 </div>
               </Skeleton>
             </List.Item>

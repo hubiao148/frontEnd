@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-09 16:27:10
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-20 20:45:01
+ * @LastEditTime: 2022-11-26 14:38:29
  * @FilePath: \src\src\pages\Task\components\Staging\components\StagingTeacher\index.tsx
  * @Description: 老师工作台
  * 
@@ -10,7 +10,7 @@
 import React, { useEffect, useState } from 'react'
 import { Divider, List, Select, Button, Pagination, Skeleton, Progress, Statistic } from 'antd';
 import style from './index.less'
-import { useHistory } from 'umi';
+import { Link, useHistory } from 'umi';
 import { useThrottle } from '@/utils/useThrottle';
 import { number } from 'echarts/core';
 export default function index() {
@@ -42,9 +42,6 @@ export default function index() {
         { grade: '2020', class: '3', gp: '5', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true },
         { grade: '2020', class: '4', gp: '6', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true },
     ];
-    function gotoManage() {
-        history.push('/task/taskmanage')
-    }
     function searchMsg() {
         setLoading(true);
         setTimeout(() => {
@@ -146,6 +143,9 @@ export default function index() {
                         <div>项目进度</div>
                         <div>作业未完成次数</div>
                         <div>上次是否上传</div>
+                        <div >
+                            管理小组
+                        </div>
                     </div>
                 </div >
                 }
@@ -154,7 +154,8 @@ export default function index() {
                 dataSource={data}
                 renderItem={
                     item =>
-                        < List.Item onClick={gotoManage} className={style.body_item} > {!loading ?
+                        < List.Item className={style.body_item}
+                        > {!loading ?
                             (<div className={style.msg}>
                                 <div>{item.grade}级</div>
                                 <div>{item.class}班</div>
@@ -163,11 +164,18 @@ export default function index() {
                                 <div><Progress percent={item.cp} status="active" /></div>
                                 <div> <Statistic title="未完成上传次数" value={item.noUp}></Statistic>  </div>
                                 <div> <Statistic title="上次文件上传与否" value={item.lUp ? '是' : '否'}></Statistic>  </div>
+                                <div style={{ fontSize: '14px' }}>
+                                    <Link to='/task/taskmanage'>查看</Link>
+                                    <Divider type="vertical" />
+                                    <Link to='/task/groupDetail'>编辑小组</Link>
+                                    <Divider type="vertical" />
+                                    <a href="">删除</a>
+                                </div>
                             </div>)
                             : (<Skeleton loading={loading} active paragraph={{ rows: 1, width: '100%' }} title={false}>
                                 {item}
                             </Skeleton>)
-                        }</List.Item >
+                            }</List.Item >
                 }
             />
         </div >

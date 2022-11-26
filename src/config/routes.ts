@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-23 18:40:54
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-11-26 14:34:33
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -149,6 +149,11 @@ export default [
           {
             path: '/task/loadTask',
             component: '@/pages/Task/components/LoadTask',
+          },
+          {
+            path: '/task/groupDetail',
+            component:
+              '@/pages/Task/components/Staging/components/StagingTeacher/GroupList',
           },
         ],
       },
