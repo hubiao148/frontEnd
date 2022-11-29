@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
- * @LastEditors: hcy
- * @LastEditTime: 2022-11-20 22:30:19
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-11-27 21:48:11
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -73,6 +73,7 @@ function Login() {
     >
       <Form.Item
         name="account"
+        initialValue={'13780986745'}
         validateTrigger="onBlur"
         rules={[
           { required: true, message: '' },
@@ -87,6 +88,7 @@ function Login() {
 
       <Form.Item
         name="password"
+        initialValue={'3456644'}
         rules={[{ required: true, message: '请输入密码' }]}
         getValueFromEvent={(event) => {
           return event.target.value.trim();

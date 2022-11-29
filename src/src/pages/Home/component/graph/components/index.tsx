@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-10-22 21:16:40
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-13 21:17:38
+ * @LastEditTime: 2022-11-27 22:00:29
  * @FilePath: \src\src\pages\Home\component\graph\components\index.tsx
  * @Description:
  *
@@ -63,7 +63,6 @@ const Chart: React.FC<MyChartProps | any> = ({ option }) => {
     <div
       ref={cRef}
       style={{
-        width: '100vw',
         height: '500px',
         backgroundColor: 'rgb(21, 15, 63)',
       }}

@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-11-21 13:13:33
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-23 21:09:18
+ * @LastEditTime: 2022-11-29 14:28:38
  * @FilePath: \src\src\pages\Task\components\Staging\components\StagingStudent\index.tsx
  * @Description:
  *
@@ -13,10 +13,11 @@ import { Statistic, Tag } from 'antd';
 import * as ec from 'echarts';
 import './index.less';
 import { getConfig } from './config';
-import GridLayout from 'react-grid-layout';
+import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 import storage from '@/utils/storage';
+const ResponsiveGridLayout = WidthProvider(Responsive);
 interface Iprops {
   countResult: Record<string, number>;
 }
@@ -28,12 +29,13 @@ const DEFAULT_LAYOUT = [
   { i: 'search', x: 0, y: 6, w: 6, h: 5 },
   { i: 'taskAbort', x: 6, y: 0, w: 3, h: 4 },
 ];
+
 const LAYOUT_LOCAL_KEY = 'reat-grid-layout';
 
 function TaskStatistics(props: Iprops) {
   const { countResult } = props;
   const chartRef = useRef<ec.EChartsType>();
-  const [layout, setLayout] = useState<GridLayout.Layout[]>(
+  const [layout, setLayout] = useState(
     storage.getItem(LAYOUT_LOCAL_KEY) || DEFAULT_LAYOUT,
   );
 
@@ -45,9 +47,9 @@ function TaskStatistics(props: Iprops) {
   const taskFinish = useMemo(() => {
     return countResult?.done || 0;
   }, [countResult]);
-  //剩余数量
+  //已截止数量
   const taskAbort = useMemo(() => {
-    return countResult?.done || 0;
+    return countResult?.abort || 0;
   }, [countResult]);
   useEffect(() => {
     const dom = document.getElementById('workspace-chart');
@@ -141,7 +143,7 @@ function TaskStatistics(props: Iprops) {
   };
 
   //卡片记忆
-  const layoutChange = (L: GridLayout.Layout[]) => {
+  const layoutChange = (L: any) => {
     chartRef.current?.resize();
     storage.setItem(LAYOUT_LOCAL_KEY, L);
   };
@@ -149,15 +151,16 @@ function TaskStatistics(props: Iprops) {
   return (
     <div className="card-containers">
       {/*@ts-ignore */}
-      <GridLayout
-        layout={layout}
-        cols={12}
+      <ResponsiveGridLayout
+        breakpoints={{ lg: 1200 }}
+        layouts={{ lg: layout }}
+        cols={{ lg: 12 }}
         rowHeight={30}
-        width={850}
+        style={{ width: '98%' }}
         onLayoutChange={layoutChange}
       >
         {renderCards()}
-      </GridLayout>
+      </ResponsiveGridLayout>
     </div>
   );
 }

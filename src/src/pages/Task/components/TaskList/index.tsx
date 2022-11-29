@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-11-21 21:22:16
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-23 17:51:58
+ * @LastEditTime: 2022-11-29 15:36:30
  * @FilePath: \src\src\pages\Task\components\TaskList\index.tsx
  * @Description:
  *
@@ -27,6 +27,7 @@ import {
   Space,
   Typography,
   Menu,
+  ConfigProvider,
 } from 'antd';
 const moment = require('moment');
 import './index.less';
@@ -119,7 +120,9 @@ function TaskList() {
       <div className="task-list-top">
         <h1 className="title">任务列表</h1>
         <div className="left">
-          <Search className="search" placeholder="搜索任务" />
+          <ConfigProvider componentSize="large">
+            <Search className="search" placeholder="搜索任务" />
+          </ConfigProvider>
           <Dropdown
             overlay={menu}
             placement="bottomRight"
@@ -141,12 +144,14 @@ function TaskList() {
       >
         <div className="standard-container create-input">
           <PlusOutlined style={{ color: '#2679c6', fontSize: '2.5rem' }} />
-          <Input
-            placeholder="创建任务"
-            value={curTitle}
-            onChange={(e) => setCurTitle(e.target.value)}
-            onFocus={() => setIsCreate(true)}
-          />
+          <ConfigProvider componentSize="large">
+            <Input
+              placeholder="创建任务"
+              value={curTitle}
+              onChange={(e) => setCurTitle(e.target.value)}
+              onFocus={() => setIsCreate(true)}
+            />
+          </ConfigProvider>
         </div>
         {isCreate && (
           <div className="time-tags">
