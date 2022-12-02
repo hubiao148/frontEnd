@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-20 22:30:19
+ * @LastEditTime: 2022-11-30 20:00:35
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -47,16 +47,16 @@ function Login() {
     //     message.success({ content: '登录成功！', duration: 1 });
     //   },
     // );
-    request({
-      url: '/login',
-      method: 'get',
-    }).then((res) => {
-      console.log(res);
-      storage.setItem('userMsg', res.data.userMsg);
-      storage.setItem('token', res.data.token);
-      history.replace('/home');
-      message.success({ content: '登录成功！', duration: 1 });
-    });
+      request({
+        url: '/login',
+        method: 'get',
+      }).then((res) => {
+        console.log(res);
+        storage.setItem('userMsg', res.data.userMsg);
+        storage.setItem('token', res.data.token);
+        history.replace('/home');
+        message.success({ content: '登录成功！', duration: 1 });
+      });
   }, 700);
 
   const onFinishFailed = (errorInfo: any) => {

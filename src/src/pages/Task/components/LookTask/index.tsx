@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-20 21:37:01
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-26 19:53:15
+ * @LastEditTime: 2022-11-30 20:03:43
  * @FilePath: \src\src\pages\Task\components\LookTask\index.tsx
  * @Description: 查看
  * 
@@ -82,8 +82,8 @@ export default function index() {
                     <Descriptions.Item label="图片" contentStyle={{ textAlign: 'center' }}>
                         <span style={{ cursor: 'pointer', color: '#4096ff' }} onClick={() => setIsModalOpen(true)}>点击预览</span>
                     </Descriptions.Item>
-                    <Descriptions.Item label="附件" contentStyle={{ textAlign: 'center' }}><a href="https://qn.liuyinjihua.com/%E5%AE%9E%E6%96%BD%E5%91%A8%E6%8A%A5.xlsx?e=1669463886&token=bs0nrwJpD1z6JJLOEOpgc9BxuHemz3IEyVIrF3dQ:N9kMmjQrvxa-J05f20ZMDy2lcQY=">点击下载</a></Descriptions.Item>
-                    <Descriptions.Item label="仓库" contentStyle={{ textAlign: 'center' }}>  <a href="https://www.gitee.com" target={'_blank'}>点击跳转</a> </Descriptions.Item>
+                    <Descriptions.Item label="附件" contentStyle={{ textAlign: 'center' }}><a href="https://qn.liuyinjihua.com/%E5%AE%9E%E6%96%BD%E5%91%A8%E6%8A%A5.xlsx?e=1669810096&token=bs0nrwJpD1z6JJLOEOpgc9BxuHemz3IEyVIrF3dQ:NftNE9YGY2I07Vkq5iwSO6DOT3c=">点击下载</a></Descriptions.Item>
+                    <Descriptions.Item label="仓库" contentStyle={{ textAlign: 'center' }}>  <a href="https://gitee.com/han-changyuan/easySE_frontEnd/tree/zyqproduct/src/src" target={'_blank'}>点击跳转</a> </Descriptions.Item>
                     <Descriptions.Item label="提问" >需求文档写不来啊！</Descriptions.Item>
                     <Descriptions.Item label="评论&回复"><TextArea rows={4} placeholder="maxLength is 6" maxLength={6} /></Descriptions.Item>
                 </Descriptions>

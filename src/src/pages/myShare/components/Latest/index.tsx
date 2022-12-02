@@ -2,12 +2,14 @@
  * @Author: hcy
  * @Date: 2022-10-18 16:54:33
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-21 17:26:55
+ * @LastEditTime: 2022-12-02 08:49:44
  * @FilePath: \src\src\pages\myShare\components\Latest\index.tsx
  * @Description: 
  * 
  */
+import { latestData } from '@/api/myShare/latest'
 import Common from '@/pages/User/components/Common'
+import { useEffect } from 'react'
 
 export default () => {
   const listData = [
@@ -61,6 +63,9 @@ export default () => {
       auth: '汝河不上云霄'
     }
   ]
+  // useEffect(() => {
+  //   console.log(latestData(0));
+  // },[])
   return (
     <>
       <Common listData={listData} num={7}></Common>
