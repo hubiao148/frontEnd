@@ -3,7 +3,6 @@
   flex-direction: row;
   justify-content: space-around;
   height: 2.5%;
-  width: 100vw;
 }
 .header > div {
   width: 50%;

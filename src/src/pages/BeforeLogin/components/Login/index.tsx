@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
- * @LastEditors: hcy
- * @LastEditTime: 2022-11-30 20:00:35
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-11-27 21:48:11
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -47,16 +47,16 @@ function Login() {
     //     message.success({ content: '登录成功！', duration: 1 });
     //   },
     // );
-      request({
-        url: '/login',
-        method: 'get',
-      }).then((res) => {
-        console.log(res);
-        storage.setItem('userMsg', res.data.userMsg);
-        storage.setItem('token', res.data.token);
-        history.replace('/home');
-        message.success({ content: '登录成功！', duration: 1 });
-      });
+    request({
+      url: '/login',
+      method: 'get',
+    }).then((res) => {
+      console.log(res);
+      storage.setItem('userMsg', res.data.userMsg);
+      storage.setItem('token', res.data.token);
+      history.replace('/home');
+      message.success({ content: '登录成功！', duration: 1 });
+    });
   }, 700);
 
   const onFinishFailed = (errorInfo: any) => {
@@ -73,6 +73,7 @@ function Login() {
     >
       <Form.Item
         name="account"
+        initialValue={'13780986745'}
         validateTrigger="onBlur"
         rules={[
           { required: true, message: '' },
@@ -87,6 +88,7 @@ function Login() {
 
       <Form.Item
         name="password"
+        initialValue={'3456644'}
         rules={[{ required: true, message: '请输入密码' }]}
         getValueFromEvent={(event) => {
           return event.target.value.trim();
