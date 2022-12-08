@@ -1,0 +1,55 @@
+@import '~viewerjs/dist/viewer.css';
+.DetailWrapper {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  padding-bottom: 8rem;
+  background-color: #e9ecef;
+  color: #2f2f2f;
+}
+.DetailWrapper .right {
+  border-radius: 0.25rem;
+  padding-left: 10px;
+  margin-top: 100px;
+  margin-left: 60px;
+}
+.DetailWrapper .right .relate_search {
+  background-color: #ffffff !important;
+  margin-bottom: 100px;
+}
+.DetailWrapper .right .catalog {
+  background-color: #ffffff !important;
+  height: 60px;
+  line-height: 60px;
+}
+.DetailWrapper .right .catalog .list-wrap {
+  border-radius: 0.25rem;
+  padding: 1rem 2rem 1rem 2rem;
+  background-color: #ffffff !important;
+}
+.DetailWrapper .left {
+  width: 65%;
+  margin-top: 30px;
+  margin-left: 60px;
+  padding: 0 3rem 3rem 3rem;
+  background-color: #ffffff;
+}
+.DetailWrapper .left img {
+  width: 100%;
+}
+.DetailWrapper .left p {
+  margin: 2.5rem 0;
+  font-size: 1.6rem;
+  line-height: 3rem;
+}
+.DetailWrapper .left b {
+  font-weight: bold;
+}
+.DetailWrapper .left .title {
+  margin: 2rem 0 2rem 0;
+  line-height: 4.4rem;
+  font-size: 3.4rem;
+  color: #333;
+  font-weight: bold;
+}

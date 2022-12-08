@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-08 19:38:37
- * @LastEditors: hcy
- * @LastEditTime: 2022-11-01 13:57:19
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-12-08 15:07:11
  * @FilePath: \src\config\proxy.ts
  * @Description:
  *
@@ -18,7 +18,7 @@
 export default {
   dev: {
     '/api': {
-      target: 'http://127.0.0.1:8000',
+      target: 'https://4717v036u3.zicp.fun/',
       // 配置了这个可以从 http 代理到 https
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,

@@ -4,19 +4,20 @@
  * @Last Modified by: zyq
  * @Last Modified time: 2022-10-22 22:18:57
  */
-
-import { Input } from 'antd';
+import { useEffect, useState } from 'react';
+import { Input, ConfigProvider } from 'antd';
 import Chart from './components';
 import styled from './index.less';
-import { useEffect, useState } from 'react';
+import { useHistory } from 'umi';
 
 const { Search } = Input;
 export default function Graph() {
+  const history = useHistory();
   const [graph, setGraph] = useState({ nodes: [], links: [], categories: [] });
-  // 点击触发的函数
-  const getData = async () => {
-    console.log('热点技术详情页面');
-  };
+  // // 点击触发的函数
+  // const getData = async () => {
+  //   console.log('热点技术详情页面');
+  // };
 
   useEffect(() => {
     fetch('/umi/chart')
@@ -91,11 +92,15 @@ export default function Graph() {
 
   return (
     <div className={styled['graphWrapper']}>
-      <Search
-        className={styled['search']}
-        placeholder="搜索图谱节点"
-        onSearch={getData}
-      />
+      <ConfigProvider componentSize="large">
+        <Search
+          className={styled['search']}
+          placeholder="搜索图谱节点"
+          onSearch={() => {
+            history.push('/search');
+          }}
+        />
+      </ConfigProvider>
       <Chart option={option} />
     </div>
   );

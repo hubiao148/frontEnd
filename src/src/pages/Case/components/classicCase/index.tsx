@@ -14,6 +14,7 @@ import styled from './index.less';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import MaskForm from './MaskForm';
 import BackToTop from '@/components/BackTop';
+import { getModeList } from '@/api/case';
 
 type MenuItem = Required<MenuProps>['items'][number];
 const { Search } = Input;
@@ -58,11 +59,9 @@ function ClassicCase() {
 
   //获取设计模式的列表
   const appendData = () => {
-    fetch('/umi/modeList')
-      .then((res) => res.json())
-      .then((res) => {
-        setModeList(res.data);
-      });
+    getModeList().then((res) => {
+      setModeList(res.data);
+    });
   };
   useEffect(() => {
     appendData();

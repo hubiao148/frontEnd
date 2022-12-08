@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
- * @LastEditors: hcy
- * @LastEditTime: 2022-11-26 14:34:33
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-11-30 18:48:53
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -43,6 +43,10 @@ export default [
       {
         path: '/home',
         component: '@/pages/Home',
+      },
+      {
+        path: '/search',
+        component: '@/pages/Search',
       },
       {
         path: '/message',

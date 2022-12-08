@@ -114,6 +114,7 @@ export default {
           y: -6.8120565,
           value: 100,
           category: 1,
+          url: 'https://www.baidu.com/',
         },
         {
           id: '12',
