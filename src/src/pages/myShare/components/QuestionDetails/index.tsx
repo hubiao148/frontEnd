@@ -2,14 +2,14 @@
  * @Author: hcy
  * @Date: 2022-10-21 17:23:47
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-01 10:15:23
+ * @LastEditTime: 2022-12-08 19:30:41
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\index.tsx
- * @Description: 
+ * @Description: 技术问答详情页面
  * 
  */
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { CheckCircleTwoTone } from '@ant-design/icons'
-import { useHistory } from 'umi';
+import { useHistory, useLocation, useParams } from 'umi';
 import style from './index.less';
 import { Breadcrumb, Divider, Button, Input } from 'antd';
 import Comments from './components/Comments';
@@ -17,15 +17,57 @@ import { LikeOutlined, DislikeOutlined, BranchesOutlined, BookOutlined } from '@
 import ReplyDetail from './components/ReplyDetail';
 import storage from '@/utils/storage';
 const { TextArea } = Input;
-export default function index() {
-    console.log(storage.getItem('token'));
-    const msg = {
-        auth: 'hcy',
-        time: '2022-11-21',
-        all: 120,
-        comment: ['/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则', '/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则', '/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则'],
-        replyNum: 3,
+import { addVistNum } from '@/api/myShare/addVistNum';
+import { articleDetail } from '@/api/myShare/articleDetail';
+import { addComment } from '@/api/myShare/addComment'
+import { number } from 'echarts/core';
+interface defaultMsg {
+    auth: string,
+    time: string,
+    headerUrl: string,
+    content: string,
+    tags: [],
+    title: string,
+    likeCount: number | null,
+    likeStatus: number | null,
+    replyNum: number | null,
+    articleId: number ,
+    userId: number 
+}
+
+export default function index(props: any) {
+    const defaultComments: {
+        content: string;
+        time: string;
+        commentAuth: string;
+        headerUrl: string;
+        id: number;
+    }[] = [];
+    const defaultMsg: defaultMsg = {
+        auth: '',
+        time: '',
+        headerUrl: '',
+        content: '',
+        tags: [],
+        title: '',
+        likeCount: null,
+        likeStatus: null,
+        replyNum: null,
+        articleId: 1,
+        userId:1
     }
+
+    const history = useHistory();
+    const params: { id: any } = useParams();
+    const [msg, setMsg] = useState(defaultMsg)
+    const [comments, setComments] = useState(defaultComments)
+    // {
+    //     auth: 'hcy',
+    //         time: '2022-11-21',
+    //             all: 120,
+    //                 comment: ['/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则', '/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则', '/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则'],
+    //                     replyNum: 3,
+    // }
     const board = [
         {
             title: '带你从零到一全面掌握前端「新宠」', msg: "TypeScript从入门到实践「2020 版」"
@@ -45,7 +87,7 @@ export default function index() {
         { id: 2, s: false },
         { id: 3, s: false },
     ]
-    const history = useHistory();
+
     function goBack() {
         history.push('/myshare');
     }
@@ -72,6 +114,66 @@ export default function index() {
         }
 
     }
+    function AddComment() {
+        addComment(msg.articleId, msg.userId, {
+            content: "不想调试啊",
+            entityType: 1,
+            entityId: msg.userId
+        }).then((res: any) => {
+            console.log(res)
+        }).catch((err: Error) => {
+            console.log(err)
+        })
+    }
+    useEffect(() => {
+        // 获取详情数据
+        articleDetail(params.id).then((res) => {
+            // console.log(res.data)
+            let data = res.data;
+            let resData = {
+                auth: data.user.username, // 文章所有者昵称
+                title: data.techqa.title, // 文章标题
+                time: data.techqa.gmtCreate, // 文章创建时间
+                headerUrl: data.user.headerUrl, // 头像地址
+                content: data.techqa.content, // 内容
+                tags: data.topics, // 标签
+                likeCount: data.likecount, // 关注数
+                likeStatus: data.likestatus, // 关注没
+                replyNum: data.comments.length, // 回答数
+                userId: data.user.id, // 文章所有者id
+                articleId:data.techqa.id, // 文章id
+            }
+
+            // console.log(resData)
+            setMsg(resData)
+            let resComments = data.comments.map((e: any) => {
+                return {
+                    content: e.comment.content, // 内容
+                    time: e.comment.gmtCreate, // 回答时间
+                    commentAuth: e.user.username, // 昵称
+                    headerUrl: e.user.headerUrl, // 头像
+                    id: e.user.id // 评论者id
+                }
+            });
+            // setComment(resCommentData)
+            // console.log(resComments)
+            setComments(resComments)
+        }).catch((err: Error) => {
+            console.log(err)
+        })
+        // 访问判断
+        let setter = setTimeout(() => {
+            addVistNum(params.id).then((result: any) => {
+                console.log(result)
+            }).catch((err: Error) => {
+                console.log(err)
+            });
+        }, 5000)
+        // 时间不够不增加
+        return () => {
+            clearTimeout(setter);
+        }
+    }, [])
     return (
         <div className={style.container}>
             <div className={style.top}>
@@ -108,15 +210,15 @@ export default function index() {
                         <div></div>
                         <div>
                             <div>
-                                <div>{msg.replyNum}个回答</div>
+                                <div>{msg == null ? 0 : msg.replyNum}个回答</div>
                                 <div>
                                     <Button>最新</Button>
                                     <Button style={{ marginLeft: '5px' }}>神评</Button>
                                 </div>
                             </div>
-                            {msg.comment.map((e, i) => {
+                            {comments.map((e, i) => {
                                 return (
-                                    <Comments msg={msg} key={i} id={i}></Comments>
+                                    <Comments comment={e} key={i} id={i}></Comments>
                                 )
                             })}
                         </div>
@@ -132,7 +234,7 @@ export default function index() {
                                         <TextArea></TextArea>
                                         <div style={{ marginTop: '10px' }}>
                                             <Button style={{ marginRight: '10px' }}>重置</Button>&nbsp;&nbsp;&nbsp;
-                                            <Button >发布</Button>
+                                            <Button onClick={AddComment}>发布</Button>
 
                                         </div>
                                     </div>

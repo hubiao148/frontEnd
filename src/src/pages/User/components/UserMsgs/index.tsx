@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-13 19:30:41
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-01 14:30:17
+ * @LastEditTime: 2022-12-05 18:25:37
  * @FilePath: \src\src\pages\User\components\UserMsgs\index.tsx
  * @Description: 
  * 
@@ -16,6 +16,7 @@ export default () => {
     userType: '学生',
     name: 'hcy',
     email: '1458283943@qq.com',
+    phoneNum:'19980825396'
   }
   const litsType = ["管理员", "老师", "普通用户", "游客"]
   return (
@@ -30,6 +31,7 @@ export default () => {
       <div className={style.msg}>
         <div>姓名:{listMenu.name}<span className={style.btn}>修改</span></div>
         <div>邮箱:{listMenu.email}<span className={style.btn}>修改</span></div>
+        <div>电话:{listMenu.phoneNum}<span className={style.btn}>修改</span></div>
         <div>密码: <span className={style.btn}>修改</span> </div>
       </div>
     </div>

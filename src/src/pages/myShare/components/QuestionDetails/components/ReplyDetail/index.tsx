@@ -2,13 +2,13 @@
  * @Author: hcy
  * @Date: 2022-10-24 14:34:59
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-25 15:10:08
+ * @LastEditTime: 2022-12-08 19:16:14
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\components\ReplyDetail\index.tsx
  * @Description: 
  * 
  */
 import React from 'react'
-import { Avatar, Tag, Button } from 'antd'
+import { Avatar, Tag, Button, Empty } from 'antd'
 import ReactMarkdown from "react-markdown"
 import style from './index.less'
 import 'github-markdown-css'
@@ -17,10 +17,18 @@ interface propsMsg {
     msg: {
         auth: string,
         time: string,
-        all: number,
-        comment: string[],
-        replyNum: number
-    }
+        headerUrl: string,
+        content: string,
+        tags: {
+            description:string;
+        }[],
+        title: string,
+        likeCount: number | null,
+        likeStatus: number | null,
+        replyNum: number | null,
+        articleId: number | null,
+        userId: number | null
+    } | null
 }
 export default function index(props: propsMsg) {
     const e = props.msg;
@@ -40,49 +48,47 @@ export default function index(props: propsMsg) {
         'herf=![www.baidu.com]'
     return (
         <div className={style.container}>
-            <div className={style.item1}>
-                <h2>titlesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</h2>
+            {
+                e ? (
+                    <>
+                        <div className={style.item1}>
+                            <h2>{e.title}</h2>
 
-            </div>
-            <div className={style.item2}>
-                <Avatar
-                    src="https://joeschmoe.io/api/v1/random"
-                    size={{ xs: 12, sm: 12, md: 20, lg: 40, xl: 40, xxl: 40 }}
-                />
-                <div style={{ color: '#1890ff', marginLeft: '3px' }}>{e.auth}</div>
-                &nbsp;发布于{e.time}
-            </div>
-            <div >
-                <ReactMarkdown
-                    remarkPlugins={[gfm]}
-                    className='markdown-body'
-                >
-                    {markdown}
-                </ReactMarkdown>
-            </div>
-            <div style={{ marginTop: '60px' }}>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-                <Tag color='blue'>vue.js</Tag>
-            </div>
-            <div >
-                <Button type="primary">关注 {e.all}</Button>
-                <Button style={{ marginLeft: '10px' }}>收藏</Button>
-            </div>
-            <div style={{ color: '#727B82', fontSize: '10px', marginBottom: '20px' }}>回复 阅读{e.all}</div>
+                        </div>
+                        <div className={style.item2}>
+                            <Avatar
+                                src={e.headerUrl}
+                                size={{ xs: 12, sm: 12, md: 20, lg: 40, xl: 40, xxl: 40 }}
+                            />
+                            <div style={{ color: '#1890ff', marginLeft: '3px' }}>{e.auth}</div>
+                            &nbsp;发布于{e.time}
+                        </div>
+                        <div >
+                            <ReactMarkdown
+                                remarkPlugins={[gfm]}
+                                className='markdown-body'
+                            >
+                                {e.content}
+                            </ReactMarkdown>
+                        </div>
+                        <div style={{ marginTop: '60px' }}>
+                            {
+                                e.tags.map((el, i) => {
+                                    return (
+                                        <Tag color='blue' key={i}>{el.description}</Tag>
+                                    )
+                                })
+                            }
+
+                        </div>
+                        <div >
+                            <Button type="primary">关注 {e.likeCount}</Button>
+                            <Button style={{ marginLeft: '10px' }}>收藏</Button>
+                        </div>
+                        <div style={{ color: '#727B82', fontSize: '10px', marginBottom: '20px' }}>回复 阅读{e.likeCount}</div>
+                    </>
+                ) : <Empty />
+            }
         </div >
     )
 }

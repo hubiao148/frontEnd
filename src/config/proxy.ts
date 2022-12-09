@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-08 19:38:37
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-08 15:15:00
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-12-09 18:47:03
  * @FilePath: \src\config\proxy.ts
  * @Description:
  *
@@ -18,8 +18,10 @@
 export default {
   dev: {
     '/api': {
-      target: 'https://4717v036u3.zicp.fun/',
-      // 配置了这个可以从 http 代理到 https
+      // target: 'http://127.0.0.1:8000',
+      // target: 'http://easyse.free.idcfengye.com',
+      target:'https://4717v036u3.zicp.fun',
+      // 配置了这个可以从 http 代理到 https easyse.free.idcfengye.com
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,
       pathRewrite: { '^/api': '' },
