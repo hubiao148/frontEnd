@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-31 18:23:50
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-07 19:35:18
+ * @LastEditTime: 2022-12-09 17:02:11
  * @FilePath: \src\mock\login.ts
  * @Description:
  *
@@ -24,7 +24,7 @@ export default {
 
   'GET /umi/verify': {
     status: 'success',
-    code: 500,
+    code: 200,
     message: '用户不存在！',
   },
 };
