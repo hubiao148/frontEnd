@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-08 19:38:37
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-06 16:17:55
+ * @LastEditTime: 2022-12-09 18:47:03
  * @FilePath: \src\config\proxy.ts
  * @Description:
  *

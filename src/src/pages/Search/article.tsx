@@ -6,13 +6,21 @@
 
 import React, { useEffect, useState } from 'react';
 import { generateCatalog, CatalogNode } from '@/utils/generateCatalog';
-import { Anchor } from 'antd';
+import { Anchor, List } from 'antd';
 const { Link } = Anchor;
 import Viewer from 'viewerjs';
 import './index.less';
 import styled from './index.less';
-import { getModeDetail } from '@/api/case';
 
+const data = [
+  'ECMAScript',
+  'webpack',
+  'SEO优化',
+  'React',
+  'Vue',
+  'TypeScript',
+  'Vuex',
+];
 function Article() {
   const [detail, setDetail] = useState({ title: '', content: '' });
   const [nodes, setNodes] = useState<{
@@ -30,10 +38,12 @@ function Article() {
     setTargetOffset(window.innerHeight / 2);
   }, []);
   useEffect(() => {
-    //获取设计模式详情页面信息
-    getModeDetail().then((res) => {
-      setDetail(res.data);
-    });
+    fetch('/umi/searchDetail')
+      .then((res) => res.json())
+      .then((res) => {
+        setDetail(res.data);
+        console.log('res.data', res.data);
+      });
   }, []);
   useEffect(() => {
     const result = generateCatalog(detail.content);
@@ -50,7 +60,6 @@ function Article() {
     }
     return (
       <Anchor className={styled['list-wrap']} targetOffset={targetOffset}>
-        <h2 style={{ fontWeight: '600' }}>文章目录</h2>
         {catalogNodes.map((node: CatalogNode) => (
           <React.Fragment key={node.id}>
             <Link href={`#${node.id}`} title={node.title} />
@@ -101,12 +110,25 @@ function Article() {
   return (
     <>
       <div className={styled['left']}>
-        {/* 生成文章目录 */}
-        {RenderList(nodes.catalogNodes)}
-      </div>
-      <div className={styled['right']}>
         <div className={styled['title']}>{detail.title}</div>
         <div dangerouslySetInnerHTML={{ __html: dataCopy }}></div>
+      </div>
+      <div className={styled['right']}>
+        {/* 相关搜索 */}
+        <div className={styled['relate_search']}>
+          <List
+            size="large"
+            header={<div>相关搜索</div>}
+            bordered
+            dataSource={data}
+            renderItem={(item) => <List.Item>{item}</List.Item>}
+          />
+        </div>
+        <div className={styled['catalog']}>
+          {/* 生成文章目录 */}
+          <h2 style={{ fontWeight: '600' }}>文章目录</h2>
+          {RenderList(nodes.catalogNodes)}
+        </div>
       </div>
     </>
   );

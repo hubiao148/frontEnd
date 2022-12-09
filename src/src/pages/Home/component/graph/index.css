@@ -4,15 +4,13 @@
 }
 .graphWrapper .search {
   position: absolute;
-  width: 30rem;
+  width: 300px;
   top: 2.5rem;
   left: 50%;
   transform: translateX(-50%);
   box-sizing: border-box;
-  border: none;
-  outline: none;
+  border-radius: 5px !important;
   z-index: 999;
   font-size: 1.4rem;
-  color: #777;
-  opacity: 0.5;
+  opacity: 0.6;
 }

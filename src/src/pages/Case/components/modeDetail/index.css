@@ -1,3 +1,4 @@
+@import '~viewerjs/dist/viewer.css';
 .DetailWrapper {
   overflow: hidden;
   display: flex;
@@ -13,23 +14,39 @@
   font-size: 3rem;
 }
 .DetailWrapper .DetailContent {
-  width: 75rem;
-  background-color: #ffffff;
-  padding: 0 3rem 3rem 3rem;
+  width: 100rem;
   color: #2f2f2f;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
 }
-.DetailWrapper .DetailContent img {
+.DetailWrapper .DetailContent .left {
+  height: 300px;
+  margin-top: 100px;
+  margin-right: 60px;
+}
+.DetailWrapper .DetailContent .left .list-wrap {
+  border-radius: 0.25rem;
+  padding: 1rem 2rem 1rem 2rem;
+  background-color: #ffffff !important;
+}
+.DetailWrapper .DetailContent .right {
+  width: 87%;
+  padding: 0 3rem 3rem 3rem;
+  background-color: #ffffff;
+}
+.DetailWrapper .DetailContent .right img {
   width: 100%;
 }
-.DetailWrapper .DetailContent p {
+.DetailWrapper .DetailContent .right p {
   margin: 2.5rem 0;
   font-size: 1.6rem;
   line-height: 3rem;
 }
-.DetailWrapper .DetailContent b {
+.DetailWrapper .DetailContent .right b {
   font-weight: bold;
 }
-.DetailWrapper .DetailContent .title {
+.DetailWrapper .DetailContent .right .title {
   margin: 2rem 0 2rem 0;
   line-height: 4.4rem;
   font-size: 3.4rem;

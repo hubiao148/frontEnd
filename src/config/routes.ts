@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-05 19:42:36
+ * @LastEditTime: 2022-12-09 18:47:24
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -43,6 +43,10 @@ export default [
       {
         path: '/home',
         component: '@/pages/Home',
+      },
+      {
+        path: '/search',
+        component: '@/pages/Search',
       },
       {
         path: '/message',

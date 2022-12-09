@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-10-24 14:07:15
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-13 20:59:21
+ * @LastEditTime: 2022-12-08 14:22:34
  * @FilePath: \src\src\api\case\index.ts
  * @Description:
  *
@@ -13,6 +13,14 @@ import request from '../api';
 export function getModeList() {
   return request({
     url: '/modeList',
+    method: 'get',
+  });
+}
+
+// 获取设计模式详情信息
+export function getModeDetail() {
+  return request({
+    url: '/modeDetail',
     method: 'get',
   });
 }
