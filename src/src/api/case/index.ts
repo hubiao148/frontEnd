@@ -1,8 +1,8 @@
 /*
  * @Author: zyqqun
  * @Date: 2022-10-24 14:07:15
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-08 21:53:32
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-12-09 22:08:26
  * @FilePath: \src\src\api\case\index.ts
  * @Description:
  *
@@ -58,5 +58,17 @@ export function getShareList(params?: string) {
     url: `/techShare/shareList${params}`,
     method: 'get',
     params,
+  });
+}
+
+
+// 添加技术分享
+
+export function addDesignMode(data:any) {
+  return request({
+    url: '/techshare/designmode/add',
+    method: 'post',
+    data,
+    Headers: { 'Content-Type': 'multipart/form-data' }
   });
 }

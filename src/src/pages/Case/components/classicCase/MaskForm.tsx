@@ -18,6 +18,8 @@ import {
 } from '@ant-design/icons';
 import { useUsualFileUpload } from '@/utils/useUsualFileUpload';
 import { useBigFileUpload } from '@/utils/useBigFileUpload';
+import { addDesignMode } from '@/api/case';
+import { useEffect, useState } from 'react';
 interface maskProps {
   isModalOpen: boolean;
   setIsModalOpen: (isModalOpen: maskProps['isModalOpen']) => void;
@@ -29,22 +31,53 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
   const onReset = () => {
     form.resetFields();
   };
+  const [file,setFile] = useState<any>();
+  const [video,setVideo] = useState<any>();
   // 文件上传函数
   /**
    *
    * @param e File类型的数据
    * @returns Promise<any>
    */
-  async function fileUpload(e: File): Promise<any> {
-    let res = await useUsualFileUpload(e, '/umi/fileUpload');
-    console.log(res);
-    if (res.status == 200) {
-      message.success(`${e.name}上传成功！`);
+  function fileUpload(e: File) {
+    // let res = await useUsualFileUpload(e, '/umi/fileUpload');
+    // console.log(res);
+    // if (res.status == 200) {
+    //   message.success(`${e.name}上传成功！`);
+    //   return true;
+    // } else {
+    //   message.error(`${e.name}上传失败！`);
+    //   return Upload.LIST_IGNORE;
+    // }
+    // setFile(File)
+    console.log(e)
+    return true;
+  }
+  function videoUpload (e:File){
+    console.log(e);
+    // setVideo(e);
+    return true;
+  }
+  function upload(e:File) {
+    console.log(form.getFieldValue())
+    let formdatas = new FormData();
+    formdatas.append('file', e);
+    console.log(e);
+    formdatas.append('video', video);
+    addDesignMode({
+      files: formdatas,
+      sceneDesign: {
+        title: form.getFieldValue().techShare,
+        groupId: 1,//form.getFieldValue().group
+        sceneId: 1,
+        date: form.getFieldValue().dateTime._d
+      }
+    }).then((res) => {
+      console.log(res)
       return true;
-    } else {
-      message.error(`${e.name}上传失败！`);
-      return Upload.LIST_IGNORE;
-    }
+    }).catch((err:Error) => {
+      console.log(err)
+    })
   }
   return (
     <div>
@@ -105,7 +138,7 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
         <Row gutter={16} justify="center">
           <Col span={8}>
             <Form.Item label="文件上传" valuePropName="fileList">
-              <Upload.Dragger name="files" beforeUpload={(e) => fileUpload(e)}>
+              <Upload.Dragger name="files" beforeUpload={(e) => upload(e)}>
                 <p className="ant-upload-drag-icon">
                   <FilePptOutlined />
                 </p>
@@ -115,7 +148,7 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
           </Col>
           <Col span={8}>
             <Form.Item label="视频上传" valuePropName="fileList">
-              <Upload.Dragger name="files" action="/upload.do">
+              <Upload.Dragger name="files" action="/upload.do" beforeUpload={(e) => videoUpload(e)}>
                 <p className="ant-upload-drag-icon">
                   <VideoCameraOutlined />
                 </p>
@@ -160,6 +193,7 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
                 type="primary"
                 htmlType="submit"
                 className={styled['form-button']}
+                onClick={upload}
               >
                 提交
               </Button>
