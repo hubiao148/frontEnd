@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-21 09:57:38
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-15 17:41:52
+ * @LastEditTime: 2022-12-08 21:02:11
  * @FilePath: \src\src\pages\AskQuestion\index.tsx
  * @Description: 提问题
  * 
@@ -14,8 +14,14 @@ import { Breadcrumb, Input, Modal } from 'antd'
 import Editor from './components/Eidtor'
 import style from './index.less'
 import TagAdd from './components/TagAdd'
-export default function index() {
+import { msg } from '@/jotai'
+import { Tags } from '@/jotai'
+import { useAtom } from 'jotai'
+import { addArticle } from '@/api/myShare/addArticle'
 
+export default function index() {
+  const [text] = useAtom(msg);
+  const [tags] = useAtom(Tags);
   const history = useHistory();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -31,6 +37,15 @@ export default function index() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+  const addArticleClick = () => {
+    console.log(text)
+    console.log(tags)
+    addArticle({title:'测试',content:text,userId:1}).then((result) => {
+      console.log(result)
+    }).catch((err) => {
+      console.log(err)
+    });
+  }
   return (
     <div className={style.container}>
       <Modal title="提示" okText={'确定'} keyboard={true} cancelText={'取消'} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
@@ -39,7 +54,7 @@ export default function index() {
       <div>
         <div onClick={showModal}>技术问答</div>
         <div>提问题</div>
-        <div><span>发布问题</span></div>
+        <div onClick={addArticleClick}><span>发布问题</span></div>
       </div>
       <div>
         <Breadcrumb separator=">" style={{ cursor: 'pointer' }}>

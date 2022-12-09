@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-26 14:34:33
+ * @LastEditTime: 2022-12-05 19:42:36
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -185,7 +185,7 @@ export default [
         ],
       },
       {
-        path: '/details',
+        path: '/details/:id',
         component: '@/pages/myShare/components/QuestionDetails',
       },
 

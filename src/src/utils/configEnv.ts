@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 21:20:43
+ * @LastEditTime: 2022-12-05 18:28:51
  * @FilePath: \src\src\utils\configEnv.ts
  * @Description: 配置环境变量
  *
@@ -21,7 +21,7 @@ const EnvConfig = {
 };
 export default {
   env,
-  mock: true,
+  mock: false,
   namespace: 'easySE',
   ...EnvConfig[env],
 };

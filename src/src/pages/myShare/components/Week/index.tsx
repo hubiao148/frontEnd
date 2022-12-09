@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-18 16:54:33
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-19 21:31:26
+ * @LastEditTime: 2022-12-06 15:45:11
  * @FilePath: \src\src\pages\myShare\components\Week\index.tsx
  * @Description: 
  * 
@@ -17,6 +17,17 @@ export default () => {
       read: 15,
       title: '{}内必须包含[]的js正则怎么写？',
       tag: ['php', 'js', 'docker', '运维', '容器'],
+      headIcon: '',
+      auth: '汝河不上云霄',
+      id: 1,
+    },
+    {
+      anser: 60,
+      read: 15,
+      title: '{}内必须包含[]的js正则怎么写？',
+      tag: ['php', 'js', 'docker', '运维', '容器'],
+      headIcon: '',
+      id: 1,
       auth: '汝河不上云霄'
     },
     {
@@ -24,6 +35,8 @@ export default () => {
       read: 15,
       title: '{}内必须包含[]的js正则怎么写？',
       tag: ['php', 'js', 'docker', '运维', '容器'],
+      headIcon: '',
+      id: 1,
       auth: '汝河不上云霄'
     },
     {
@@ -31,40 +44,43 @@ export default () => {
       read: 15,
       title: '{}内必须包含[]的js正则怎么写？',
       tag: ['php', 'js', 'docker', '运维', '容器'],
-      auth: '汝河不上云霄'
+      headIcon: '',
+      id: 1,
+      auth: '汝河不上云霄',
     },
     {
       anser: 60,
       read: 15,
       title: '{}内必须包含[]的js正则怎么写？',
       tag: ['php', 'js', 'docker', '运维', '容器'],
-      auth: '汝河不上云霄'
+      id: 1,
+      auth: '汝河不上云霄',
+      headIcon: '',
+
     },
     {
       anser: 60,
       read: 15,
       title: '{}内必须包含[]的js正则怎么写？',
       tag: ['php', 'js', 'docker', '运维', '容器'],
-      auth: '汝河不上云霄'
+      id: 1,
+      auth: '汝河不上云霄',
+      headIcon: '',
+
     },
     {
       anser: 60,
       read: 15,
       title: '{}内必须包含[]的js正则怎么写？',
       tag: ['php', 'js', 'docker', '运维', '容器'],
-      auth: '汝河不上云霄'
-    },
-    {
-      anser: 60,
-      read: 15,
-      title: '{}内必须包含[]的js正则怎么写？',
-      tag: ['php', 'js', 'docker', '运维', '容器'],
-      auth: '汝河不上云霄'
+      id: 1,
+      auth: '汝河不上云霄',
+      headIcon: '',
     }
   ]
   return (
     <>
-      <Common listData={listData} num={7}></Common>
+      <Common listData={listData} num={7} loading={false}></Common>
     </>
   )
 }

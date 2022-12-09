@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 22:54:46
+ * @LastEditTime: 2022-12-08 19:49:30
  * @FilePath: \src\src\api\api.ts
  * @Description: axios封装
  *
@@ -30,7 +30,7 @@ export const service = axios.create({
   // }
   headers: {
     'Access-Control-Allow-Origin': '*',
-    'content-type': 'application/json',
+    // 'content-type': 'application/json',
   },
 });
 /***
@@ -84,11 +84,11 @@ service.interceptors.response.use((res: any) => {
 function request(options: any) {
   options.method = options.method || 'get';
 
-  // console.log(options)
+  console.log(options);
 
-  if (options.method.toLowerCase() === 'get') {
-    options.params = options.data;
-  }
+  // if (options.method.toLowerCase() === 'get') {
+  //   options.params = options.data;
+  // }
 
   if (configEnv.env === 'prod') {
     service.defaults.baseURL = configEnv.baseApi;

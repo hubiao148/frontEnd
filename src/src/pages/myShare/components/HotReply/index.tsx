@@ -2,14 +2,15 @@
  * @Author: hcy
  * @Date: 2022-10-19 21:53:19
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-19 23:36:32
+ * @LastEditTime: 2022-12-08 19:20:55
  * @FilePath: \src\src\pages\myShare\components\HotReply\index.tsx
  * @Description: 
  * 
  */
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Divider} from 'antd'
 import style from './index.less'
+import { hotComment } from '@/api/myShare/hotComment'
 export default function index() {
     const replyData = [
         {
@@ -40,7 +41,14 @@ export default function index() {
             title: '项目部署环境后，如何更改yml中的配置参数',
             id:9
         },
-  ]  
+    ]  
+    // useEffect(() => {
+    //     hotComment().then((res:any) => {
+    //        console.log(res)
+    //     }).catch((err:Error) => {
+    //        console.log(err)
+    //    })
+    // },[])
   return (
     <div className={style.container}>
           <div>热门回答</div>

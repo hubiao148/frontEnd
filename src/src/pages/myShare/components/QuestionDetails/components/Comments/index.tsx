@@ -2,28 +2,28 @@
  * @Author: hcy
  * @Date: 2022-10-24 17:14:30
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-27 16:47:06
+ * @LastEditTime: 2022-12-06 21:02:11
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\components\Comments\index.tsx
  * @Description: 
  * 
  */
 import { DislikeFilled, DislikeOutlined, LikeFilled, LikeOutlined } from '@ant-design/icons';
-import { Avatar, Comment, Tooltip, Divider } from 'antd';
+import moment from 'moment';
+import { Avatar, Comment, Tooltip, Divider, Empty } from 'antd';
 import React, { createElement, useState } from 'react';
 interface propsMsg {
-    msg: {
-        auth: string,
-        time: string,
-        all: number,
-        comment: string[],
-        replyNum: number
-
-    },
+    comment: {
+        content: string;
+        time: string;
+        commentAuth: string;
+        headerUrl: string;
+        id: number;
+    } | null,
     id: number
 
 }
 export default function (props: propsMsg) {
-    const e = props.msg;
+    const e = props.comment;
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
     const [action, setAction] = useState<string | null>(null);
@@ -58,22 +58,28 @@ export default function (props: propsMsg) {
 
     return (
         <>
-            <Divider style={{ margin: '0' }}></Divider>
-            <Comment
-                actions={actions}
-                author={<a>{e.auth}</a>}
-                avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />}
-                content={
-                    <p>
-                        {e.comment[props.id]}
-                    </p>
-                }
-                datetime={
-                    <Tooltip title={ e.time}>
-                        <span> {e.time} </span>
-                    </ Tooltip>
-                }
-            />
+            {
+                e ? (
+                    <>
+                        <Divider style={{ margin: '0' }}></Divider>
+                        <Comment
+                            actions={actions}
+                            author={<a>{e.commentAuth}</a>}
+                            avatar={<Avatar src={e.headerUrl} alt="Han Solo" />}
+                            content={
+                                <p>
+                                    {e.content}
+                                </p>
+                            }
+                            datetime={
+                                <Tooltip >
+                                    <span> {e.time} </span>
+                                </ Tooltip>
+                            }
+                        />
+                    </>
+                ) : <Empty />
+            }
         </>
     );
 };

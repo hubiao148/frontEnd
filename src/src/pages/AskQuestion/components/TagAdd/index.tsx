@@ -1,9 +1,12 @@
 import { PlusOutlined } from '@ant-design/icons';
 import type { InputRef } from 'antd';
 import { Input, Tag, Tooltip } from 'antd';
+import { useAtom } from 'jotai';
+import { Tags } from '@/jotai';
 import React, { useEffect, useRef, useState } from 'react';
 
 const TagAdd: React.FC = () => {
+  const [resTags, setResTags] = useAtom(Tags); 
   const [tags, setTags] = useState<string[]>([]);
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -21,6 +24,9 @@ const TagAdd: React.FC = () => {
   useEffect(() => {
     editInputRef.current?.focus();
   }, [inputValue]);
+  useEffect(() => {
+    setResTags(tags);
+  },[tags])
 
   const handleClose = (removedTag: string) => {
     const newTags = tags.filter(tag => tag !== removedTag);
