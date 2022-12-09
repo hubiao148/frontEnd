@@ -12,8 +12,11 @@ import Viewer from 'viewerjs';
 import './index.less';
 import styled from './index.less';
 import { getModeDetail } from '@/api/case';
+const showdown = require('showdown');
 
-function Article() {
+function Article(props: { id: any }) {
+  //路由接参数
+  const { id } = props;
   const [detail, setDetail] = useState({ title: '', content: '' });
   const [nodes, setNodes] = useState<{
     catalogNodes: CatalogNode[];
@@ -29,12 +32,18 @@ function Article() {
   useEffect(() => {
     setTargetOffset(window.innerHeight / 2);
   }, []);
+
   useEffect(() => {
+    let converter = new showdown.Converter();
     //获取设计模式详情页面信息
-    getModeDetail().then((res) => {
-      setDetail(res.data);
+    getModeDetail(id).then((res) => {
+      setDetail({
+        title: res.data.designModeCase.title,
+        content: converter.makeHtml(res.data.designModeCase.content),
+      });
     });
   }, []);
+
   useEffect(() => {
     const result = generateCatalog(detail.content);
     setNodes({
@@ -50,7 +59,6 @@ function Article() {
     }
     return (
       <Anchor className={styled['list-wrap']} targetOffset={targetOffset}>
-        <h2 style={{ fontWeight: '600' }}>文章目录</h2>
         {catalogNodes.map((node: CatalogNode) => (
           <React.Fragment key={node.id}>
             <Link href={`#${node.id}`} title={node.title} />
@@ -102,6 +110,16 @@ function Article() {
     <>
       <div className={styled['left']}>
         {/* 生成文章目录 */}
+        <h2
+          style={{
+            fontWeight: '600',
+            backgroundColor: 'rgb(255, 255, 255)',
+            padding: '1rem 0 1rem 1rem',
+            borderRadius: '0.25rem',
+          }}
+        >
+          文章目录
+        </h2>
         {RenderList(nodes.catalogNodes)}
       </div>
       <div className={styled['right']}>

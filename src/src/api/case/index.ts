@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-10-24 14:07:15
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-08 14:22:34
+ * @LastEditTime: 2022-12-08 21:53:32
  * @FilePath: \src\src\api\case\index.ts
  * @Description:
  *
@@ -12,15 +12,17 @@ import request from '../api';
 // 获取设计模式信息
 export function getModeList() {
   return request({
-    url: '/modeList',
+    //url: '/modeList',
+    url: '/examples/designcase/list',
     method: 'get',
   });
 }
 
 // 获取设计模式详情信息
-export function getModeDetail() {
+export function getModeDetail(id: number) {
   return request({
-    url: '/modeDetail',
+    // url: '/modeDetail',
+    url: `/examples/designcase/details/${id}`,
     method: 'get',
   });
 }
@@ -34,12 +36,12 @@ export function getNavigation() {
 }
 
 // 获取技术分享左侧导航栏
-export function getShareNavigation() {
-  return request({
-    url: '/techShare/navigation',
-    method: 'get',
-  });
-}
+// export function getShareNavigation() {
+//   return request({
+//     url: '/techShare/navigation',
+//     method: 'get',
+//   });
+// }
 
 // 获取开源项目信息列表
 export function getProjectList(params?: string) {

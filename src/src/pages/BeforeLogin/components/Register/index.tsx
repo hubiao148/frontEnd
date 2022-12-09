@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-15 13:41:16
+ * @LastEditTime: 2022-12-09 16:44:35
  * @FilePath: \src\src\pages\BeforeLogin\components\Register\index.tsx
  * @Description:
  *
@@ -17,6 +17,7 @@ import styles from './index.less';
 import { useAtom } from 'jotai';
 import { titleAtom } from '../../index';
 import Captcha from 'react-captcha-code';
+import { register } from '@/api/login/BeforeLogin';
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 18 },
@@ -34,12 +35,30 @@ function RegForm() {
   const onFinish = useDebounce(async (values: any) => {
     try {
       //todo接口
+      register({
+        username: values.username,
+        password: values.password,
+        account: values.account,
+      }).then((res) => {
+        console.log(res);
+      });
       setTitle('请登录账号');
       history.replace('/beforeLogin/login');
       message.success({ content: '注册成功！', duration: 1 });
     } catch (error) {
       message.error({ content: '注册失败！', duration: 1 });
     }
+
+    // BeforeLoginRequest({
+    //   phonenumber: values.account,
+    //   password: values.password,
+    // }).then((res) => {
+    //   console.log(res);
+    //   storage.setItem('userMsg', res.data.userInfo);
+    //   storage.setItem('token', res.data.token);
+    //   history.replace('/home');
+    //   message.success({ content: '登录成功！', duration: 1 });
+    // });
   }, 700);
 
   const onFinishFailed = (errorInfo: any) => {

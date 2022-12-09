@@ -1,6 +1,6 @@
 export default {
   //设计模式列表
-  'GET /umi/modeList': {
+  'GET /api/modeList': {
     status: 'success',
     data: [
       {
@@ -97,7 +97,7 @@ export default {
   },
 
   //设计模式详情页面数据模拟
-  'GET /umi/modeDetail': {
+  'GET /api/modeDetail': {
     status: 'success',
     data: {
       title: '设计模式篇',
@@ -139,7 +139,7 @@ export default {
   },
 
   //开源项目左侧导航栏信息
-  'GET /umi/openProject/navigation': {
+  'GET /api/openProject/navigation': {
     status: 'success',
     data: [
       { label: '项目类别1', key: `sort1` },
@@ -149,7 +149,7 @@ export default {
   },
 
   //开源项目项目信息列表
-  'GET /umi/openProject/projectList': {
+  'GET /api/openProject/projectList': {
     status: 'success',
     data: Array.from({ length: 23 }).map((_, i) => ({
       href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
@@ -163,7 +163,7 @@ export default {
   },
 
   //开源项目项目信息列表
-  'GET /umi/openProject/projectListsort1': {
+  'GET /api/openProject/projectListsort1': {
     status: 'success',
     data: Array.from({ length: 23 }).map((_, i) => ({
       href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
@@ -177,7 +177,7 @@ export default {
   },
 
   //开源项目项目信息列表
-  'GET /umi/openProject/projectListsort2': {
+  'GET /api/openProject/projectListsort2': {
     status: 'success',
     data: Array.from({ length: 23 }).map((_, i) => ({
       href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
@@ -191,7 +191,7 @@ export default {
   },
 
   //开源项目项目信息列表
-  'GET /umi/openProject/projectListsort3': {
+  'GET /api/openProject/projectListsort3': {
     status: 'success',
     data: Array.from({ length: 23 }).map((_, i) => ({
       href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
@@ -205,7 +205,7 @@ export default {
   },
 
   //技术分享左侧导航栏信息
-  'GET /umi/techShare/navigation': {
+  'GET /api/techShare/navigation': {
     status: 'success',
     data: [
       { label: '前端', key: `Front` },
@@ -216,7 +216,7 @@ export default {
   },
 
   //技术分享信息列表
-  'GET /umi/techShare/shareListFront': {
+  'GET /api/techShare/shareListFront': {
     status: 'success',
     data: Array.from({ length: 23 }).map((_, i) => ({
       href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
@@ -230,7 +230,7 @@ export default {
   },
 
   //技术分享信息列表
-  'GET /umi/techShare/shareListEnd': {
+  'GET /api/techShare/shareListEnd': {
     status: 'success',
     data: Array.from({ length: 23 }).map((_, i) => ({
       href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
@@ -244,7 +244,7 @@ export default {
   },
 
   //技术分享信息列表
-  'GET /umi/techShare/shareListGame': {
+  'GET /api/techShare/shareListGame': {
     status: 'success',
     data: Array.from({ length: 23 }).map((_, i) => ({
       href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
@@ -258,7 +258,7 @@ export default {
   },
 
   //技术分享信息列表
-  'GET /umi/techShare/shareListOther': {
+  'GET /api/techShare/shareListOther': {
     status: 'success',
     data: Array.from({ length: 23 }).map((_, i) => ({
       href: 'https://gitee.com/han-changyuan/easySE_frontEnd',

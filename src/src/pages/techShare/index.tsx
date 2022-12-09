@@ -1,10 +1,13 @@
 /*
- * @Author: zyq
- * @Date: 2022-10-24 17:06:04
- * @Last Modified by: zyq
- * @Last Modified time: 2022-10-30 20:50:51
+ * @Author: zyqqun
+ * @Date: 2022-10-24 13:28:28
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-12-09 15:55:50
+ * @FilePath: \src\src\pages\techShare\index.tsx
+ * @Description:
+ *
+ * Copyright (c) 2022 by zyqqun 2450100414@qq.com, All Rights Reserved.
  */
-
 import React, { useEffect, useState } from 'react';
 import { PieChartOutlined } from '@ant-design/icons';
 import { Input, Avatar, List, Menu, Breadcrumb } from 'antd';
@@ -12,12 +15,13 @@ import type { MenuProps } from 'antd';
 import { Link } from 'umi';
 import styled from './index.less';
 import BackToTop from '@/components/BackTop';
-import { getShareList, getShareNavigation } from '@/api/case';
+import { getShareNavigation } from '@/api/techShare';
+import { getShareList } from '@/api/case';
 const { Search } = Input;
 type MenuItem = Required<MenuProps>['items'][number];
 function getItem(
   label: React.ReactNode,
-  key?: string | null,
+  key: string | null,
   icon?: React.ReactNode,
   children?: MenuItem[],
   type?: 'group',
@@ -48,6 +52,7 @@ function techShare(props: any) {
   const getData = async () => {};
   //左侧导航栏 前端 后端 游戏开发 其它
   const onClick: MenuProps['onClick'] = (e) => {
+    console.log(e);
     getShareList(e.key).then((res) => {
       console.log('分享', res.data);
       setShareList(res.data);
@@ -57,7 +62,7 @@ function techShare(props: any) {
   useEffect(() => {
     // 获取左侧导航栏 开源项目分类
     getShareNavigation().then((res) => {
-      setItem(res.data);
+      setItem(res.data.lists);
     });
     getShareList('Front').then((res) => {
       setShareList(res.data);
@@ -104,7 +109,7 @@ function techShare(props: any) {
             style={{ width: 200 }}
             mode="inline"
             items={items}
-            defaultSelectedKeys={['Front']}
+            defaultSelectedKeys={['1']}
             defaultOpenKeys={['tech']}
           />
         </div>

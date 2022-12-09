@@ -1,3 +1,13 @@
+/*
+ * @Author: zyqqun
+ * @Date: 2022-10-31 17:04:18
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-12-09 16:52:18
+ * @FilePath: \src\src\pages\forgetPassword\verifyPassword.tsx
+ * @Description:
+ *
+ * Copyright (c) 2022 by zyqqun 2450100414@qq.com, All Rights Reserved.
+ */
 import React, { useCallback, useState } from 'react';
 import { Form, Input, Button, Space, message } from 'antd';
 import formValidation from '@/utils/formValidation';
@@ -17,6 +27,7 @@ interface Props {
   setAccount: (setAccount: Props['account']) => void;
   setCurrent: (setCurrent: number) => void;
 }
+
 function VerifyPassword({ account, setAccount, setCurrent }: Props) {
   const [time] = useState(60);
   const onFinish = useDebounce((values: any) => {

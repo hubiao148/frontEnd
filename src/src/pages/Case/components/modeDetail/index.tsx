@@ -10,7 +10,9 @@ import { Link } from 'umi';
 import Article from './Article';
 import styled from './index.less';
 
-function modeDetail() {
+function modeDetail(props: { match: { params: { id: any } } }) {
+  //路由接参数
+  const { id } = props.match.params;
   return (
     <div className={styled['DetailWrapper']}>
       <div className={styled['menu']}>
@@ -22,7 +24,7 @@ function modeDetail() {
         </Breadcrumb>
       </div>
       <div className={styled['DetailContent']}>
-        <Article />
+        <Article id={id} />
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
- * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 22:54:46
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-12-09 19:17:14
  * @FilePath: \src\src\api\api.ts
  * @Description: axios封装
  *
@@ -40,7 +40,7 @@ export const service = axios.create({
  */
 
 service.interceptors.request.use((req: any) => {
-  console.log(req);
+  //console.log(req);
   const headers = req.headers;
   if (!headers.Authorization) headers.Authorization = 'hcy';
 
@@ -60,7 +60,7 @@ service.interceptors.response.use((res: any) => {
   if (res.status === 200 && res.data.code != '40001') {
     return data;
   } else if (res.data.code === '40001') {
-    message.error(TOKEN_Lose_Efficacy);
+    //message.error(TOKEN_Lose_Efficacy);
     setTimeout(() => {
       storage.clearItem('userInfo');
       // history.push('/login');
@@ -68,7 +68,7 @@ service.interceptors.response.use((res: any) => {
 
     return Promise.reject(TOKEN_Lose_Efficacy);
   } else {
-    message.error(msg || NETWORK_ERROR);
+    // message.error(msg || NETWORK_ERROR);
     return Promise.reject(msg || NETWORK_ERROR);
   }
 });

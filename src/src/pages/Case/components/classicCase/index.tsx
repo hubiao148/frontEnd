@@ -15,6 +15,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import MaskForm from './MaskForm';
 import BackToTop from '@/components/BackTop';
 import { getModeList } from '@/api/case';
+const showdown = require('showdown');
 
 type MenuItem = Required<MenuProps>['items'][number];
 const { Search } = Input;
@@ -59,8 +60,12 @@ function ClassicCase() {
 
   //获取设计模式的列表
   const appendData = () => {
+    // const showdown = require('showdown');
+    // let converter = new showdown.Converter();
     getModeList().then((res) => {
-      setModeList(res.data);
+      setModeList(res.data.designModes);
+      // console.log('markdown', res.data.designModes[3].content);
+      // console.log(converter.makeHtml(res.data.designModes[3].content));
     });
   };
   useEffect(() => {
@@ -112,30 +117,33 @@ function ClassicCase() {
           onSearch={getData}
         />
         <div className={styled['card']}>
-          <InfiniteScroll
+          {/* <InfiniteScroll
             style={{ display: 'flex', flexWrap: 'wrap', paddingTop: '2rem' }}
             dataLength={modeList.length}
             next={appendData}
-            hasMore={modeList.length < 30}
+            hasMore={modeList.length < 10}
             loader={<Skeleton avatar paragraph={{ rows: 2 }} active />}
             endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
-          >
-            {modeList.map((item: any, index: any) => {
-              return (
-                <div key={index} className={styled['cardItem']}>
-                  <NavLink to={`/modeDetail/${item.id}`}>
-                    <div className={styled['image']}>
-                      <img src={item.src} alt="" />
-                    </div>
-                  </NavLink>
-                  <div className={styled['content']}>
-                    <div className={styled['title']}>{item.title}</div>
-                    <div className={styled['bottom']}>{item.description}</div>
+          > */}
+          {modeList.map((item: any, index: any) => {
+            let converter = new showdown.Converter();
+            return (
+              <div key={index} className={styled['cardItem']}>
+                <NavLink to={`/modeDetail/${item.id}`}>
+                  <div className={styled['image']}>
+                    <img src={item.headUrl} alt="" />
+                  </div>
+                </NavLink>
+                <div className={styled['content']}>
+                  <div className={styled['title']}>{item.title}</div>
+                  <div className={styled['bottom']}>
+                    {`${converter.makeHtml(item.content).slice(0, 10)}......`}
                   </div>
                 </div>
-              );
-            })}
-          </InfiniteScroll>
+              </div>
+            );
+          })}
+          {/* </InfiniteScroll> */}
         </div>
       </div>
       <BackToTop />
