@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-31 16:34:32
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-09 16:44:08
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-12-10 14:29:46
  * @FilePath: \src\src\api\login\BeforeLogin.ts
  * @Description:
  *
@@ -30,7 +30,8 @@ export function getVerifyCode(params: string) {
 export function register(data: {
   username: string;
   password: string;
-  account: string;
+  email?: string;
+  phonenumber?: string;
 }) {
   return request({
     method: 'post',

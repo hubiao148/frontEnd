@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-09 16:44:35
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-12-10 18:02:52
  * @FilePath: \src\src\pages\BeforeLogin\components\Register\index.tsx
  * @Description:
  *
@@ -35,17 +35,38 @@ function RegForm() {
   const onFinish = useDebounce(async (values: any) => {
     try {
       //todo接口
-      register({
-        username: values.username,
-        password: values.password,
-        account: values.account,
-      }).then((res) => {
-        console.log(res);
-      });
-      setTitle('请登录账号');
-      history.replace('/beforeLogin/login');
-      message.success({ content: '注册成功！', duration: 1 });
+      const regEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/
+      if(regEmail.test(values.account)){
+        register({
+          username: values.username,
+          password: values.password,
+          email: values.account
+        }).then((res:any) => {
+          console.log(res);
+          if (res.meta.code == 200) {
+            setTitle('请登录账号');
+            history.replace('/beforeLogin/login');
+            message.success({ content: '注册成功！', duration: 1 });
+          } else {
+            message.error({ content: `注册失败！${res.meta.msg}`, duration: 1 });
+          }
+        });
+        
+      } else {
+        register({
+          username: values.username,
+          password: values.password,
+          phonenumber: values.account
+        }).then((res) => {
+          console.log(res);
+        });
+        setTitle('请登录账号');
+        history.replace('/beforeLogin/login');
+        message.success({ content: '注册成功！', duration: 1 });
+      }
+      
     } catch (error) {
+      console.log(error)
       message.error({ content: '注册失败！', duration: 1 });
     }
 
