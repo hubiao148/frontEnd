@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-10-24 13:28:28
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-09 15:55:50
+ * @LastEditTime: 2022-12-09 20:10:09
  * @FilePath: \src\src\pages\techShare\index.tsx
  * @Description:
  *
@@ -52,9 +52,9 @@ function techShare(props: any) {
   const getData = async () => {};
   //左侧导航栏 前端 后端 游戏开发 其它
   const onClick: MenuProps['onClick'] = (e) => {
-    console.log(e);
+    //console.log(e);
     getShareList(e.key).then((res) => {
-      console.log('分享', res.data);
+      //console.log('分享', res.data);
       setShareList(res.data);
     });
   };
@@ -64,7 +64,7 @@ function techShare(props: any) {
     getShareNavigation().then((res) => {
       setItem(res.data.lists);
     });
-    getShareList('Front').then((res) => {
+    getShareList('1').then((res) => {
       setShareList(res.data);
     });
   }, []);

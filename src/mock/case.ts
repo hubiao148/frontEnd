@@ -216,7 +216,7 @@ export default {
   },
 
   //技术分享信息列表
-  'GET /api/techShare/shareListFront': {
+  'GET /api/techShare/shareList2': {
     status: 'success',
     data: Array.from({ length: 23 }).map((_, i) => ({
       href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
@@ -230,7 +230,7 @@ export default {
   },
 
   //技术分享信息列表
-  'GET /api/techShare/shareListEnd': {
+  'GET /api/techShare/shareList1': {
     status: 'success',
     data: Array.from({ length: 23 }).map((_, i) => ({
       href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
@@ -244,7 +244,7 @@ export default {
   },
 
   //技术分享信息列表
-  'GET /api/techShare/shareListGame': {
+  'GET /api/techShare/shareList3': {
     status: 'success',
     data: Array.from({ length: 23 }).map((_, i) => ({
       href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
@@ -258,7 +258,7 @@ export default {
   },
 
   //技术分享信息列表
-  'GET /api/techShare/shareListOther': {
+  'GET /api/techShare/shareList4': {
     status: 'success',
     data: Array.from({ length: 23 }).map((_, i) => ({
       href: 'https://gitee.com/han-changyuan/easySE_frontEnd',
