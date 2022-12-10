@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 11:52:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-26 14:45:45
+ * @LastEditTime: 2022-12-10 18:08:34
  * @FilePath: \src\src\components\Header\index.tsx
  * @Description: 头部
  *
@@ -82,7 +82,7 @@ export default () => {
     history.push('/beforeLogin/login');
   }
   function goLogout() {
-    storage.clearItem('token');
+    storage.clearAll();
     history.replace('/home');
     setPage(0);
     setRefresh(!refresh);

@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-08 16:39:58
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-12-10 16:46:37
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -43,7 +43,7 @@ function Login() {
       password: values.password,
     }).then((res) => {
       console.log(res);
-      storage.setItem('userMsg', res.data.userInfo);
+      storage.setItem('userMsg', res.data.userMsg);
       storage.setItem('token', res.data.token);
       history.replace('/home');
       message.success({ content: '登录成功！', duration: 1 });

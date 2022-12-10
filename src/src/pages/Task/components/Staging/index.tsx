@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-11-07 19:53:51
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-28 21:51:36
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-12-10 18:16:54
  * @FilePath: \src\src\pages\Task\components\Staging\index.tsx
  * @Description: 工作台
  *
@@ -16,8 +16,9 @@ import storage from '@/utils/storage';
 import StagingTeacher from './components/StagingTeacher';
 export default function index() {
   const [userState, setUserState] = useState('学生');
+  const litsType = ["管理员", "老师", "学生", "游客"]
   useEffect(() => {
-    setUserState(storage.getItem('userMsg').userType);
+    setUserState(litsType[storage.getItem('userMsg').classId - 1]);
   }, []);
   const history = useHistory();
   function goBack() {
