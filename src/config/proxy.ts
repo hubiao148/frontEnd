@@ -20,7 +20,8 @@ export default {
     '/api': {
       // target: 'http://127.0.0.1:8000',
       // target: 'http://easyse.free.idcfengye.com',
-      target:'https://4717v036u3.zicp.fun',
+      // target: 'https://4717v036u3.zicp.fun',
+      target: 'https://6609k514x3.imdo.co',
       // 配置了这个可以从 http 代理到 https easyse.free.idcfengye.com
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,

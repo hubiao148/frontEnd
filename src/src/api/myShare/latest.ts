@@ -10,9 +10,11 @@
 
 import request from '../api';
 
-export function latestData() {
+export function latestData(params:number) {
   return request({
     method: 'get',
     url: '/techqa/totechqa',
+    params
   });
 }
+

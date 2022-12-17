@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-21 17:23:47
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-08 19:30:41
+ * @LastEditTime: 2022-12-10 18:40:14
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\index.tsx
  * @Description: 技术问答详情页面
  * 
@@ -115,7 +115,7 @@ export default function index(props: any) {
 
     }
     function AddComment() {
-        addComment(msg.articleId, msg.userId, {
+        addComment(msg.articleId, storage.getItem('userMsg').id, {
             content: "不想调试啊",
             entityType: 1,
             entityId: msg.userId
@@ -155,8 +155,6 @@ export default function index(props: any) {
                     id: e.user.id // 评论者id
                 }
             });
-            // setComment(resCommentData)
-            // console.log(resComments)
             setComments(resComments)
         }).catch((err: Error) => {
             console.log(err)
@@ -243,7 +241,11 @@ export default function index(props: any) {
                                     <span><CheckCircleTwoTone twoToneColor="#52c41a" />和开发者交流问题的细节<br /></span>
                                     <span><CheckCircleTwoTone twoToneColor="#52c41a" />关注并接收问题和回答的更新提醒<br /></span>
                                     <span><CheckCircleTwoTone twoToneColor="#52c41a" />参与内容的编辑和改进，让解决方法与时俱进<br /></span>
-                                    <span><Button type='primary'>登录注册</Button></span>
+                                    <span><Button type='primary'
+                                        onClick={() => {
+                                            history.push('/beforeLogin/login');
+                                        }}
+                                    >登录注册</Button></span>
                                 </div>)
 
                             }

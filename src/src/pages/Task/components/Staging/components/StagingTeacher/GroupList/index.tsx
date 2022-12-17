@@ -7,7 +7,7 @@
  * @Description: 小组详情
  * 
  */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Breadcrumb, Space, Table, Tag } from 'antd'
 
 const { Column, ColumnGroup } = Table;
@@ -44,8 +44,13 @@ const data: DataType[] = [
         tags: '组员',
     },
 ];
-
+import { queryGroupByClassId } from '@/api/task/teacher';
 export default function index() {
+    useEffect(() => {
+        queryGroupByClassId(3).then((res) => {
+            console.log(res)
+        })
+    },[])
     return (
         <div className={style.container}>
             <div className={style['menu']}>

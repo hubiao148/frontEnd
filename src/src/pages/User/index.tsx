@@ -2,21 +2,42 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:46:41
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-15 17:33:03
+ * @LastEditTime: 2022-12-12 19:52:08
  * @FilePath: \src\src\pages\User\index.tsx
  * @Description: 个人空间
  * 
  */
 import style from './index.less'
 import Menu from '@/components/Header/components/Menu'
-export default function User(props:any) {
+import { addDesignMode } from '@/api/case';
+import { useState } from 'react';
+export default function User(props: any) {
+  const [file, setFile] = useState<File>();
   const listMenu = [
         { path: '/user/usermsgs', title: '账号信息' },
           { path: '/user/mycases', title: '我收藏的案例' },
           { path: '/user/myquestions', title: '我收藏的回答' },
           { path: '/user/myasks', title: '我回答的问题' },
           { path: '/user/myshares', title: '我发布的问题' },
-    ];
+  ];
+  function upload() {
+    let data = new FormData();
+    if (file != undefined) data.append("file", file);
+    console.log(data)
+    addDesignMode({
+      files: data,
+      sceneDesign: {
+        title: 'sds',
+        groupId: 1,//form.getFieldValue().group
+        sceneId: 1,
+        date: new Date()
+      }
+    })
+  }
+  function inputChange(e:any) {
+    console.log(e.target.files[0]);
+    setFile(e.target.files[0])
+  }
   return (
     <div>
       <div className={style.head}>

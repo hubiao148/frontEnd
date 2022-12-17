@@ -15,8 +15,8 @@ import { useHistory } from 'umi';
 import storage from '@/utils/storage';
 import StagingTeacher from './components/StagingTeacher';
 export default function index() {
-  const [userState, setUserState] = useState('学生');
-  const litsType = ["管理员", "老师", "学生", "游客"]
+  const [userState, setUserState] = useState('老师');
+  const litsType = ["管理员", "学生", "老师", "游客"]
   useEffect(() => {
     setUserState(litsType[storage.getItem('userMsg').classId - 1]);
   }, []);

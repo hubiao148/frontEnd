@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-18 16:54:33
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-09 12:15:19
+ * @LastEditTime: 2022-12-10 18:34:17
  * @FilePath: \src\src\pages\myShare\components\Latest\index.tsx
  * @Description: 
  * 
@@ -101,8 +101,7 @@ export default () => {
   const [listData, setListData] = useState(defaultListData);
   // 获取首页列表数据
   useEffect(() => {
-    latestData().then((result: any) => {
-      // console.log(result)
+    latestData(0).then((result: any) => {
       let data = result.data.techqas.filter((e: any, i: number) => i < 7).map((e: any, i: number) => {
         return {
           anser: e.techqa.commentAmount || 0, // 评论
@@ -115,7 +114,6 @@ export default () => {
           userId:e.user.id // 文章所有者id
         }
       })
-      
       setListData(data);
       setLoadingState(false)
     }).catch((err: Error) => {

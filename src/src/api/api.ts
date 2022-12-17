@@ -86,9 +86,9 @@ function request(options: any) {
 
   console.log(options);
 
-  // if (options.method.toLowerCase() === 'get') {
-  //   options.params = options.data;
-  // }
+  if (options.method.toLowerCase() === 'get') {
+    options.params = options.data;
+  }
 
   if (configEnv.env === 'prod') {
     service.defaults.baseURL = configEnv.baseApi;

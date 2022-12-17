@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-10-24 14:07:15
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-09 22:08:26
+ * @LastEditTime: 2022-12-12 19:54:36
  * @FilePath: \src\src\api\case\index.ts
  * @Description:
  *
@@ -64,7 +64,8 @@ export function getShareList(params?: string) {
 
 // 添加技术分享
 
-export function addDesignMode(data:any) {
+export function addDesignMode(data: any) {
+  console.log(data.files.get('file'))
   return request({
     url: '/techshare/designmode/add',
     method: 'post',
