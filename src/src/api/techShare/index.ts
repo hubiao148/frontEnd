@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-12-08 21:39:26
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-09 19:07:47
+ * @LastEditTime: 2022-12-12 19:15:52
  * @FilePath: \src\src\api\techShare\index.ts
  * @Description:
  *
@@ -25,10 +25,11 @@ export function getShareNavigation() {
 //   });
 // }
 
-export function uploadTeach(files: any) {
+export function uploadTeach(data: any) {
   return request({
     url: '/techshare/designmode/add',
     method: 'post',
-    files,
+    data,
+    Headers: { 'Content-Type': 'multipart/form-data' },
   });
 }

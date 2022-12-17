@@ -1,15 +1,15 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
- * @LastEditors: hcy
- * @LastEditTime: 2022-12-10 18:02:52
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-12-16 20:51:23
  * @FilePath: \src\src\pages\BeforeLogin\components\Register\index.tsx
  * @Description:
  *
  */
 import { useCallback, useEffect, useState } from 'react';
 import formValidation from '@/utils/formValidation';
-import { Form, Input, Button, Checkbox, message, Divider } from 'antd';
+import { Form, Input, Button, Checkbox, message, ConfigProvider } from 'antd';
 import { UserOutlined, LockOutlined, TeamOutlined } from '@ant-design/icons';
 import { Link, useHistory } from 'umi';
 import { useDebounce } from '@/utils/useDebounce';
@@ -35,28 +35,30 @@ function RegForm() {
   const onFinish = useDebounce(async (values: any) => {
     try {
       //todo接口
-      const regEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/
-      if(regEmail.test(values.account)){
+      const regEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+      if (regEmail.test(values.account)) {
         register({
           username: values.username,
           password: values.password,
-          email: values.account
-        }).then((res:any) => {
+          email: values.account,
+        }).then((res: any) => {
           console.log(res);
           if (res.meta.code == 200) {
             setTitle('请登录账号');
             history.replace('/beforeLogin/login');
             message.success({ content: '注册成功！', duration: 1 });
           } else {
-            message.error({ content: `注册失败！${res.meta.msg}`, duration: 1 });
+            message.error({
+              content: `注册失败！${res.meta.msg}`,
+              duration: 1,
+            });
           }
         });
-        
       } else {
         register({
           username: values.username,
           password: values.password,
-          phonenumber: values.account
+          phonenumber: values.account,
         }).then((res) => {
           console.log(res);
         });
@@ -64,9 +66,8 @@ function RegForm() {
         history.replace('/beforeLogin/login');
         message.success({ content: '注册成功！', duration: 1 });
       }
-      
     } catch (error) {
-      console.log(error)
+      console.log(error);
       message.error({ content: '注册失败！', duration: 1 });
     }
 
@@ -87,7 +88,7 @@ function RegForm() {
   };
 
   return (
-    <>
+    <ConfigProvider componentSize="large">
       <Form
         {...layout}
         name="basic"
@@ -198,7 +199,7 @@ function RegForm() {
           </Button>
         </Form.Item>
       </Form>
-    </>
+    </ConfigProvider>
   );
 }
 

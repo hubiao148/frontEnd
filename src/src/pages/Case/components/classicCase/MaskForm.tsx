@@ -7,7 +7,7 @@ import {
   Row,
   Select,
   Upload,
-  message,
+  ConfigProvider,
 } from 'antd';
 import styled from './index.less';
 import {
@@ -16,23 +16,51 @@ import {
   PlusOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
+import type { RcFile, UploadFile, UploadProps } from 'antd/es/upload/interface';
 import { useUsualFileUpload } from '@/utils/useUsualFileUpload';
 import { useBigFileUpload } from '@/utils/useBigFileUpload';
-import { addDesignMode } from '@/api/case';
 import { useEffect, useState } from 'react';
+import { uploadTeach } from '@/api/techShare';
 interface maskProps {
   isModalOpen: boolean;
   setIsModalOpen: (isModalOpen: maskProps['isModalOpen']) => void;
 }
 
 let DatePicker: any = TDatePicker;
+
+const normFile = (e: any) => {
+  console.log('Upload event:', e);
+  // const formData = new FormData();
+  // setFormData(e.fileList);
+  if (Array.isArray(e)) {
+    return e;
+  }
+  return e && e.fileList;
+};
 export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
   const [form] = Form.useForm();
   const onReset = () => {
     form.resetFields();
   };
-  const [file,setFile] = useState<any>();
-  const [video,setVideo] = useState<any>();
+  // const [formData, setFormData] = useState([{ files: '' }]);
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
+  // const [file, setFile] = useState<any>();
+  // const [video, setVideo] = useState<any>();
+  //   const props = {
+  //     onRemove:(file) => {
+  //       const index = fileList.indexOf(file);
+  //       const newFileList = fileList.slice();
+  //       newFileList.splice(index, 1);
+  //       setFileList(newFileList);
+  //     }
+  // ,
+  //     beforeUpload: (file) => {
+  //       setFileList([...fileList, file]);
+
+  //       return false;
+  //     },
+  //     fileList,
+  //   };
   // 文件上传函数
   /**
    *
@@ -50,43 +78,88 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
     //   return Upload.LIST_IGNORE;
     // }
     // setFile(File)
-    console.log(e)
+    console.log(e);
     return true;
   }
-  function videoUpload (e:File){
+
+  function videoUpload(e: File) {
     console.log(e);
     // setVideo(e);
     return true;
   }
-  function upload(e:File) {
-    console.log(form.getFieldValue())
-    let formdatas = new FormData();
-    formdatas.append('file', e);
-    console.log(e);
-    formdatas.append('video', video);
-    addDesignMode({
-      files: formdatas,
-      sceneDesign: {
-        title: form.getFieldValue().techShare,
-        groupId: 1,//form.getFieldValue().group
-        sceneId: 1,
-        date: form.getFieldValue().dateTime._d
-      }
-    }).then((res) => {
-      console.log(res)
-      return true;
-    }).catch((err:Error) => {
-      console.log(err)
-    })
+  // useEffect(() => {
+  // //获取表单中的文件
+  // const normFile = (e: any) => {
+  //   console.log('Upload event:', e);
+  //   // const formData = new FormData();
+  //   // setFormData(e.fileList);
+  //   if (Array.isArray(e)) {
+  //     return e;
+  //   }
+  //   return e && e.fileList;
+  // };
+  // }, []);
+
+  function upload(values: any) {
+    // console.log(form.getFieldValue())
+    let formData = new FormData();
+    // formdatas.append('file', e);
+    // console.log(e);
+    // formdatas.append('video', video);
+    console.log('fileList', fileList);
+    fileList.forEach((file) => {
+      // formData.append(
+      //   'files[]',
+      //   new Blob([JSON.stringify(fileList)], { type: 'application/json' }),
+      // );
+      formData.append('files[]', file as RcFile);
+    });
+    console.log('formData', formData.getAll('files[]'));
+    let sceneDesign = {
+      groupId: values.groupId,
+      year: values.year,
+      techType: values.techType,
+      techShare: values.techShare,
+      dateTime: values.dateTime,
+    };
+    formData.append('sceneDesign{}', JSON.stringify(sceneDesign));
+    // console.log('fileList', fileList);
+    uploadTeach(formData)
+      .then((res) => {
+        console.log(res);
+        return true;
+      })
+      .catch((err: Error) => {
+        console.log(err);
+      });
+    // uploadTeach({
+    //   files: formData,
+    //   sceneDesign: {
+    //     groupId: values.groupId,
+    //     year: values.year,
+    //     techType: values.techType,
+    //     techShare: values.techShare,
+    //     dateTime: values.dateTime,
+    //   },
+    // })
+    //   .then((res) => {
+    //     console.log(res);
+    //     return true;
+    //   })
+    //   .catch((err: Error) => {
+    //     console.log(err);
+    //   });
   }
+
   return (
-    <div>
-      <Form layout="vertical" form={form}>
+    <ConfigProvider componentSize="large">
+      <Form layout="vertical" form={form} onFinish={upload}>
         {/* 组号年级班级 */}
         <Row gutter={16} justify="center">
           <Col span={8}>
             <Form.Item
-              name="group"
+              initialValue="2"
+              name="groupId"
               label="组号"
               rules={[{ required: true, message: '请输入小组组号' }]}
             >
@@ -97,7 +170,7 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
             <Form.Item
               name="year"
               label="年级/班级"
-              rules={[{ required: true, message: '请输入年级' }]}
+              // rules={[{ required: true, message: '请输入年级' }]}
             >
               <Select placeholder="请选择所在班级">
                 <Select.Option value="2021级3班">2021级3班</Select.Option>
@@ -112,6 +185,7 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
         <Row gutter={16} justify="center">
           <Col span={8}>
             <Form.Item
+              initialValue="前端"
               name="techType"
               label="技术类别"
               rules={[{ required: true, message: '请输入类别' }]}
@@ -126,6 +200,7 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
           </Col>
           <Col span={8}>
             <Form.Item
+              initialValue="ss"
               name="techShare"
               label="技术分享课题"
               rules={[{ required: true, message: '请输入您的技术分享课题' }]}
@@ -137,8 +212,29 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
         {/* 文件上传 */}
         <Row gutter={16} justify="center">
           <Col span={8}>
-            <Form.Item label="文件上传" valuePropName="fileList">
-              <Upload.Dragger name="files" beforeUpload={(e) => upload(e)}>
+            <Form.Item
+              label="文件上传"
+              valuePropName="fileList"
+              getValueFromEvent={normFile}
+            >
+              {/* <Upload.Dragger name="files" beforeUpload={(e) => upload(e)}>
+                <p className="ant-upload-drag-icon">
+                  <FilePptOutlined />
+                </p>
+                <p className="ant-upload-text">点击/拖拽/文档文件到此处上传</p>
+              </Upload.Dragger> */}
+              <Upload.Dragger
+                beforeUpload={(file) => {
+                  setFileList([...fileList, file]);
+                  return false;
+                }}
+                onRemove={(file) => {
+                  const index = fileList.indexOf(file);
+                  const newFileList = fileList.slice();
+                  newFileList.splice(index, 1);
+                  setFileList(newFileList);
+                }}
+              >
                 <p className="ant-upload-drag-icon">
                   <FilePptOutlined />
                 </p>
@@ -148,11 +244,34 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
           </Col>
           <Col span={8}>
             <Form.Item label="视频上传" valuePropName="fileList">
-              <Upload.Dragger name="files" action="/upload.do" beforeUpload={(e) => videoUpload(e)}>
+              {/* <Upload.Dragger name="files" beforeUpload={(e) => videoUpload(e)}>
                 <p className="ant-upload-drag-icon">
                   <VideoCameraOutlined />
                 </p>
                 <p className="ant-upload-text">点击/拖拽/ 视频到此处上传</p>
+              </Upload.Dragger> */}
+              {/* <Upload.Dragger name="files" beforeUpload={() => false}>
+                <p className="ant-upload-drag-icon">
+                  <VideoCameraOutlined />
+                </p>
+                <p className="ant-upload-text">点击/拖拽/ 视频到此处上传</p>
+              </Upload.Dragger> */}
+              <Upload.Dragger
+                beforeUpload={(file) => {
+                  setFileList([...fileList, file]);
+                  return false;
+                }}
+                onRemove={(file) => {
+                  const index = fileList.indexOf(file);
+                  const newFileList = fileList.slice();
+                  newFileList.splice(index, 1);
+                  setFileList(newFileList);
+                }}
+              >
+                <p className="ant-upload-drag-icon">
+                  <FilePptOutlined />
+                </p>
+                <p className="ant-upload-text">点击/拖拽/视频到此处上传</p>
               </Upload.Dragger>
             </Form.Item>
           </Col>
@@ -168,24 +287,6 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
             </Form.Item>
           </Col>
         </Row>
-        {/* 备注
-        <Row gutter={16}>
-          <Col span={16}>
-            <Form.Item
-              name="description"
-              label="备注"
-              rules={[
-                {
-                  required: false,
-                  message: '添加技术分享备注',
-                },
-              ]}
-            >
-              <Input.TextArea rows={4} placeholder="添加技术分享备注" />
-            </Form.Item>
-          </Col>
-        </Row> */}
-        {/* 提交内容 */}
         <Row gutter={16} justify="center">
           <Col span={4}>
             <Form.Item>
@@ -193,7 +294,7 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
                 type="primary"
                 htmlType="submit"
                 className={styled['form-button']}
-                onClick={upload}
+                // onClick={upload}
               >
                 提交
               </Button>
@@ -212,6 +313,6 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
           </Col>
         </Row>
       </Form>
-    </div>
+    </ConfigProvider>
   );
 }
