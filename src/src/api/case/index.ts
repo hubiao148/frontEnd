@@ -1,8 +1,13 @@
 /*
  * @Author: zyqqun
  * @Date: 2022-10-24 14:07:15
+<<<<<<< HEAD
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-20 19:33:43
+ * @LastEditTime: 2022-12-24 23:49:18
+=======
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-12-12 19:54:36
+>>>>>>> edfe9a27a3f7d89024d38b889bda7a78fc5f1b7a
  * @FilePath: \src\src\api\case\index.ts
  * @Description:
  *
@@ -50,5 +55,17 @@ export function SearchProjectList(params?: string) {
     url: `examples/osp/search/${params}`,
     method: 'get',
     params,
+  });
+}
+
+// 添加技术分享
+
+export function addDesignMode(data: any) {
+  console.log(data.files.get('file'));
+  return request({
+    url: '/techshare/designmode/add',
+    method: 'post',
+    data,
+    Headers: { 'Content-Type': 'multipart/form-data' },
   });
 }

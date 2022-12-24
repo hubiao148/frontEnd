@@ -17,7 +17,7 @@ export default function myShare(props: any) {
   const history = useHistory();
   const listMenu = [
     { path: '/myshare/latest', title: '最新' },
-    { path: '/myshare/reply', title: '待回答' },
+    { path: '/myshare/reply', title: '最热' },
     { path: '/myshare/mouth', title: '月榜' },
     { path: '/myshare/week', title: '周榜' },
   ];

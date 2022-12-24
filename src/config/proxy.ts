@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-08 19:38:37
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-24 19:41:19
+ * @LastEditTime: 2022-12-24 23:48:37
  * @FilePath: \src\config\proxy.ts
  * @Description:
  *
@@ -24,6 +24,7 @@ export default {
       //target: 'http://h66kyy.natappfree.cc',
       // 配置了这个可以从 http 代理到 https easyse.free.idcfengye.com
       // 依赖 origin 的功能可能需要这个，比如 cookie
+      secure: false, // 不验证证书
       changeOrigin: true,
       pathRewrite: { '^/api': '' },
     },

@@ -12,7 +12,7 @@ import request from '../api';
 interface data {
   title: string;
   content: string;
-  userId:number
+  userId: number
 }
 
 export function addArticle(data:data) {

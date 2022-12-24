@@ -2,27 +2,19 @@
  * @Author: hcy
  * @Date: 2022-11-09 16:27:10
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-26 14:38:29
+ * @LastEditTime: 2022-12-24 17:31:13
  * @FilePath: \src\src\pages\Task\components\Staging\components\StagingTeacher\index.tsx
  * @Description: 老师工作台
  * 
  */
 import React, { useEffect, useState } from 'react'
-import { Divider, List, Select, Button, Pagination, Skeleton, Progress, Statistic } from 'antd';
+import { Divider, List, Select, Button, Pagination, Skeleton, Progress, Statistic, message } from 'antd';
 import style from './index.less'
 import { Link, useHistory } from 'umi';
 import { useThrottle } from '@/utils/useThrottle';
 import { number } from 'echarts/core';
-export default function index() {
-    const [loading, setLoading] = useState(false);
-    const history = useHistory();
-    useEffect(() => {
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false);
-        }, 500);
-    }, [])
-    /**
+import { deleteGroupById, queryGroupByGradeId, queryGroupList } from '@/api/task/teacher';
+/**
      * 
      * grade:年级
      * class:班级
@@ -34,19 +26,85 @@ export default function index() {
      * 
      */
 
-    const data = [
-        { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true },
-        { grade: '2020', class: '4', gp: '2', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true },
-        { grade: '2020', class: '4', gp: '3', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true },
-        { grade: '2020', class: '4', gp: '4', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true },
-        { grade: '2020', class: '3', gp: '5', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true },
-        { grade: '2020', class: '4', gp: '6', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true },
-    ];
-    function searchMsg() {
+const da = [
+    { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true ,id:1}
+];
+export default function index() {
+    const [loading, setLoading] = useState(false);
+    const history = useHistory();
+    const [data, setData] = useState(da);
+    useEffect(() => {
         setLoading(true);
-        setTimeout(() => {
+        queryGroupList().then((result) => {
+            console.log(result.data)
+            let resData = result.data.groups.map((i:any) => {
+                console.log(i)
+                return {
+                    grade: i.group.gradeId,
+                    class: i.group.classId,
+                    gp: i.group.groupName,
+                    gpN: i.group.projectName,
+                    cp: i.group.progress,
+                    noUp: i.num,
+                    lUp: i.upload==='0'?false:true,
+                    id: i.group.id
+                }
+            })
+            console.log(resData)
+            setData(resData)
             setLoading(false);
-        }, 1000);
+        })
+    }, [])
+    // 搜索
+    function searchMsg() {
+        console.log(111)
+        setLoading(true);
+        queryGroupByGradeId(2020).then((res) => {
+            console.log(res.data.res[0].data.groups)
+            let resData = res.data.res[0].data.groups.map((i:any) => {
+                console.log(i)
+                return {
+                    grade: i.group.gradeId,
+                    class: i.group.classId,
+                    gp: i.group.groupName,
+                    gpN: i.group.projectName,
+                    cp: i.group.progress,
+                    noUp: i.num,
+                    lUp: i.upload === '0' ? false : true,
+                    id: i.group.id
+                }
+            })
+            console.log(resData)
+            setData(resData)
+            setLoading(false);
+        })
+    }
+    function deleteById(id: number) {
+        console.log(id)
+        deleteGroupById(id).then((res) => {
+            console.log(res)
+        })
+        setLoading(true);
+        message.success({ content: '删除小组成功！', duration: 1 });
+        queryGroupList().then((result) => {
+            console.log(result.data)
+            let resData = result.data.groups.map((i: any) => {
+                console.log(i)
+                return {
+                    grade: i.group.gradeId,
+                    class: i.group.classId,
+                    gp: i.group.groupName,
+                    gpN: i.group.projectName,
+                    cp: i.group.progress,
+                    noUp: i.num,
+                    lUp: i.upload === '0' ? false : true,
+                    id: i.group.id
+                }
+            })
+            console.log(resData)
+            setData(resData)
+            setLoading(false);
+        })
     }
     const onSearchMsg = useThrottle(searchMsg, 700);
     const [defaultYear] = useState((new Date()).getFullYear() - 2)
@@ -159,17 +217,17 @@ export default function index() {
                             (<div className={style.msg}>
                                 <div>{item.grade}级</div>
                                 <div>{item.class}班</div>
-                                <div>{item.gp}组</div>
+                                <div>{item.gp}</div>
                                 <div>{item.gpN}</div>
                                 <div><Progress percent={item.cp} status="active" /></div>
                                 <div> <Statistic title="未完成上传次数" value={item.noUp}></Statistic>  </div>
                                 <div> <Statistic title="上次文件上传与否" value={item.lUp ? '是' : '否'}></Statistic>  </div>
                                 <div style={{ fontSize: '14px' }}>
-                                    <Link to='/task/taskmanage'>查看</Link>
+                                    <Link to={`/task/taskmanage/${item.id}`}>查看</Link>
                                     <Divider type="vertical" />
-                                    <Link to='/task/groupDetail'>编辑小组</Link>
+                                        <Link to={`/task/groupDetail/${item.id}`}>编辑小组</Link>
                                     <Divider type="vertical" />
-                                    <a href="">删除</a>
+                                        <a href="" onClick={() => deleteById(item.id)}>删除</a>
                                 </div>
                             </div>)
                             : (<Skeleton loading={loading} active paragraph={{ rows: 1, width: '100%' }} title={false}>

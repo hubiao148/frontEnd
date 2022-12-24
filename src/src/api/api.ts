@@ -21,7 +21,7 @@ export const service = axios.create({
   //基本地址
   baseURL: mock ? configEnv.mockApi : configEnv.baseApi,
   //设置超时时间
-  timeout: 10000,
+  timeout: 100000,
   // headers: {
   //     // "content-type": "application/json",
   //     // "content-type": "application /x-www-urlcoded",
@@ -30,7 +30,7 @@ export const service = axios.create({
   // }
   headers: {
     'Access-Control-Allow-Origin': '*',
-    // 'content-type': 'application/json',
+    'content-type': 'application/json',
   },
 });
 /***
@@ -40,7 +40,7 @@ export const service = axios.create({
  */
 
 service.interceptors.request.use((req: any) => {
-  //console.log(req);
+  // console.log(req);
   const headers = req.headers;
   if (!headers.Authorization) headers.Authorization = 'hcy';
 
@@ -86,9 +86,9 @@ function request(options: any) {
 
   console.log(options);
 
-  // if (options.method.toLowerCase() === 'get') {
-  //   options.params = options.data;
-  // }
+  if (options.method.toLowerCase() === 'get') {
+    options.params = options.data;
+  }
 
   if (configEnv.env === 'prod') {
     service.defaults.baseURL = configEnv.baseApi;

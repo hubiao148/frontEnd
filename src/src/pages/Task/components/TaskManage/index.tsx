@@ -1,83 +1,101 @@
 import React, { useEffect, useState } from 'react';
-import { List, Skeleton, Breadcrumb, Pagination } from 'antd';
+import { List, Skeleton, Breadcrumb, Pagination, message } from 'antd';
 import style from './index.less';
-import { Link } from 'umi';
+import { Link, useHistory, useParams } from 'umi';
 import storage from '@/utils/storage';
+import { deleteTaskById, queryGroupTaskById } from '@/api/task/teacher';
 
 const count = 6;
-
+const list1 = [
+  {
+    taskName: '1给我把项目做完',
+    dec: '权限控制，动态路由，上分',
+    deadLine: '2022-11-21',
+    sUp: true,
+    mainAuth: 'hcy',
+    id: 1,
+    teacher:false
+  }
+];
 export default function index() {
+  const history = useHistory();
   const [initLoading, setInitLoading] = useState(true);
-  const [userState, setUserState] = useState('学生');
+  const [userState, setUserState] = useState('老师');
+  const litsType = ["管理员", "学生", "老师", "游客"]
+  const params: { id: any } = useParams();
   useEffect(() => {
     setUserState(storage.getItem('userMsg').userType);
-    setTimeout(() => {
+    try {
+      if (storage.getItem('userMsg').classId)
+        setUserState(litsType[storage.getItem('userMsg').classId - 1]);
+      else
+        history.push('/login');
+    } catch {
+      history.push('beforeLogin/login');
+    }
+    setInitLoading(true);
+    queryGroupTaskById(params.id).then((res) => {
+      let resData = res.data.tasks.map((i: any) => {
+        return {
+          taskName: i.taskName,
+          dec: i.story,
+          deadLine: i.finisheddate.split('T')[0],
+          sUp: true,
+          mainAuth: i.assignedto,
+          id: i.id,
+          teacher: false,
+        }
+      })
+      let resData1 = res.data.ttasks.map((i: any) => {
+        return {
+          taskName: i.name,
+          dec: i.info,
+          deadLine: i.finisheddate.split('T')[0],
+          sUp: i.upload==='0'?false:true,
+          mainAuth: i.auther,
+          id: i.id,
+          teacher:true,
+        }
+      })
+      setList(resData.concat(resData1))
       setInitLoading(false);
-    }, 1500);
+    })
   }, []);
 
-  let list1 = [
-    {
-      taskName: '1给我把项目做完',
-      dec: '权限控制，动态路由，上分',
-      deadLine: '2022-11-21',
-      sUp: true,
-      mainAuth:'hcy'
-    },
-    {
-      taskName: '2给我把项目做完',
-      dec: '权限控制，动态路由，上分',
-      deadLine: '2022-11-21',
-      sUp: true,
-      mainAuth: 'hcy'
-    },
-    {
-      taskName: '3给我把项目做完',
-      dec: '权限控制，动态路由，上分',
-      deadLine: '2022-11-21',
-      sUp: true,
-      mainAuth: 'hcy'
-    },
-    {
-      taskName: '4给我把项目做完',
-      dec: '权限控制，动态路由，上分',
-      deadLine: '2022-11-21',
-      sUp: true,
-      mainAuth: 'hcy'
-    },
-    {
-      taskName: '5给我把项目做完',
-      dec: '权限控制，动态路由，上分',
-      deadLine: '2022-11-21',
-      sUp: true,
-      mainAuth: 'hcy'
-    },
-    {
-      taskName: '6给我把项目做完',
-      dec: '权限控制，动态路由，上分',
-      deadLine: '2022-11-21',
-      sUp: true,
-      mainAuth: 'hcy'
-    },
-    {
-      taskName: '7给我把项目做完',
-      dec: '权限控制，动态路由，上分',
-      deadLine: '2022-11-21',
-      sUp: true,
-      mainAuth: 'hcy'
-    },
-    {
-      taskName: '8给我把项目做完',
-      dec: '权限控制，动态路由，上分',
-      deadLine: '2022-11-21',
-      sUp: true,
-      mainAuth: 'hcy'
-    },
-  ];
+ 
   const [list, setList] = useState(list1);
   function deleteTask(i: any) {
-    list1 = list1.filter((e, it) => it != i);
-    setList(list1);
+    deleteTaskById(i).then((res) => {
+      console.log(res)
+      message.success({ content: '删除任务成功！', duration: 1 });
+    })
+    setInitLoading(true);
+    queryGroupTaskById(params.id).then((res) => {
+      let resData = res.data.tasks.map((i: any) => {
+        return {
+          taskName: i.taskName,
+          dec: i.story,
+          deadLine: i.finisheddate.split('T')[0],
+          sUp: true,
+          mainAuth: i.assignedto,
+          id: i.id,
+          teacher: false,
+        }
+      })
+      let resData1 = res.data.ttasks.map((i: any) => {
+        return {
+          taskName: i.name,
+          dec: i.info,
+          deadLine: i.finisheddate.split('T')[0],
+          sUp: i.upload === '0' ? false : true,
+          mainAuth: i.auther,
+          id: i.id,
+          teacher: true,
+        }
+      })
+      setList(resData.concat(resData1))
+      setInitLoading(false);
+    })
   }
   return (
     <div className={style.container}>
@@ -106,7 +124,7 @@ export default function index() {
             </div>
           }
           footer={
-            list.length > count ? (
+            list.length > 0 ? (
               <div className={style.footer}>
                 <Pagination pageSize={count} total={30} responsive={true} />
               </div>
@@ -116,7 +134,7 @@ export default function index() {
             <List.Item
               actions={[
                 userState == '老师' ? (
-                  <Link key="list-look" to="/task/lookTask">
+                  <Link key="list-look" to={`/task/lookTask/${item.id}/${item.teacher===true?1:0}`}>
                     查看
                   </Link>
                 ) : (
@@ -124,7 +142,7 @@ export default function index() {
                     编辑
                   </Link>
                 ),
-                <a key="list-delete" onClick={() => deleteTask(i)}>
+                <a key="list-delete" onClick={() => deleteTask(item.id)}>
                   删除
                 </a>,
               ]}

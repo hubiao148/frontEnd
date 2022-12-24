@@ -2,14 +2,15 @@
  * @Author: hcy
  * @Date: 2022-10-19 21:52:24
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-05 16:27:36
+ * @LastEditTime: 2022-12-24 22:41:26
  * @FilePath: \src\src\pages\myShare\components\HotTag\index.tsx
  * @Description: 热门标签
  * 
  */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Divider } from 'antd'
 import style from './index.less'
+import { hotTags } from '@/api/myShare/hotTag'
 export default function index() {
     const tagData = [
         {
@@ -68,13 +69,27 @@ export default function index() {
             color: '#62FF6C'
         }
     ]
+    const [tagsData, setTagsData] = useState(tagData);
+    useEffect(() => {
+        hotTags(1).then((res) => {
+            let resData = res.data.topics.map((e:any, i:number) => {
+                return {
+                    title: e.description,
+                    bcColor: tagData[i % 12].bcColor,
+                    color: tagData[i % 12].color
+                }
+            })
+            console.log(resData)
+            setTagsData(resData)
+        })
+    },[])
     return (
         <div className={style.container}>
             <div>热门标签</div>
             <Divider style={{ marginTop: '1px', marginBottom: '1px' }} />
             <div>
                 {
-                    tagData.map((e, i) => {
+                    tagsData.map((e, i) => {
                         return (
                             <div style={{ backgroundColor: e.bcColor, color: e.color }} key={i}> <div className={style.mask}></div> <span>{e.title}</span></div>
                         )

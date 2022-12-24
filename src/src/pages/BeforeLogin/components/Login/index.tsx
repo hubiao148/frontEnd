@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-17 16:04:27
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-12-24 22:06:54
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -55,6 +55,7 @@ function Login() {
       console.log(res);
       storage.setItem('userMsg', res.data.userMsg);
       storage.setItem('token', res.data.token);
+      storage.setItem('roleId', res.data.roleId);
       history.replace('/home');
       message.success({ content: '登录成功！', duration: 1 });
     });
