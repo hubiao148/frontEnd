@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-18 16:54:33
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-06 15:45:11
+ * @LastEditTime: 2022-12-24 21:38:37
  * @FilePath: \src\src\pages\myShare\components\Week\index.tsx
  * @Description: 
  * 
@@ -102,6 +102,7 @@ export default () => {
   ]
   const [listData, setListData] = useState(defaultListData);
   const [page] = useAtom(divider2);
+  const [total, setTotal] = useState(10)
   // 获取首页列表数据
   useEffect(() => {
     setLoadingState(true)
@@ -118,6 +119,7 @@ export default () => {
           userId: e.user.id // 文章所有者id
         }
       })
+      setTotal(result.data.techqas.length)
       setListData(data);
       setLoadingState(false)
     }).catch((err: Error) => {
@@ -126,7 +128,7 @@ export default () => {
   }, [page])
   return (
     <>
-      <Common listData={listData} num={7} loading={loadingState} id={2}></Common>
+      <Common listData={listData} num={7} loading={loadingState} id={2} total={total}></Common>
     </>
   )
 }

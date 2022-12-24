@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-15 16:59:45
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-08 19:00:53
+ * @LastEditTime: 2022-12-24 20:48:22
  * @FilePath: \src\src\pages\User\components\Common\index.tsx
  * @Description: 多个页面共用的组件
  * 
@@ -28,7 +28,8 @@ interface Data {
   }[] | null,
   num?: number,//最大展示个数
   loading: boolean,
-  id:number
+  id: number,
+  total:number
 }
 export default (props: Data) => {
   const [page0, setPage0] = useAtom(divider0);
@@ -115,11 +116,11 @@ export default (props: Data) => {
               })
             }
             {
-              props.listData.length !=0 ? (
+              props.listData.length !=0  ? (
                 <div>
                   <Pagination
                     onChange={pageChange}
-                    pageSize={props.num || 4} total={40} responsive={true} />
+                    pageSize={props.num || 4} total={props.total} responsive={true} />
                 </div>
               ) : null
             }

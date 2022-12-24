@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-18 16:54:33
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-19 21:33:56
+ * @LastEditTime: 2022-12-24 21:41:22
  * @FilePath: \src\src\pages\myShare\components\Mouth\index.tsx
  * @Description: 
  * 
@@ -100,11 +100,13 @@ export default () => {
     }
   ]
   const [listData, setListData] = useState(defaultListData);
+  const [total, setTotal] = useState(10)
   const [page] = useAtom(divider3);
   // 获取首页列表数据
   useEffect(() => {
     setLoadingState(true)
     latestData(3).then((result: any) => {
+      console.log(result)
       let data = result.data.techqas.filter((e: any, i: number) => i < 7 * page && i >= 7 * (page - 1)).map((e: any, i: number) => {
         return {
           anser: e.techqa.commentAmount || 0, // 评论
@@ -117,6 +119,7 @@ export default () => {
           userId: e.user.id // 文章所有者id
         }
       })
+      setTotal(result.data.techqas.length)
       setListData(data);
       setLoadingState(false)
     }).catch((err: Error) => {
@@ -125,7 +128,7 @@ export default () => {
   }, [page])
   return (
     <>
-      <Common listData={listData} num={7} loading={loadingState} id={3}></Common>
+      <Common listData={listData} num={7} loading={loadingState} id={3} total={total}></Common>
     </>
   )
 }

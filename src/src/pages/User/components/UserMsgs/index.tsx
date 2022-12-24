@@ -2,15 +2,16 @@
  * @Author: hcy
  * @Date: 2022-10-13 19:30:41
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-10 18:14:34
+ * @LastEditTime: 2022-12-24 22:10:40
  * @FilePath: \src\src\pages\User\components\UserMsgs\index.tsx
  * @Description: 
  * 
  */
-import React from 'react'
+import React, { useEffect } from 'react'
 import style from './index.less'
 import { Avatar, Button } from 'antd'
 import storage from '@/utils/storage'
+import { queryMsgById } from '@/api/user'
 export default () => {
   const listMenu = storage.getItem("userMsg") || {
     userType: '学生',
@@ -19,6 +20,11 @@ export default () => {
     phoneNum:'19980825396'
   }
   const litsType = ["管理员", "老师", "学生", "游客"]
+  useEffect(() => {
+    queryMsgById(storage.getItem("userMsg").id).then((res) => {
+      console.log(res)
+    })
+  },[])
   return (
     <div className={style.usermsgs}>
       <div className={style.topcontainer}>
@@ -26,7 +32,7 @@ export default () => {
           src="https://joeschmoe.io/api/v1/random"
           size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }} //响应式头
         />
-        <div className={style.mark}>{litsType[listMenu.classId-1]}</div>
+        <div className={style.mark}>{litsType[storage.getItem('roleId')-1]}</div>
       </div>
       <div className={style.msg}>
         <div>姓名:{listMenu.username}<span className={style.btn}>修改</span></div>
