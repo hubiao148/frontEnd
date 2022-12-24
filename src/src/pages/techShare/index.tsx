@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-10-24 13:28:28
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-09 20:10:09
+ * @LastEditTime: 2022-12-24 23:45:45
  * @FilePath: \src\src\pages\techShare\index.tsx
  * @Description:
  *
@@ -15,8 +15,9 @@ import type { MenuProps } from 'antd';
 import { Link } from 'umi';
 import styled from './index.less';
 import BackToTop from '@/components/BackTop';
-import { getShareNavigation } from '@/api/techShare';
-import { getShareList } from '@/api/case';
+import { getShareNavigation, getTeachShareList } from '@/api/techShare';
+import FileViewer from 'react-file-viewer';
+import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer';
 const { Search } = Input;
 type MenuItem = Required<MenuProps>['items'][number];
 function getItem(
@@ -35,37 +36,39 @@ function getItem(
   } as MenuItem;
 }
 
-interface ListProps {
-  href: string;
-  title: string;
-  avatar: string;
-  description: string;
-  content: string;
-}
+// interface ListProps {
+//   urlLists: [];
+//   title: string;
+//   avatar: string;
+//   description: string;
+//   content: string;
+// }
 
 function techShare(props: any) {
   // 左侧导航栏
   const [item, setItem] = useState<MenuItem[]>([]);
-  const [shareList, setShareList] = useState<ListProps[] | undefined>();
+  //技术分享文件列表
+  const [shareList, setShareList] = useState<[] | undefined>();
 
   // 搜索框搜索
   const getData = async () => {};
   //左侧导航栏 前端 后端 游戏开发 其它
   const onClick: MenuProps['onClick'] = (e) => {
-    //console.log(e);
-    getShareList(e.key).then((res) => {
+    console.log(e);
+    getTeachShareList(e.key).then((res) => {
       //console.log('分享', res.data);
-      setShareList(res.data);
+      setShareList(res.data.lists);
     });
   };
   //加载技术分享的文件
   useEffect(() => {
-    // 获取左侧导航栏 开源项目分类
+    // 获取左侧导航栏 技术分享分类
     getShareNavigation().then((res) => {
+      //console.log(res.data);
       setItem(res.data.lists);
     });
-    getShareList('1').then((res) => {
-      setShareList(res.data);
+    getTeachShareList('1').then((res) => {
+      setShareList(res.data.lists);
     });
   }, []);
 
@@ -88,6 +91,12 @@ function techShare(props: any) {
         'group',
       ),
     ]),
+  ];
+  const docs = [
+    { uri: 'https://url-to-my-pdf.pdf' }, // Remote file
+    {
+      uri: 'http://easyse-file.oss-cn-chengdu.aliyuncs.com/files/2022/12/19/实验大纲《Java高级开发技术》.docx',
+    }, // Local File
   ];
 
   return (
@@ -120,6 +129,7 @@ function techShare(props: any) {
           onSearch={getData}
         />
         <List
+          loading
           className={styled.list}
           itemLayout="vertical"
           size="large"
@@ -130,14 +140,24 @@ function techShare(props: any) {
             pageSize: 5,
           }}
           dataSource={shareList}
-          renderItem={(item: ListProps) => (
-            <List.Item key={item.title}>
+          renderItem={(item: any) => (
+            <List.Item key={item.sceneDesign.title}>
               <List.Item.Meta
-                avatar={<Avatar src={item.avatar} />}
-                title={item.title}
-                description={item.description}
+                // avatar={<Avatar src={item.avatar} />}
+                title={item.sceneDesign.title}
+                description={item.sceneDesign.title}
               />
-              {item.content}
+              {/* {item.content} */}
+              {/* <FileViewer
+                fileType={'docx'}
+                filePath={
+                  'http://easyse-file.oss-cn-chengdu.aliyuncs.com/files/2022/12/19/实验大纲《Java高级开发技术》.docx'
+                }
+              /> */}
+              <DocViewer
+                documents={docs}
+                pluginRenderers={DocViewerRenderers}
+              />
             </List.Item>
           )}
         />

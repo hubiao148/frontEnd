@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-08 19:38:37
- * @LastEditors: hcy
- * @LastEditTime: 2022-12-09 18:47:03
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-12-24 19:41:19
  * @FilePath: \src\config\proxy.ts
  * @Description:
  *
@@ -17,10 +17,11 @@
  */
 export default {
   dev: {
+    allowedHosts: 'all',
     '/api': {
-      // target: 'http://127.0.0.1:8000',
-      // target: 'http://easyse.free.idcfengye.com',
-      target:'https://4717v036u3.zicp.fun',
+      //target: 'http://kfc4mc.natappfree.cc ',
+      target: 'http://easyse.free.idcfengye.com',
+      //target: 'http://h66kyy.natappfree.cc',
       // 配置了这个可以从 http 代理到 https easyse.free.idcfengye.com
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,

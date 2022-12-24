@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-11-23 18:40:02
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-23 19:43:01
+ * @LastEditTime: 2022-12-24 21:50:05
  * @FilePath: \src\src\pages\Message\index.tsx
  * @Description:
  *
@@ -12,63 +12,48 @@ import React, { useEffect, useState } from 'react';
 import { MailOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu, List, Avatar } from 'antd';
-import { getShareList } from '@/api/case';
 import styled from './index.less';
 import NoMessage from './noMessage';
+import { getMessage } from '@/api/message';
+import storage from '@/utils/storage';
 const items: MenuProps['items'] = [
   {
     label: '评论',
     key: 'comment',
   },
   {
-    label: '回复',
-    key: 'reply',
+    label: '点赞',
+    key: 'like',
   },
   {
-    label: '系统消息',
-    key: 'csMessage',
-  },
-];
-
-const data = [
-  {
-    title: '***评论了你的** 1',
-  },
-  {
-    title: '***评论了你的** 2',
-  },
-  {
-    title: '***评论了你的** 3',
-  },
-  {
-    title: '***评论了你的** 4',
-  },
-  {
-    title: '***评论了你的** 5',
-  },
-  {
-    title: '***评论了你的** 6',
+    label: '关注',
+    key: 'follow',
   },
 ];
 
 function Message() {
+  const [hasMessage, setHasMessage] = useState(false);
   const [current, setCurrent] = useState('comment');
-  // const [shareList, setShareList] = useState<ListProps[] | undefined>();
-
-  //左侧导航栏 前端 后端 游戏开发 其它
+  const [messageList, setMessageList] = useState([]);
+  const userId = storage.getItem('userMsg').id;
+  //点击时请求不同的数据
   const onClick: MenuProps['onClick'] = (e) => {
-    // getShareList(e.key).then((res) => {
-    //   console.log('分享', res.data);
-    //   setShareList(res.data);
-    // });
+    //console.log(e);
+    getMessage({ userId: userId, topic: e.key }).then((res) => {
+      console.log(res.data.notices);
+      setHasMessage(true);
+      setMessageList(res.data.notices);
+    });
+
     setCurrent(e.key);
   };
-  //加载技术分享的文件
-  // useEffect(() => {
-  //   getShareList('Front').then((res) => {
-  //     setShareList(res.data);
-  //   });
-  // }, []);
+  //加载通知的消息
+  useEffect(() => {
+    getMessage({ userId: userId, topic: current }).then((res) => {
+      setHasMessage(true);
+      setMessageList(res.data.notices);
+    });
+  }, []);
 
   return (
     <div>
@@ -79,17 +64,31 @@ function Message() {
         items={items}
       />
       <div className={styled.MessageWra}>
-        {current === 'comment' ? (
+        {hasMessage ? (
           <List
             className={styled.list}
             itemLayout="horizontal"
-            dataSource={data}
-            renderItem={(item) => (
+            pagination={{
+              onChange: (page) => {
+                console.log(page);
+              },
+              pageSize: 5,
+            }}
+            dataSource={messageList}
+            renderItem={(item: any) => (
               <List.Item>
                 <List.Item.Meta
-                  avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                  title={<a href="https://ant.design">{item.title}</a>}
-                  description="叮！请注意，你有一份新人创作礼等待查收！坚持创作持续分享，有价值的分享值得奖励。"
+                  avatar={<Avatar src={item.fromUser.headerUrl} />}
+                  title={
+                    <a href="">{`${item.fromUser.username}${
+                      current == 'comment'
+                        ? '评论了你'
+                        : current == 'like'
+                        ? '给你点赞啦!'
+                        : '关注了你'
+                    }`}</a>
+                  }
+                  // description={item.notice.content}
                 />
               </List.Item>
             )}

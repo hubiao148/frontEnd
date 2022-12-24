@@ -2,11 +2,12 @@
  * @Author: hcy
  * @Date: 2022-11-09 17:25:40
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-15 21:45:04
+ * @LastEditTime: 2022-12-23 17:26:25
  * @FilePath: \src\src\pages\Task\components\CreateTeam\index.tsx
  * @Description: 创建团队
  *
  */
+import { createTeam } from '@/api/task';
 import {
   Button,
   Form,
@@ -25,6 +26,17 @@ export default function index() {
   const onReset = () => {
     form.resetFields();
   };
+
+  const onFinish = (values: any) => {
+    //创建项目的接口
+    createTeam({
+      TeamName: values.TeamName,
+      teamNumber: values.teamNumber,
+      linkAddress: values.linkAddress,
+    }).then((res) => {
+      console.log(res);
+    });
+  };
   return (
     <div className={styled.createTeamWrapper}>
       <div className={styled['menu']}>
@@ -39,41 +51,46 @@ export default function index() {
         </Breadcrumb>
       </div>
       <div className={styled.teamForm}>
-        <Form form={form} layout="vertical">
+        <Form form={form} onFinish={onFinish} layout="vertical">
           <Row gutter={24} justify="center">
-            <Col span={9}>
+            {/* <Col span={9}>
               <Form.Item label="团队名称" name="TeamName">
                 <Input placeholder="请输入团队名称" />
               </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={24} justify="center">
+            </Col> */}
             <Col span={9}>
               <Form.Item label="团队组号" name="teamNumber">
-                <Input placeholder="填写团队组号" />
+                <Input placeholder="填写团队组号(eg：1组)" />
               </Form.Item>
             </Col>
-          </Row>
-          <Row gutter={24} justify="center">
             <Col span={9}>
-              <Form.Item name="linkAddress" label="代码仓库地址">
+              <Form.Item
+                name="linkAddress"
+                initialValue="https://gitee.com/han-changyuan/easySE_frontEnd"
+                label="代码仓库地址"
+              >
                 <Input placeholder="gitee仓库链接" />
               </Form.Item>
             </Col>
           </Row>
-          {/* <Row gutter={24} justify="center">
-            <Col span={9}>
-              <Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className={styled['form-button']}
-                >
-                  确定
-                </Button>
+          <Row gutter={24} justify="center">
+            <Col span={18}>
+              <Form.Item label="项目名称" name="projectName">
+                <Input placeholder="请输入项目名称" />
               </Form.Item>
             </Col>
-          </Row> */}
+          </Row>
+          <Row gutter={24} justify="center">
+            <Col span={18}>
+              <Form.Item label="项目内容" name="projectContent">
+                <Input.TextArea
+                  maxLength={200}
+                  rows={7}
+                  placeholder="填写项目的主要内容或需求"
+                />
+              </Form.Item>
+            </Col>
+          </Row>
 
           <Row gutter={24} justify="center">
             <Col span={4}>
