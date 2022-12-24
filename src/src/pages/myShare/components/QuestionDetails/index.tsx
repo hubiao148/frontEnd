@@ -56,6 +56,7 @@ export default function index(props: any) {
         articleId: 1,
         userId:1
     }
+    const [text,setText] = useState('');
 
     const history = useHistory();
     const params: { id: any } = useParams();
@@ -115,20 +116,23 @@ export default function index(props: any) {
 
     }
     function AddComment() {
+        console.log(text)
         addComment(msg.articleId, storage.getItem('userMsg').id, {
-            content: "不想调试啊",
+            content: text,
             entityType: 1,
             entityId: msg.userId
         }).then((res: any) => {
             console.log(res)
+            setText("");
         }).catch((err: Error) => {
             console.log(err)
         })
+        
     }
     useEffect(() => {
         // 获取详情数据
         articleDetail(params.id).then((res) => {
-            // console.log(res.data)
+            console.log(res.data)
             let data = res.data;
             let resData = {
                 auth: data.user.username, // 文章所有者昵称
@@ -229,9 +233,13 @@ export default function index(props: any) {
                             {storage.getItem('token') ?
                                 (
                                     <div className={style.clickBtn}>
-                                        <TextArea></TextArea>
+                                        <TextArea value={text} onChange={(e) => {
+                                            setText(e.target.value)
+                                        }}></TextArea>
                                         <div style={{ marginTop: '10px' }}>
-                                            <Button style={{ marginRight: '10px' }}>重置</Button>&nbsp;&nbsp;&nbsp;
+                                            <Button onClick={() => {
+                                                setText("");
+                                            }} style={{ marginRight: '10px' }}>重置</Button>&nbsp;&nbsp;&nbsp;
                                             <Button onClick={AddComment}>发布</Button>
 
                                         </div>

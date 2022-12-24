@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-09 18:47:24
+ * @LastEditTime: 2022-12-24 15:43:55
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -108,7 +108,7 @@ export default [
           },
           {
             //任务管理
-            path: '/task/taskManage',
+            path: '/task/taskManage/:id',
             component: '@/pages/Task/components/TaskManage',
           },
           {
@@ -147,7 +147,7 @@ export default [
             component: '@/pages/Task/components/CreateClass',
           },
           {
-            path: '/task/lookTask',
+            path: '/task/lookTask/:id/:sta',
             component: '@/pages/Task/components/LookTask',
           },
           {
@@ -155,7 +155,7 @@ export default [
             component: '@/pages/Task/components/LoadTask',
           },
           {
-            path: '/task/groupDetail',
+            path: '/task/groupDetail/:id',
             component:
               '@/pages/Task/components/Staging/components/StagingTeacher/GroupList',
           },

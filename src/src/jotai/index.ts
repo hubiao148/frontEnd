@@ -10,3 +10,4 @@
 export * from './userPages'
 export * from './currentPage'
 export * from './addArticle'
+export * from './dividerPage'

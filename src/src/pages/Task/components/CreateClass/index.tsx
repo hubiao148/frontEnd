@@ -2,11 +2,12 @@
  * @Author: hcy
  * @Date: 2022-11-09 17:24:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-26 15:19:05
+ * @LastEditTime: 2022-12-24 17:42:44
  * @FilePath: \src\src\pages\Task\components\CreateClass\index.tsx
  * @Description: 创建项目
  *
  */
+import { addClass } from '@/api/task/teacher';
 import { FilePptOutlined } from '@ant-design/icons';
 import {
   Button,
@@ -18,7 +19,8 @@ import {
   Row,
   Select,
   Card,
-  Upload
+  Upload,
+  message
 } from 'antd';
 import { RcFile } from 'antd/lib/upload';
 import { useState } from 'react';
@@ -37,6 +39,17 @@ export default function index() {
   };
   //默认年级
   const [defaultYear] = useState((new Date()).getFullYear() - 2)
+  function addClassByTeacher() {
+    console.log(form.getFieldsValue())
+    let data = {
+      grade: form.getFieldsValue().grade,
+      className: form.getFieldsValue().class,
+    }
+    addClass(data).then((res) => {
+      console.log(res)
+      message.success({ content: '添加年级成功！', duration: 1 });
+    })
+  }
   return (
     <div className={styled.createProWrapper}>
       <div className={styled['menu']}>
@@ -149,6 +162,7 @@ export default function index() {
                     type="primary"
                     htmlType="submit"
                     className={styled['form-button']}
+                    onClick={addClassByTeacher}
                   >
                     确定
                   </Button>

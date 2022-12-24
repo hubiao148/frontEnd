@@ -9,7 +9,12 @@
  */
 import style from './index.less'
 import { Pagination, Avatar, Skeleton, message, Empty } from 'antd'
+import { divider0 } from '@/jotai'
+import { divider1 } from '@/jotai'
+import { divider2 } from '@/jotai'
+import { divider3 } from '@/jotai'
 import { useHistory } from 'umi'
+import { useAtom } from 'jotai'
 interface Data {
   listData: { //传值参数类型接口
     anser: number,
@@ -22,9 +27,14 @@ interface Data {
     userId:number 
   }[] | null,
   num?: number,//最大展示个数
-  loading: boolean
+  loading: boolean,
+  id:number
 }
 export default (props: Data) => {
+  const [page0, setPage0] = useAtom(divider0);
+  const [page1, setPage1] = useAtom(divider1);
+  const [page2, setPage2] = useAtom(divider2);
+  const [page3, setPage3] = useAtom(divider3);
   const history = useHistory();
   function go(id: number) {
     if (!props.loading)
@@ -32,6 +42,26 @@ export default (props: Data) => {
     else {
       message.error('加载中....');
     }
+  }
+  // 设置页数
+  function pageChange(e: any) {
+    // console.log(e)
+    switch (props.id) {
+      case 0:
+        setPage0(e)
+        break;
+      case 1:
+        setPage1(e)
+        break;
+      case 2:
+        setPage2(e)
+        break;
+      case 3:
+        setPage3(e)
+        break;
+      default:
+        setPage0(1)
+    } 
   }
   return (
     <div className={style.container}>
@@ -85,9 +115,11 @@ export default (props: Data) => {
               })
             }
             {
-              props.listData.length > ( props.num ?props.num:4) ? (
+              props.listData.length !=0 ? (
                 <div>
-                  <Pagination pageSize={props.num || 4} total={40} responsive={true} />
+                  <Pagination
+                    onChange={pageChange}
+                    pageSize={props.num || 4} total={40} responsive={true} />
                 </div>
               ) : null
             }

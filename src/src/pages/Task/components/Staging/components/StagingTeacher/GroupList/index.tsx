@@ -2,16 +2,16 @@
  * @Author: hcy
  * @Date: 2022-11-26 14:26:01
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-26 15:09:09
+ * @LastEditTime: 2022-12-24 16:19:28
  * @FilePath: \src\src\pages\Task\components\Staging\components\StagingTeacher\GroupList\index.tsx
  * @Description: 小组详情
  * 
  */
-import React, { useEffect } from 'react'
-import { Breadcrumb, Space, Table, Tag } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { Breadcrumb, Space, Table, Tag, message } from 'antd'
 
 const { Column, ColumnGroup } = Table;
-import { Link } from 'umi'
+import { Link, useParams } from 'umi'
 import style from './index.less'
 interface DataType {
     key: React.Key;
@@ -21,7 +21,7 @@ interface DataType {
     tags: string;
 }
 
-const data: DataType[] = [
+const dataC: DataType[] = [
     {
         key: '1',
         Name: 'Brown',
@@ -44,13 +44,34 @@ const data: DataType[] = [
         tags: '组员',
     },
 ];
-import { queryGroupByClassId } from '@/api/task/teacher';
+import { deleteMemberById, queryGroupDetailById } from '@/api/task/teacher';
+
 export default function index() {
+    const [data, setData] = useState(dataC);
+    const params: { id: any } = useParams();
     useEffect(() => {
-        queryGroupByClassId(3).then((res) => {
-            console.log(res)
+        queryGroupDetailById(params.id).then((res) => {
+            console.log(res.data)
+            let resData =  res.data.users.map((i:any) => {
+                return {
+                    key: i.id,
+                    Name: i.username,
+                    grade: res.data.grade,
+                    class: res.data.BanJi,
+                    tags: res.data.leader===i.id?'组长':'组员',
+                }
+            })
+            console.log(resData)
+            setData(resData)
         })
-    },[])
+    }, [])
+    function deleteMember(res:any) {
+        console.log(res.key)
+        deleteMemberById(res.key).then((result) => {
+            console.log(result)
+            message.success({ content: '删除成员成功！', duration: 1 });
+        })
+    }
     return (
         <div className={style.container}>
             <div className={style['menu']}>
@@ -86,10 +107,7 @@ export default function index() {
                         key="action"
                         render={(_: any, record: DataType) => (
                             <Space size="middle">
-                                <a>{
-                                    record.tags == '组长'?'设为组员':'设为组长'
-                                }</a>
-                                <a>删除</a>
+                                <a onClick={()=>deleteMember(record)}>删除</a>
                             </Space>
                         )}
                     />

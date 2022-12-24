@@ -18,6 +18,7 @@ export default function index() {
   const [userState, setUserState] = useState('老师');
   const litsType = ["管理员", "学生", "老师", "游客"]
   useEffect(() => {
+    
     setUserState(litsType[storage.getItem('userMsg').classId - 1]);
   }, []);
   const history = useHistory();

@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-08 19:38:37
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-09 18:47:03
+ * @LastEditTime: 2022-12-24 14:58:26
  * @FilePath: \src\config\proxy.ts
  * @Description:
  *
@@ -18,12 +18,14 @@
 export default {
   dev: {
     '/api': {
-      // target: 'http://127.0.0.1:8000',
+      // target: 'http://127.0.0.1:8080',
       // target: 'http://easyse.free.idcfengye.com',
-      // target: 'https://4717v036u3.zicp.fun',
-      target: 'https://6609k514x3.imdo.co',
+      // target: 'https://4717v036u3.zicp.fun/',
+      // target: 'http://380f1215.nat123.fun',
+      target: 'http://jgajkh.natappfree.cc',
       // 配置了这个可以从 http 代理到 https easyse.free.idcfengye.com
       // 依赖 origin 的功能可能需要这个，比如 cookie
+      secure: false, // 不验证证书
       changeOrigin: true,
       pathRewrite: { '^/api': '' },
     },

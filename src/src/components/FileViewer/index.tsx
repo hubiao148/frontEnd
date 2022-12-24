@@ -33,7 +33,7 @@ export default function FileViewer(props: { file: string }) {
                 //     errorComponent={getError}
                 //     onError={(err: Error) => console.log(err)}
                 // />
-                <iframe src="https://qn.liuyinjihua.com/d%E5%9B%9B%E5%B7%9D%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6%E5%8C%96%E5%AD%A6%E4%B8%93%E4%B8%9A%E4%BA%BA%E6%89%8D%E5%9F%B9%E5%85%BB%E6%96%B9%E6%A1%88.pdf?e=1669452527&token=bs0nrwJpD1z6JJLOEOpgc9BxuHemz3IEyVIrF3dQ:CHJGNux-IBX2zmUVxt_Ahg-riUc=" width="100%" height="100%">
+                <iframe src="https://qn.liuyinjihua.com/inf3%281%29.jpg?e=1671533209&token=bs0nrwJpD1z6JJLOEOpgc9BxuHemz3IEyVIrF3dQ:oM-aMG6QfY5Hqzs4Nw87z7kytgg=" width="100%" height="100%">
                 </iframe>
             ) : (
                 <div className='file-view-warn'>暂无文件预览</div>

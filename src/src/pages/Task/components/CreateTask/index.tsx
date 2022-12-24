@@ -2,11 +2,12 @@
  * @Author: hcy
  * @Date: 2022-11-09 16:29:55
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-20 20:37:58
+ * @LastEditTime: 2022-12-24 17:28:42
  * @FilePath: \src\src\pages\Task\components\CreateTask\index.tsx
  * @Description: 创建任务
  *
  */
+import { createTaskByTeaher } from '@/api/task/teacher';
 import storage from '@/utils/storage';
 import {
   Button,
@@ -16,17 +17,27 @@ import {
   DatePicker as TDatePicker,
   Col,
   Row,
-  Select
+  Select,
+  message
 } from 'antd';
 import { useEffect, useState } from 'react';
-import { Link } from 'umi';
+import { Link, useHistory } from 'umi';
 import styled from './index.less';
 
 let DatePicker: any = TDatePicker;
 export default function index() {
-  const [userState, setUserState] = useState('学生');
+  const history = useHistory();
+  const [userState, setUserState] = useState('老师');
+  const litsType = ["管理员", "学生", "老师", "游客"]
   useEffect(() => {
-    setUserState(storage.getItem('userMsg').userType);
+    try {
+      if (storage.getItem('userMsg').classId)
+        setUserState(litsType[storage.getItem('userMsg').classId - 1]);
+      else
+        history.push('/login');
+    } catch {
+      history.push('beforeLogin/login');
+    }
   }, []);
   const [form] = Form.useForm();
   //清空表单
@@ -34,6 +45,23 @@ export default function index() {
     form.resetFields();
   };
   const [defaultYear] = useState((new Date()).getFullYear() - 2)
+  function createTask() {
+    console.log(form.getFieldsValue())
+    let outData = {
+      name: form.getFieldsValue().taskName,
+      info: form.getFieldsValue().taskDescription,
+      instruction: form.getFieldsValue().taskExplain,
+      finisheddate: form.getFieldsValue().dateTime._d.getTime(),
+      grade: form.getFieldsValue().assignGrade,
+      classId: form.getFieldsValue().assignClass,
+      groupId: form.getFieldsValue().assignGroup
+    }
+    console.log(outData)
+    createTaskByTeaher(outData).then((res) => {
+      console.log(res)
+      message.success({ content: '创建成功！', duration: 1 });
+    })
+  }
   return (
     <div className={styled.createTaskWrapper}>
       <div className={styled['menu']}>
@@ -90,7 +118,6 @@ export default function index() {
               <Col span={8}>
                 <Form.Item name="assignGrade" label="指派年级">
                   <Select
-                    defaultValue={defaultYear + '级'}
                     showSearch
                     style={{ width: 200 }}
                     placeholder="选择年级"
@@ -188,6 +215,7 @@ export default function index() {
                   type="primary"
                   htmlType="submit"
                   className={styled['form-button']}
+                  onClick={createTask}
                 >
                   确定
                 </Button>
