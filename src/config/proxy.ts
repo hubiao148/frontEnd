@@ -1,8 +1,13 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-08 19:38:37
+<<<<<<< HEAD
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-25 20:20:56
+ * @LastEditTime: 2022-12-29 21:49:29
+=======
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-12-29 17:33:24
+>>>>>>> 6af1a5874cf6a0841b4b48162a1c03f0d7e76bdc
  * @FilePath: \src\config\proxy.ts
  * @Description:
  *
@@ -19,9 +24,11 @@ export default {
   dev: {
     allowedHosts: 'all',
     '/api': {
+      // target: 'http://127.0.0.1:8080',
+      // target: 'http://easyse.free.idcfengye.com',
+      // target: 'https://4717v036u3.zicp.fun/',
+      // target: 'http://380f1215.nat123.fun',
       target: 'http://iyuyb3.natappfree.cc',
-      //target: 'http://easyse.free.idcfengye.com',
-      //target: 'http://h66kyy.natappfree.cc',
       // 配置了这个可以从 http 代理到 https easyse.free.idcfengye.com
       // 依赖 origin 的功能可能需要这个，比如 cookie
       secure: false, // 不验证证书
