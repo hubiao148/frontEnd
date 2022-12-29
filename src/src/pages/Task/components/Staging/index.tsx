@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-07 19:53:51
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-29 22:23:44
+ * @LastEditTime: 2022-12-29 22:48:03
  * @FilePath: \src\src\pages\Task\components\Staging\index.tsx
  * @Description: 工作台
  *
@@ -19,10 +19,17 @@ export default function index() {
   //页面展示得时候就请求一次user
   const [groupId, setGroupId] = useState<number>();
   const [userState, setUserState] = useState('学生');
-  const litsType = ['管理员', '学生', '老师', '游客'];
-  // useEffect(() => {
-  //   setUserState(litsType[storage.getItem('userMsg').classId - 1]);
-  // }, []);
+  const litsType = ['管理员', '老师', '学生', '游客'];
+  useEffect(() => {
+    // 选择渲染
+    try {
+      if (storage.getItem('roleId') >= 1 && storage.getItem('roleId') <= 4) {
+        setUserState(litsType[storage.getItem('roleId') - 1]);
+      } else history.push('beforeLogin/login');
+    } catch {
+      history.push('beforeLogin/login');
+    }
+  }, []);
   const history = useHistory();
   function goBack() {
     history.go(-1);
