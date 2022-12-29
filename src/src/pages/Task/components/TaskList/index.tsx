@@ -2,13 +2,13 @@
  * @Author: zyqqun
  * @Date: 2022-11-21 21:22:16
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-19 15:00:03
+ * @LastEditTime: 2022-12-25 21:34:56
  * @FilePath: \src\src\pages\Task\components\TaskList\index.tsx
  * @Description:
  *
  * Copyright (c) 2022 by zyqqun 2450100414@qq.com, All Rights Reserved.
  */
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import TaskItem from './TackItem';
 import {
   PlusOutlined,
@@ -32,32 +32,72 @@ import {
 const moment = require('moment');
 import './index.less';
 import TaskDetail from './TaskDetail';
+import {
+  createTask,
+  deleteTask,
+  getGroupId,
+  getMissionList,
+  searchTask,
+} from '@/api/task';
+import { atom, useAtom } from 'jotai';
+import storage from '@/utils/storage';
 const { Search } = Input;
 export interface taskT {
-  taskID: string;
-  title: string;
-  desc: string;
+  id: number;
+  taskName: string;
+  // desc: string;
   //startTime: string;
-  endTime: moment.Moment;
-  taskStatus: string;
+  deadline: any;
+  sta: string;
 }
 let DatePicker: any = TDatePicker;
 function TaskList() {
   const [isCreate, setIsCreate] = useState(false);
+  //任务名称
   const [curTitle, setCurTitle] = useState('');
-  const [ddl, setDDL] = useState<moment.Moment>(moment());
+  //截至时间
+  const [ddl, setDDL] = useState(moment());
   const [tasks, setTasks] = useState<taskT[]>([]);
-  const [activeTaskKey, setActiveTaskKey] = useState(' ');
+  const [activeTaskKey, setActiveTaskKey] = useState<number>(0);
   const activeTask = useMemo(() => {
-    return tasks.find((i) => i.taskID === activeTaskKey);
+    return tasks?.find((i) => i.id === activeTaskKey);
   }, [tasks, activeTaskKey]);
+  //页面展示得时候就请求一次user
+  const [groupId, setGroupId] = useState<number>();
+  const [searchValue, setSearchValue] = useState('');
 
+  //搜索任务
+  const getData = () => {
+    searchTask(searchValue).then((res) => {
+      console.log(res);
+      setTasks(res?.data?.tasks);
+    });
+  };
+
+  useEffect(() => {
+    getGroupId(20).then((res) => {
+      // console.log(res.groupId);
+      setGroupId(res.groupId);
+    });
+  }, []);
+  //获取任务列表
+  const missionList = () => {
+    getMissionList(groupId).then((res) => {
+      console.log(res);
+      setTasks(res?.data?.tasks);
+    });
+  };
+  useEffect(() => {
+    // console.log('groupId', groupId);
+    missionList();
+  }, [groupId, activeTask?.sta]);
   //点击今天 明天 自定换时间
   const handleQuickCreate = (offset: number) => {
     const d = new Date();
-    const time = d.toISOString().split('T')[0] + 'T10:00:00.000Z';
-    let momentTime = moment(time).add(offset, 'd');
-    setDDL(momentTime);
+    // const time = d.toISOString().split('T')[0] + 'T10:00:00.000Z';
+    // let momentTime = moment(time).add(offset, 'd');
+    // setDDL(momentTime);
+    setDDL(d);
   };
   const handleSelectTime = (value: moment.Moment) => {
     setDDL(value);
@@ -65,23 +105,33 @@ function TaskList() {
 
   const handleCreate = () => {
     const taskID = Date.now().toString();
-    setTasks([
-      ...tasks,
-      {
-        title: curTitle,
-        endTime: ddl,
-        desc: '',
-        taskID: taskID,
-        taskStatus: 'doing',
-      },
-    ]);
-    setIsCreate(false);
-    setCurTitle('');
-    message.success({ content: '创建成功！', duration: 1 });
+    createTask({
+      taskName: curTitle,
+      deadline: ddl,
+      groupId: groupId,
+    }).then((res) => {
+      console.log(res.data.mission);
+      setTasks([
+        ...tasks,
+        {
+          id: res.data.mission[0].id,
+          taskName: res.data.mission[0].taskName,
+          // desc: string;
+          //startTime: string;
+          deadline: res.data.mission[0].deadline,
+          sta: res.data.mission[0].sta,
+        },
+      ]);
+      setIsCreate(false);
+      setCurTitle('');
+      message.success({ content: '创建成功！', duration: 1 });
+    });
+
+    // message.success({ content: '创建成功！', duration: 1 });
   };
 
   //直接删除任务
-  const handleDelete = (taskID: string) => {
+  const handleDelete = (taskID: number) => {
     const { confirm } = Modal;
     confirm({
       title: '确定要删除此项任务吗?',
@@ -90,8 +140,11 @@ function TaskList() {
       okType: 'danger',
       cancelText: '取消',
       onOk() {
-        setTasks([...tasks.filter((i) => i.taskID !== taskID)]);
-        message.success({ content: '删除成功！', duration: 1 });
+        deleteTask(taskID).then((res) => {
+          missionList();
+          message.success({ content: '删除成功！', duration: 1 });
+        });
+        // setTasks([...tasks.filter((i) => i.id !== taskID)]);
       },
       onCancel() {},
     });
@@ -121,7 +174,14 @@ function TaskList() {
         <h1 className="title">任务列表</h1>
         <div className="left">
           <ConfigProvider componentSize="large">
-            <Search className="search" placeholder="搜索任务" />
+            <Search
+              className="search"
+              onSearch={getData}
+              onChange={(e) => {
+                setSearchValue(e.target.value);
+              }}
+              placeholder="搜索任务"
+            />
           </ConfigProvider>
           <Dropdown
             overlay={menu}
@@ -216,27 +276,28 @@ function TaskList() {
         )}
       </div>
       <div className="task-item__container">
-        {tasks.map((i) => (
+        {tasks?.map((i) => (
           <TaskItem
-            key={i.title}
-            active={activeTaskKey === i.taskID}
-            title={i.title}
-            desc={i.desc}
-            endTime={i.endTime}
-            taskStatus={i.taskStatus}
+            key={i.taskName}
+            active={activeTaskKey === i.id}
+            taskName={i.taskName}
+            // desc={i.desc}
+            deadline={i.deadline}
+            sta={i.sta}
             onUpload={() => {
-              setActiveTaskKey(i.taskID);
+              setActiveTaskKey(i.id);
             }}
-            onEdit={() => setActiveTaskKey(i.taskID)}
-            onDelete={() => handleDelete(i.taskID)}
+            onEdit={() => setActiveTaskKey(i.id)}
+            onDelete={() => handleDelete(i.id)}
           ></TaskItem>
         ))}
       </div>
       <TaskDetail
+        groupId={groupId}
         task={activeTask}
         tasks={tasks}
         setTasks={setTasks}
-        onClose={() => setActiveTaskKey('')}
+        onClose={() => setActiveTaskKey(0)}
       />
     </div>
   );

@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
- * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 15:43:55
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-12-25 18:14:15
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -102,8 +102,9 @@ export default [
             path: '/task/staging',
             component: '@/pages/Task/components/Staging',
           },
+          //小组任务
           {
-            path: '/task/manage',
+            path: '/task/groupTaskList',
             component: '@/pages/Task/components/Manage',
           },
           {

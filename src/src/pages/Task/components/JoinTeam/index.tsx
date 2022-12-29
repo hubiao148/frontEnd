@@ -2,11 +2,12 @@
  * @Author: hcy
  * @Date: 2022-11-09 17:28:28
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-16 16:33:19
+ * @LastEditTime: 2022-12-25 15:11:24
  * @FilePath: \src\src\pages\Task\components\JoinTeam\index.tsx
  * @Description: 加入团队
  *
  */
+import { joinTeam } from '@/api/task';
 import { Card, Button, Form, Input, Col, Row } from 'antd';
 import styled from './index.less';
 
@@ -16,13 +17,24 @@ export default function index() {
   const onReset = () => {
     form.resetFields();
   };
+
+  const onFinish = (values: any) => {
+    //创建项目的接口
+    joinTeam({
+      teamCode: values.inviteCode,
+      userID: 15,
+    }).then((res) => {
+      console.log(res);
+    });
+  };
+
   return (
     <div className={styled.joinTeamWrapper}>
       <Card className={styled.memberCard} title="加入团队">
-        <Form form={form} layout="vertical">
+        <Form form={form} onFinish={onFinish} layout="vertical">
           <Row gutter={24} justify="center">
             <Col span={10}>
-              <Form.Item name="inviteNumber" label="输入邀请码加入">
+              <Form.Item name="inviteCode" label="输入邀请码加入">
                 <Input placeholder="请输入要加入团队的邀请码" />
               </Form.Item>
             </Col>

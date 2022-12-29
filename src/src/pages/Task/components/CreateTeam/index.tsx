@@ -2,12 +2,13 @@
  * @Author: hcy
  * @Date: 2022-11-09 17:25:40
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-23 17:26:25
+ * @LastEditTime: 2022-12-25 15:07:47
  * @FilePath: \src\src\pages\Task\components\CreateTeam\index.tsx
  * @Description: 创建团队
  *
  */
 import { createTeam } from '@/api/task';
+import storage from '@/utils/storage';
 import {
   Button,
   Form,
@@ -26,13 +27,16 @@ export default function index() {
   const onReset = () => {
     form.resetFields();
   };
-
+  const { classId, id } = storage.getItem('userMsg');
   const onFinish = (values: any) => {
     //创建项目的接口
     createTeam({
-      TeamName: values.TeamName,
-      teamNumber: values.teamNumber,
-      linkAddress: values.linkAddress,
+      classId: classId,
+      gitUrl: values.linkAddress,
+      groupName: values.teamNumber,
+      introduction: values.projectContent,
+      leaderId: id,
+      projectName: values.projectName,
     }).then((res) => {
       console.log(res);
     });
@@ -53,11 +57,6 @@ export default function index() {
       <div className={styled.teamForm}>
         <Form form={form} onFinish={onFinish} layout="vertical">
           <Row gutter={24} justify="center">
-            {/* <Col span={9}>
-              <Form.Item label="团队名称" name="TeamName">
-                <Input placeholder="请输入团队名称" />
-              </Form.Item>
-            </Col> */}
             <Col span={9}>
               <Form.Item label="团队组号" name="teamNumber">
                 <Input placeholder="填写团队组号(eg：1组)" />
