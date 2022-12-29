@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-06 18:46:12
- * @LastEditors: hcy
- * @LastEditTime: 2022-12-10 18:20:35
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-12-25 18:16:54
  * @FilePath: \src\src\pages\Task\index.tsx
  * @Description: 实践任务
  *
@@ -16,19 +16,17 @@ const { Content, Sider } = Layout;
 import style from './index.less';
 export default function Task(props: any) {
   const history = useHistory();
-  const [userState, setUserState] = useState('老师');
-  const litsType = ["管理员", "学生", "老师", "游客"]
-  useEffect(() => {
-    try {
-      if (storage.getItem('userMsg').classId)
-        setUserState(litsType[storage.getItem('userMsg').classId - 1]);
-      else
-        history.push('/login');
-    } catch {
-      history.push('beforeLogin/login');
-    }
-    
-  }, []);
+  const [userState, setUserState] = useState('学生');
+  const litsType = ['管理员', '学生', '老师', '游客'];
+  // useEffect(() => {
+  //   try {
+  //     if (storage.getItem('userMsg').classId)
+  //       setUserState(litsType[storage.getItem('userMsg').classId - 1]);
+  //     else history.push('/login');
+  //   } catch {
+  //     history.push('beforeLogin/login');
+  //   }
+  // }, []);
   const siderTopMenu = [
     {
       toptitle: '您的学生',
@@ -63,13 +61,13 @@ export default function Task(props: any) {
       icon: <DesktopOutlined />,
     },
     {
-      key: '/task/manage',
-      label: '项目管理',
+      key: '/task/groupTaskList',
+      label: '小组任务',
       icon: <DesktopOutlined />,
     },
     {
-      key: `${userState == '学生' ? '/task/taskList' : '/task/taskManage'}`,
-      label: '任务管理',
+      key: `${userState === '学生' ? '/task/taskList' : '/task/taskManage'}`,
+      label: '学生任务',
       icon: <DesktopOutlined />,
     },
     {
