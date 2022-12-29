@@ -2,11 +2,12 @@
  * @Author: hcy
  * @Date: 2022-11-09 17:24:52
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-16 16:31:16
+ * @LastEditTime: 2022-12-23 17:04:12
  * @FilePath: \src\src\pages\Task\components\CreateProject\index.tsx
  * @Description: 创建项目
  *
  */
+import { createProject } from '@/api/task';
 import {
   Button,
   Form,
@@ -26,6 +27,15 @@ export default function index() {
   const onReset = () => {
     form.resetFields();
   };
+  const onFinish = (values: any) => {
+    //创建项目的接口
+    createProject({
+      projectName: values.projectName,
+      projectContent: values.projectContent,
+    }).then((res) => {
+      console.log(res);
+    });
+  };
   return (
     <div className={styled.createProWrapper}>
       <div className={styled['menu']}>
@@ -40,7 +50,7 @@ export default function index() {
         </Breadcrumb>
       </div>
       <div className={styled.proForm}>
-        <Form form={form} layout="vertical">
+        <Form form={form} onFinish={onFinish} layout="vertical">
           <Row gutter={24}>
             <Col span={8}>
               <Form.Item label="项目名称" name="projectName">
@@ -56,13 +66,6 @@ export default function index() {
                   rows={7}
                   placeholder="填写项目的主要内容或需求"
                 />
-              </Form.Item>
-            </Col>
-          </Row>
-          <Row gutter={24}>
-            <Col span={20}>
-              <Form.Item name="dateTime" label="结束时间">
-                <DatePicker placement="topLeft" />
               </Form.Item>
             </Col>
           </Row>

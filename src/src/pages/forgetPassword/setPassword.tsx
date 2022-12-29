@@ -3,6 +3,7 @@ import { Form, Input, Button, message } from 'antd';
 import { useDebounce } from '@/utils/useDebounce';
 import Captcha from 'react-captcha-code';
 import styled from './index.less';
+import { resetPassword } from '@/api/login/BeforeLogin';
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 18 },
@@ -23,7 +24,12 @@ function SetPassword({ account, setAccount, setCurrent }: Props) {
   }, []);
   const onFinish = useDebounce((values: any) => {
     //确认修改，todo接口
-    setCurrent(2);
+    resetPassword({ phonenumber: account, password: values.password }).then(
+      (res) => {
+        console.log(res);
+        setCurrent(2);
+      },
+    );
   }, 700);
 
   const onFinishFailed = (errorInfo: any) => {

@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-08 19:38:37
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-25 19:54:20
+ * @LastEditTime: 2022-12-29 17:33:24
  * @FilePath: \src\config\proxy.ts
  * @Description:
  *
@@ -17,6 +17,7 @@
  */
 export default {
   dev: {
+    allowedHosts: 'all',
     '/api': {
       // target: 'http://127.0.0.1:8080',
       // target: 'http://easyse.free.idcfengye.com',

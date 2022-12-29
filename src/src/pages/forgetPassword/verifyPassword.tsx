@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-10-31 17:04:18
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-09 16:52:18
+ * @LastEditTime: 2022-12-19 22:41:37
  * @FilePath: \src\src\pages\forgetPassword\verifyPassword.tsx
  * @Description:
  *
@@ -13,7 +13,7 @@ import { Form, Input, Button, Space, message } from 'antd';
 import formValidation from '@/utils/formValidation';
 import { useDebounce } from '@/utils/useDebounce';
 import styled from './index.less';
-import { getVerifyCode } from '@/api/login/BeforeLogin';
+import { getVerifyCode, verifyCode } from '@/api/login/BeforeLogin';
 import YzmButton from './yzmButton';
 
 const layout = {
@@ -23,7 +23,7 @@ const tailLayout = {
   wrapperCol: { offset: 0, span: 18 },
 };
 interface Props {
-  account: string;
+  account: any;
   setAccount: (setAccount: Props['account']) => void;
   setCurrent: (setCurrent: number) => void;
 }
@@ -31,9 +31,14 @@ interface Props {
 function VerifyPassword({ account, setAccount, setCurrent }: Props) {
   const [time] = useState(60);
   const onFinish = useDebounce((values: any) => {
-    //确认账户，todo接口
-    setAccount(values.account);
-    setCurrent(1);
+    //验证验证码是否正确
+    verifyCode({ phonenumber: values.account, code: values.Verification }).then(
+      (res) => {
+        //console.log(res);
+        setAccount(values.account);
+        setCurrent(1);
+      },
+    );
   }, 700);
 
   const onFinishFailed = (errorInfo: any) => {
@@ -42,8 +47,10 @@ function VerifyPassword({ account, setAccount, setCurrent }: Props) {
 
   const getVerify = () => {
     //获取验证码验证身份
+    //console.log(account);
+
     let callbackRes = true;
-    getVerifyCode(account).then((res: any) => {
+    getVerifyCode({ mode: 2, phonenumber: account }).then((res: any) => {
       if (res.code === -1) {
         message.error(res.message);
         callbackRes = false;
@@ -72,7 +79,13 @@ function VerifyPassword({ account, setAccount, setCurrent }: Props) {
             { validator: formValidation.validate },
           ]}
         >
-          <Input placeholder="请输入绑定的邮箱/手机号" />
+          <Input
+            onChange={(e) => {
+              // console.log();
+              setAccount(e.target.value);
+            }}
+            placeholder="请输入绑定的邮箱/手机号"
+          />
         </Form.Item>
         {/* 验证码验证 */}
         <Form.Item

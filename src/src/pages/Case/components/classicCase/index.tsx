@@ -15,6 +15,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import MaskForm from './MaskForm';
 import BackToTop from '@/components/BackTop';
 import { getModeList } from '@/api/case';
+import axios from 'axios';
 const showdown = require('showdown');
 
 type MenuItem = Required<MenuProps>['items'][number];
@@ -69,6 +70,9 @@ function ClassicCase() {
     });
   };
   useEffect(() => {
+    // const str = '<h1>哈哈哈哈差不多吧</h1>';
+    // console.log('hh', str.slice(0, 10).replace(/<[^>]+>/gi, ''));
+
     appendData();
   }, []);
 
@@ -137,7 +141,10 @@ function ClassicCase() {
                 <div className={styled['content']}>
                   <div className={styled['title']}>{item.title}</div>
                   <div className={styled['bottom']}>
-                    {`${converter.makeHtml(item.content).slice(0, 10)}......`}
+                    {`${converter
+                      .makeHtml(item.content)
+                      .slice(0, 25)
+                      .replace(/<[^>]+>/gi, '')}......`}
                   </div>
                 </div>
               </div>

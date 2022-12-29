@@ -7,7 +7,7 @@ import {
 import { Input, Avatar, List, Space, Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import styled from './index.less';
-import { getNavigation, getProjectList } from '@/api/case';
+import { getNavigation, getProjectList, SearchProjectList } from '@/api/case';
 const { Search } = Input;
 
 const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
@@ -35,10 +35,10 @@ function getItem(
 }
 
 interface ListProps {
-  href: string;
+  repUrl: string;
   title: string;
   avatar: string;
-  description: string;
+  introduction: string;
   content: string;
 }
 
@@ -46,26 +46,31 @@ function OpenProject() {
   // 左侧导航栏
   const [item, setItem] = useState<MenuItem[]>([]);
   const [projectList, setProjectList] = useState<ListProps[] | undefined>();
+  const [param, setParam] = useState('');
   // 搜索框搜索
-  const getData = async () => {};
+  const getData = async () => {
+    await SearchProjectList(param).then((res) => {
+      console.log(res);
+      setProjectList(res.data.osps);
+    });
+  };
   //左侧导航栏 开源项目分类
   const onClick: MenuProps['onClick'] = (e: any) => {
-    console.log(e);
+    //console.log('e', e);
     getProjectList(e.key).then((res) => {
-      console.log('开源', res.data);
-      setProjectList(res.data);
+      // console.log('开源', res);
+      setProjectList(res.data.osps);
     });
   };
 
   useEffect(() => {
     // 获取左侧导航栏 开源项目分类
     getNavigation().then((res) => {
-      console.log(res.data);
-      setItem(res.data);
+      setItem(res.data.lists);
     });
-    getProjectList('sort1').then((res) => {
-      console.log('开源', res.data);
-      setProjectList(res.data);
+    getProjectList('养殖').then((res) => {
+      //console.log('开源', res.data);
+      setProjectList(res.data.osps);
     });
   }, []);
 
@@ -104,6 +109,10 @@ function OpenProject() {
         className={styled['search']}
         placeholder="搜索开源项目"
         onSearch={getData}
+        onChange={(e) => {
+          console.log(e.target.value);
+          setParam(e.target.value);
+        }}
       />
       <List
         className={styled.list}
@@ -133,11 +142,19 @@ function OpenProject() {
             ]}
           >
             <List.Item.Meta
-              avatar={<Avatar src={item.avatar} />}
-              title={<a href={item.href}>{item.title}</a>}
-              description={item.description}
+              // avatar={<Avatar src={item.avatar} />}
+              title={
+                <a
+                  href={item.repUrl}
+                  target="_blank"
+                  rel="noopener noreferrer external"
+                >
+                  {item.title}
+                </a>
+              }
+              description={item.introduction}
             />
-            {item.content}
+            {/* {item.content} */}
           </List.Item>
         )}
       />

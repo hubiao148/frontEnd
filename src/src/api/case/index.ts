@@ -1,8 +1,13 @@
 /*
  * @Author: zyqqun
  * @Date: 2022-10-24 14:07:15
+<<<<<<< HEAD
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-12-24 23:49:18
+=======
  * @LastEditors: hcy
  * @LastEditTime: 2022-12-12 19:54:36
+>>>>>>> edfe9a27a3f7d89024d38b889bda7a78fc5f1b7a
  * @FilePath: \src\src\api\case\index.ts
  * @Description:
  *
@@ -30,46 +35,37 @@ export function getModeDetail(id: number) {
 // 获取开源项目左侧导航栏
 export function getNavigation() {
   return request({
-    url: '/openProject/navigation',
+    url: `examples/osp/kinds`,
     method: 'get',
   });
 }
-
-// 获取技术分享左侧导航栏
-// export function getShareNavigation() {
-//   return request({
-//     url: '/techShare/navigation',
-//     method: 'get',
-//   });
-// }
 
 // 获取开源项目信息列表
 export function getProjectList(params?: string) {
   return request({
-    url: `/openProject/projectList${params}`,
+    url: `examples/osp/kinds/${params}`,
     method: 'get',
     params,
   });
 }
 
-// 获取开源项目信息列表
-export function getShareList(params?: string) {
+// 搜索开源项目信息列表
+export function SearchProjectList(params?: string) {
   return request({
-    url: `/techShare/shareList${params}`,
+    url: `examples/osp/search/${params}`,
     method: 'get',
     params,
   });
 }
-
 
 // 添加技术分享
 
 export function addDesignMode(data: any) {
-  console.log(data.files.get('file'))
+  console.log(data.files.get('file'));
   return request({
     url: '/techshare/designmode/add',
     method: 'post',
     data,
-    Headers: { 'Content-Type': 'multipart/form-data' }
+    Headers: { 'Content-Type': 'multipart/form-data' },
   });
 }

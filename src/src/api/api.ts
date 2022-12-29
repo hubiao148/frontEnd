@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-09 19:25:46
+ * @LastEditTime: 2022-12-18 14:40:42
  * @FilePath: \src\src\api\api.ts
  * @Description: axios封装
  *
@@ -113,4 +113,35 @@ function request(options: any) {
   };
 });
 
+// http request 拦截器
+// req.interceptors.request.use(
+//   (config) => {
+//     // const token = window.sessionStorage.getItem('token')
+//     // const userid = window.sessionStorage.getItem('userid')
+
+//     // if (token && userid) { // 判断是否存在token，如果存在的话，则每个http header都加上token
+//     //   // config.headers.authorization = token //请求头加上token
+//     //   config.headers.token = token;
+//     //   config.headers.userid = userid
+//     // }
+//     return config;
+//   },
+//   (err) => {
+//     return Promise.reject(err);
+//   },
+// );
+
+// http response 拦截器
+// req.interceptors.response.use(
+//   (response) => {
+//     //拦截响应，做统一处理
+//     return response;
+//   },
+//   //接口错误状态处理，也就是说无响应时的处理
+//   (error) => {
+//     return Promise.reject(error.response.status); // 返回接口返回的错误信息
+//   },
+// );
+
+//export default req;
 export default request;
