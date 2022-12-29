@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:46:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-29 21:56:17
+ * @LastEditTime: 2022-12-29 22:44:05
  * @FilePath: \src\src\pages\Task\index.tsx
  * @Description: 实践任务
  *
@@ -15,20 +15,7 @@ import { useHistory } from 'umi';
 const { Content, Sider } = Layout;
 import style from './index.less';
 export default function Task(props: any) {
-  const history = useHistory();
-  const [userState, setUserState] = useState('学生');
-  const litsType = ['管理员', '学生', '老师', '游客'];
-  useEffect(() => {
-    try {
-      if (storage.getItem('userMsg').classId)
-        setUserState(litsType[storage.getItem('userMsg').classId - 1]);
-      else history.push('/login');
-    } catch {
-      history.push('beforeLogin/login');
-    }
-    
-  }, []);
-  // 权限列表
+  // 权限列表上边
   const siderTopMenuTeacher = [
     {
       toptitle: '您的学生',
@@ -36,7 +23,7 @@ export default function Task(props: any) {
       path: '/task/createClass',
     }
   ];
-  const siderTopMenu = [
+  const siderTopMenuStudent = [
     {
       toptitle: '您的学生',
       title: '创建团队',
@@ -53,6 +40,8 @@ export default function Task(props: any) {
       path: '/task/joinTeam',
     }
   ];
+  const [siderTopMenu, setSiderTopMenu] = useState(siderTopMenuStudent);
+  // 列表下边
   const itemsTeacher = [
     {
       key: '/task/staging',
@@ -65,7 +54,7 @@ export default function Task(props: any) {
       icon: <DesktopOutlined />,
     },
   ];
-  const items = [
+  const itemsStudent = [
     {
       key: '/task/staging',
       label: '工作台',
@@ -77,17 +66,34 @@ export default function Task(props: any) {
       icon: <DesktopOutlined />,
     },
     {
-      key: `${userState === '学生' ? '/task/taskList' : '/task/taskManage'}`,
+      key: '/task/taskList',
       label: '学生任务',
       icon: <DesktopOutlined />,
-    },
-    {
-      key: '/task/createTask',
-      label: '创建任务',
-      icon: <DesktopOutlined />,
-    },
+    }
   ];
+  const [items, setItems] = useState(itemsStudent);
+  const history = useHistory();
+  const [userState, setUserState] = useState('学生');
+  const litsType = ['管理员', '老师', '学生', '游客'];
+  useEffect(() => {
+    // console.log(storage.getItem('roleId') >= 1 && storage.getItem('roleId') <= 4)
+    try {
+      if (storage.getItem('roleId') >= 1 && storage.getItem('roleId') <=4) {
+        setUserState(litsType[storage.getItem('roleId') - 1]);
+        // console.log(litsType[storage.getItem('roleId') - 2])
+        //权限更新
+        if (litsType[storage.getItem('roleId') - 1] === '老师') {
+          setSiderTopMenu(siderTopMenuTeacher);
+          setItems(itemsTeacher)
+        }
+      }
+      else history.push('beforeLogin/login');
+    } catch {
+      history.push('beforeLogin/login');
+    }
 
+  }, []);
+  
   function gotoItem(e: any) {
     history.push(e.key);
   }

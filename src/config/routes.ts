@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-25 18:14:15
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-12-29 22:26:54
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -136,11 +136,6 @@ export default [
             //创建任务
             path: '/task/createTask',
             component: '@/pages/Task/components/CreateTask',
-          },
-          {
-            //创建项目
-            path: '/task/createProject',
-            component: '@/pages/Task/components/CreateProject',
           },
           {
             //创建班级
