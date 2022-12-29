@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:46:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-10 18:20:35
+ * @LastEditTime: 2022-12-29 21:49:19
  * @FilePath: \src\src\pages\Task\index.tsx
  * @Description: 实践任务
  *
@@ -27,14 +27,17 @@ export default function Task(props: any) {
     } catch {
       history.push('beforeLogin/login');
     }
-    
+
   }, []);
-  const siderTopMenu = [
+  // 权限列表
+  const siderTopMenuTeacher = [
     {
       toptitle: '您的学生',
-      title: '创建项目',
-      path: '/task/createProject',
-    },
+      title: '创建班级',
+      path: '/task/createClass',
+    }
+  ];
+  const siderTopMenu = [
     {
       toptitle: '您的学生',
       title: '创建团队',
@@ -49,11 +52,18 @@ export default function Task(props: any) {
       toptitle: '您的学生',
       title: '加入团队',
       path: '/task/joinTeam',
+    }
+  ];
+  const itemsTeacher = [
+    {
+      key: '/task/staging',
+      label: '工作台',
+      icon: <DesktopOutlined />,
     },
     {
-      toptitle: '您的学生',
-      title: '创建班级',
-      path: '/task/createClass',
+      key: '/task/createTask',
+      label: '创建任务',
+      icon: <DesktopOutlined />,
     },
   ];
   const items = [
@@ -63,12 +73,7 @@ export default function Task(props: any) {
       icon: <DesktopOutlined />,
     },
     {
-      key: '/task/manage',
-      label: '项目管理',
-      icon: <DesktopOutlined />,
-    },
-    {
-      key: `${userState == '学生' ? '/task/taskList' : '/task/taskManage'}`,
+      key: '/task/taskList',
       label: '任务管理',
       icon: <DesktopOutlined />,
     },

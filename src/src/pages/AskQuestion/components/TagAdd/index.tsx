@@ -20,20 +20,20 @@ const TagAdd: React.FC = () => {
       inputRef.current?.focus();
     }
   }, [inputVisible]);
-
+  // 获取焦点
   useEffect(() => {
     editInputRef.current?.focus();
   }, [inputValue]);
   useEffect(() => {
     setResTags(tags);
   },[tags])
-
+  // 关闭函数
   const handleClose = (removedTag: string) => {
     const newTags = tags.filter(tag => tag !== removedTag);
     console.log(newTags);
     setTags(newTags);
   };
-
+  // 是否展示
   const showInput = () => {
     setInputVisible(true);
   };
@@ -41,7 +41,7 @@ const TagAdd: React.FC = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
-
+  // 确定
   const handleInputConfirm = () => {
     if (inputValue && tags.indexOf(inputValue) === -1) {
       setTags([...tags, inputValue]);
@@ -53,7 +53,7 @@ const TagAdd: React.FC = () => {
   const handleEditInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditInputValue(e.target.value);
   };
-
+  // 遍历tag
   const handleEditInputConfirm = () => {
     const newTags = [...tags];
     newTags[editInputIndex] = editInputValue;
