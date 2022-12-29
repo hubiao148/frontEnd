@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:46:12
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-25 18:16:54
+ * @LastEditTime: 2022-12-29 21:47:59
  * @FilePath: \src\src\pages\Task\index.tsx
  * @Description: 实践任务
  *
@@ -18,15 +18,15 @@ export default function Task(props: any) {
   const history = useHistory();
   const [userState, setUserState] = useState('学生');
   const litsType = ['管理员', '学生', '老师', '游客'];
-  // useEffect(() => {
-  //   try {
-  //     if (storage.getItem('userMsg').classId)
-  //       setUserState(litsType[storage.getItem('userMsg').classId - 1]);
-  //     else history.push('/login');
-  //   } catch {
-  //     history.push('beforeLogin/login');
-  //   }
-  // }, []);
+  useEffect(() => {
+    try {
+      if (storage.getItem('userMsg').classId)
+        setUserState(litsType[storage.getItem('userMsg').classId - 1]);
+      else history.push('/login');
+    } catch {
+      history.push('beforeLogin/login');
+    }
+  }, []);
   const siderTopMenu = [
     {
       toptitle: '您的学生',
