@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-11-21 21:22:16
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-25 21:34:56
+ * @LastEditTime: 2022-12-29 22:40:59
  * @FilePath: \src\src\pages\Task\components\TaskList\index.tsx
  * @Description:
  *
@@ -77,6 +77,7 @@ function TaskList() {
   useEffect(() => {
     getGroupId(20).then((res) => {
       // console.log(res.groupId);
+      //@ts-ignore
       setGroupId(res.groupId);
     });
   }, []);
@@ -94,17 +95,16 @@ function TaskList() {
   //点击今天 明天 自定换时间
   const handleQuickCreate = (offset: number) => {
     const d = new Date();
-    // const time = d.toISOString().split('T')[0] + 'T10:00:00.000Z';
-    // let momentTime = moment(time).add(offset, 'd');
-    // setDDL(momentTime);
-    setDDL(d);
+    const time = d.toISOString().split('T')[0] + 'T10:00:00.000Z';
+    let momentTime = moment(time).add(offset, 'd');
+    setDDL(momentTime);
+    //setDDL(d);
   };
   const handleSelectTime = (value: moment.Moment) => {
     setDDL(value);
   };
 
   const handleCreate = () => {
-    const taskID = Date.now().toString();
     createTask({
       taskName: curTitle,
       deadline: ddl,

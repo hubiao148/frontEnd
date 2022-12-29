@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-07 19:53:51
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-25 21:57:39
+ * @LastEditTime: 2022-12-29 22:23:44
  * @FilePath: \src\src\pages\Task\components\Staging\index.tsx
  * @Description: 工作台
  *
@@ -33,10 +33,11 @@ export default function index() {
     doing: 20,
     done: 10,
   });
-
+  const userId = storage.getItem('userMsg').id;
   useEffect(() => {
-    getGroupId(20).then((res) => {
+    getGroupId(userId).then((res) => {
       // console.log(res.groupId);
+      //@ts-ignore
       setGroupId(res.groupId);
     });
   }, []);

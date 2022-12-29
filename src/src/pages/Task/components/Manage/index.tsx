@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-11-21 21:22:16
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-25 19:44:27
+ * @LastEditTime: 2022-12-29 22:29:54
  * @FilePath: \src\src\pages\Task\components\Manage\index.tsx
  * @Description:
  *
@@ -10,13 +10,12 @@
  */
 import React, { useEffect, useMemo, useState } from 'react';
 import TaskItem from './TackItem';
-import { Input, ConfigProvider } from 'antd';
 const moment = require('moment');
 import './index.less';
 import TaskDetail from './TaskDetail';
 import { deleteTask, getGroupId, getMissionList } from '@/api/task';
 import storage from '@/utils/storage';
-const { Search } = Input;
+
 export interface taskT {
   id: number;
   name: string;
@@ -38,6 +37,7 @@ function TaskList() {
   useEffect(() => {
     getGroupId(userId).then((res) => {
       // console.log(res.groupId);
+      //@ts-ignore
       setGroupId(res.groupId);
     });
   }, []);
@@ -77,8 +77,6 @@ function TaskList() {
       <TaskDetail
         groupId={groupId}
         task={activeTask}
-        tasks={tasks}
-        setTasks={setTasks}
         onClose={() => setActiveTaskKey(0)}
       />
     </div>

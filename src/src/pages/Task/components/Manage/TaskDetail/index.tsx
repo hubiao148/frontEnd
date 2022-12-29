@@ -14,6 +14,7 @@ import type { RcFile } from 'antd/es/upload/interface';
 import { taskT } from '../index';
 import { useState } from 'react';
 import moment from 'moment';
+import { uploadTTask } from '@/api/task';
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
@@ -23,14 +24,12 @@ const formItemLayout = {
 
 interface IProps {
   task?: taskT; //被点击的那个任务
-  groupId?: number;
+  groupId?: any;
   onClose: () => void;
-  tasks: taskT[]; //所有任务
-  setTasks: any;
 }
 
 function TaskDetail(props: IProps) {
-  const { task, onClose, tasks, setTasks } = props;
+  const { task, onClose, groupId } = props;
   const [form] = Form.useForm();
   const [fileList, setFileList] = useState<any>([]);
   const onReset = () => {
@@ -50,40 +49,35 @@ function TaskDetail(props: IProps) {
     });
     console.log('formData', formData.getAll('files'));
 
-    const groupId = values.groupId;
-    const year = values.year;
-    const techType = values.techType;
-    const techShare = values.techShare;
-    const dateTime = values.dateTime;
+    const principal = values.principal; //负责人
+    const year = values.question; //疑问
 
-    formData.append('groupId', groupId); //组号
-    formData.append('year', year); //班级年级 2020级4班
-    formData.append('sceneId', techType); //类别 前端
-    formData.append('techShare', techShare); //分享课题
-    formData.append('date', moment(dateTime).format('YYYY-MM-DD HH:mm:ss')); //分享时间
+    formData.append('groupId', groupId); //小组id
+    formData.append('groupId', principal); //负责人
+    formData.append('year', year); //疑问
     // console.log('fileList', fileList);
 
-    // uploadTTask(formData)
-    //   .then((res) => {
-    //     console.log(res);
-    //     return true;
-    //   })
-    //   .catch((err: Error) => {
-    //     console.log(err);
-    //   });
-
-    fetch('https://4717v036u3.zicp.fun/techshare/designmode/add', {
-      method: 'post',
-      body: formData,
-      // headers: {
-      //   'Content-Type': 'multipart/form-data',
-      // },
-    })
-      .then((res) => res.text())
+    uploadTTask(formData)
       .then((res) => {
         onClose();
         message.success({ content: '上传成功！', duration: 1 });
+      })
+      .catch((err: Error) => {
+        console.log(err);
       });
+
+    // fetch('', {
+    //   method: 'post',
+    //   body: formData,
+    //   // headers: {
+    //   //   'Content-Type': 'multipart/form-data',
+    //   // },
+    // })
+    //   .then((res) => res.text())
+    //   .then((res) => {
+    //     onClose();
+    //     message.success({ content: '上传成功！', duration: 1 });
+    //   });
     //老师的任务上传
     // onClose();
     // message.success({ content: '上传成功！', duration: 1 });
@@ -109,7 +103,7 @@ function TaskDetail(props: IProps) {
               </Col>
             </Row>
             {/* 任务描述 */}
-            <Row gutter={16} justify="center">
+            {/* <Row gutter={16} justify="center">
               <Col span={16}>
                 <Form.Item
                   name="description"
@@ -124,7 +118,7 @@ function TaskDetail(props: IProps) {
                   <Input.TextArea rows={4} placeholder="添加任务描述" />
                 </Form.Item>
               </Col>
-            </Row>
+            </Row> */}
             {/* 文件上传 */}
             <Row gutter={16} justify="center">
               <Col span={16}>

@@ -2,15 +2,15 @@
  * @Author: zyqqun
  * @Date: 2022-12-23 16:35:22
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-25 21:15:06
+ * @LastEditTime: 2022-12-29 22:29:41
  * @FilePath: \src\src\api\task\index.ts
- * @Description:
+ * @Description:学生端的接口
  *
  * Copyright (c) 2022 by zyqqun 2450100414@qq.com, All Rights Reserved.
  */
 import request from '../api';
 
-// 创建项目
+//邀请团队成员 小组长
 export function getInviteCode(params: any) {
   return request({
     url: `/tasks/projects/code/${params}`,
@@ -51,6 +51,7 @@ export function getGroupId(params: any) {
   });
 }
 
+//获取任务列表
 export function getMissionList(params: any) {
   return request({
     url: `/tasks/missions/list/${params}`,
@@ -71,6 +72,7 @@ export function createTask(data: {
   });
 }
 
+//删除任务
 export function deleteTask(params: number) {
   return request({
     url: `/tasks/missions/task/${params}`,
@@ -78,6 +80,7 @@ export function deleteTask(params: number) {
   });
 }
 
+//上传学生的任务
 export function uploadTask(data: any) {
   return request({
     url: `/tasks/missions/`,
@@ -86,6 +89,7 @@ export function uploadTask(data: any) {
   });
 }
 
+//搜索任务
 export function searchTask(params: any) {
   return request({
     url: `/tasks/missions/search/${params}`,
@@ -93,9 +97,19 @@ export function searchTask(params: any) {
   });
 }
 
+//学生工作台数据
 export function getCountResult(params: any) {
   return request({
     url: `/tasks/workbench/${params}`,
     method: 'get',
+  });
+}
+
+//上传老师的任务
+export function uploadTTask(data: any) {
+  return request({
+    url: '',
+    method: 'post',
+    data,
   });
 }
