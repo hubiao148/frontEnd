@@ -2,25 +2,25 @@
  * @Author: hcy
  * @Date: 2022-11-09 17:27:38
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-25 14:42:57
+ * @LastEditTime: 2022-12-30 13:26:31
  * @FilePath: \src\src\pages\Task\components\InviteMember\index.tsx
  * @Description: 邀请成员
  *
  */
 import { getInviteCode } from '@/api/task';
-import { Card, Button, Form, Input, Col, Row } from 'antd';
+import storage from '@/utils/storage';
+import { Card, message, Form, Col, Row } from 'antd';
 import { useEffect, useState } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import styled from './index.less';
 
 export default function index() {
   const [form] = Form.useForm();
-  const [code, setCode] = useState(null);
-  //清空表单
-  const onReset = () => {
-    form.resetFields();
-  };
+  const [code, setCode] = useState('HGkL');
+
+  const userId = storage.getItem('userMsg').id;
   useEffect(() => {
-    getInviteCode(20).then((res) => {
+    getInviteCode(userId).then((res) => {
       console.log(res.data.code);
       setCode(res.data.code);
     });
@@ -39,34 +39,17 @@ export default function index() {
           <Row gutter={24} justify="center">
             <Col span={9}>
               <Form.Item name="inviteNumber">
-                <span>邀请码:{code}</span>
+                {/**@ts-ignore */}
+                <CopyToClipboard
+                  onCopy={() => message.success('复制成功')}
+                  text={code}
+                >
+                  <span>邀请码(可点击复制):{code}</span>
+                </CopyToClipboard>
+                {/* <span>邀请码:{code}</span> */}
               </Form.Item>
             </Col>
           </Row>
-          {/* <Row gutter={24} justify="center">
-            <Col span={4}>
-              <Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className={styled['form-button']}
-                >
-                  确定
-                </Button>
-              </Form.Item>
-            </Col>
-            <Col span={5}>
-              <Form.Item>
-                <Button
-                  onClick={onReset}
-                  htmlType="button"
-                  className={styled['form-button']}
-                >
-                  取消
-                </Button>
-              </Form.Item>
-            </Col>
-          </Row> */}
         </Form>
       </Card>
     </div>

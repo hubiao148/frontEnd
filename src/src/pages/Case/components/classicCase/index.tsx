@@ -115,11 +115,11 @@ function ClassicCase() {
 
       {/* 设计模式的卡片 */}
       <div>
-        <Search
+        {/* <Search
           className={styled['search']}
           placeholder="搜索设计模式"
           onSearch={getData}
-        />
+        /> */}
         <div className={styled['card']}>
           {/* <InfiniteScroll
             style={{ display: 'flex', flexWrap: 'wrap', paddingTop: '2rem' }}
