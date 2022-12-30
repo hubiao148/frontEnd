@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-17 20:22:57
+ * @LastEditTime: 2022-12-30 22:00:13
  * @FilePath: \src\src\utils\configEnv.ts
  * @Description: 配置环境变量
  *
@@ -16,7 +16,7 @@ const EnvConfig = {
     mockApi: '/umi', //mock地址
   },
   prod: {
-    baseApi: '/api',
+    baseApi: 'http://47.92.165.44:80',
   },
 };
 export default {
