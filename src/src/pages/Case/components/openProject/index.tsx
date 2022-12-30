@@ -122,7 +122,7 @@ function OpenProject() {
           onChange: (page) => {
             console.log(page);
           },
-          pageSize: 5,
+          pageSize: 3,
         }}
         dataSource={projectList}
         renderItem={(item: ListProps) => (
