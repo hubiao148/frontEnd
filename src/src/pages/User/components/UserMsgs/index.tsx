@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-13 19:30:41
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-30 12:29:54
+ * @LastEditTime: 2022-12-30 15:37:15
  * @FilePath: \src\src\pages\User\components\UserMsgs\index.tsx
  * @Description: 账号信息
  * 
@@ -29,7 +29,7 @@ export default () => {
     <div className={style.usermsgs}>
       <div className={style.topcontainer}>
         <Avatar
-          src="https://joeschmoe.io/api/v1/random"
+          src={storage.getItem("userMsg").headerUrl}
           size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }} //响应式头
         />
         <div className={style.mark}>{litsType[storage.getItem('roleId')-1]}</div>

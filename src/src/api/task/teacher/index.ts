@@ -2,13 +2,24 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 17:32:37
+ * @LastEditTime: 2022-12-30 16:54:56
  * @FilePath: \src\src\api\task\teacher\index.ts
  * @Description: 实践任务老师板块
  *
  */
 
 import request from '@/api/api';
+
+/**
+ * 查询所有小组
+ * @returns 
+ */
+export function queryAllGroup() {
+  return request({
+    url: "/tasks/projects/teams",
+    method: 'get',
+  });
+}
 
 /**
  * 根据id查询小组
@@ -55,7 +66,17 @@ export function queryGroupByGradeId(id: number) {
     method: 'get',
   });
 }
-
+/**
+ * 根据id 查小组
+ * @param id 
+ * @returns 
+ */
+export function queryGroupByGradeIds(id:number) {
+  return request({
+    url: `/tasks/grade/${id}`,
+    method: 'get',
+  });
+}
 /**
  * 根据id查任务
  * @param id 任务id

@@ -1,13 +1,10 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-08 19:38:37
-<<<<<<< HEAD
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2022-12-30 21:57:27
  * @LastEditors: zyqqun 2450100414@qq.com
  * @LastEditTime: 2022-12-30 18:55:34
-=======
- * @LastEditors: hcy
- * @LastEditTime: 2022-12-29 17:33:24
->>>>>>> 6af1a5874cf6a0841b4b48162a1c03f0d7e76bdc
  * @FilePath: \src\config\proxy.ts
  * @Description:
  *

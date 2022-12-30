@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-26 14:26:01
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 16:19:28
+ * @LastEditTime: 2022-12-30 21:33:57
  * @FilePath: \src\src\pages\Task\components\Staging\components\StagingTeacher\GroupList\index.tsx
  * @Description: 小组详情
  * 
@@ -21,37 +21,26 @@ interface DataType {
     tags: string;
 }
 
-const dataC: DataType[] = [
+const dataC: DataType[] | any = [
     {
-        key: '1',
-        Name: 'Brown',
-        grade: '2020',
-        class: '3',
-        tags: '组长',
-    },
-    {
-        key: '2',
-        Name: 'Jim',
-        grade: '2020',
-        class: '3',
-        tags: '组员',
-    },
-    {
-        key: '3',
-        Name: 'Black',
-        grade: '2020',
-        class: '3',
-        tags: '组员',
+        key: '',
+        Name: '',
+        grade: '',
+        class: '',
+        tags: '',
     },
 ];
 import { deleteMemberById, queryGroupDetailById } from '@/api/task/teacher';
 
 export default function index() {
+    const [isLoading,setIsloading] =useState(false)
     const [data, setData] = useState(dataC);
     const params: { id: any } = useParams();
     useEffect(() => {
+        setIsloading(true)
         queryGroupDetailById(params.id).then((res) => {
             console.log(res.data)
+            
             let resData =  res.data.users.map((i:any) => {
                 return {
                     key: i.id,
@@ -63,13 +52,32 @@ export default function index() {
             })
             console.log(resData)
             setData(resData)
+            setIsloading(false)
         })
     }, [])
     function deleteMember(res:any) {
         console.log(res.key)
+        if (res.tags === '组长') {
+            message.error({ content: '组长删不掉哦！', duration: 1 });
+            return;
+        }
         deleteMemberById(res.key).then((result) => {
             console.log(result)
             message.success({ content: '删除成员成功！', duration: 1 });
+            queryGroupDetailById(params.id).then((res) => {
+                console.log(res.data)
+                let resData = res.data.users.map((i: any) => {
+                    return {
+                        key: i.id,
+                        Name: i.username,
+                        grade: res.data.grade,
+                        class: res.data.BanJi,
+                        tags: res.data.leader === i.id ? '组长' : '组员',
+                    }
+                })
+                console.log(resData)
+                setData(resData)
+            })
         })
     }
     return (
@@ -86,7 +94,7 @@ export default function index() {
                 </Breadcrumb>
             </div>
             <div className={style.body}>
-                <Table dataSource={data}>
+                <Table dataSource={data} loading={isLoading}>
                     <Column title="名字" dataIndex="Name" key="Name" />
                     <Column title="年级" dataIndex="grade" key="age" />
                     <Column title="班级" dataIndex="class" key="address" />

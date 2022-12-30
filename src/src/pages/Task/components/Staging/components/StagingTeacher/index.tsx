@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-09 16:27:10
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-30 12:22:07
+ * @LastEditTime: 2022-12-30 17:04:55
  * @FilePath: \src\src\pages\Task\components\Staging\components\StagingTeacher\index.tsx
  * @Description: 老师工作台
  * 
@@ -13,7 +13,7 @@ import style from './index.less'
 import { Link, useHistory } from 'umi';
 import { useThrottle } from '@/utils/useThrottle';
 import { number } from 'echarts/core';
-import { deleteGroupById, queryGroupByGradeId, queryGroupList } from '@/api/task/teacher';
+import { deleteGroupById, queryAllGroup, queryGroupByGradeId, queryGroupByGradeIds, queryGroupList } from '@/api/task/teacher';
 /**
      * 
      * grade:年级
@@ -38,10 +38,10 @@ export default function index() {
     const [data, setData] = useState(da);
     useEffect(() => {
         setLoading(true);
-        queryGroupList().then((result) => {
-            console.log(result.data)
+        queryAllGroup().then((result) => {
+            // console.log(result.data)
             let resData = result.data.groups.map((i:any) => {
-                console.log(i)
+                // console.log(i)
                 return {
                     grade: i.group.gradeId,
                     class: i.group.classId,
@@ -53,31 +53,34 @@ export default function index() {
                     id: i.group.id
                 }
             })
-            console.log(resData)
+            // console.log(resData)
             setData(resData)
             setLoading(false);
         })
     }, [])
     // 搜索
     function searchMsg() {
-        console.log(111)
+        // console.log(111)
         setLoading(true);
-        queryGroupByGradeId(2020).then((res) => {
-            console.log(res.data.res[0].data.groups)
-            let resData = res.data.res[0].data.groups.map((i:any) => {
-                console.log(i)
+        queryGroupByGradeIds(2022).then((res) => {
+            if (res.data == null) {
+                setLoading(false);
+                return;
+            }
+            let resData = res.data.groups.map((i:any) => {
+                // console.log(i)
                 return {
-                    grade: i.group.gradeId,
-                    class: i.group.classId,
-                    gp: i.group.groupName,
-                    gpN: i.group.projectName,
-                    cp: i.group.progress,
+                    grade: i.gradeId,
+                    class: i.classId,
+                    gp: i.groupName,
+                    gpN: i.projectName,
+                    cp: i.progress,
                     noUp: i.num,
                     lUp: i.upload === '0' ? false : true,
-                    id: i.group.id
+                    id: i.id
                 }
             })
-            console.log(resData)
+            // console.log(resData)
             setData(resData)
             setLoading(false);
         })

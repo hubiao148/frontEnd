@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-20 21:37:01
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-30 12:19:31
+ * @LastEditTime: 2022-12-30 21:10:26
  * @FilePath: \src\src\pages\Task\components\LookTask\index.tsx
  * @Description: 查看任务
  * 
@@ -13,16 +13,20 @@ import FileViewer from "@/components/FileViewer"
 import style from './index.less'
 import { Breadcrumb, Modal, Badge, Descriptions, Input, Button, Switch, message } from 'antd'
 const { TextArea } = Input;
-import { Link, useParams } from 'umi'
+import { Link, useHistory, useParams } from 'umi'
 import { checkStateChange, queryTaskDetailById } from '@/api/task/teacher';
 export default function index() {
+    const history =useHistory()
     // 是否打开图层
     const [isModalOpen, setIsModalOpen] = useState(false);
     // 一些表单数据的初始化
     const [story, setStory] = useState('');
+    const [file, setFile] = useState("");
+    const [pic, setPic] = useState("");
     const [time, setTime] = useState('');
     const [taskName, setTaskName] = useState('');
     const [url, setUrl] = useState('');
+    const [ask,setAsk] =useState<string|null>(null)
     const [check, setCheck] = useState('');
     const params: { id: any, sta: any } = useParams();
     // 钩子函数刷新状态
@@ -30,12 +34,31 @@ export default function index() {
         console.log(111)
         console.log(params)
         queryTaskDetailById(params.id, params.sta).then((res) => {
-            console.log(res.data)
-            setStory(res.data.ttask.story);
-            setTime(res.data.ttask.finisheddate.split('T')[0]);
-            setTaskName(res.data.ttask.taskName);
-            setUrl(res.data.url)
-            setCheck(res.data.ttask.checked)
+            
+            setPic(res.data.pic);
+            setFile(res.data.file);
+            // console.log(res.data.pic)
+            // console.log(res.data)
+            if (params.sta == 0) {
+                setAsk(res.data.ttask.mailto);
+                setStory(res.data.ttask.story);
+                if (res.data.ttask.deadline != null) {
+                    setTime(res.data.ttask.deadline.split('T')[0]); 
+                } else {
+                    setTime(res.data.ttask.finisheddate.split('T')[0]);
+                }
+                
+                setTaskName(res.data.ttask.taskName);
+                setUrl(res.data.url)
+                setCheck(res.data.ttask.checked)
+            } else {
+                setAsk(res.data.task.question);
+                setStory(res.data.task.info);
+                setTime(res.data.task.finisheddate.split('T')[0]);
+                setTaskName(res.data.task.taskName);
+                setUrl(res.data.url)
+                setCheck(res.data.task.checked)
+            }
         })
         return () => {
             checkStateChange(params.id, check?1:0).then((res) => {
@@ -80,15 +103,18 @@ export default function index() {
                     <Descriptions.Item label="图片" contentStyle={{ textAlign: 'center' }}>
                         <span style={{ cursor: 'pointer', color: '#4096ff' }} onClick={() => setIsModalOpen(true)}>点击预览</span>
                     </Descriptions.Item>
-                    <Descriptions.Item label="附件" contentStyle={{ textAlign: 'center' }}><a href="https://qn.liuyinjihua.com/%E5%AE%9E%E6%96%BD%E5%91%A8%E6%8A%A5.xlsx?e=1669810096&token=bs0nrwJpD1z6JJLOEOpgc9BxuHemz3IEyVIrF3dQ:NftNE9YGY2I07Vkq5iwSO6DOT3c=">点击下载</a></Descriptions.Item>
+                    <Descriptions.Item label="附件" contentStyle={{ textAlign: 'center' }}><a href={file} target={'_blank'}>点击下载</a></Descriptions.Item>
                     <Descriptions.Item label="仓库" contentStyle={{ textAlign: 'center' }}>  <a href={url} target={'_blank'}>点击跳转</a> </Descriptions.Item>
-                    <Descriptions.Item label="提问" >需求文档写不来啊！</Descriptions.Item>
+                    <Descriptions.Item label="提问" >{ask}</Descriptions.Item>
                     <Descriptions.Item label="评论&回复"><TextArea rows={4} placeholder="maxLength is 6" maxLength={6} /></Descriptions.Item>
                 </Descriptions>
                 <div className={style.footer}>
                     <div>
                         <Button danger type="primary">取消</Button>
-                        <Button type="primary">确定</Button>
+                        <Button type="primary" onClick={() => {
+                            message.success({ content: '回复成功！', duration: 1 });
+                            history.go(-1);
+                        }}>确定</Button>
                     </div>
                 </div>
             </div>
@@ -105,7 +131,7 @@ export default function index() {
                 open={isModalOpen}
                 onCancel={() => { setIsModalOpen(false) }}
             >
-                <FileViewer file={'https://qn.liuyinjihua.com/%E7%BD%91%E7%BB%9C%E5%8D%8A%E6%9C%9F%E5%AE%9E%E9%AA%8C%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88.docx?e=1669207211&token=bs0nrwJpD1z6JJLOEOpgc9BxuHemz3IEyVIrF3dQ:0dt2wfPsN7mjBmIWRP8X89qrE1w='}></FileViewer>
+                <FileViewer file={pic}></FileViewer>
 
             </Modal>
         </div >

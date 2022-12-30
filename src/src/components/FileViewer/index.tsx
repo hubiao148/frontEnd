@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-21 21:27:59
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-26 16:44:13
+ * @LastEditTime: 2022-12-30 19:06:51
  * @FilePath: \src\src\components\FileViewer\index.tsx
  * @Description: 
  * 
@@ -33,7 +33,7 @@ export default function FileViewer(props: { file: string }) {
                 //     errorComponent={getError}
                 //     onError={(err: Error) => console.log(err)}
                 // />
-                <iframe src="https://qn.liuyinjihua.com/inf3%281%29.jpg?e=1671533209&token=bs0nrwJpD1z6JJLOEOpgc9BxuHemz3IEyVIrF3dQ:oM-aMG6QfY5Hqzs4Nw87z7kytgg=" width="100%" height="100%">
+                <iframe src={props.file} width="100%" height="100%">
                 </iframe>
             ) : (
                 <div className='file-view-warn'>暂无文件预览</div>
