@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:46:41
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-12 19:52:08
+ * @LastEditTime: 2022-12-30 12:31:15
  * @FilePath: \src\src\pages\User\index.tsx
  * @Description: 个人空间
  * 
@@ -13,6 +13,7 @@ import { addDesignMode } from '@/api/case';
 import { useState } from 'react';
 export default function User(props: any) {
   const [file, setFile] = useState<File>();
+  // 动态渲染路由
   const listMenu = [
         { path: '/user/usermsgs', title: '账号信息' },
           { path: '/user/mycases', title: '我收藏的案例' },

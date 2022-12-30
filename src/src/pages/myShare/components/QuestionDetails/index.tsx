@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-21 17:23:47
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-10 18:40:14
+ * @LastEditTime: 2022-12-30 12:07:56
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\index.tsx
  * @Description: 技术问答详情页面
  * 
@@ -43,6 +43,7 @@ export default function index(props: any) {
         headerUrl: string;
         id: number;
     }[] = [];
+    // 默认数据
     const defaultMsg: defaultMsg = {
         auth: '',
         time: '',
@@ -57,7 +58,7 @@ export default function index(props: any) {
         userId:1
     }
     const [text,setText] = useState('');
-
+    // 使用导航
     const history = useHistory();
     const params: { id: any } = useParams();
     const [msg, setMsg] = useState(defaultMsg)
@@ -69,6 +70,7 @@ export default function index(props: any) {
     //                 comment: ['/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则', '/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则', '/^(?!.{101}).*{.*\[.*\].*}.*$/ 这样？（不知道你的规则还有什么要求）小建议：这种场景别用正则'],
     //                     replyNum: 3,
     // }
+    // 默认数据
     const board = [
         {
             title: '带你从零到一全面掌握前端「新宠」', msg: "TypeScript从入门到实践「2020 版」"
@@ -88,10 +90,14 @@ export default function index(props: any) {
         { id: 2, s: false },
         { id: 3, s: false },
     ]
-
+    // 回到首页
     function goBack() {
         history.push('/myshare');
     }
+    /**
+     * 判断是否分享
+     * @param id 
+     */
     function changeDisabled(id: number) {
         if (id == 0) {
             states[1].disable = !states[1].disable;
@@ -99,6 +105,12 @@ export default function index(props: any) {
             states[0].disable = !states[0].disable;
         }
     }
+    /**
+     * 点击分享后的操作
+     * @param id 
+     * @param e 
+     * @returns 
+     */
     function handleColorClick(id: number, e: any) {
         if (!states[id].s) {
             if ((id == 0 || id == 1) && states[id].disable == true) {
@@ -115,6 +127,9 @@ export default function index(props: any) {
         }
 
     }
+    /**
+     * 添加评论
+     */
     function AddComment() {
         console.log(text)
         addComment(msg.articleId, storage.getItem('userMsg').id, {
@@ -129,6 +144,7 @@ export default function index(props: any) {
         })
         
     }
+    // 钩子函数获取数据
     useEffect(() => {
         // 获取详情数据
         articleDetail(params.id).then((res) => {
@@ -178,6 +194,7 @@ export default function index(props: any) {
     }, [])
     return (
         <div className={style.container}>
+            {/* 面包屑 */}
             <div className={style.top}>
                 <Breadcrumb separator=">" style={{ cursor: 'pointer' }}>
                     <Breadcrumb.Item onClick={goBack}>技术问答</Breadcrumb.Item>
@@ -210,6 +227,7 @@ export default function index(props: any) {
                     </div>
                     <div>
                         <div></div>
+                        {/* 评论 */}
                         <div>
                             <div>
                                 <div>{msg == null ? 0 : msg.replyNum}个回答</div>
@@ -230,6 +248,7 @@ export default function index(props: any) {
                         <div>
                             <div>撰写回答</div>
                             <Divider style={{ margin: '0' }}></Divider>
+                            {/* 判断是否登录动态渲染 */}
                             {storage.getItem('token') ?
                                 (
                                     <div className={style.clickBtn}>

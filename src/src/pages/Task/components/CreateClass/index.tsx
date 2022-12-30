@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-09 17:24:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 17:42:44
+ * @LastEditTime: 2022-12-30 12:16:35
  * @FilePath: \src\src\pages\Task\components\CreateClass\index.tsx
  * @Description: 创建项目
  *
@@ -29,6 +29,7 @@ import styled from './index.less';
 
 let DatePicker: any = TDatePicker;
 export default function index() {
+  // 参数配置
   function fileUpload(e: RcFile): (string | boolean | void | File | Blob) | Promise<string | boolean | void | File | Blob> {
     throw new Error('Function not implemented.');
   }
@@ -45,6 +46,7 @@ export default function index() {
       grade: form.getFieldsValue().grade,
       className: form.getFieldsValue().class,
     }
+    // 传值后端
     addClass(data).then((res) => {
       console.log(res)
       message.success({ content: '添加年级成功！', duration: 1 });

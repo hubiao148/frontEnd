@@ -2,9 +2,9 @@
  * @Author: hcy
  * @Date: 2022-10-13 19:33:16
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 21:17:49
+ * @LastEditTime: 2022-12-30 12:30:44
  * @FilePath: \src\src\pages\User\components\MyQuestions\index.tsx
- * @Description: 
+ * @Description: 我收藏的回答
  * 
  */
 import { queryCollectionById } from '@/api/user'
@@ -13,8 +13,36 @@ import storage from '@/utils/storage'
 import { useAtom } from 'jotai'
 import React, { useEffect, useState } from 'react'
 import Common from '../Common'
+// 默认数据
 const defaultListData = [
   {
+    anser: 60,
+    read: 15,
+    title: '{}内必须包含[]的js正则怎么写？',
+    tag: ['php', 'js', 'docker', '运维', '容器'],
+    headIcon: '',
+    auth: '汝河不上云霄',
+    id: 1,
+    userId: 1,
+  }, {
+    anser: 60,
+    read: 15,
+    title: '{}内必须包含[]的js正则怎么写？',
+    tag: ['php', 'js', 'docker', '运维', '容器'],
+    headIcon: '',
+    auth: '汝河不上云霄',
+    id: 1,
+    userId: 1,
+  }, {
+    anser: 60,
+    read: 15,
+    title: '{}内必须包含[]的js正则怎么写？',
+    tag: ['php', 'js', 'docker', '运维', '容器'],
+    headIcon: '',
+    auth: '汝河不上云霄',
+    id: 1,
+    userId: 1,
+  }, {
     anser: 60,
     read: 15,
     title: '{}内必须包含[]的js正则怎么写？',
@@ -26,7 +54,7 @@ const defaultListData = [
   },
 ]
 export default () => {
- 
+  // 加载状态
   const [loadingState, setLoadingState] = useState(true);
   const [page,] = useAtom(divider1);
   const [total, setTotal] = useState(10)
@@ -58,6 +86,7 @@ export default () => {
   }, [page])
   return (
     <>
+      {/* 展示数据 */}
       <Common listData={listData} loading={loadingState} num={4} id={1} total={total}></Common>
     </>
   )

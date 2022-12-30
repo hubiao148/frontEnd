@@ -2,9 +2,9 @@
  * @Author: hcy
  * @Date: 2022-10-18 16:54:33
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 21:38:37
+ * @LastEditTime: 2022-12-30 12:14:40
  * @FilePath: \src\src\pages\myShare\components\Week\index.tsx
- * @Description: 
+ * @Description: 周榜
  * 
  */
 import { latestData } from '@/api/myShare/latest';
@@ -15,7 +15,9 @@ import { useAtom } from 'jotai';
 import React, { useEffect, useState } from 'react'
 
 export default () => {
+  // 加载状态
   const [loadingState, setLoadingState] = useState(true);
+  // 默认数据
   const defaultListData = [
     {
       anser: 60,
@@ -88,16 +90,6 @@ export default () => {
       auth: '汝河不上云霄',
       userId: 0,
       headIcon: '',
-    },
-    {
-      anser: 60,
-      read: 15,
-      title: '8{}内必须包含[]的js正则怎么写？',
-      tag: ['php', 'js', 'docker', '运维', '容器'],
-      id: 1,
-      auth: '汝河不上云霄',
-      userId: 0,
-      headIcon: '',
     }
   ]
   const [listData, setListData] = useState(defaultListData);
@@ -128,6 +120,7 @@ export default () => {
   }, [page])
   return (
     <>
+      {/* 展示 */}
       <Common listData={listData} num={7} loading={loadingState} id={2} total={total}></Common>
     </>
   )

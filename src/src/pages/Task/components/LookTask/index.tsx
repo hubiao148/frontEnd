@@ -2,9 +2,9 @@
  * @Author: hcy
  * @Date: 2022-11-20 21:37:01
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 17:40:51
+ * @LastEditTime: 2022-12-30 12:19:31
  * @FilePath: \src\src\pages\Task\components\LookTask\index.tsx
- * @Description: 查看
+ * @Description: 查看任务
  * 
  */
 import React, { useEffect, useState } from 'react'
@@ -16,13 +16,16 @@ const { TextArea } = Input;
 import { Link, useParams } from 'umi'
 import { checkStateChange, queryTaskDetailById } from '@/api/task/teacher';
 export default function index() {
+    // 是否打开图层
     const [isModalOpen, setIsModalOpen] = useState(false);
+    // 一些表单数据的初始化
     const [story, setStory] = useState('');
     const [time, setTime] = useState('');
     const [taskName, setTaskName] = useState('');
     const [url, setUrl] = useState('');
     const [check, setCheck] = useState('');
-    const params:{id:any,sta:any} = useParams();
+    const params: { id: any, sta: any } = useParams();
+    // 钩子函数刷新状态
     useEffect(() => {
         console.log(111)
         console.log(params)
@@ -40,6 +43,10 @@ export default function index() {
             })
         }
     }, [])
+    /**
+     * 改变检查状态
+     * @param checked 
+     */
     function onChange(checked: boolean) {
         setCheck(checked ? '1' : '0')
         message.success({ content: '改变状态成功！', duration: 1 });

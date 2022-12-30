@@ -2,9 +2,9 @@
  * @Author: hcy
  * @Date: 2022-10-13 19:33:22
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 21:59:20
+ * @LastEditTime: 2022-12-30 12:30:48
  * @FilePath: \src\src\pages\User\components\MyCases\index.tsx
- * @Description: 
+ * @Description: 我收藏的案例
  * 
  */
 import React, { useEffect, useState } from 'react'
@@ -16,17 +16,75 @@ import { Pagination, Avatar, Skeleton } from 'antd';
 import { queryCollectionById } from '@/api/user';
 import storage from '@/utils/storage';
 export default () => {
+  // 默认数据
   const list = [{
     title: 'java高级技术开发',
     auth: '小李子',
     imgUrl: require('@/assets/user_case.jpg'),
     headerUrl:''
-  }
+  }, {
+      title: 'java高级技术开发',
+      auth: '小李子',
+      imgUrl: require('@/assets/user_case.jpg'),
+      headerUrl: ''
+    }, {
+      title: 'java高级技术开发',
+      auth: '小李子',
+      imgUrl: require('@/assets/user_case.jpg'),
+      headerUrl: ''
+    }, {
+      title: 'java高级技术开发',
+      auth: '小李子',
+      imgUrl: require('@/assets/user_case.jpg'),
+      headerUrl: ''
+    }, {
+      title: 'java高级技术开发',
+      auth: '小李子',
+      imgUrl: require('@/assets/user_case.jpg'),
+      headerUrl: ''
+    }, {
+      title: 'java高级技术开发',
+      auth: '小李子',
+      imgUrl: require('@/assets/user_case.jpg'),
+      headerUrl: ''
+    }, {
+      title: 'java高级技术开发',
+      auth: '小李子',
+      imgUrl: require('@/assets/user_case.jpg'),
+      headerUrl: ''
+    }, {
+      title: 'java高级技术开发',
+      auth: '小李子',
+      imgUrl: require('@/assets/user_case.jpg'),
+      headerUrl: ''
+    }, {
+      title: 'java高级技术开发',
+      auth: '小李子',
+      imgUrl: require('@/assets/user_case.jpg'),
+      headerUrl: ''
+    }, {
+      title: 'java高级技术开发',
+      auth: '小李子',
+      imgUrl: require('@/assets/user_case.jpg'),
+      headerUrl: ''
+    }, {
+      title: 'java高级技术开发',
+      auth: '小李子',
+      imgUrl: require('@/assets/user_case.jpg'),
+      headerUrl: ''
+    }, {
+      title: 'java高级技术开发',
+      auth: '小李子',
+      imgUrl: require('@/assets/user_case.jpg'),
+      headerUrl: ''
+    }
   ]
   const [listMenu, setListMenu] = useState(list);
+  // 加载状态
   const [loadingState, setLoadingState] = useState(true);
   useEffect(() => {
     setLoadingState(true)
+    // 请求后台数据
     queryCollectionById(1, storage.getItem('userMsg').id).then((res) => {
       console.log(res.data.datas)
       let resData =  res.data.datas.map((i:any) => {
