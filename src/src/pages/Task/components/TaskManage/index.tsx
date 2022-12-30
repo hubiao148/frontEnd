@@ -6,6 +6,7 @@ import storage from '@/utils/storage';
 import { deleteTaskById, queryGroupTaskById } from '@/api/task/teacher';
 
 const count = 6;
+// 默认数据
 const list1 = [
   {
     taskName: '1给我把项目做完',
@@ -15,25 +16,70 @@ const list1 = [
     mainAuth: 'hcy',
     id: 1,
     teacher:false
-  }
+  }, {
+    taskName: '1给我把项目做完',
+    dec: '权限控制，动态路由，上分',
+    deadLine: '2022-11-21',
+    sUp: true,
+    mainAuth: 'hcy',
+    id: 1,
+    teacher: false
+  }, {
+    taskName: '1给我把项目做完',
+    dec: '权限控制，动态路由，上分',
+    deadLine: '2022-11-21',
+    sUp: true,
+    mainAuth: 'hcy',
+    id: 1,
+    teacher: false
+  }, {
+    taskName: '1给我把项目做完',
+    dec: '权限控制，动态路由，上分',
+    deadLine: '2022-11-21',
+    sUp: true,
+    mainAuth: 'hcy',
+    id: 1,
+    teacher: false
+  }, {
+    taskName: '1给我把项目做完',
+    dec: '权限控制，动态路由，上分',
+    deadLine: '2022-11-21',
+    sUp: true,
+    mainAuth: 'hcy',
+    id: 1,
+    teacher: false
+  }, {
+    taskName: '1给我把项目做完',
+    dec: '权限控制，动态路由，上分',
+    deadLine: '2022-11-21',
+    sUp: true,
+    mainAuth: 'hcy',
+    id: 1,
+    teacher: false
+  },
 ];
 export default function index() {
+  // 使用导航栏
   const history = useHistory();
+  // 设置加载状态
   const [initLoading, setInitLoading] = useState(true);
   const [userState, setUserState] = useState('老师');
-  const litsType = ["管理员", "学生", "老师", "游客"]
+  const litsType = ['管理员', '老师', '学生', '游客'];
   const params: { id: any } = useParams();
+  // 钩子函数刷新状态
   useEffect(() => {
-    setUserState(storage.getItem('userMsg').userType);
     try {
-      if (storage.getItem('userMsg').classId)
-        setUserState(litsType[storage.getItem('userMsg').classId - 1]);
-      else
-        history.push('/login');
+      if (storage.getItem('roleId') >= 1 && storage.getItem('roleId') <= 4) {
+        setUserState(litsType[storage.getItem('roleId') - 1]);
+      }
+      else history.push('beforeLogin/login');
     } catch {
       history.push('beforeLogin/login');
     }
     setInitLoading(true);
+    /**
+     * 获取数据
+     */
     queryGroupTaskById(params.id).then((res) => {
       let resData = res.data.tasks.map((i: any) => {
         return {
@@ -64,6 +110,10 @@ export default function index() {
 
  
   const [list, setList] = useState(list1);
+  /**
+   * 删除任务
+   * @param i 
+   */
   function deleteTask(i: any) {
     deleteTaskById(i).then((res) => {
       console.log(res)

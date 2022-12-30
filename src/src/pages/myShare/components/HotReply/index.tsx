@@ -2,9 +2,9 @@
  * @Author: hcy
  * @Date: 2022-10-19 21:53:19
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 22:47:16
+ * @LastEditTime: 2022-12-30 11:51:18
  * @FilePath: \src\src\pages\myShare\components\HotReply\index.tsx
- * @Description: 
+ * @Description: 热门回答
  * 
  */
 import React, { useEffect, useState } from 'react'
@@ -18,8 +18,12 @@ export default function index() {
             id:1
         }
     ]  
+    // 设置数据
     const [replysData,setreplysData] =useState(replyData)
     useEffect(() => {
+        /**
+         * 获取基本信息
+         */
         hotComment(1).then((res:any) => {
             console.log(res.data.comments)
             let resData = res.data.comments.map((e: any,i:number) => {
@@ -37,9 +41,10 @@ export default function index() {
   return (
     <div className={style.container}>
           <div>热门回答</div>
-          <Divider style={{marginTop:'1px',marginBottom:'1px'}}/>
+          <Divider style={{ marginTop: '1px', marginBottom: '1px' }} />
+          {/* 热门回答展示 */}
           <div className={style.msgContainer}>
-              {
+              {     
                   replysData.map((e) => {
                       return (
                         <div key={e.id}>

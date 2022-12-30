@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 12:01:18
  * @LastEditors: hcy
- * @LastEditTime: 2022-11-15 15:26:19
+ * @LastEditTime: 2022-12-30 11:33:31
  * @FilePath: \src\src\pages\Home\index.tsx
  * @Description: 主页
  *
@@ -21,12 +21,12 @@ export default function Home() {
   const history = useHistory();
   const caseList = [
     //页面数据
-    { title: '策略模式', imgSrc: require('@/assets/caseImg.png') },
-    { title: '策略模式', imgSrc: require('@/assets/caseImg.png') },
-    { title: '策略模式', imgSrc: require('@/assets/caseImg.png') },
-    { title: '策略模式', imgSrc: require('@/assets/caseImg1.png') },
-    { title: '策略模式', imgSrc: require('@/assets/caseImg1.png') },
-    { title: '策略模式', imgSrc: require('@/assets/caseImg1.png') },
+    { title: '策略模式', imgSrc: require('@/assets/策略模式.png') },
+    { title: '单例模式', imgSrc: require('@/assets/单例模式.png') },
+    { title: '工厂模式', imgSrc: require('@/assets/工厂模式.png') },
+    { title: '迪米特法则原则', imgSrc: require('@/assets/迪米特法则原则.png') },
+    { title: '接口隔离原则', imgSrc: require('@/assets/接口隔离原则.png') },
+    { title: '依赖倒置原则', imgSrc: require('@/assets/依赖倒置原则.png') },
   ];
   // console.log(process.env.UMI_ENV);
 

@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-06 18:46:12
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-29 22:44:05
+ * @LastEditTime: 2022-12-30 12:15:31
  * @FilePath: \src\src\pages\Task\index.tsx
  * @Description: 实践任务
  *
@@ -75,6 +75,7 @@ export default function Task(props: any) {
   const history = useHistory();
   const [userState, setUserState] = useState('学生');
   const litsType = ['管理员', '老师', '学生', '游客'];
+  // 钩子函数刷新状态
   useEffect(() => {
     // console.log(storage.getItem('roleId') >= 1 && storage.getItem('roleId') <= 4)
     try {

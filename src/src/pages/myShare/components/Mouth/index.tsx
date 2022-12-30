@@ -2,9 +2,9 @@
  * @Author: hcy
  * @Date: 2022-10-18 16:54:33
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 21:41:22
+ * @LastEditTime: 2022-12-30 11:53:39
  * @FilePath: \src\src\pages\myShare\components\Mouth\index.tsx
- * @Description: 
+ * @Description: 月榜
  * 
  */
 import { latestData } from '@/api/myShare/latest';
@@ -15,6 +15,7 @@ import React, { useEffect, useState } from 'react'
 
 export default () => {
   const [loadingState, setLoadingState] = useState(true);
+  // 数据占位
   const defaultListData = [
     {
       anser: 60,
@@ -87,16 +88,6 @@ export default () => {
       auth: '汝河不上云霄',
       userId: 0,
       headIcon: '',
-    },
-    {
-      anser: 60,
-      read: 15,
-      title: '8{}内必须包含[]的js正则怎么写？',
-      tag: ['php', 'js', 'docker', '运维', '容器'],
-      id: 1,
-      auth: '汝河不上云霄',
-      userId: 0,
-      headIcon: '',
     }
   ]
   const [listData, setListData] = useState(defaultListData);
@@ -128,6 +119,7 @@ export default () => {
   }, [page])
   return (
     <>
+      {/* 展示渲染数据 */}
       <Common listData={listData} num={7} loading={loadingState} id={3} total={total}></Common>
     </>
   )

@@ -2,9 +2,9 @@
  * @Author: hcy
  * @Date: 2022-10-24 14:34:59
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-08 19:16:14
+ * @LastEditTime: 2022-12-30 12:11:21
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\components\ReplyDetail\index.tsx
- * @Description: 
+ * @Description: 回复详情
  * 
  */
 import React from 'react'
@@ -31,7 +31,9 @@ interface propsMsg {
     } | null
 }
 export default function index(props: propsMsg) {
+    // 获取传参
     const e = props.msg;
+    // 默认标题
     let markdown = '# 这是标题\n' +
         '[ **M** ] arkdown + E [ **ditor** ] = **Mditor**  \n' +
         '| Head | Head | Head |\n' +
@@ -64,6 +66,7 @@ export default function index(props: propsMsg) {
                             &nbsp;发布于{e.time}
                         </div>
                         <div >
+                            {/* 展示插件并传值 */}
                             <ReactMarkdown
                                 remarkPlugins={[gfm]}
                                 className='markdown-body'

@@ -2,9 +2,9 @@
  * @Author: hcy
  * @Date: 2022-10-24 17:14:30
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-06 21:02:11
+ * @LastEditTime: 2022-12-30 12:12:12
  * @FilePath: \src\src\pages\myShare\components\QuestionDetails\components\Comments\index.tsx
- * @Description: 
+ * @Description: 评论
  * 
  */
 import { DislikeFilled, DislikeOutlined, LikeFilled, LikeOutlined } from '@ant-design/icons';
@@ -23,23 +23,24 @@ interface propsMsg {
 
 }
 export default function (props: propsMsg) {
+    // 获取参数
     const e = props.comment;
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
     const [action, setAction] = useState<string | null>(null);
-
+    // 喜欢操作
     const like = () => {
         setLikes(1);
         setDislikes(0);
         setAction('liked');
     };
-
+    // 不喜欢操作
     const dislike = () => {
         setLikes(0);
         setDislikes(1);
         setAction('disliked');
     };
-
+    // 封装组件
     const actions = [
         <Tooltip key="comment-basic-like" title="Like">
             <span onClick={like}>
@@ -61,6 +62,7 @@ export default function (props: propsMsg) {
             {
                 e ? (
                     <>
+                        {/* 展示插件并传值 */}
                         <Divider style={{ margin: '0' }}></Divider>
                         <Comment
                             actions={actions}

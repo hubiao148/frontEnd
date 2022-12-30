@@ -2,9 +2,9 @@
  * @Author: hcy
  * @Date: 2022-10-18 16:54:33
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 21:37:56
+ * @LastEditTime: 2022-12-30 12:13:30
  * @FilePath: \src\src\pages\myShare\components\Reply\index.tsx
- * @Description: 
+ * @Description: 最热
  * 
  */
 import { latestData } from '@/api/myShare/latest';
@@ -14,18 +14,10 @@ import { divider1 } from '@/jotai';
 import React, { useEffect, useState } from 'react'
 
 export default () => {
+  // 设置加载状态
   const [loadingState, setLoadingState] = useState(true);
+  // 默认数据
   const defaultListData = [
-    {
-      anser: 60,
-      read: 15,
-      title: '{}内必须包含[]的js正则怎么写？',
-      tag: ['php', 'js', 'docker', '运维', '容器'],
-      headIcon: '',
-      auth: '汝河不上云霄',
-      id: 1,
-      userId: 1,
-    },
     {
       anser: 60,
       read: 15,
@@ -119,6 +111,7 @@ export default () => {
           userId: e.user.id // 文章所有者id
         }
       })
+      // 更新参数
       setTotal(result.data.techqas.length)
       setListData(data);
       setLoadingState(false)
@@ -128,6 +121,7 @@ export default () => {
   }, [page])
   return (
     <>
+      {/* 展示 */}
       <Common listData={listData} num={7} loading={loadingState} id={1} total={total}></Common>
     </>
   )

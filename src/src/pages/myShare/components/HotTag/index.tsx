@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-19 21:52:24
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 22:41:26
+ * @LastEditTime: 2022-12-30 11:51:32
  * @FilePath: \src\src\pages\myShare\components\HotTag\index.tsx
  * @Description: 热门标签
  * 
@@ -12,6 +12,9 @@ import { Divider } from 'antd'
 import style from './index.less'
 import { hotTags } from '@/api/myShare/hotTag'
 export default function index() {
+    /**
+     * 标签颜色
+     */
     const tagData = [
         {
             title: 'golang',
@@ -71,6 +74,9 @@ export default function index() {
     ]
     const [tagsData, setTagsData] = useState(tagData);
     useEffect(() => {
+        /**
+         * 获取后端数据并随机展示颜色
+         */
         hotTags(1).then((res) => {
             let resData = res.data.topics.map((e:any, i:number) => {
                 return {
@@ -86,6 +92,7 @@ export default function index() {
     return (
         <div className={style.container}>
             <div>热门标签</div>
+            {/* 热门标签展示 */}
             <Divider style={{ marginTop: '1px', marginBottom: '1px' }} />
             <div>
                 {

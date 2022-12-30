@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-09 16:29:55
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 17:28:42
+ * @LastEditTime: 2022-12-30 12:17:38
  * @FilePath: \src\src\pages\Task\components\CreateTask\index.tsx
  * @Description: 创建任务
  *
@@ -29,6 +29,7 @@ export default function index() {
   const history = useHistory();
   const [userState, setUserState] = useState('老师');
   const litsType = ["管理员", "学生", "老师", "游客"]
+  // 钩子函数刷新状态
   useEffect(() => {
     try {
       if (storage.getItem('userMsg').classId)
@@ -45,6 +46,9 @@ export default function index() {
     form.resetFields();
   };
   const [defaultYear] = useState((new Date()).getFullYear() - 2)
+  /**
+   * 获取表单数据
+   */
   function createTask() {
     console.log(form.getFieldsValue())
     let outData = {

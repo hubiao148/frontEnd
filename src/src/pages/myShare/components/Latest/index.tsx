@@ -2,9 +2,9 @@
  * @Author: hcy
  * @Date: 2022-10-18 16:54:33
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 21:36:35
+ * @LastEditTime: 2022-12-30 11:54:02
  * @FilePath: \src\src\pages\myShare\components\Latest\index.tsx
- * @Description: 
+ * @Description: 最新
  * 
  */
 import { latestData } from '@/api/myShare/latest'
@@ -13,8 +13,63 @@ import { useAtom } from 'jotai'
 import { divider0 } from '@/jotai'
 import { arrayReplaceAt } from 'markdown-it/lib/common/utils'
 import { useEffect, useState } from 'react'
+// 数据占位
 const defaultListData = [
   {
+    anser: 60,
+    read: 15,
+    title: '{}内必须包含[]的js正则怎么写？',
+    tag: ['php', 'js', 'docker', '运维', '容器'],
+    headIcon: '',
+    auth: '汝河不上云霄',
+    id: 1,
+    userId: 1,
+  }, {
+    anser: 60,
+    read: 15,
+    title: '{}内必须包含[]的js正则怎么写？',
+    tag: ['php', 'js', 'docker', '运维', '容器'],
+    headIcon: '',
+    auth: '汝河不上云霄',
+    id: 1,
+    userId: 1,
+  }, {
+    anser: 60,
+    read: 15,
+    title: '{}内必须包含[]的js正则怎么写？',
+    tag: ['php', 'js', 'docker', '运维', '容器'],
+    headIcon: '',
+    auth: '汝河不上云霄',
+    id: 1,
+    userId: 1,
+  }, {
+    anser: 60,
+    read: 15,
+    title: '{}内必须包含[]的js正则怎么写？',
+    tag: ['php', 'js', 'docker', '运维', '容器'],
+    headIcon: '',
+    auth: '汝河不上云霄',
+    id: 1,
+    userId: 1,
+  }, {
+    anser: 60,
+    read: 15,
+    title: '{}内必须包含[]的js正则怎么写？',
+    tag: ['php', 'js', 'docker', '运维', '容器'],
+    headIcon: '',
+    auth: '汝河不上云霄',
+    id: 1,
+    userId: 1,
+  }, {
+    anser: 60,
+    read: 15,
+    title: '{}内必须包含[]的js正则怎么写？',
+    tag: ['php', 'js', 'docker', '运维', '容器'],
+    headIcon: '',
+    auth: '汝河不上云霄',
+    id: 1,
+    userId: 1,
+  }, {
     anser: 60,
     read: 15,
     title: '{}内必须包含[]的js正则怎么写？',
@@ -26,6 +81,7 @@ const defaultListData = [
   },
 ]
 export default () => {
+  // 设置刷新状态
   const [loadingState, setLoadingState] = useState(true);
   const [page,] = useAtom(divider0);
   const [total,setTotal] =useState(10)
@@ -58,6 +114,7 @@ export default () => {
  
   return (
     <>
+      {/* 展示插件并传值 */}
       <Common listData={listData} num={7} loading={loadingState} id={0} total={total}></Common>
     </>
   )

@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-29 22:26:54
+ * @LastEditTime: 2022-12-30 11:24:06
  * @FilePath: \src\config\routes.ts
  * @Description: 路由
  *
@@ -15,10 +15,12 @@ export default [
     path: '/beforeLogin',
     component: '@/pages/BeforeLogin',
     routes: [
+      // 登录
       {
         path: '/beforeLogin/login',
         component: '@/pages/BeforeLogin/components/Login',
       },
+      // 注册
       {
         path: '/beforeLogin/register',
         component: '@/pages/BeforeLogin/components/Register',
@@ -31,6 +33,7 @@ export default [
     component: '@/pages/forgetPassword',
   },
   {
+    // 提问
     path: '/askquestion',
     component: '@/pages/AskQuestion',
   },
@@ -41,10 +44,12 @@ export default [
     routes: [
       { path: '/', redirect: '/home' },
       {
+        // 主页
         path: '/home',
         component: '@/pages/Home',
       },
       {
+        // 搜索
         path: '/search',
         component: '@/pages/Search',
       },
@@ -143,14 +148,17 @@ export default [
             component: '@/pages/Task/components/CreateClass',
           },
           {
+            // 查看任务
             path: '/task/lookTask/:id/:sta',
             component: '@/pages/Task/components/LookTask',
           },
           {
+            // 上传任务
             path: '/task/loadTask',
             component: '@/pages/Task/components/LoadTask',
           },
           {
+            // 小组详情
             path: '/task/groupDetail/:id',
             component:
               '@/pages/Task/components/Staging/components/StagingTeacher/GroupList',
@@ -163,28 +171,34 @@ export default [
         component: '@/pages/myShare',
         routes: [
           {
+            // 主页
             path: '/myshare',
             redirect: '/myshare/latest',
           },
           {
+            // 最新
             path: '/myshare/latest',
             component: '@/pages/myShare/components/Latest',
           },
           {
+            // 回复
             path: '/myshare/reply',
             component: '@/pages/myShare/components/Reply',
           },
           {
+            // 月榜
             path: '/myshare/mouth',
             component: '@/pages/myShare/components/Mouth',
           },
           {
+            // 周榜
             path: '/myshare/week',
             component: '@/pages/myShare/components/Week',
           },
         ],
       },
       {
+        // 我的分享详情
         path: '/details/:id',
         component: '@/pages/myShare/components/QuestionDetails',
       },
@@ -199,25 +213,30 @@ export default [
             redirect: '/user/usermsgs',
           },
           {
+            // 用户信息
             path: '/user/usermsgs',
             component: '@/pages/User/components/UserMsgs',
           },
           {
+            // 我收藏的案例
             path: '/user/mycases',
             component: '@/pages/User/components/MyCases',
           },
           {
+            // 我的回答
             path: '/user/myquestions',
             component: '@/pages/User/components/MyQuestions',
           },
+          // 我的提问
           { path: '/user/myasks', component: '@/pages/User/components/MyAsks' },
           {
+            // 我收藏的提问
             path: '/user/myshares',
             component: '@/pages/User/components/MyShares',
           },
         ],
       },
-
+      // 404界面
       { component: '@/pages/404' },
     ],
   },

@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-09 16:27:10
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-24 17:31:13
+ * @LastEditTime: 2022-12-30 12:22:07
  * @FilePath: \src\src\pages\Task\components\Staging\components\StagingTeacher\index.tsx
  * @Description: 老师工作台
  * 
@@ -27,11 +27,14 @@ import { deleteGroupById, queryGroupByGradeId, queryGroupList } from '@/api/task
      */
 
 const da = [
-    { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true ,id:1}
+    { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 },
 ];
 export default function index() {
+    // 加载状态
     const [loading, setLoading] = useState(false);
+    // 使用导航栏
     const history = useHistory();
+    // 初始化数据
     const [data, setData] = useState(da);
     useEffect(() => {
         setLoading(true);
@@ -79,6 +82,10 @@ export default function index() {
             setLoading(false);
         })
     }
+    /**
+     * 删除小组
+     * @param id 
+     */
     function deleteById(id: number) {
         console.log(id)
         deleteGroupById(id).then((res) => {
@@ -107,6 +114,7 @@ export default function index() {
         })
     }
     const onSearchMsg = useThrottle(searchMsg, 700);
+    // 设置默认年份
     const [defaultYear] = useState((new Date()).getFullYear() - 2)
     return (
         <div className={style.container}>
