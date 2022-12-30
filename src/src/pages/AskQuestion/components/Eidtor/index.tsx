@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-21 09:57:38
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-08 20:24:58
+ * @LastEditTime: 2022-12-30 15:52:39
  * @FilePath: \src\src\pages\AskQuestion\components\Eidtor\index.tsx
  * @Description: 
  * 
@@ -19,11 +19,11 @@ export default function index() {
     const [text, setText] = useAtom(msg);
     //数据绑定
     useEffect(() => {
-        setText('- sdasd');
+        setText('# 标题');
     }, [])
     function handleEditorChange(args: any) {
         setText(args.text);
-        console.log(text)
+        // console.log(text)
     }
     //图片上传函数
     function handleImageUpload(file: any, callback: any) {

@@ -2,8 +2,8 @@
  * @Author: hcy
  * @Date: 2022-10-08 19:38:37
 <<<<<<< HEAD
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-29 21:49:29
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-12-30 21:03:13
 =======
  * @LastEditors: hcy
  * @LastEditTime: 2022-12-29 17:33:24
@@ -28,7 +28,7 @@ export default {
       // target: 'http://easyse.free.idcfengye.com',
       // target: 'https://4717v036u3.zicp.fun/',
       // target: 'http://380f1215.nat123.fun',
-      target: 'http://iyuyb3.natappfree.cc',
+      target: 'http://bb2qy5.natappfree.cc',
       // 配置了这个可以从 http 代理到 https easyse.free.idcfengye.com
       // 依赖 origin 的功能可能需要这个，比如 cookie
       secure: false, // 不验证证书

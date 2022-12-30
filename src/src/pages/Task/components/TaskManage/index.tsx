@@ -63,6 +63,7 @@ export default function index() {
   const history = useHistory();
   // 设置加载状态
   const [initLoading, setInitLoading] = useState(true);
+  
   const [userState, setUserState] = useState('老师');
   const litsType = ['管理员', '老师', '学生', '游客'];
   const params: { id: any } = useParams();
@@ -81,28 +82,41 @@ export default function index() {
      * 获取数据
      */
     queryGroupTaskById(params.id).then((res) => {
-      let resData = res.data.tasks.map((i: any) => {
-        return {
-          taskName: i.taskName,
-          dec: i.story,
-          deadLine: i.finisheddate.split('T')[0],
-          sUp: true,
-          mainAuth: i.assignedto,
-          id: i.id,
-          teacher: false,
-        }
-      })
-      let resData1 = res.data.ttasks.map((i: any) => {
-        return {
-          taskName: i.name,
-          dec: i.info,
-          deadLine: i.finisheddate.split('T')[0],
-          sUp: i.upload==='0'?false:true,
-          mainAuth: i.auther,
-          id: i.id,
-          teacher:true,
-        }
-      })
+      
+      if (res.data == null) {
+        message.error({ content: '没有任务！', duration: 1 });
+        history.push("/task/staging");
+        return;
+      }
+      let resData;
+      if (res.data.tasks != null) {
+        resData = res.data.tasks.map((i: any) => {
+          return {
+            taskName: i.taskName,
+            dec: i.story,
+            deadLine: i.finisheddate!=undefined?i.finisheddate.split('T')[0]:i.deadline.split('T')[0],
+            sUp: true,
+            mainAuth: i.assignedto,
+            id: i.id,
+            teacher: false,
+          }
+        })
+      }
+      let resData1;
+      if (res.data.ttasks != null) {
+        resData1 = res.data.ttasks.map((i: any) => {
+          return {
+            taskName: i.name,
+            dec: i.info,
+            deadLine: i.finisheddate.split('T')[0],
+            sUp: i.upload === '0' ? false : true,
+            mainAuth: i.auther,
+            id: i.id,
+            teacher: true,
+          }
+        })
+      }
+      
       setList(resData.concat(resData1))
       setInitLoading(false);
     })
@@ -121,28 +135,39 @@ export default function index() {
     })
     setInitLoading(true);
     queryGroupTaskById(params.id).then((res) => {
-      let resData = res.data.tasks.map((i: any) => {
-        return {
-          taskName: i.taskName,
-          dec: i.story,
-          deadLine: i.finisheddate.split('T')[0],
-          sUp: true,
-          mainAuth: i.assignedto,
-          id: i.id,
-          teacher: false,
-        }
-      })
-      let resData1 = res.data.ttasks.map((i: any) => {
-        return {
-          taskName: i.name,
-          dec: i.info,
-          deadLine: i.finisheddate.split('T')[0],
-          sUp: i.upload === '0' ? false : true,
-          mainAuth: i.auther,
-          id: i.id,
-          teacher: true,
-        }
-      })
+      
+      let resData;
+      if (res.data.tasks!=null) {
+        resData = res.data.tasks.map((i: any) => {
+          return {
+            taskName: i.taskName,
+            dec: i.story,
+            deadLine: i.finisheddate.split('T')[0],
+            sUp: true,
+            mainAuth: i.assignedto,
+            id: i.id,
+            teacher: false,
+          }
+        })
+      }
+      let resData1;
+      if (res.data.ttasks!=null) {
+        resData1 = res.data.ttasks.map((i: any) => {
+          return {
+            taskName: i.name,
+            dec: i.info,
+            deadLine: i.finisheddate.split('T')[0],
+            sUp: i.upload === '0' ? false : true,
+            mainAuth: i.auther,
+            id: i.id,
+            teacher: true,
+          }
+        })
+      }
+      if (resData == undefined && resData1 == undefined) {
+        history.push("/task/staging");
+        return;
+      }
       setList(resData.concat(resData1))
       setInitLoading(false);
     })
