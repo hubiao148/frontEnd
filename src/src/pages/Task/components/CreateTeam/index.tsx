@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-09 17:25:40
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-25 15:07:47
+ * @LastEditTime: 2022-12-30 21:29:04
  * @FilePath: \src\src\pages\Task\components\CreateTeam\index.tsx
  * @Description: 创建团队
  *
@@ -17,10 +17,11 @@ import {
   DatePicker as TDatePicker,
   Col,
   Row,
+  message,
 } from 'antd';
 import { Link } from 'umi';
 import styled from './index.less';
-let DatePicker: any = TDatePicker;
+
 export default function index() {
   const [form] = Form.useForm();
   //清空表单
@@ -29,7 +30,7 @@ export default function index() {
   };
   const { classId, id } = storage.getItem('userMsg');
   const onFinish = (values: any) => {
-    //创建项目的接口
+    //创建团队的接口
     createTeam({
       classId: classId,
       gitUrl: values.linkAddress,
@@ -38,7 +39,13 @@ export default function index() {
       leaderId: id,
       projectName: values.projectName,
     }).then((res) => {
-      console.log(res);
+      // @ts-ignore
+      // console.log(res.meta.msg);
+      if (res.meta.code == 500) {
+        message.error({ content: '你已经创建了团队！', duration: 1 });
+      } else {
+        message.success({ content: '创建成功！', duration: 1 });
+      }
     });
   };
   return (
@@ -63,11 +70,7 @@ export default function index() {
               </Form.Item>
             </Col>
             <Col span={9}>
-              <Form.Item
-                name="linkAddress"
-                initialValue="https://gitee.com/han-changyuan/easySE_frontEnd"
-                label="代码仓库地址"
-              >
+              <Form.Item name="linkAddress" label="代码仓库地址">
                 <Input placeholder="gitee仓库链接" />
               </Form.Item>
             </Col>

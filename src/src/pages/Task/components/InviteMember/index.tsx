@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-09 17:27:38
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-30 13:26:31
+ * @LastEditTime: 2022-12-30 20:49:02
  * @FilePath: \src\src\pages\Task\components\InviteMember\index.tsx
  * @Description: 邀请成员
  *
@@ -16,7 +16,7 @@ import styled from './index.less';
 
 export default function index() {
   const [form] = Form.useForm();
-  const [code, setCode] = useState('HGkL');
+  const [code, setCode] = useState('获取中...');
 
   const userId = storage.getItem('userMsg').id;
   useEffect(() => {
@@ -44,7 +44,14 @@ export default function index() {
                   onCopy={() => message.success('复制成功')}
                   text={code}
                 >
-                  <span>邀请码(可点击复制):{code}</span>
+                  <div>
+                    邀请码(可点击复制):
+                    <span
+                      style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                    >
+                      {code}
+                    </span>
+                  </div>
                 </CopyToClipboard>
                 {/* <span>邀请码:{code}</span> */}
               </Form.Item>

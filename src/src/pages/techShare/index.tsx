@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-10-24 13:28:28
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-24 23:45:45
+ * @LastEditTime: 2022-12-30 16:18:42
  * @FilePath: \src\src\pages\techShare\index.tsx
  * @Description:
  *
@@ -57,7 +57,7 @@ function techShare(props: any) {
     console.log(e);
     getTeachShareList(e.key).then((res) => {
       //console.log('分享', res.data);
-      setShareList(res.data.lists);
+      setShareList(res?.data?.lists);
     });
   };
   //加载技术分享的文件
@@ -68,7 +68,7 @@ function techShare(props: any) {
       setItem(res.data.lists);
     });
     getTeachShareList('1').then((res) => {
-      setShareList(res.data.lists);
+      setShareList(res?.data?.lists);
     });
   }, []);
 
@@ -92,12 +92,12 @@ function techShare(props: any) {
       ),
     ]),
   ];
-  const docs = [
-    { uri: 'https://url-to-my-pdf.pdf' }, // Remote file
-    {
-      uri: 'http://easyse-file.oss-cn-chengdu.aliyuncs.com/files/2022/12/19/实验大纲《Java高级开发技术》.docx',
-    }, // Local File
-  ];
+
+  const openFile = (fileUrl: any) => {
+    window.open(
+      'https://view.xdocin.com/view?src=' + encodeURIComponent(fileUrl),
+    );
+  };
 
   return (
     <div className={styled['shareWrapper']}>
@@ -129,7 +129,6 @@ function techShare(props: any) {
           onSearch={getData}
         />
         <List
-          loading
           className={styled.list}
           itemLayout="vertical"
           size="large"
@@ -141,23 +140,16 @@ function techShare(props: any) {
           }}
           dataSource={shareList}
           renderItem={(item: any) => (
-            <List.Item key={item.sceneDesign.title}>
+            <List.Item
+              className={styled.listItem}
+              key={item.sceneDesign.title}
+              onClick={() => openFile(item.urlLists[0])}
+            >
               <List.Item.Meta
-                // avatar={<Avatar src={item.avatar} />}
                 title={item.sceneDesign.title}
                 description={item.sceneDesign.title}
               />
-              {/* {item.content} */}
-              {/* <FileViewer
-                fileType={'docx'}
-                filePath={
-                  'http://easyse-file.oss-cn-chengdu.aliyuncs.com/files/2022/12/19/实验大纲《Java高级开发技术》.docx'
-                }
-              /> */}
-              <DocViewer
-                documents={docs}
-                pluginRenderers={DocViewerRenderers}
-              />
+              {item.sceneDesign.content}
             </List.Item>
           )}
         />

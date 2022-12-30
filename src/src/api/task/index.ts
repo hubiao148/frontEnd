@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-12-23 16:35:22
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-29 22:29:41
+ * @LastEditTime: 2022-12-30 19:58:19
  * @FilePath: \src\src\api\task\index.ts
  * @Description:学生端的接口
  *
@@ -84,7 +84,7 @@ export function deleteTask(params: number) {
 export function uploadTask(data: any) {
   return request({
     url: `/tasks/missions/`,
-    method: 'patch',
+    method: 'post',
     data,
   });
 }
@@ -108,7 +108,7 @@ export function getCountResult(params: any) {
 //上传老师的任务
 export function uploadTTask(data: any) {
   return request({
-    url: '',
+    url: `/tasks/missions/upload`,
     method: 'post',
     data,
   });

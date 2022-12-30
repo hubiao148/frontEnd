@@ -2,13 +2,14 @@
  * @Author: hcy
  * @Date: 2022-11-09 17:28:28
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-25 15:11:24
+ * @LastEditTime: 2022-12-30 21:33:03
  * @FilePath: \src\src\pages\Task\components\JoinTeam\index.tsx
  * @Description: 加入团队
  *
  */
 import { joinTeam } from '@/api/task';
-import { Card, Button, Form, Input, Col, Row } from 'antd';
+import storage from '@/utils/storage';
+import { Card, Button, Form, Input, Col, Row, message } from 'antd';
 import styled from './index.less';
 
 export default function index() {
@@ -19,12 +20,19 @@ export default function index() {
   };
 
   const onFinish = (values: any) => {
-    //创建项目的接口
+    const userId = storage.getItem('userMsg').id;
+    //加入团队的接口
     joinTeam({
       teamCode: values.inviteCode,
-      userID: 15,
+      userID: userId,
     }).then((res) => {
-      console.log(res);
+      // @ts-ignore
+      if (res.meta.code == 500) {
+        // @ts-ignore
+        message.error({ content: res.meta.msg, duration: 2 });
+      } else {
+        message.success({ content: '加入成功！', duration: 1 });
+      }
     });
   };
 

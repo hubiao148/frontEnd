@@ -21,3 +21,6 @@
   filter: drop-shadow(rgba(156, 157, 159, 0.15) 10px 10px 8px);
   background-color: rgba(255, 255, 255, 0.8);
 }
+.inviteMemberWrapper .memberCard form {
+  margin-top: 50px;
+}

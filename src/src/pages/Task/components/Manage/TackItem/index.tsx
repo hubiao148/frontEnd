@@ -2,13 +2,12 @@
  * @Author: zyqqun
  * @Date: 2022-11-21 21:22:32
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-25 19:43:26
+ * @LastEditTime: 2022-12-30 20:52:02
  * @FilePath: \src\src\pages\Task\components\Manage\TackItem\index.tsx
  * @Description:
  *
  * Copyright (c) 2022 by zyqqun 2450100414@qq.com, All Rights Reserved.
  */
-import storage from '@/utils/storage';
 import { CheckCircleTwoTone } from '@ant-design/icons';
 const moment = require('moment');
 import './index.less';
@@ -39,7 +38,6 @@ function TaskItem(props: Iprops) {
       <div className="task-item__info">
         <div className="task-item__title">{name}</div>
         <div className="task-item__ddl">{finisheddate}</div>
-        {/* <div className="task-item__desc">{desc}</div> */}
       </div>
       <div className="task-item__status">
         {upload == '0' ? (

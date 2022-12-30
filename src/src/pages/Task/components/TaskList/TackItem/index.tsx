@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-11-21 21:22:32
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-25 20:45:58
+ * @LastEditTime: 2022-12-30 19:54:33
  * @FilePath: \src\src\pages\Task\components\TaskList\TackItem\index.tsx
  * @Description:
  *
@@ -40,7 +40,7 @@ function TaskItem(props: Iprops) {
     <div className={`task-item ${active ? 'task-item--active' : ''}`}>
       <div className="task-item__info">
         <div className="task-item__title">{taskName}</div>
-        <div className="task-item__ddl">{deadline?.split('T')[0]}</div>
+        <div className="task-item__ddl">{deadline}</div>
         {/* <div className="task-item__desc">{desc}</div> */}
       </div>
       <div className="task-item__status">

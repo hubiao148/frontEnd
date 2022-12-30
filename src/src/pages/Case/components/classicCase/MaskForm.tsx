@@ -87,7 +87,6 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
         <Row gutter={16} justify="center">
           <Col span={8}>
             <Form.Item
-              initialValue="2"
               name="groupId"
               label="组号"
               rules={[{ required: true, message: '请输入小组组号' }]}
@@ -114,7 +113,6 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
         <Row gutter={16} justify="center">
           <Col span={8}>
             <Form.Item
-              initialValue="1"
               name="techType"
               label="技术类别"
               rules={[{ required: true, message: '请输入类别' }]}
@@ -129,7 +127,6 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
           </Col>
           <Col span={8}>
             <Form.Item
-              initialValue="ss"
               name="techShare"
               label="技术分享课题"
               rules={[{ required: true, message: '请输入您的技术分享课题' }]}

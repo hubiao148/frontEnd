@@ -26,7 +26,7 @@
   cursor: pointer;
   transition: all 0.4s;
   border-radius: 2px;
-  min-height: 6rem;
+  min-height: 70px;
   position: relative;
 }
 .task-list .add-task-container:hover {

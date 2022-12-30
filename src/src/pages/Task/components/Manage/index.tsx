@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-11-21 21:22:16
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-29 22:29:54
+ * @LastEditTime: 2022-12-30 20:20:44
  * @FilePath: \src\src\pages\Task\components\Manage\index.tsx
  * @Description:
  *
@@ -51,7 +51,7 @@ function TaskList() {
   useEffect(() => {
     console.log('groupId', groupId);
     missionList();
-  }, [groupId]);
+  }, [groupId, activeTask?.upload]);
 
   return (
     <div className="task-list">

@@ -23,7 +23,7 @@ const formItemLayout = {
 };
 
 interface IProps {
-  task?: taskT; //被点击的那个任务
+  task?: any; //被点击的那个任务
   groupId?: any;
   onClose: () => void;
 }
@@ -45,16 +45,17 @@ function TaskDetail(props: IProps) {
       //   'files[]',
       //   new Blob([JSON.stringify(fileList)], { type: 'application/json' }),
       // );
-      formData.append('files', file as RcFile);
+      formData.append('file', file as RcFile);
     });
-    console.log('formData', formData.getAll('files'));
+    console.log('formData', formData.getAll('file'));
 
     const principal = values.principal; //负责人
-    const year = values.question; //疑问
+    const mailto = values.question; //疑问
 
-    formData.append('groupId', groupId); //小组id
-    formData.append('groupId', principal); //负责人
-    formData.append('year', year); //疑问
+    formData.append('taskID', task?.id); //任务id
+    formData.append('groupId', groupId); //
+    formData.append('assignedto', principal); //负责人
+    formData.append('mailto', mailto); //疑问
     // console.log('fileList', fileList);
 
     uploadTTask(formData)
@@ -65,22 +66,6 @@ function TaskDetail(props: IProps) {
       .catch((err: Error) => {
         console.log(err);
       });
-
-    // fetch('', {
-    //   method: 'post',
-    //   body: formData,
-    //   // headers: {
-    //   //   'Content-Type': 'multipart/form-data',
-    //   // },
-    // })
-    //   .then((res) => res.text())
-    //   .then((res) => {
-    //     onClose();
-    //     message.success({ content: '上传成功！', duration: 1 });
-    //   });
-    //老师的任务上传
-    // onClose();
-    // message.success({ content: '上传成功！', duration: 1 });
   };
   return (
     <div>

@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-11-21 21:22:16
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-29 22:40:59
+ * @LastEditTime: 2022-12-30 20:52:55
  * @FilePath: \src\src\pages\Task\components\TaskList\index.tsx
  * @Description:
  *
@@ -39,7 +39,6 @@ import {
   getMissionList,
   searchTask,
 } from '@/api/task';
-import { atom, useAtom } from 'jotai';
 import storage from '@/utils/storage';
 const { Search } = Input;
 export interface taskT {
@@ -73,9 +72,9 @@ function TaskList() {
       setTasks(res?.data?.tasks);
     });
   };
-
+  const userId = storage.getItem('userMsg').id;
   useEffect(() => {
-    getGroupId(20).then((res) => {
+    getGroupId(userId).then((res) => {
       // console.log(res.groupId);
       //@ts-ignore
       setGroupId(res.groupId);
@@ -107,7 +106,7 @@ function TaskList() {
   const handleCreate = () => {
     createTask({
       taskName: curTitle,
-      deadline: ddl,
+      deadline: moment(ddl).format('YYYY-MM-DD HH:mm:ss'),
       groupId: groupId,
     }).then((res) => {
       console.log(res.data.mission);

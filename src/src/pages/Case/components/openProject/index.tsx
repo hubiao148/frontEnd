@@ -127,6 +127,7 @@ function OpenProject() {
         dataSource={projectList}
         renderItem={(item: ListProps) => (
           <List.Item
+            className={styled.listItem}
             key={item.title}
             actions={[
               <IconText
