@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-30 20:37:17
+ * @LastEditTime: 2022-12-31 11:24:42
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:
  *
@@ -47,18 +47,8 @@ function Login() {
   }, []);
 
   const onFinish = useDebounce((values: any) => {
-    //登录，todo接口
-    BeforeLoginRequest({
-      phonenumber: values.account,
-      password: values.password,
-    }).then((res) => {
-      console.log(res);
-      storage.setItem('userMsg', res.data.userMsg);
-      storage.setItem('token', res.data.token);
-      storage.setItem('roleId', res.data.roleId);
-      history.replace('/home');
-      message.success({ content: '登录成功！', duration: 1 });
-    });
+    const acccount = values.account;
+    const passsword = values.password;
     // request({
     //   url: '/login',
     //   method: 'get',
@@ -69,6 +59,23 @@ function Login() {
     //   history.replace('/home');
     //   message.success({ content: '登录成功！', duration: 1 });
     // });
+
+    //AES加密
+    const password = Encrypt(values.password);
+    const account = Encrypt(values.account);
+    //登录，todo接口
+    BeforeLoginRequest({
+      phonenumber: acccount,
+      password: passsword,
+    }).then((res) => {
+      console.log(res);
+      storage.setItem('userMsg', res.data.userMsg);
+      storage.setItem('token', res.data.token);
+      storage.setItem('roleId', res.data.roleId);
+      history.replace('/home');
+      message.success({ content: '登录成功！', duration: 1 });
+    });
+    console.log('加密', account, password);
   }, 700);
 
   const onFinishFailed = (errorInfo: any) => {
@@ -163,38 +170,6 @@ function Login() {
           </Button>
         </Form.Item>
       </Form>
-      {/* <Button
-        onClick={() => {
-          setOpen(true);
-        }}
-      >
-        验证
-      </Button> */}
-      {/* <Modal
-        open={open}
-        onCancel={() => {
-          setOpen(false);
-        }}
-        footer={null}
-        // centered
-        width="390px"
-        style={{
-          top: 200,
-        }}
-        bodyStyle={{ height: '260px' }}
-      >
-        <Vertify
-          text="向右滑动填充拼图"
-          width={320}
-          height={160}
-          visible={true}
-          onSuccess={() => {
-            setVertify(true), setTimeout(() => setOpen(false), 1000);
-          }} //成功触发事件
-          // onFail={() => setVertify(false)} // 失败触发事件
-          // onRefresh={() => alert('refresh')}
-        />
-      </Modal> */}
     </ConfigProvider>
   );
 }
