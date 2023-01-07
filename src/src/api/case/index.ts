@@ -1,13 +1,8 @@
 /*
  * @Author: zyqqun
  * @Date: 2022-10-24 14:07:15
-<<<<<<< HEAD
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-24 23:49:18
-=======
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-12 19:54:36
->>>>>>> edfe9a27a3f7d89024d38b889bda7a78fc5f1b7a
+ * @LastEditTime: 2023-01-03 10:23:37
  * @FilePath: \src\src\api\case\index.ts
  * @Description:
  *

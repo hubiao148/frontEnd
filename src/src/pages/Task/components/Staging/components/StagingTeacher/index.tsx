@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-09 16:27:10
  * @LastEditors: hcy
- * @LastEditTime: 2022-12-30 17:04:55
+ * @LastEditTime: 2022-12-31 01:30:55
  * @FilePath: \src\src\pages\Task\components\Staging\components\StagingTeacher\index.tsx
  * @Description: 老师工作台
  * 
@@ -30,6 +30,7 @@ const da = [
     { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 },
 ];
 export default function index() {
+    const [c,setClass] =useState(2020);
     // 加载状态
     const [loading, setLoading] = useState(false);
     // 使用导航栏
@@ -62,8 +63,9 @@ export default function index() {
     function searchMsg() {
         // console.log(111)
         setLoading(true);
-        queryGroupByGradeIds(2022).then((res) => {
+        queryGroupByGradeIds(c).then((res) => {
             if (res.data == null) {
+                message.error({ content: '查询失败！', duration: 1 });
                 setLoading(false);
                 return;
             }
@@ -116,6 +118,10 @@ export default function index() {
             setLoading(false);
         })
     }
+    const handleChange = (value:any) => {
+        console.log(value); // { value: "lucy", key: "lucy", label: "Lucy (101)" }
+        setClass(value)
+    };
     const onSearchMsg = useThrottle(searchMsg, 700);
     // 设置默认年份
     const [defaultYear] = useState((new Date()).getFullYear() - 2)
@@ -127,6 +133,7 @@ export default function index() {
                     <Select
                         defaultValue={defaultYear + '级'}
                         showSearch
+                        onChange={handleChange}
                         style={{ width: 200 }}
                         placeholder="选择年级"
                         optionFilterProp="children"

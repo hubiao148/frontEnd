@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
  * @LastEditors: hcy
- * @LastEditTime: 2022-10-31 16:58:42
+ * @LastEditTime: 2022-12-31 09:01:11
  * @FilePath: \src\config\config.prod.ts
  * @Description: prod环境变量
  *
@@ -33,6 +33,7 @@ export default defineConfig({
   devServer: {
     port: 8000, // .env里面权限更高
   },
+  history: { type: 'hash' },
   title: '软件工程辅助平台', // 标题
   // favicon:'/',//图标
   dynamicImport: {
