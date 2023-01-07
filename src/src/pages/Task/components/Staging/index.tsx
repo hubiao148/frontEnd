@@ -50,7 +50,7 @@ export default function index() {
   }, []);
   useEffect(() => {
     //调用从后台获取统计数据的函数
-    getCount();
+    if (userId===3)getCount();
   }, [groupId]);
 
   const getCount = () => {

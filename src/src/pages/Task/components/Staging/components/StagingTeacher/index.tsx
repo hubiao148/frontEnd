@@ -13,7 +13,7 @@ import style from './index.less'
 import { Link, useHistory } from 'umi';
 import { useThrottle } from '@/utils/useThrottle';
 import { number } from 'echarts/core';
-import { deleteGroupById, queryAllGroup, queryGroupByGradeId, queryGroupByGradeIds, queryGroupList } from '@/api/task/teacher';
+import { deleteGroupById, queryAllGroup, queryGroupByClassId, queryGroupByGradeId, queryGroupByGradeIds, queryGroupList } from '@/api/task/teacher';
 /**
      * 
      * grade:年级
@@ -30,7 +30,8 @@ const da = [
     { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 }, { grade: '2020', class: '3', gp: '1', gpN: '软件工程实践教学辅助平台', cp: 80, noUp: '10', lUp: true, id: 1 },
 ];
 export default function index() {
-    const [c,setClass] =useState(2020);
+    const [grade, setGrade] = useState(2020);
+    const [c, setClass] = useState(0);
     // 加载状态
     const [loading, setLoading] = useState(false);
     // 使用导航栏
@@ -63,29 +64,60 @@ export default function index() {
     function searchMsg() {
         // console.log(111)
         setLoading(true);
-        queryGroupByGradeIds(c).then((res) => {
-            if (res.data == null) {
-                message.error({ content: '查询失败！', duration: 1 });
-                setLoading(false);
-                return;
-            }
-            let resData = res.data.groups.map((i:any) => {
-                // console.log(i)
-                return {
-                    grade: i.gradeId,
-                    class: i.classId,
-                    gp: i.groupName,
-                    gpN: i.projectName,
-                    cp: i.progress,
-                    noUp: i.num,
-                    lUp: i.upload === '0' ? false : true,
-                    id: i.id
+        if (c != 0) {
+            queryGroupByClassId(c).then((res:any) => {
+                if (res.data == null) {
+                    message.error({ content: '查询失败！', duration: 1 });
+                    setLoading(false);
+                    return;
                 }
+                message.success({ content: '查询成功！', duration: 1 });
+                let resData = res.data.groups.map((i: any) => {
+                    // console.log(i)
+                    return {
+                        grade: i.group.gradeId,
+                        class: i.group.classId,
+                        gp: i.group.groupName,
+                        gpN: i.group.projectName,
+                        cp: i.group.progress,
+                        noUp: i.num,
+                        lUp: i.upload === '0' ? false : true,
+                        id: i.group.id
+                    }
+                })
+                // console.log(resData)
+                setData(resData)
+                setLoading(false);
+            }).catch((err) => {
+                console.log(err)
+            });
+        } else {
+            queryGroupByGradeIds(grade).then((res) => {
+                if (res.data == null) {
+                    message.error({ content: '查询失败！', duration: 1 });
+                    setLoading(false);
+                    return;
+                }
+                message.success({ content: '查询成功！', duration: 1 });
+                let resData = res.data.groups.map((i: any) => {
+                    // console.log(i)
+                    return {
+                        grade: i.gradeId,
+                        class: i.classId,
+                        gp: i.groupName,
+                        gpN: i.projectName,
+                        cp: i.progress,
+                        noUp: i.num,
+                        lUp: i.upload === '0' ? false : true,
+                        id: i.id
+                    }
+                })
+                // console.log(resData)
+                setData(resData)
+                setLoading(false);
             })
-            // console.log(resData)
-            setData(resData)
-            setLoading(false);
-        })
+        }
+        
     }
     /**
      * 删除小组
@@ -120,11 +152,15 @@ export default function index() {
     }
     const handleChange = (value:any) => {
         console.log(value); // { value: "lucy", key: "lucy", label: "Lucy (101)" }
-        setClass(value)
+        setGrade(value)
+        setClass(0);
     };
+    const handleChangeClass = (v:any) => {
+        setClass(v)
+    }
     const onSearchMsg = useThrottle(searchMsg, 700);
     // 设置默认年份
-    const [defaultYear] = useState((new Date()).getFullYear() - 2)
+    const [defaultYear] = useState((new Date()).getFullYear() - 3)
     return (
         <div className={style.container}>
             <List
@@ -172,6 +208,7 @@ export default function index() {
                         showSearch
                         style={{ width: 200 }}
                         placeholder="选择班级"
+                        onChange={handleChangeClass}
                         optionFilterProp="children"
                         filterOption={(input, option) => (option?.label ?? '').includes(input)}
                         filterSort={(optionA, optionB) =>

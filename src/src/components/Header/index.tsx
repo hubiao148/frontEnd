@@ -126,7 +126,7 @@ export default () => {
             className={style.Dropdown}
           >
             <Avatar
-              src="https://joeschmoe.io/api/v1/random"
+              src={storage.getItem("userMsg").headerUrl}
               style={{ cursor: 'pointer' }}
               size={{ xs: 24, sm: 32, md: 40, lg: 40, xl: 40, xxl: 40 }}
             />
