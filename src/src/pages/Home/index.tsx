@@ -21,12 +21,12 @@ export default function Home() {
   const history = useHistory();
   const caseList = [
     //页面数据
-    { title: '策略模式', imgSrc: require('@/assets/策略模式.png') },
-    { title: '单例模式', imgSrc: require('@/assets/单例模式.png') },
-    { title: '工厂模式', imgSrc: require('@/assets/工厂模式.png') },
-    { title: '迪米特法则原则', imgSrc: require('@/assets/迪米特法则原则.png') },
-    { title: '接口隔离原则', imgSrc: require('@/assets/接口隔离原则.png') },
-    { title: '依赖倒置原则', imgSrc: require('@/assets/依赖倒置原则.png') },
+    { title: '策略模式', imgSrc: require('@/assets/cl.png') },
+    { title: '单例模式', imgSrc: require('@/assets/dl.png') },
+    { title: '工厂模式', imgSrc: require('@/assets/gc.png') },
+    { title: '迪米特法则原则', imgSrc: require('@/assets/dm.png') },
+    { title: '接口隔离原则', imgSrc: require('@/assets/jg.png') },
+    { title: '依赖倒置原则', imgSrc: require('@/assets/yd.png') },
   ];
   // console.log(process.env.UMI_ENV);
 
