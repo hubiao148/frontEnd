@@ -103,6 +103,7 @@ export default (props: Data) => {
                       <div> {props.loading ? <Skeleton.Avatar active></Skeleton.Avatar> : <Avatar
                         src={e.headIcon || "https://joeschmoe.io/api/v1/random"}
                         size={{ xs: 12, sm: 12, md: 20, lg: 40, xl: 40, xxl: 40 }}
+                        alt="header"
                       />}
                         {props.loading ? <Skeleton.Input active >
                         </Skeleton.Input> : <>

@@ -30,6 +30,7 @@ export default () => {
       <div className={style.topcontainer}>
         <Avatar
           src={storage.getItem("userMsg").headerUrl}
+          alt='header'
           size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }} //响应式头
         />
         <div className={style.mark}>{litsType[storage.getItem('roleId')-1]}</div>
