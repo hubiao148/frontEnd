@@ -60,6 +60,7 @@ export default function index(props: propsMsg) {
                         <div className={style.item2}>
                             <Avatar
                                 src={e.headerUrl}
+                                alt="header"
                                 size={{ xs: 12, sm: 12, md: 20, lg: 40, xl: 40, xxl: 40 }}
                             />
                             <div style={{ color: '#1890ff', marginLeft: '3px' }}>{e.auth}</div>

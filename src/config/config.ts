@@ -1,8 +1,8 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-04 17:08:52
- * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-17 20:29:27
+ * @LastEditors: hcy
+ * @LastEditTime: 2022-12-31 09:01:22
  * @FilePath: \src\config\config.ts
  * @Description: dev环境变量
  *
@@ -33,6 +33,7 @@ export default defineConfig({
   devServer: {
     port: 8000, // .env里面权限更高
   },
+  history: { type: 'hash' },
   proxy: proxy['dev'],
   publicPath: '/',
   title: '软件工程辅助平台', // 标题

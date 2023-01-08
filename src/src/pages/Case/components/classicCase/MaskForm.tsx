@@ -62,10 +62,15 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
     // console.log('fileList', fileList);
 
     uploadTeach(formData)
-      .then((res) => {
-        message.success({ content: '上传成功！', duration: 1 });
-        setIsModalOpen(false)
-        return true;
+      .then((res:any) => {
+        console.log(res);
+        if (res.code == 500) {
+          message.error({ content: '课题已存在！', duration: 1 });
+          return false;
+        } else {
+          message.success({ content: '上传成功！', duration: 1 });
+          return true;
+        }
       })
       .catch((err: Error) => {
         console.log(err);
