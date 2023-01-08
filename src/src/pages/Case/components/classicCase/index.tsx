@@ -19,7 +19,6 @@ import axios from 'axios';
 const showdown = require('showdown');
 
 type MenuItem = Required<MenuProps>['items'][number];
-const { Search } = Input;
 function getItem(
   label: React.ReactNode,
   key?: string | null,
@@ -70,9 +69,6 @@ function ClassicCase() {
     });
   };
   useEffect(() => {
-    // const str = '<h1>哈哈哈哈差不多吧</h1>';
-    // console.log('hh', str.slice(0, 10).replace(/<[^>]+>/gi, ''));
-
     appendData();
   }, []);
 
@@ -99,6 +95,7 @@ function ClassicCase() {
       </div>
       {/* 遮罩层实现技术分享的上传 */}
       <Modal
+        destroyOnClose
         footer={null}
         width="70vw"
         style={{

@@ -1,15 +1,15 @@
 /*
  * @Author: hcy
  * @Date: 2022-10-05 12:01:18
- * @LastEditors: hcy
- * @LastEditTime: 2022-12-30 11:33:31
+ * @LastEditors: zyqqun 2450100414@qq.com
+ * @LastEditTime: 2023-01-04 17:20:53
  * @FilePath: \src\src\pages\Home\index.tsx
  * @Description: 主页
  *
  */
 import { Divider } from 'antd';
 import { useHistory } from 'umi';
-import { currentPageHeader } from '@/jotai'
+import { currentPageHeader } from '@/jotai';
 import { FireOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import CaseList from './component/CaseList';
 import style from './index.less';
@@ -39,11 +39,13 @@ export default function Home() {
       </Divider>
       <CaseList caseList={caseList} />
       <div className={style.bottomLeft}>
-        <div onClick={() => {
-          setPage(2);
-          storage.setItem('currentPageHeader', 2);
-          history.push('/case');
-        }}>
+        <div
+          onClick={() => {
+            setPage(2);
+            storage.setItem('currentPageHeader', 2);
+            history.push('/case');
+          }}
+        >
           探索更多设计模式
           <ArrowRightOutlined />
         </div>

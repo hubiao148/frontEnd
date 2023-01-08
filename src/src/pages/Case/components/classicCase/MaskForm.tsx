@@ -8,6 +8,7 @@ import {
   Select,
   Upload,
   ConfigProvider,
+  message
 } from 'antd';
 import styled from './index.less';
 import {
@@ -60,24 +61,25 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
     formData.append('date', moment(dateTime).format('YYYY-MM-DD HH:mm:ss')); //分享时间
     // console.log('fileList', fileList);
 
-    // uploadTeach(formData)
-    //   .then((res) => {
-    //     console.log(res);
-    //     return true;
-    //   })
-    //   .catch((err: Error) => {
-    //     console.log(err);
-    //   });
+    uploadTeach(formData)
+      .then((res) => {
+        message.success({ content: '上传成功！', duration: 1 });
+        setIsModalOpen(false)
+        return true;
+      })
+      .catch((err: Error) => {
+        console.log(err);
+      });
 
-    fetch('https://4717v036u3.zicp.fun/techshare/designmode/add', {
-      method: 'post',
-      body: formData,
-      // headers: {
-      //   'Content-Type': 'multipart/form-data',
-      // },
-    })
-      .then((res) => res.text())
-      .then((res) => console.log(res));
+    // fetch('https://4717v036u3.zicp.fun/techshare/designmode/add', {
+    //   method: 'post',
+    //   body: formData,
+    //   // headers: {
+    //   //   'Content-Type': 'multipart/form-data',
+    //   // },
+    // })
+    //   .then((res) => res.text())
+    //   .then((res) => console.log(res));
   }
 
   return (
