@@ -143,7 +143,7 @@ function ClassicCase() {
               <div key={index} className={styled['cardItem']}>
                 <NavLink to={`/modeDetail/${item.id}`}>
                   <div className={styled['image']}>
-                    <img src={item.headUrl} alt="" />
+                    <img src={'https://www.runoob.com/wp-content/uploads/2014/08/the-relationship-between-design-patterns.jpg'} alt="" />
                   </div>
                 </NavLink>
                 <div className={styled['content']}>
