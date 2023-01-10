@@ -21,11 +21,11 @@ export default {
   dev: {
     allowedHosts: 'all',
     '/api': {
-      target: 'http://47.92.165.44:8080',
+      // target: 'http://47.92.165.44:8080',
       // target: 'http://easyse.free.idcfengye.com',
       // target: 'https://4717v036u3.zicp.fun/',
       // target: 'http://380f1215.nat123.fun',
-      // target: 'http://bb2qy5.natappfree.cc',
+      target: 'http://p5dnq8.natappfree.cc',
       // 配置了这个可以从 http 代理到 https easyse.free.idcfengye.com
       // 依赖 origin 的功能可能需要这个，比如 cookie
       secure: false, // 不验证证书
