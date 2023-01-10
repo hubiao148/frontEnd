@@ -50,8 +50,9 @@ function OpenProject() {
   // 搜索框搜索
   const getData = async () => {
     await SearchProjectList(param).then((res) => {
-      console.log(res);
+      // console.log(res);
       setProjectList(res.data.osps);
+      setParam('')
     });
   };
   //左侧导航栏 开源项目分类
@@ -68,7 +69,7 @@ function OpenProject() {
     getNavigation().then((res) => {
       setItem(res.data.lists);
     });
-    getProjectList('养殖').then((res) => {
+    getProjectList('前端').then((res) => {
       //console.log('开源', res.data);
       setProjectList(res.data.osps);
     });
@@ -101,16 +102,17 @@ function OpenProject() {
           style={{ width: 200 }}
           mode="inline"
           items={items}
-          defaultSelectedKeys={['sort1']}
+          defaultSelectedKeys={['前端']}
           defaultOpenKeys={['tech']}
         />
       </div>
       <Search
         className={styled['search']}
         placeholder="搜索开源项目"
+        value={param}
         onSearch={getData}
         onChange={(e) => {
-          console.log(e.target.value);
+          // console.log(e.target.value);
           setParam(e.target.value);
         }}
       />

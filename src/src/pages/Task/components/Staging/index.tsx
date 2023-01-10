@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-11-07 19:53:51
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-29 22:48:03
+ * @LastEditTime: 2023-01-09 17:37:20
  * @FilePath: \src\src\pages\Task\components\Staging\index.tsx
  * @Description: 工作台
  *
@@ -41,6 +41,7 @@ export default function index() {
     done: 10,
   });
   const userId = storage.getItem('userMsg').id;
+
   useEffect(() => {
     getGroupId(userId).then((res) => {
       // console.log(res.groupId);
@@ -49,8 +50,9 @@ export default function index() {
     });
   }, []);
   useEffect(() => {
+    const roleId = storage.getItem('roleId');
     //调用从后台获取统计数据的函数
-    if (userId===3)getCount();
+    if (roleId===3)getCount();
   }, [groupId]);
 
   const getCount = () => {

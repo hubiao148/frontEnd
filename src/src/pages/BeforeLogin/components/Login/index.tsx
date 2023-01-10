@@ -2,7 +2,7 @@
  * @Author: hcy
  * @Date: 2022-10-05 14:25:37
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-12-31 11:24:42
+ * @LastEditTime: 2023-01-09 17:12:30
  * @FilePath: \src\src\pages\BeforeLogin\components\Login\index.tsx
  * @Description:登录
  *
@@ -67,13 +67,19 @@ function Login() {
     BeforeLoginRequest({
       phonenumber: acccount,
       password: passsword,
-    }).then((res) => {
+    }).then((res:any) => {
       console.log(res);
-      storage.setItem('userMsg', res.data.userMsg);
-      storage.setItem('token', res.data.token);
-      storage.setItem('roleId', res.data.roleId);
-      history.replace('/home');
-      message.success({ content: '登录成功！', duration: 1 });
+      if (res.meta.code == 500) {
+        message.error({ content:res.meta.msg , duration: 1 });
+      }
+      else {
+        storage.setItem('userMsg', res.data?.userMsg);
+        storage.setItem('token', res.data?.token);
+        storage.setItem('roleId', res.data?.roleId);
+        history.replace('/home');
+        message.success({ content: '登录成功！', duration: 1 });
+      }
+    
     });
     console.log('加密', account, password);
   }, 700);

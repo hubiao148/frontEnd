@@ -5,7 +5,7 @@
  * @Last Modified time: 2022-10-22 22:18:57
  */
 import { useEffect, useState } from 'react';
-import { Input, ConfigProvider } from 'antd';
+import { Input, ConfigProvider, Form, Button } from 'antd';
 import Chart from './components';
 import styled from './index.less';
 import { useHistory } from 'umi';
@@ -1757,7 +1757,11 @@ const data = {
 const { Search } = Input;
 export default function Graph() {
   const history = useHistory();
-  const [graph, setGraph] = useState<any>({ nodes:[], links: [], categories: [] });
+  const [graph, setGraph] = useState<any>({
+    nodes: [],
+    links: [],
+    categories: [],
+  });
   // // 点击触发的函数
   // const getData = async () => {
   //   console.log('热点技术详情页面');
@@ -1770,7 +1774,7 @@ export default function Graph() {
   //将大小比较大的名字显示出来
   graph.nodes.forEach(function (node: any) {
     node.label = {
-      show: node.symbolSize > 30,
+      show: node.symbolSize > 0,
     };
   });
 
@@ -1784,10 +1788,14 @@ export default function Graph() {
         color: '#cacaca',
       },
     },
-    tooltip: {},
+    tooltip: {
+      formatter: function (x: any) {
+        return x.data.des;
+      },
+    },
     legend: [
       {
-        //selectedMode: 'single',单个单个显示
+        //selectedMode: 'single', //单个单个显示
         orient: 'vertical',
         x: 'left', //可设定图例在左、右、居中
         y: 'center', //可设定图例在上、下、居中
@@ -1802,15 +1810,29 @@ export default function Graph() {
     ],
     animationDuration: 1500,
     animationEasingUpdate: 'quinticInOut',
+
     series: [
       {
         name: 'Les Miserables',
         type: 'graph',
         layout: 'none',
+        //layout: 'force',
         data: graph.nodes,
         links: graph.links,
         categories: graph.categories,
         roam: true,
+        // edgeLabel: {
+        //   normal: {
+        //     show: true,
+        //     textStyle: {
+        //       fontSize: 10,
+        //     },
+        //     formatter: function (x: any) {
+        //       console.log(x);
+        //       return x.data.name;
+        //     },
+        //   },
+        // },
         label: {
           position: 'right',
           formatter: '{b}',
@@ -1840,7 +1862,7 @@ export default function Graph() {
           }}
         />
       </ConfigProvider>
-      <Chart option={option} />
+      <Chart option={option}  />
     </div>
   );
 }

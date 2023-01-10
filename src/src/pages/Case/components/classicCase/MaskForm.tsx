@@ -71,7 +71,6 @@ export default function MaskForm({ isModalOpen, setIsModalOpen }: maskProps) {
           message.success({ content: '上传成功！', duration: 1 });
           return true;
         }
-        
       })
       .catch((err: Error) => {
         console.log(err);

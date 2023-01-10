@@ -5,21 +5,21 @@
  * @Last Modified time: 2022-10-30 21:20:46
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { PieChartOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
+import { Alert, MenuProps, Spin } from 'antd';
 import { Input, Menu, Skeleton, Divider, Modal, Tooltip } from 'antd';
 import { Link, NavLink, useHistory } from 'umi';
 import styled from './index.less';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import InfiniteScroll, { Props } from 'react-infinite-scroll-component';
 import MaskForm from './MaskForm';
 import BackToTop from '@/components/BackTop';
 import { getModeList } from '@/api/case';
-import axios from 'axios';
+
 const showdown = require('showdown');
 
 type MenuItem = Required<MenuProps>['items'][number];
-const { Search } = Input;
+
 function getItem(
   label: React.ReactNode,
   key?: string | null,
@@ -54,6 +54,7 @@ function ClassicCase() {
   const [modeList, setModeList] = useState([]);
   //提交技术分享的表单模态框
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const onClick: MenuProps['onClick'] = (e) => {
     e.keyPath[0] === ' ' ? setIsModalOpen(true) : history.push(e.keyPath[0]);
@@ -65,14 +66,12 @@ function ClassicCase() {
     // let converter = new showdown.Converter();
     getModeList().then((res) => {
       setModeList(res.data.designModes);
+      setLoading(false)
       // console.log('markdown', res.data.designModes[3].content);
       // console.log(converter.makeHtml(res.data.designModes[3].content));
     });
   };
   useEffect(() => {
-    // const str = '<h1>哈哈哈哈差不多吧</h1>';
-    // console.log('hh', str.slice(0, 10).replace(/<[^>]+>/gi, ''));
-
     appendData();
   }, []);
 
@@ -94,11 +93,13 @@ function ClassicCase() {
           style={{ width: 200 }}
           mode="inline"
           items={items}
+          defaultSelectedKeys={['1']}
           defaultOpenKeys={['tech']}
         />
       </div>
       {/* 遮罩层实现技术分享的上传 */}
       <Modal
+        destroyOnClose
         footer={null}
         width="70vw"
         style={{
@@ -114,7 +115,14 @@ function ClassicCase() {
       </Modal>
 
       {/* 设计模式的卡片 */}
-      <div>
+      {loading ? <Spin tip="正在玩命儿加载中...">
+      <Alert
+        message="经典案例"
+        description="多种设计模式等你来探索。。。"
+        type="info"
+      />
+    </Spin>:
+        <div>
         {/* <Search
           className={styled['search']}
           placeholder="搜索设计模式"
@@ -152,7 +160,7 @@ function ClassicCase() {
           })}
           {/* </InfiniteScroll> */}
         </div>
-      </div>
+      </div>}
       <BackToTop />
     </div>
   );

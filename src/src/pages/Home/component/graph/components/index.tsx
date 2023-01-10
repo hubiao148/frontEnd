@@ -2,7 +2,7 @@
  * @Author: zyqqun
  * @Date: 2022-10-22 21:16:40
  * @LastEditors: zyqqun 2450100414@qq.com
- * @LastEditTime: 2022-11-30 16:48:20
+ * @LastEditTime: 2023-01-08 22:43:59
  * @FilePath: \src\src\pages\Home\component\graph\components\index.tsx
  * @Description:
  *
@@ -58,6 +58,11 @@ const Chart: React.FC<MyChartProps | any> = ({ option }) => {
       if (option) cInstance.current?.setOption(option);
     }
   }, [cRef, option]);
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      cInstance.current?.resize();
+    });
+  },[])
 
   cInstance.current?.on('click', function (params) {
     //console.log(params.data?.url);

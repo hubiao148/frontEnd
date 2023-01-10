@@ -5,20 +5,451 @@ export default {
     errorMessage: '获取失败',
     showType: 1,
     traceId: 'i',
+    // data: {
+    //   nodes: [
+    //     {
+    //       id: '0',
+    //       name: '侯亮平',
+    //       des: '最高检反贪局侦查处处长，汉东省人民检察院副检察长兼反贪局局长。<br/>经过与腐败违法分子的斗争，最终将一批腐败分子送上了审判台，<br/>正义战胜邪恶，自己也迎来了成长。',
+    //       symbolSize: 100,
+    //       x: -266.82776,
+    //       y: 299.6904,
+    //       // itemStyle: {
+    //       //   normal: {
+    //       //     color: '#eeb66c',
+    //       //   },
+    //       // },
+    //       category: 0,
+    //     },
+    //     {
+    //       id: '1',
+    //       name: '李达康',
+    //       des: '汉东省省委常委，京州市市委书记。是一个正义无私的好官。<br/>但为人过于爱惜自己的羽毛，对待身边的亲人和朋友显得有些无情。',
+    //       x: -300.82776,
+    //       y: 299.6904,
+    //       // itemStyle: {
+    //       //   normal: {
+    //       //     color: '#eeb66c',
+    //       //   },
+    //       // },
+    //       category: 0,
+    //     },
+    //     {
+    //       id: '2',
+    //       name: '祁同伟',
+    //       des: '汉东省公安厅厅长',
+    //       symbolSize: 100,
+    //       category: 0,
+    //     },
+    //     {
+    //       id: '3',
+    //       name: '陈岩石',
+    //       des: '离休干部、汉东省检察院前常务副检察长。充满正义，平凡而普通的***人。<br/>对大老虎赵立春，以各种形式执着举报了十二年。<br/>在这场关系党和国家生死存亡的斗争中，老人家以耄耋高龄，<br/>义无反顾地背起了炸 药包，在反腐胜利前夕因病去世。',
+    //       // itemStyle: {
+    //       //   normal: {
+    //       //     color: '#eeb66c',
+    //       //   },
+    //       // },
+    //       category: 0,
+    //     },
+    //     {
+    //       id: '4',
+    //       name: '陆亦可',
+    //       des: '汉东省检察院反贪局一处处长',
+    //       // itemStyle: {
+    //       //   normal: {
+    //       //     color: '#eeb66c',
+    //       //   },
+    //       // },
+    //       category: 0,
+    //     },
+    //     {
+    //       id: '5',
+    //       name: '高育良',
+    //       des: '汉东省省委副书记兼政法委书记。年近六十，是一个擅长太极功夫的官场老手。侯亮平、陈海和祁同伟是其学生。',
+    //       symbolSize: 100,
+    //       category: 0,
+    //     },
+    //     {
+    //       id: '6',
+    //       name: '沙瑞金',
+    //       des: '汉东省省委书记',
+    //       // itemStyle: {
+    //       //   normal: {
+    //       //     color: '#eeb66c',
+    //       //   },
+    //       // },
+    //       category: 0,
+    //     },
+    //     {
+    //       id: '7',
+    //       name: '高小琴',
+    //       des: '山水集团董事长，是一位叱咤于政界和商界的风云人物，处事圆滑、精明干练。',
+    //       category: 0,
+    //     },
+    //     {
+    //       id: '8',
+    //       name: '高小凤',
+    //       category: 0,
+    //     },
+    //     {
+    //       id: '9',
+    //       name: '赵东来',
+    //       des: '汉东省京州市公安局局长，充满正义，整治恶势力，<br/>在与检察部门的合作中从最初的质疑到之后的通力配合。',
+    //       // itemStyle: {
+    //       //   normal: {
+    //       //     color: '#eeb66c',
+    //       //   },
+    //       // },
+    //       category: 0,
+    //     },
+    //     {
+    //       id: '10',
+    //       name: '程度',
+    //       des: '汉东省京州市公安局光明区分局局长，因犯错误，被李达康书记和赵东来局长点名要清除公安队伍。<br/>但在高小琴的帮助下，祁同伟调他当上了省公安厅办公室副主任。<br/>尽管程度逃避了所有罪责，上面也有人保他，<br/>但最终还是在反贪局局长侯亮平的缜密侦查下被绳之于法。',
+    //       category: 1,
+    //     },
+    //     {
+    //       id: '11',
+    //       name: '吴惠芬',
+    //       des: '汉东省省委副书记高育良的妻子，汉东大学明史教授。',
+    //       // itemStyle: {
+    //       //   normal: {
+    //       //     color: '#eeb66c',
+    //       //   },
+    //       // },
+    //     },
+    //     {
+    //       id: '12',
+    //       name: '赵瑞龙',
+    //       des: '副国级人物赵立春的公子哥，官二代，打着老子的旗子，<br/>黑白两道通吃，可谓呼风唤雨，权倾一时。',
+    //     },
+    //     {
+    //       id: '13',
+    //       name: '赵立春',
+    //       des: '副国级领导人，曾经的改革闯将，在权利面前，显得极其渺小。',
+    //     },
+    //     {
+    //       id: '14',
+    //       name: '陈海',
+    //       // itemStyle: {
+    //       //   normal: {
+    //       //     color: '#eeb66c',
+    //       //   },
+    //       // },
+    //     },
+    //     {
+    //       id: '15',
+    //       name: '梁璐',
+    //       // itemStyle: {
+    //       //   normal: {
+    //       //     color: '#eeb66c',
+    //       //   },
+    //       // },
+    //     },
+    //     {
+    //       id: '16',
+    //       name: '刘新建',
+    //     },
+    //     {
+    //       id: '17',
+    //       name: '欧阳菁',
+    //     },
+    //     {
+    //       id: '18',
+    //       name: '吴心怡',
+    //       // itemStyle: {
+    //       //   normal: {
+    //       //     color: '#eeb66c',
+    //       //   },
+    //       // },
+    //     },
+    //     {
+    //       id: '19',
+    //       name: '蔡成功',
+    //     },
+    //     {
+    //       id: '20',
+    //       name: '丁义珍',
+    //     },
+    //   ],
+    //   links: [
+    //     // {
+    //     //   source: '高育良',
+    //     //   target: '侯亮平',
+    //     //   name: '师生',
+    //     //   des: '侯亮平是高育良的得意门生',
+    //     // },
+    //     {
+    //       source: '5',
+    //       target: '0',
+    //       name: '师生',
+    //       des: '侯亮平是高育良的得意门生',
+    //     },
+    //     {
+    //       source: '5',
+    //       target: '2',
+    //       name: '师生',
+    //     },
+    //     {
+    //       source: '赵立春',
+    //       target: '高育良',
+    //       name: '前领导',
+    //     },
+    //     {
+    //       source: '赵立春',
+    //       target: '赵瑞龙',
+    //       name: '父子',
+    //     },
+    //     {
+    //       source: '赵立春',
+    //       target: '刘新建',
+    //       name: '前部队下属',
+    //     },
+    //     {
+    //       source: '李达康',
+    //       target: '赵立春',
+    //       name: '前任秘书',
+    //     },
+    //     {
+    //       source: '祁同伟',
+    //       target: '高小琴',
+    //       name: '情人',
+    //     },
+    //     {
+    //       source: '陈岩石',
+    //       target: '陈海',
+    //       name: '父子',
+    //     },
+    //     {
+    //       source: '陆亦可',
+    //       target: '陈海',
+    //       name: '属下',
+    //     },
+    //     {
+    //       source: '沙瑞金',
+    //       target: '陈岩石',
+    //       name: '故人',
+    //     },
+    //     {
+    //       source: '祁同伟',
+    //       target: '陈海',
+    //       name: '师哥',
+    //     },
+    //     {
+    //       source: '祁同伟',
+    //       target: '侯亮平',
+    //       name: '师哥',
+    //     },
+    //     {
+    //       source: '侯亮平',
+    //       target: '陈海',
+    //       name: '同学，生死朋友',
+    //     },
+    //     {
+    //       source: '高育良',
+    //       target: '吴惠芬',
+    //       name: '夫妻',
+    //     },
+    //     {
+    //       source: '陈海',
+    //       target: '赵东来',
+    //       name: '朋友',
+    //     },
+    //     {
+    //       source: '高小琴',
+    //       target: '高小凤',
+    //       name: '双胞胎',
+    //       symbolSize: '1',
+    //     },
+    //     {
+    //       source: '赵东来',
+    //       target: '陆亦可',
+    //       name: '爱慕',
+    //     },
+    //     {
+    //       source: '祁同伟',
+    //       target: '程度',
+    //       name: '领导',
+    //     },
+    //     {
+    //       source: '高育良',
+    //       target: '高小凤',
+    //       name: '情人',
+    //     },
+    //     {
+    //       source: '赵瑞龙',
+    //       target: '祁同伟',
+    //       name: '勾结',
+    //       symbolSize: '1',
+    //     },
+    //     {
+    //       source: '李达康',
+    //       target: '赵东来',
+    //       name: '领导',
+    //     },
+    //     {
+    //       source: '赵瑞龙',
+    //       target: '程度',
+    //       name: '领导',
+    //     },
+    //     {
+    //       source: '沙瑞金',
+    //       target: '李达康',
+    //       name: '领导',
+    //     },
+    //     {
+    //       source: '沙瑞金',
+    //       target: '高育良',
+    //       name: '领导',
+    //     },
+    //     {
+    //       source: '祁同伟',
+    //       target: '梁璐',
+    //       name: '夫妻',
+    //     },
+    //     {
+    //       source: '吴惠芬',
+    //       target: '梁璐',
+    //       name: '朋友',
+    //     },
+    //     {
+    //       source: '李达康',
+    //       target: '欧阳菁',
+    //       name: '夫妻',
+    //     },
+    //     {
+    //       source: '赵瑞龙',
+    //       target: '刘新建',
+    //       name: '洗钱工具',
+    //     },
+    //     {
+    //       source: '赵瑞龙',
+    //       target: '高小琴',
+    //       name: '勾结，腐化',
+    //       symbolSize: '1',
+    //     },
+    //     {
+    //       source: '赵瑞龙',
+    //       target: '高小凤',
+    //       name: '腐化',
+    //     },
+    //     {
+    //       source: '吴心怡',
+    //       target: '陆亦可',
+    //       name: '母女',
+    //     },
+    //     {
+    //       source: '吴心怡',
+    //       target: '吴惠芬',
+    //       name: '姐妹',
+    //     },
+    //     {
+    //       source: '蔡成功',
+    //       target: '侯亮平',
+    //       name: '发小',
+    //     },
+    //     {
+    //       source: '蔡成功',
+    //       target: '欧阳菁',
+    //       name: '举报',
+    //       lineStyle: {
+    //         normal: {
+    //           type: 'dotted',
+    //           color: '#000',
+    //         },
+    //       },
+    //     },
+    //     {
+    //       source: '欧阳菁',
+    //       target: '刘新建',
+    //       name: '举报',
+    //       lineStyle: {
+    //         normal: {
+    //           type: 'dotted',
+    //           color: '#000',
+    //         },
+    //       },
+    //     },
+    //     {
+    //       source: '刘新建',
+    //       target: '赵瑞龙',
+    //       name: '举报',
+    //       lineStyle: {
+    //         normal: {
+    //           type: 'dotted',
+    //           color: '#000',
+    //         },
+    //       },
+    //     },
+    //     {
+    //       source: '李达康',
+    //       target: '丁义珍',
+    //       name: '领导',
+    //     },
+    //     {
+    //       source: '高小琴',
+    //       target: '丁义珍',
+    //       name: '策划出逃',
+    //     },
+    //     {
+    //       source: '祁同伟',
+    //       target: '丁义珍',
+    //       name: '勾结',
+    //     },
+    //     {
+    //       source: '赵瑞龙',
+    //       target: '丁义珍',
+    //       name: '勾结',
+    //     },
+    //   ],
+    //   categories: [
+    //     {
+    //       name: '侯亮平',
+    //     },
+    //     {
+    //       name: '高育良',
+    //     },
+    //     {
+    //       name: '李达康',
+    //     },
+    //     {
+    //       name: 'D',
+    //     },
+    //     {
+    //       name: 'E',
+    //     },
+    //     {
+    //       name: 'F',
+    //     },
+    //     {
+    //       name: 'G',
+    //     },
+    //     {
+    //       name: 'H',
+    //     },
+    //     {
+    //       name: 'I',
+    //     },
+    //   ],
+    // },
+
     data: {
       nodes: [
         {
           id: '0',
-          name: 'Myriel',
+          name: '侯亮平',
           symbolSize: 19.12381,
           x: -266.82776,
           y: 299.6904,
           value: 28.685715,
           category: 0,
+          des: '最高检反贪局侦查处处长，汉东省人民检察院副检察长兼反贪局局长。<br/>经过与腐败违法分子的斗争，最终将一批腐败分子送上了审判台，<br/>正义战胜邪恶，自己也迎来了成长。',
         },
         {
           id: '1',
-          name: 'Napoleon',
+          name: '李达康',
+          des: '汉东省省委常委，京州市市委书记。是一个正义无私的好官。<br/>但为人过于爱惜自己的羽毛，对待身边的亲人和朋友显得有些无情。',
           symbolSize: 2.6666666666666665,
           x: -418.08344,
           y: 446.8853,
@@ -27,8 +458,9 @@ export default {
         },
         {
           id: '2',
-          name: 'MlleBaptistine',
-          symbolSize: 6.323809333333333,
+          name: '祁同伟',
+          des: '汉东省公安厅厅长',
+          symbolSize: 7,
           x: -212.76357,
           y: 245.29176,
           value: 9.485714,
@@ -36,7 +468,8 @@ export default {
         },
         {
           id: '3',
-          name: 'MmeMagloire',
+          name: '陈岩石',
+          des: '离休干部、汉东省检察院前常务副检察长。充满正义，平凡而普通的***人。<br/>对大老虎赵立春，以各种形式执着举报了十二年。<br/>在这场关系党和国家生死存亡的斗争中，老人家以耄耋高龄，<br/>义无反顾地背起了炸 药包，在反腐胜利前夕因病去世。',
           symbolSize: 6.323809333333333,
           x: -242.82404,
           y: 235.26283,
@@ -45,7 +478,8 @@ export default {
         },
         {
           id: '4',
-          name: 'CountessDeLo',
+          name: '陆亦可',
+          des: '汉东省检察院反贪局一处处长',
           symbolSize: 2.6666666666666665,
           x: -379.30386,
           y: 429.06424,
@@ -54,7 +488,8 @@ export default {
         },
         {
           id: '5',
-          name: 'Geborand',
+          name: '高育良',
+          des: '汉东省省委副书记兼政法委书记。年近六十，是一个擅长太极功夫的官场老手。侯亮平、陈海和祁同伟是其学生。',
           symbolSize: 2.6666666666666665,
           x: -417.26337,
           y: 406.03506,
@@ -63,7 +498,8 @@ export default {
         },
         {
           id: '6',
-          name: 'Champtercier',
+          name: '沙瑞金',
+          des: '汉东省省委书记',
           symbolSize: 2.6666666666666665,
           x: -332.6012,
           y: 485.16974,
@@ -72,7 +508,8 @@ export default {
         },
         {
           id: '7',
-          name: 'Cravatte',
+          name: '高小琴',
+          des: '山水集团董事长，是一位叱咤于政界和商界的风云人物，处事圆滑、精明干练。',
           symbolSize: 2.6666666666666665,
           x: -382.69568,
           y: 475.09113,
@@ -81,7 +518,7 @@ export default {
         },
         {
           id: '8',
-          name: 'Count',
+          name: '高小凤',
           symbolSize: 2.6666666666666665,
           x: -320.384,
           y: 387.17325,
@@ -90,7 +527,7 @@ export default {
         },
         {
           id: '9',
-          name: 'OldMan',
+          name: '赵东来',
           symbolSize: 2.6666666666666665,
           x: -344.39832,
           y: 451.16772,
@@ -99,7 +536,7 @@ export default {
         },
         {
           id: '10',
-          name: 'Labarre',
+          name: '程度',
           symbolSize: 2.6666666666666665,
           x: -89.34107,
           y: 234.56128,
@@ -108,7 +545,7 @@ export default {
         },
         {
           id: '11',
-          name: 'Valjean',
+          name: '吴惠芬',
           symbolSize: 66.66666666666667,
           x: -87.93029,
           y: -6.8120565,
@@ -118,7 +555,7 @@ export default {
         },
         {
           id: '12',
-          name: 'Marguerite',
+          name: '赵瑞龙',
           symbolSize: 4.495239333333333,
           x: -339.77908,
           y: -184.69139,
@@ -127,7 +564,7 @@ export default {
         },
         {
           id: '13',
-          name: 'MmeDeR',
+          name: '赵立春',
           symbolSize: 2.6666666666666665,
           x: -194.31313,
           y: 178.55301,
@@ -136,7 +573,7 @@ export default {
         },
         {
           id: '14',
-          name: 'Isabeau',
+          name: '陈海',
           symbolSize: 2.6666666666666665,
           x: -158.05168,
           y: 201.99768,
@@ -145,7 +582,7 @@ export default {
         },
         {
           id: '15',
-          name: 'Gervais',
+          name: '梁璐',
           symbolSize: 2.6666666666666665,
           x: -127.701546,
           y: 242.55057,
@@ -154,7 +591,7 @@ export default {
         },
         {
           id: '16',
-          name: 'Tholomyes',
+          name: '刘新建',
           symbolSize: 17.295237333333333,
           x: -385.2226,
           y: -393.5572,
@@ -163,7 +600,7 @@ export default {
         },
         {
           id: '17',
-          name: 'Listolier',
+          name: '欧阳菁',
           symbolSize: 13.638097333333334,
           x: -516.55884,
           y: -393.98975,
@@ -172,7 +609,7 @@ export default {
         },
         {
           id: '18',
-          name: 'Fameuil',
+          name: '吴心怡',
           symbolSize: 13.638097333333334,
           x: -464.79382,
           y: -493.57944,
@@ -181,7 +618,7 @@ export default {
         },
         {
           id: '19',
-          name: 'Blacheville',
+          name: '蔡成功',
           symbolSize: 13.638097333333334,
           x: -515.1624,
           y: -456.9891,
@@ -190,7 +627,7 @@ export default {
         },
         {
           id: '20',
-          name: 'Favourite',
+          name: '丁义珍',
           symbolSize: 13.638097333333334,
           x: -408.12122,
           y: -464.5048,
@@ -706,114 +1143,142 @@ export default {
         {
           source: '1',
           target: '0',
+          name: '师生',
         },
         {
           source: '2',
           target: '0',
+          name: '师生',
         },
         {
           source: '3',
           target: '0',
+          name: '师生',
         },
         {
           source: '3',
           target: '2',
+          name: '师生',
         },
         {
           source: '4',
           target: '0',
+          name: '师生',
         },
         {
           source: '5',
           target: '0',
+          name: '师生',
         },
         {
           source: '6',
           target: '0',
+          name: '师生',
         },
         {
           source: '7',
           target: '0',
+          name: '师生',
         },
         {
           source: '8',
           target: '0',
+          name: '师生',
         },
         {
           source: '9',
           target: '0',
+          name: '师生',
         },
         {
           source: '11',
           target: '0',
+          name: '师生',
         },
         {
           source: '11',
           target: '2',
+          name: '师生',
         },
         {
           source: '11',
           target: '3',
+          name: '师生',
         },
         {
           source: '11',
           target: '10',
+          name: '师生',
         },
         {
           source: '12',
           target: '11',
+          name: '师生',
         },
         {
           source: '13',
           target: '11',
+          name: '关系10',
         },
         {
           source: '14',
           target: '11',
+          name: '关系9',
         },
         {
           source: '15',
           target: '11',
+          name: '关系8',
         },
         {
           source: '17',
           target: '16',
+          name: '关系7',
         },
         {
           source: '18',
           target: '16',
+          name: '关系6',
         },
         {
           source: '18',
           target: '17',
+          name: '关系5',
         },
         {
           source: '19',
           target: '16',
+          name: '关系4',
         },
         {
           source: '19',
           target: '17',
+          name: '关系3',
         },
         {
           source: '19',
           target: '18',
+          name: '关系2',
         },
         {
           source: '20',
           target: '16',
+          name: '关系1',
         },
         {
           source: '20',
           target: '17',
+          name: '下属',
         },
         {
           source: '20',
           target: '18',
+          name: '同事',
         },
         {
           source: '20',
           target: '19',
+          name: '领导',
         },
         {
           source: '21',
