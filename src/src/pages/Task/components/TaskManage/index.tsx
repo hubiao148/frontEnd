@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { List, Skeleton, Breadcrumb, Pagination, message } from 'antd';
+import { List, Skeleton, Breadcrumb, Pagination, message, Popconfirm } from 'antd';
 import style from './index.less';
 import { Link, useHistory, useParams } from 'umi';
 import storage from '@/utils/storage';
@@ -15,7 +15,7 @@ const list1 = [
     sUp: true,
     mainAuth: 'hcy',
     id: 1,
-    teacher:false
+    teacher: false
   }, {
     taskName: '1给我把项目做完',
     dec: '权限控制，动态路由，上分',
@@ -63,7 +63,7 @@ export default function index() {
   const history = useHistory();
   // 设置加载状态
   const [initLoading, setInitLoading] = useState(true);
-  
+
   const [userState, setUserState] = useState('老师');
   const litsType = ['管理员', '老师', '学生', '游客'];
   const params: { id: any } = useParams();
@@ -82,7 +82,7 @@ export default function index() {
      * 获取数据
      */
     queryGroupTaskById(params.id).then((res) => {
-      
+
       if (res.data == null) {
         message.error({ content: '没有任务！', duration: 1 });
         history.push("/task/staging");
@@ -94,7 +94,7 @@ export default function index() {
           return {
             taskName: i.taskName,
             dec: i.story,
-            deadLine: i.finisheddate!=undefined?i.finisheddate.split('T')[0]:i.deadline.split('T')[0],
+            deadLine: i.finisheddate != undefined ? i.finisheddate.split('T')[0] : i.deadline.split('T')[0],
             sUp: true,
             mainAuth: i.assignedto,
             id: i.id,
@@ -116,13 +116,13 @@ export default function index() {
           }
         })
       }
-      
+
       setList(resData.concat(resData1))
       setInitLoading(false);
     })
   }, []);
 
- 
+
   const [list, setList] = useState(list1);
   /**
    * 删除任务
@@ -135,9 +135,9 @@ export default function index() {
     })
     setInitLoading(true);
     queryGroupTaskById(params.id).then((res) => {
-      
+
       let resData;
-      if (res.data.tasks!=null) {
+      if (res.data.tasks != null) {
         resData = res.data.tasks.map((i: any) => {
           return {
             taskName: i.taskName,
@@ -151,7 +151,7 @@ export default function index() {
         })
       }
       let resData1;
-      if (res.data.ttasks!=null) {
+      if (res.data.ttasks != null) {
         resData1 = res.data.ttasks.map((i: any) => {
           return {
             taskName: i.name,
@@ -172,6 +172,9 @@ export default function index() {
       setInitLoading(false);
     })
   }
+  const cancel = () => {
+    message.error('删除失败！');
+  };
   return (
     <div className={style.container}>
       <div className={style['menu']}>
@@ -209,7 +212,7 @@ export default function index() {
             <List.Item
               actions={[
                 userState == '老师' ? (
-                  <Link key="list-look" to={`/task/lookTask/${item.id}/${item.teacher===true?1:0}`}>
+                  <Link key="list-look" to={`/task/lookTask/${item.id}/${item.teacher === true ? 1 : 0}`}>
                     查看
                   </Link>
                 ) : (
@@ -217,9 +220,18 @@ export default function index() {
                     编辑
                   </Link>
                 ),
-                <a key="list-delete" onClick={() => deleteTask(item.id)}>
-                  删除
-                </a>,
+                <Popconfirm
+                  title="是否删除该任务？"
+                  onConfirm={() => deleteTask(item.id)}
+                  onCancel={cancel}
+                  okText="是"
+                  cancelText="否"
+                >
+                  <a key="list-delete">
+                    删除
+                  </a>
+                </Popconfirm>
+                ,
               ]}
             >
               <Skeleton
@@ -233,7 +245,7 @@ export default function index() {
                   <div>{item.dec}</div>
                   <div>{item.deadLine}</div>
                   <div>{item.sUp ? '是' : '否'}</div>
-                  <div>{item.mainAuth }</div>
+                  <div>{item.mainAuth}</div>
                 </div>
               </Skeleton>
             </List.Item>

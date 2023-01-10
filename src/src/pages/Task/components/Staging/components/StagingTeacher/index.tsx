@@ -8,7 +8,7 @@
  * 
  */
 import React, { useEffect, useState } from 'react'
-import { Divider, List, Select, Button, Pagination, Skeleton, Progress, Statistic, message } from 'antd';
+import { Divider, List, Select, Button, Pagination, Skeleton, Progress, Statistic, message,Popconfirm } from 'antd';
 import style from './index.less'
 import { Link, useHistory } from 'umi';
 import { useThrottle } from '@/utils/useThrottle';
@@ -158,6 +158,10 @@ export default function index() {
     const handleChangeClass = (v:any) => {
         setClass(v)
     }
+
+    const cancel = () => {
+        message.error('删除失败！');
+    };
     const onSearchMsg = useThrottle(searchMsg, 700);
     // 设置默认年份
     const [defaultYear] = useState((new Date()).getFullYear() - 3)
@@ -282,7 +286,16 @@ export default function index() {
                                     <Divider type="vertical" />
                                         <Link to={`/task/groupDetail/${item.id}`}>编辑小组</Link>
                                     <Divider type="vertical" />
-                                        <a href="" onClick={() => deleteById(item.id)}>删除</a>
+                                        
+                                        <Popconfirm
+                                            title="是否删除该小组？"
+                                            onConfirm={() => deleteById(item.id)}
+                                            onCancel={cancel}
+                                            okText="是"
+                                            cancelText="否"
+                                        >
+                                            <a href="">删除</a>
+                                        </Popconfirm>
                                 </div>
                             </div>)
                             : (<Skeleton loading={loading} active paragraph={{ rows: 1, width: '100%' }} title={false}>
